@@ -10,7 +10,7 @@
 
 <table class="table table-striped table-condensed table-hover">
     <thead>
-      <th colspan="8" class="ts-pager form-horizontal">
+      <th colspan="9" class="ts-pager form-horizontal">
             <button type="button" class="btn first"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i></button>
             <button type="button" class="btn prev"><i class="icon-arrow-left glyphicon glyphicon-backward"></i></button>
             <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
@@ -27,6 +27,7 @@
           </th>
         <tr align="center">
             <th>Edition</th>
+            <th>URL</th>
             <th>Institution</th>
             <th>Period</th>
             <th>Manager</th>
@@ -39,7 +40,10 @@
     {% for object in object_list %}
         <tr>
             <td>
-                <a href="{{ object.url }}"> {{ object.name }}</a>
+                <a href="{% url 'editions:edition_detail' pk=object.id %}">{{ object.name }}</a>
+            </td>
+            <td>
+                <a href="{{ object.url }}"> {{ object.url }}</a>
             </td>
              <td>
                 {% for x in object.institution.all %} {{ x.name }}<br/> {% endfor %}

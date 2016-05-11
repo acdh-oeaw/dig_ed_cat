@@ -1,0 +1,103 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>{{ object.name }}</h2>
+    </div>
+    <div class="panel panel-body">
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <th class="col-sm-3">url</th>
+                <td class="col-sm-3 readmore"><small>This field broadly categorises an edition by periods</small></td>
+                <td class="col-sm-6"><a href="{{ object.url }}">{{ object.url }}</td>
+            </tr>
+            <tr>
+                <th>Historical Period</th>
+                <td><small>This field broadly categorises an edition by periods</small></td>
+                <td>{% for x in object.historical_period.all %} {{ x.name }}<br/> {% endfor %}</td>
+            </tr>
+            <tr>
+                <th>scholarly</th>
+                <td class="readmore"><small>An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition.</small></td>
+                <td>{{ object.scholarly }}</td>
+            </tr>
+             <tr>
+                <th>digital</th>
+                <td class="readmore"<small><small>A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities).</small></td>
+                <td>{{ object.digital }}</td>
+            </tr>
+             <tr>
+                <th>edition</th>
+                <td class="readmore"><small>An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition.</small></td>
+                <td>{{ object.edition }}</td>
+            </tr>
+             <tr>
+                <th>Writing support</th>
+                <td class="readmore"><small>The nature of the source text (manuscript, letter, notebook, etc.).</small></td>
+                <td>{{ object.writing_support }}</td>
+            </tr>
+             <tr>
+                <th>prototype</th>
+                <td class="readmore"><small>A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype.</small></td>
+                <td>{{ object.prototype }}</td>
+            </tr>
+            <tr>
+                <th>language</th>
+                <td class="readmore"><small>The language(s) of the source text. Three-letter ISO Codes are used.</small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th>Begin Date</th>
+                <td class="readmore"><small>Year the project started.</small></td>
+                <td>{{ object.begin_date }}</td>
+            </tr>
+             <tr>
+                <th>End Date</th>
+                <td class="readmore"><small>Year the project ended. If ongoing, leave blank.</small></td>
+                <td>{{ object.end_date }}</td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th></th>
+                <td class="readmore"><small></small></td>
+                <td></td>
+            </tr>
+           
+        </table>
+    </div>
+
+<script type="text/javascript">
+    //todo right script hiding .readomre td on load
+</script>
+{% endblock %}
+

@@ -1,0 +1,143 @@
+{% extends "webpage/base.html" %}
+{% block Titel %}Edit Places{% endblock %}
+
+{% block scriptHeader %}
+<!-- In case you are using any autocomplete-functions, don´t forget to 
+    include 'autocomplete_light/static.html
+-->
+<!--leafletjs -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+        <style>
+            #map { height: 500px; }
+        </style>
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+{% if object %}
+<div class="row">
+    <div class="col-md-4">
+{% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                  <h3>{%if object %} Edit {% else %} Create {% endif %}</h3>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% crispy form %}
+                    {% if object %}
+                    <a class="btn btn-default btn-block" target="_blank">Check<span id="currentID"></span></a>
+                    {% endif %}
+                    <input class="btn btn-primary btn-block" type="submit" value="Save" />
+                    {% if object %}
+                    <a class ="btn btn-danger btn-sm" href="{% url 'places:place_delete' pk=object.id %}">delete</a>
+                    {% endif %}
+                </form>
+           </div>
+       </div>
+{% if object %}       
+   </div>
+    <div class ="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <form class="form-group">
+                    <select class="form-control" id="geonamesSELECT">
+                            {% if object.geonames_id or object.lat %}
+                                <option id="geonamesOption" value="{{ object.name }}_{{ object.lat }}_{{ object.lng }}_{{ object.geonames_id }}">DB-Entry | {{ object.name }} | {{ object.lat }} | {{ object.lng }} | {{ object.geonames_id }}</option>
+                            {% endif %}
+                            {% for dict in responseJSON %}
+                            <option id="geonamesOption" value="{{ dict.countryName }}_{{ dict.name }}_{{ dict.lat }}_{{ dict.lng }}_{{ dict.geonameId }}"> {{ dict.countryName }} | {{ dict.name }} | {{ dict.lat }} | {{ dict.lng }} | {{ dict.geonameId }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+            </div>
+            <div class="panel-body">
+                <div id="parentMap"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script type="text/javascript">
+    function popupCreateName() {
+        var url = "{% url 'labels:label_create' %}";
+        var MyWindow = window.open(url,"","width=300, height=500");
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#id_alias_name-autocomplete").after('<button id="add_aliasName" type="button" class="btn btn-sm btn-success" onclick="popupCreateName()"><span class="glyphicon glyphicon-plus" /></button>');
+    });
+    $(document).ready(function(){
+        $("#id_alternative_name-autocomplete").after('<button id="add_alternativeName" type="button" class="btn btn-sm btn-success" onclick="popupCreateName()"><span class="glyphicon glyphicon-plus"/></button>');
+    });
+</script>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $("#map").remove()
+        $("#parentMap").append("<div id='map'></div>");
+        var placeName = $("#geonamesSELECT option:selected").text();
+        var gps1 = placeName.split(/\|/)[2];
+        var gps2 = placeName.split(/\|/)[3];
+        var map = L.map('map').setView([gps1, gps2], 10);
+
+        L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
+        attribution: 'Data, imagery and map information provided by MapQuest, OpenStreetMap <http://www.openstreetmap.org/copyright> and contributors, ODbL <http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F>',
+        maxZoom: 18
+        }).addTo(map);
+
+        L.marker([gps1, gps2]).addTo(map)
+        .bindPopup(placeName)
+        .openPopup();
+        });
+</script>
+
+<script type="text/javascript">
+    $( document ).ready(function(){
+        var placeName = $("#geonamesSELECT option:selected").text();
+        var gps1 = placeName.split(/\|/)[2];
+        var gps2 = placeName.split(/\|/)[3];
+        var geonameId = placeName.split(/\|/)[4];
+        $('#id_lat').val(parseFloat(gps1));
+        $('#id_lng').val(parseFloat(gps2));
+        $('#id_geonames_id').val(parseInt(geonameId));
+        var gndURL = "http://www.geonames.org/"+geonameId.trim();
+        var lookupButton = $("#currentID");
+        $(lookupButton).text(gndURL);
+        $(lookupButton).parent().attr("href",gndURL);
+
+    });
+</script>
+
+<script type="text/javascript">
+    $("#geonamesSELECT").change(function(){
+        $("#map").remove()
+        $("#parentMap").append("<div id='map'></div>");
+       var placeName = $("#geonamesSELECT option:selected").text();
+        var gps1 = placeName.split(/\|/)[2];
+        var gps2 = placeName.split(/\|/)[3];
+        var map = L.map('map').setView([gps1, gps2], 15);
+        var geonameId = placeName.split(/\|/)[4];
+        $('#id_lat').val(parseFloat(gps1));
+        $('#id_lng').val(parseFloat(gps2));
+        $('#id_geonames_id').val(parseInt(geonameId));
+       var gndURL = "http://www.geonames.org/"+geonameId.trim();
+        var lookupButton = $("#currentID");
+        $(lookupButton).text(gndURL);
+        $(lookupButton).parent().attr("href",gndURL);
+
+        L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
+        attribution: 'Data, imagery and map information provided by MapQuest, OpenStreetMap <http://www.openstreetmap.org/copyright> and contributors, ODbL <http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F>',
+        maxZoom: 18
+        }).addTo(map);
+        L.marker([gps1, gps2]).addTo(map)
+            .bindPopup(placeName)
+            .openPopup();
+});
+</script>
+{% endblock %}

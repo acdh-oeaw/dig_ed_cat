@@ -1,0 +1,120 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>{% block Titel %} A digital editions catalog {% endblock %}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% block metaDescription %}
+      <meta name="description" content="A Web-App">
+      {% endblock %}
+      <meta name="author" content="Peter Andorfer">
+      <!-- Bootstrap -->
+      
+      <link rel="stylesheet" href="{% static 'webpage/libraries/bootstrap335/css/bootstrap.min.css' %}"/></link>
+      <!--scroll to top CSS -->
+      <link rel="stylesheet" href="{% static 'webpage/libraries/scroll-to-top/css/ap-scroll-top.min.css'%}"></link>
+      <!-- jQuery -->
+      <script type="text/javascript" src="{% static 'webpage/libraries/jquery/jquery.js' %}"></script>
+      <!--scroll to top -->
+      <script src="{% static 'webpage/libraries/scroll-to-top/js/ap-scroll-top.min.js'%}"></script>
+      {% block scriptHeader %}
+        {% endblock %}
+  </head>
+
+  <body role="document">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation!</span>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
+          </button>
+        </div>  
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home
+                  <span class="caret"/>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                        <a href="{% url 'webpage:start' %}">Start</a>
+                    </li>
+                  </ul>
+                </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Editions
+                  <span class="caret"/>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                        <a href="{% url 'editions:edition_list' %}">Browse the cataloge</a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">DummyLink</a>
+                    </li> -->
+                  </ul>
+                </li>
+            </ul>
+            <!-- <ul class="nav navbar-nav navbar-right">
+              <li>
+                  <a href="#">DummyLink</a>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">place for LogIn<span class="caret"/>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                        <a href="{% url 'webpage:user_login' %}">Log-In</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'webpage:user_logout' %}">Log-Out</a>
+                    </li>
+                  </ul>
+              </li>
+            </ul> -->
+        </div>
+    </nav>
+    <div class="alert alert-danger">
+      <strong>Be Aware!</strong> This Site/Service is at a very early state of developement. Everything can change at any time.
+    </div>
+
+    <div id="content" class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <div class="container text-center">
+      <div class="row text-center">
+        <div class="col-sm-6">
+          <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/logo.png' %}" alt="ACDH" width="25%"/>   
+              <p>
+                <strong>Austrian Centre for Digital Humanities</strong>
+              </p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% block scripts %}
+    <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
+    <!-- scroll-up-bottom -->        
+    <script type="text/javascript">
+            // Setup plugin with default settings
+            $(document).ready(function() {
+                $.apScrollTop({
+                    'onInit': function(evt) {
+                        console.log('apScrollTop: init');
+                    }
+                });
+            });
+    </script>    
+    {% endblock %}
+  </body>
+</html>

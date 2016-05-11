@@ -105,7 +105,8 @@ class Edition(models.Model):
     )
     textual_variance = models.CharField(
         blank=True, max_length=255,
-        choices=CHOICES_TEXTUAL
+        choices=CHOICES_TEXTUAL,
+        verbose_name="Account of textual variance"
     )
     CHOICES_WITNESS = (
         ("N/A", "Not applicable, as no information about the source of the text is given, though it is easily assumable that the source is another digital edition or a printed edition (possibly even a scholarly edition"),
@@ -114,7 +115,8 @@ class Edition(models.Model):
         ("1", "The witnesses are traditional philological primary sources (including manuscripts, inscriptions or papyri)"),
     )
     value_witnesses = models.CharField(
-        choices=CHOICES_WITNESS, blank=True, null=True, max_length=255
+        choices=CHOICES_WITNESS, blank=True, null=True, max_length=255,
+        verbose_name="Value of witnesses"
     )
     CHOICES_TEI = (
         ("0", "XML not used"),
@@ -123,7 +125,8 @@ class Edition(models.Model):
     )
     tei_transcription = models.CharField(
         choices=CHOICES_TEI, blank=True, null=True, max_length=255,
-        help_text="The source text is encoded in XML-TEI."
+        help_text="The source text is encoded in XML-TEI.",
+        verbose_name="XML-TEI transcription"
     )
     CHOICES_DOWNLOAD = (
         ("0", "no"),
@@ -132,7 +135,8 @@ class Edition(models.Model):
     )
     download = models.CharField(
         choices=CHOICES_DOWNLOAD, blank=True, null=True, max_length=255,
-        help_text="The XML-TEI encoded text is available for download."
+        help_text="The XML-TEI encoded text is available for download.",
+        verbose_name="XML-TEI transcription to download"
     )
     images = models.NullBooleanField(
         null=True,
@@ -148,11 +152,13 @@ class Edition(models.Model):
     )
     text_image = models.NullBooleanField(
         null=True,
-        help_text="The transcription and the image are linked so that clicking on a word in the image brings up the corresponding textual token and viceversa."
+        help_text="The transcription and the image are linked so that clicking on a word in the image brings up the corresponding textual token and viceversa.",
+        verbose_name="Text-image linking"
     )
     source_translation = models.CharField(
         blank=True, max_length=3,
-        help_text="The project provides a translation of the source text. If so, the corresponding three-letter ISO code should be used. If not, type 0."
+        help_text="The project provides a translation of the source text. If so, the corresponding three-letter ISO code should be used. If not, type 0.",
+        verbose_name="Source text translation"
     )
     website_language = models.CharField(
         blank=True, max_length=3,
@@ -168,7 +174,8 @@ class Edition(models.Model):
     )
     search = models.NullBooleanField(
         null=True,
-        help_text = "The values 1 or 0 are used to tell us if the edition provides string matching search possibilities."
+        help_text = "The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.",
+        verbose_name="String matching search"
     )
     advanced_search = models.NullBooleanField(
         null=True,
@@ -176,7 +183,8 @@ class Edition(models.Model):
     )
     cc_license = models.NullBooleanField(
         null=True,
-        help_text="The values 1 or 0 are used to specify if the project is protected by a Creative Commons License."
+        help_text="The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.",
+        verbose_name="Creative Commons License"
     )
     CHOICES_OPENSOURCE = (
         ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
@@ -186,7 +194,8 @@ class Edition(models.Model):
     )
     open_source = models.CharField(
         blank=True, max_length=255,
-        choices=CHOICES_OPENSOURCE
+        choices=CHOICES_OPENSOURCE,
+        verbose_name="Open Source/Open Access"
     )
     infrastructure = models.CharField(
         blank=True, max_length=255,

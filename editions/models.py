@@ -73,10 +73,12 @@ class Edition(models.Model):
         help_text="The nature of the source text (manuscript, letter, notebook, etc.)."
     )
     begin_date = models.DateField(
-        null=True, help_text="Year the project started."
+        null=True, blank=True,
+        help_text="Year the project started."
     )
     end_date = models.DateField(
-        null=True, help_text="Year the project ended. If ongoing, leave blank."
+        null=True, blank=True,
+        help_text="Year the project ended. If ongoing, leave blank."
     )
     manager = models.ManyToManyField(
         Person, blank=True, help_text="Name of project manager(s)."

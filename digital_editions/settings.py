@@ -39,10 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'crispy_forms',
+    'django_spaghetti',
     'webpage',
     'places',
     'editions',
 ]
+
+SPAGHETTI_SAUCE = {
+    'apps': ['places', 'editions'],
+    'show_fields': False,
+    'exclude': {'auth': ['user']}
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

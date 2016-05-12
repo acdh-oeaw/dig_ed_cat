@@ -38,6 +38,10 @@ class Period(models.Model):
         return "{}".format(self.name)
 
 
+class Language(models.Model):
+    iso_code = models.CharField(max_length=3, blank=True, null=True)
+
+
 class Edition(models.Model):
     """Holds the (meta)data of a digital editions project. Information taken from
     https://github.com/gfranzini/digEds_cat/wiki/Contribute"""
@@ -64,8 +68,8 @@ class Edition(models.Model):
         null=True,
         help_text="A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype."
     )
-    language = models.CharField(
-        max_length=3, blank=True,
+    language = models.ManyToManyField(
+        Language, blank=True, related_name="lang_source",
         help_text="The language(s) of the source text. Three-letter ISO Codes are used."
     )
     writing_support = models.CharField(
@@ -162,8 +166,8 @@ class Edition(models.Model):
         help_text="The project provides a translation of the source text. If so, the corresponding three-letter ISO code should be used. If not, type 0.",
         verbose_name="Source text translation"
     )
-    website_language = models.CharField(
-        blank=True, max_length=3,
+    website_language = models.ManyToManyField(
+        Language, blank=True, max_length=3, related_name="lang_website",
         help_text="The language the project website is written in. Three-letter ISO Codes should be used."
     )
     glossary = models.NullBooleanField(

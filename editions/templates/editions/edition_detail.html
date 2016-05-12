@@ -50,12 +50,12 @@
              <tr>
                 <th>Begin Date</th>
                 <td class="readmore"><small>Year the project started.</small></td>
-                <td>{{ object.begin_date }}</td>
+                <td>{{ object.begin_date|date:"Y" }}</td>
             </tr>
              <tr>
                 <th>End Date</th>
                 <td class="readmore"><small>Year the project ended. If ongoing, leave blank.</small></td>
-                <td>{{ object.end_date }}</td>
+                <td>{{ object.end_date|date:"Y" }}</td>
             </tr>
              <tr>
                 <th>Manager</th>

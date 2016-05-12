@@ -8,3 +8,5 @@ __pycache__/
 #migrations
 migrations/
 /db.sqlite3
+/digital_editions/settings/pandorfer_local.py
+/digital_editions/settings/server.py

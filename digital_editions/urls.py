@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('webpage.urls', namespace='webpage')),
     url(r'editions/', include('editions.urls', namespace='editions')),
+    url(r'places/', include('places.urls', namespace='places')),
     url(r'^datamodel/', include('django_spaghetti.urls', namespace="datamodel")),
 ]

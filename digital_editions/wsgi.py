@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 
 import os
 
+import sys
+sys.path.append('/var/www/html')
+
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "digital_editions.settings")
+os.environ["DJANGO_SETTINGS_MODULE"] = "digital_editions.settings.server"
 
 application = get_wsgi_application()
+

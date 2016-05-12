@@ -45,7 +45,7 @@
             <tr>
                 <th>language</th>
                 <td class="readmore"><small>The language(s) of the source text. Three-letter ISO Codes are used.</small></td>
-                <td></td>
+                <td>{% for x in object.language.all %} {{ x.iso_code }}<br/>{% endfor %}</td>
             </tr>
              <tr>
                 <th>Begin Date</th>
@@ -148,7 +148,7 @@
             <tr>
                 <th>Website language</th>
                 <td class="readmore"><small>The language the project website is written in. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">Three-letter ISO codes</a> should be used.</small></td>
-                <td>{{ object.website_language }}</td>
+                <td>{% for x in object.website_language.all %} {{ x.iso_code }} <br/> {% endfor %}</td>
             </tr>
             <tr>
                 <th>Glossary</th>

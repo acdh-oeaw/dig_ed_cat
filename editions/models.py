@@ -41,6 +41,9 @@ class Period(models.Model):
 class Language(models.Model):
     iso_code = models.CharField(max_length=3, blank=True, null=True)
 
+    def __str__(self):
+        return "{}".format(self.iso_code)
+
 
 class Edition(models.Model):
     """Holds the (meta)data of a digital editions project. Information taken from

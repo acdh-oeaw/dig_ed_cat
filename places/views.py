@@ -31,31 +31,32 @@ def create_place(request):
 
 
 def edit_place(request, pk):
-	instance = Place.objects.get(id=pk)
-	username = "&username=digitalarchiv"
-	if request.method == "GET":
-		placeName = instance.name
-		root = "http://api.geonames.org/searchJSON?q="
-		params = "&fuzzy=0.6&lang=de&maxRows=100"
-		url = root+placeName+params+username
-		try:
-			r = requests.get(url)
-		except requests.exceptions.RequestException as e:
-			url = e
-		response = r.text
-		responseJSON = json.loads(response)
-		responseJSON = responseJSON['geonames']
-		form = PlaceForm(instance = instance)
-		print(url)
+    instance = Place.objects.get(id=pk)
+    username = "&username=digitalarchiv"
+    if request.method == "GET":
+        placeName = instance.name
+        root = "http://api.geonames.org/searchJSON?q="
+        params = "&fuzzy=0.6&lang=de&maxRows=100"
+        url = root+placeName+params+username
+        try:
+            r = requests.get(url)
+            response = r.text
+            responseJSON = json.loads(response)
+            responseJSON = responseJSON['geonames']
+        except requests.exceptions.RequestException as e:
+            url = e
+        form = PlaceForm(instance = instance)
+        print(url)
+        responseJSON = "hansi"
 		#form = OrtForm({'geonames_id':123})
-		return render(request, 'places/edit_places.html',
+        return render(request, 'places/edit_places.html',
 			{'object':instance, 'form':form, 'responseJSON':responseJSON}
 			)
-	else:
-		form = PlaceForm(request.POST, instance = instance)
-		if form.is_valid():
-			form.save()
-		return redirect('places:place_list')
+    else:
+        form = PlaceForm(request.POST, instance = instance)
+        if form.is_valid():
+            form.save()
+        return redirect('places:place_list')
 
 
 class PlaceDelete(DeleteView):

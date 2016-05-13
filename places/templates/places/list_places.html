@@ -1,12 +1,13 @@
 {% extends "webpage/base.html" %}
-{% block Titel %}Edit Places{% endblock %}
+{% load staticfiles %}
+{% block Titel %}List of Places{% endblock %}
 
 {% block scriptHeader %}<!--leafletjs -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+    <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet/leaflet.css' %}"/></link>
+    <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
         <style>
             #map { height: 500px; }
-        </style>O
+        </style>
 {% endblock %}
 {% block content %}
 {% if object_list %}
@@ -27,7 +28,7 @@
 					<tbody>
 						{% for object in object_list %}
 						<tr>
-							<td><a href="{% url 'places:place_edit' pk=object.id %}">{{ object }}</a></td>
+							<td><a href="{% url 'places:place_edit' pk=object.id %}">{{ object }} (edit)</a></td>
 							<td>{{ object.geonames_id }}</td>
 						</tr>
 						{% endfor %}

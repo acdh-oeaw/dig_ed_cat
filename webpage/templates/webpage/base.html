@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <title>{% block Titel %} A digital editions catalog {% endblock %}</title>
+      <title>{% block Titel %} A digital editions catalogue {% endblock %}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       {% block metaDescription %}
       <meta name="description" content="A Web-App">
@@ -78,10 +78,10 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                        <a href="{% url 'editions:edition_list' %}">Browse the cataloge</a>
+                        <a href="{% url 'editions:edition_list' %}">Browse the catalogue</a>
                     </li>
                     <li>
-                        <a href="{% url 'datamodel:plate' %}">catalogue's data model</a>
+                        <a href="{% url 'datamodel:plate' %}">Catalogue's data model</a>
                     </li>
                     <li>
                         <a href="{% url 'places:place_list' %}">Places</a>
@@ -98,10 +98,10 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                        <a href="{% url 'webpage:user_login' %}">Log-In</a>
+                        <a href="{% url 'webpage:user_login' %}">Login</a>
                     </li>
                     <li>
-                        <a href="{% url 'webpage:user_logout' %}">Log-Out</a>
+                        <a href="{% url 'webpage:user_logout' %}">Logout</a>
                     </li>
                   </ul>
               </li>
@@ -109,7 +109,7 @@
         </div>
     </nav>
     <div class="alert alert-danger">
-      <strong>Be Aware!</strong> This Site/Service is at a very early state of developement. Everything can change at any time.
+      <strong>Be Aware!</strong> This Site/Service is at a very early state of development. Everything can change at any time.
     </div>
 
     <div id="content" class="container">

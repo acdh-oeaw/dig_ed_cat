@@ -6,7 +6,6 @@ __pycache__/
 .ipynb_checkpoints
 
 #migrations
-migrations/
 /db.sqlite3
 /digital_editions/settings/pandorfer_local.py
 /digital_editions/settings/server.py

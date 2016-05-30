@@ -9,3 +9,4 @@ __pycache__/
 /db.sqlite3
 /digital_editions/settings/pandorfer_local.py
 /digital_editions/settings/server.py
+/digedcat3.4

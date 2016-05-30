@@ -8,7 +8,7 @@ class PlaceForm(forms.ModelForm):
     class Meta:
         model = Place
         exclude = ['alternative_name']
-        fields = ['name', 'geonames_id', 'lat', 'lng', 'part_of']
+        fields = ['name', 'geonames_id', 'lat', 'lng', 'part_of', 'place_type']
 
     def __init__(self, *args, **kwargs):
         super(PlaceForm, self).__init__(*args, **kwargs)

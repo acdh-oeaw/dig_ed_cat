@@ -1,0 +1,6 @@
+{% extends "browsing/generic_list.html" %}
+{% block list_title %}Browse Editions{% endblock %}
+
+{% block reset_button %}
+ <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}">Reset search</a>      
+{% endblock %}

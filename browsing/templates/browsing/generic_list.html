@@ -1,0 +1,35 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% block Titel %} See all {{ object.classname }} {% endblock %}
+{% block scriptHeader %}
+<link rel="stylesheet" type="text/css" href="{% static 'webpage/libraries/jquery.autocomplete/jquery.autocomplete.css' %}"/>
+<script src="{% static 'webpage/libraries/jquery.autocomplete/jquery.autocomplete.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+<div class="panel panel-default">
+    <div class="panel-heading">
+    
+        <h1>{% block list_title %}{% endblock %}</h1>
+    
+    {% block create_button %}
+        
+    {% endblock %}
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                {% load django_tables2 crispy_forms_tags %}
+                {% crispy filter.form filter.form.helper %}
+                {% block reset_button %}
+                {% endblock %}
+            </div>
+            <div class="col-md-8">
+                {% render_table table %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% block customScripts %}{% endblock %}
+{% endblock %}

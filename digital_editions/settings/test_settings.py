@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'webpage',
     'places',
     'editions',
+    'django_filters',
+    'django_tables2',
+    'browsing',
 ]
 
 SPAGHETTI_SAUCE = {

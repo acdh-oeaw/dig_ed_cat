@@ -6,6 +6,7 @@ django-audit-log==0.7.0
 django-autocomplete-light==2.2.10
 django-crispy-forms==1.5.2
 django-extensions==1.6.1
+django-filter==0.13.0
 django-tables2==1.1.6
 djangorestframework==3.2.4
 ipykernel==4.2.1

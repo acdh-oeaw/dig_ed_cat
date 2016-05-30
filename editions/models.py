@@ -19,6 +19,16 @@ class Institution(models.Model):
     place = models.ManyToManyField(
         Place, blank=True, help_text="Place which the institution is associated with."
     )
+    gnd_id = models.CharField(
+        max_length=255, blank=True, help_text="GND id of Institution."
+    )
+    lat = models.DecimalField(
+        max_digits=20, decimal_places=12,
+        blank=True, null=True
+    )
+    lng = models.DecimalField(
+        max_digits=20, decimal_places=12, blank=True, null=True
+    )
 
     def __str__(self):
         return "{}".format(self.name)
@@ -196,6 +206,7 @@ class Edition(models.Model):
         verbose_name="Creative Commons License"
     )
     CHOICES_OPENSOURCE = (
+        ("", "No information provided."),
         ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
         ("0.5", "Same as above, but the subscription is free of charge."),
         ("1", "Open Access. The texts may be accessed through specific software, but the source is not accessible."),

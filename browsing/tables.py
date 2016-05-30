@@ -6,7 +6,6 @@ from places.models import *
 class EditionTable(tables.Table):
     name = tables.LinkColumn('editions:edition_detail', args=[A('pk')], verbose_name='edition name')
     institution = tables.Column(empty_values=())
-    url = tables.Column(accessor='url')
 
     def render_institution(self, record):   #for ManyToMany field to display all institutions
         if record.institution.all():
@@ -15,7 +14,7 @@ class EditionTable(tables.Table):
 
     class Meta:
         model = Edition
-        fields = ['name', 'institution', 'url']
+        fields = ['name', 'institution']
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 

@@ -19,27 +19,36 @@ django_filters.filters.LOOKUP_TYPES = [
 ]
 
 CHOICES_TEI = (
-		("", "No information provided."),
+		("", "----"),
+		("no information provided", "no information provided"),
 		("0", "XML not used"),
 		("0.5", "XML but not TEI"),
 		("1", "XML-TEI is used"),
 	)
 
 CHOICES_DOWNLOAD = (
-		("", "No information provided."),
+		("", "----"),
+		("no information provided", "no information provided"),
 		("0", "no"),
 		("0.5", "partially"),
 		("1", "yes"),
 	)
 
 CHOICES_OPENSOURCE = (
-		("", "No information provided."),
+		("", "----"),
+		("No information provided.", "no information provided"),
 		("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
 		("0.5", "Same as above, but the subscription is free of charge."),
 		("1", "Open Access. The texts may be accessed through specific software, but the source is not accessible."),
 		("1.5", " Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse)"),
 	)
 
+BOOLEAN_CHOICES = (
+ 		("", "----"),
+        ("yes", "yes"),
+        ("no", "no"),
+        ("no information provided", "no information provided"),
+    )
 
 class EditionListFilter(django_filters.FilterSet):
 	name = django_filters.CharFilter(
@@ -63,14 +72,17 @@ class EditionListFilter(django_filters.FilterSet):
 	download = django_filters.ChoiceFilter(
 		choices=CHOICES_DOWNLOAD, label='XML-TEI transcription to download',help_text=False
 		)
-	scholarly = django_filters.BooleanFilter(help_text=False)
-	# open_source = django_filters.ModelMultipleChoiceFilter(
-	# 	choices=CHOICES_OPENSOURCE, label='Open Access/Source', help_text=False
-	# 	)
+	scholarly = django_filters.ChoiceFilter(
+		choices=BOOLEAN_CHOICES, label='scholarly', help_text=False
+		)
+	open_source = django_filters.ChoiceFilter(
+		choices=CHOICES_OPENSOURCE, label='Open Access/Source',
+		help_text=Edition._meta.get_field('open_source').help_text
+		)
 
 	class Meta:
 		model = Edition
-		#fields = ['name', 'open_source']
+		fields = ['name']
 
 
 # class InstitutionListFilter(django_filters.FilterSet): #refers to places models

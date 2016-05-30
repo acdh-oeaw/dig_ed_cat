@@ -58,6 +58,12 @@ class Language(models.Model):
 class Edition(models.Model):
     """Holds the (meta)data of a digital editions project. Information taken from
     https://github.com/gfranzini/digEds_cat/wiki/Contribute"""
+
+    BOOLEAN_CHOICES = (
+        ("yes", "yes"),
+        ("no", "no"),
+        ("no information provided", "no information provided"),
+    )
     name = models.CharField(
         max_length=255, blank=True, help_text="The name of the edition (project).")
     url = models.CharField(
@@ -65,20 +71,20 @@ class Edition(models.Model):
     historical_period = models.ManyToManyField(
         Period, blank=True, help_text="This field broadly categorises an edition by periods"
     )
-    scholarly = models.NullBooleanField(
-        null=True,
+    scholarly = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition."
     )
-    digital = models.NullBooleanField(
-        null=True,
+    digital = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities)"
     )
-    edition = models.NullBooleanField(
-        null=True,
+    edition = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition."
     )
-    prototype = models.NullBooleanField(
-        null=True,
+    prototype = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype."
     )
     language = models.ManyToManyField(
@@ -138,6 +144,7 @@ class Edition(models.Model):
         verbose_name="Value of witnesses"
     )
     CHOICES_TEI = (
+        ("no information provided", "no information provided"),
         ("0", "XML not used"),
         ("0.5", "XML but not TEI"),
         ("1", "XML-TEI is used"),
@@ -148,6 +155,7 @@ class Edition(models.Model):
         verbose_name="XML-TEI transcription"
     )
     CHOICES_DOWNLOAD = (
+        ("no information provided", "no information provided"),
         ("0", "no"),
         ("0.5", "partially"),
         ("1", "yes"),
@@ -157,20 +165,20 @@ class Edition(models.Model):
         help_text="The XML-TEI encoded text is available for download.",
         verbose_name="XML-TEI transcription to download"
     )
-    images = models.NullBooleanField(
-        null=True,
+    images = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell us if the edition comes with images."
     )
-    zoom_images = models.NullBooleanField(
-        null=True,
+    zoom_images = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell us if the user can zoom in or out of images within the edition."
     )
-    image_manipulation = models.NullBooleanField(
-        null=True,
+    image_manipulation = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 and 0 are used to tell us whether the user can manipulate these images in any way within the edition (brightness, saturation, etc.)."
     )
-    text_image = models.NullBooleanField(
-        null=True,
+    text_image = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The transcription and the image are linked so that clicking on a word in the image brings up the corresponding textual token and viceversa.",
         verbose_name="Text-image linking"
     )
@@ -183,30 +191,30 @@ class Edition(models.Model):
         Language, blank=True, max_length=3, related_name="lang_website",
         help_text="The language the project website is written in. Three-letter ISO Codes should be used."
     )
-    glossary = models.NullBooleanField(
-        null=True,
+    glossary = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell us if the edition provides a glossary."
     )
-    indices = models.NullBooleanField(
-        null=True,
+    indices = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell us if the edition provides indices."
     )
-    search = models.NullBooleanField(
-        null=True,
+    search = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text = "The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.",
         verbose_name="String matching search"
     )
-    advanced_search = models.NullBooleanField(
-        null=True,
+    advanced_search = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell us if the edition provides an advanced search functionality."
     )
-    cc_license = models.NullBooleanField(
-        null=True,
+    cc_license = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.",
         verbose_name="Creative Commons License"
     )
     CHOICES_OPENSOURCE = (
-        ("", "No information provided."),
+        ("no information provided", "no information provided"),
         ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
         ("0.5", "Same as above, but the subscription is free of charge."),
         ("1", "Open Access. The texts may be accessed through specific software, but the source is not accessible."),
@@ -215,7 +223,7 @@ class Edition(models.Model):
     open_source = models.CharField(
         blank=True, max_length=255,
         choices=CHOICES_OPENSOURCE,
-        verbose_name="Open Source/Open Access"
+        verbose_name="Open Source/Open Access", help_text='something'
     )
     infrastructure = models.CharField(
         blank=True, max_length=255,
@@ -231,8 +239,8 @@ class Edition(models.Model):
         choices=CHOICES_OCR,
         verbose_name="OCR or keyed?"
     )
-    print_friendly = models.NullBooleanField(
-        null=True,
+    print_friendly = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell if the project provides a print-friendly view of the text (e.g. PDF)."
     )
 

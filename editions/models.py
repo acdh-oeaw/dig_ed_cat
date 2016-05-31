@@ -60,6 +60,7 @@ class Edition(models.Model):
     https://github.com/gfranzini/digEds_cat/wiki/Contribute"""
 
     BOOLEAN_CHOICES = (
+        ("", "----"),
         ("yes", "yes"),
         ("no", "no"),
         ("no information provided", "no information provided"),
@@ -115,6 +116,7 @@ class Edition(models.Model):
         help_text="The target audience of the edition project (scholars, general public, etc.)."
     )
     CHOICES_PHILOLOGICAL = (
+        ("", "----"),
         ("0", "No information on the editorial methods and practices nor on the source (digital or printed) of the text."),
         ("0.5", "No information on the source, but some information about the author, date and accuracy of the digital edition."),
         ("1", " Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software. Values may include a large range of standards used, including HTML, XML-TEI etc."),
@@ -124,6 +126,7 @@ class Edition(models.Model):
         choices=CHOICES_PHILOLOGICAL
     )
     CHOICES_TEXTUAL = (
+        ("", "----"),
         ("0", "No account of textual variance is given. The digital edition is a reproduction of a given print edition without any account of variants."),
         ("0.5", "The digital edition is a reproduction of a given print scholarly edition and reproduces the selected textual variants extant in the apparatus criticus of that edition, or: the edition does not follow a digital paradigm, in that the variants are not automatically computable the way they are encoded."),
         ("1", "This edition is 'based on full-text transcription of original texts into electronic form'."),
@@ -134,6 +137,7 @@ class Edition(models.Model):
         verbose_name="Account of textual variance"
     )
     CHOICES_WITNESS = (
+        ("", "----"),
         ("N/A", "Not applicable, as no information about the source of the text is given, though it is easily assumable that the source is another digital edition or a printed edition (possibly even a scholarly edition"),
         ("0", "The only witness modelled digitally is a printed non-scholarly edition, used as a source for the digital edition."),
         ("0.5", "Same as above, but the witness/source is a scholarly edition."),
@@ -144,6 +148,7 @@ class Edition(models.Model):
         verbose_name="Value of witnesses"
     )
     CHOICES_TEI = (
+        ("", "----"),
         ("no information provided", "no information provided"),
         ("0", "XML not used"),
         ("0.5", "XML but not TEI"),
@@ -155,6 +160,7 @@ class Edition(models.Model):
         verbose_name="XML-TEI transcription"
     )
     CHOICES_DOWNLOAD = (
+        ("", "----"),
         ("no information provided", "no information provided"),
         ("0", "no"),
         ("0.5", "partially"),
@@ -214,6 +220,7 @@ class Edition(models.Model):
         verbose_name="Creative Commons License"
     )
     CHOICES_OPENSOURCE = (
+        ("", "----"),
         ("no information provided", "no information provided"),
         ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
         ("0.5", "Same as above, but the subscription is free of charge."),
@@ -223,13 +230,14 @@ class Edition(models.Model):
     open_source = models.CharField(
         blank=True, max_length=255,
         choices=CHOICES_OPENSOURCE,
-        verbose_name="Open Source/Open Access", help_text='something'
+        verbose_name="Open Source/Open Access", help_text='add helptext'
     )
     infrastructure = models.CharField(
         blank=True, max_length=255,
         help_text="The technologies used to run the project (Drupal, Omeka, MySQL, etc.)."
     )
     CHOICES_OCR = (
+        ("", "----"),
         ("Keyed", "Keyed"),
         ("OCR", "OCR"),
     )

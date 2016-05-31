@@ -95,3 +95,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
+
+FILTERS_HELP_TEXT_FILTER=False

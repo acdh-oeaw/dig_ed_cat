@@ -2,6 +2,8 @@ import django_filters
 from editions.models import *
 from places.models import *
 
+
+
 django_filters.filters.LOOKUP_TYPES = [
 	('', '---------'),
 	('exact', 'Is equal to'),
@@ -63,6 +65,18 @@ class EditionListFilter(django_filters.FilterSet):
 	historical_period__name = django_filters.ModelMultipleChoiceFilter(
 		queryset=Period.objects.all(),label='Period',help_text=False
 		)
+	scholarly = django_filters.ChoiceFilter(
+		choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('scholarly').help_text
+		)
+	digital = django_filters.ChoiceFilter(
+		choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('digital').help_text
+		)
+	edition = django_filters.ChoiceFilter(
+		choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('edition').help_text
+		)
+	prototype = django_filters.ChoiceFilter(
+		choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('prototype').help_text
+		)
 	manager__name = django_filters.ModelMultipleChoiceFilter(
 		queryset=Person.objects.all(), help_text=False
 		)
@@ -72,13 +86,13 @@ class EditionListFilter(django_filters.FilterSet):
 	download = django_filters.ChoiceFilter(
 		choices=CHOICES_DOWNLOAD, label='XML-TEI transcription to download',help_text=False
 		)
-	scholarly = django_filters.ChoiceFilter(
-		choices=BOOLEAN_CHOICES, label='scholarly', help_text=False
-		)
+	
 	open_source = django_filters.ChoiceFilter(
 		choices=CHOICES_OPENSOURCE, label='Open Access/Source',
 		help_text=Edition._meta.get_field('open_source').help_text
 		)
+
+
 
 	class Meta:
 		model = Edition

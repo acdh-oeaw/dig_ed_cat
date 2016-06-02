@@ -201,7 +201,7 @@ class EditionListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Edition
-        fields = ['institution__name', 'manager__name']
+        fields = ['name','institution__name', 'manager__name']
 
 
 # class InstitutionListFilter(django_filters.FilterSet): #refers to places models

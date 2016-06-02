@@ -9,7 +9,9 @@
 <script>
 
 var edition_names = [{% for name in edition_names %} "{{ name }}", {% endfor %}];
+var institution_names = [{% for name in institution_names %} "{{ name }}", {% endfor %}];
 var manager_names = [{% for name in manager_names %} "{{ name }}", {% endfor %}];
+
 
 $(function() {
 	$("#id_name").autocomplete({
@@ -17,10 +19,17 @@ $(function() {
         }); 
     });
 $(function() {
-    $("#id_manager").autocomplete({
+    $("#id_institution__name").autocomplete({
+        source:institution_names
+        }); 
+    });
+
+$(function() {
+    $("#id_manager__name").autocomplete({
         source:manager_names
         }); 
     });
+
 
 </script>
 {% endblock %}

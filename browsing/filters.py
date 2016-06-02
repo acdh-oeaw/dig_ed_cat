@@ -86,11 +86,9 @@ class EditionListFilter(django_filters.FilterSet):
         help_text=Edition._meta.get_field('name').help_text
     )
     url = django_filters.CharFilter(
-        lookup_expr='icontains', help_text=Edition._meta.get_field('url').help_text
-        )
-    institution = django_filters.ModelMultipleChoiceFilter(
-        queryset=Institution.objects.all(), help_text=Edition._meta.get_field('institution').help_text
-        )
+        lookup_expr='icontains', help_text=Edition._meta.get_field('url').help_text)
+    institution__name = django_filters.CharFilter(lookup_expr='icontains',
+        help_text=Edition._meta.get_field('institution').help_text)
     historical_period = django_filters.ModelMultipleChoiceFilter(
         queryset=Period.objects.all(),label='Period',help_text=Edition._meta.get_field('historical_period').help_text
         )
@@ -118,8 +116,8 @@ class EditionListFilter(django_filters.FilterSet):
     end_date = django_filters.DateFilter(
         help_text=Edition._meta.get_field('end_date').help_text
         )
-    manager = django_filters.ModelMultipleChoiceFilter(
-        queryset=Person.objects.all(), help_text=Edition._meta.get_field('manager').help_text
+    manager__name = django_filters.CharFilter(lookup_expr='icontains',
+        help_text=Edition._meta.get_field('manager').help_text
         )
     audience = django_filters.CharFilter(
         lookup_expr='icontains', help_text=Edition._meta.get_field('audience').help_text
@@ -203,7 +201,7 @@ class EditionListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Edition
-        fields = ['name', 'institution', 'historical_period', 'language', 'manager']
+        fields = ['institution__name', 'manager__name']
 
 
 # class InstitutionListFilter(django_filters.FilterSet): #refers to places models

@@ -49,6 +49,10 @@ class EditionListView(GenericListView):
         for person in Person.objects.all():
             manager_names.append(person.name)
         context["manager_names"] = set(manager_names)
+        institution_names = []
+        for inst in Institution.objects.all():
+            institution_names.append(inst.name)
+        context["institution_names"] = set(institution_names)
         return context
 
 

@@ -32,16 +32,24 @@ class GenericListView(SingleTableView):
 
 
 class EditionListView(GenericListView):
-	model = Edition
-	table_class = EditionTable
-	template_name = 'browsing/edition_list_generic.html'
-	filter_class = EditionListFilter
-	formhelper_class = GenericFilterFormHelper
+    model = Edition
+    table_class = EditionTable
+    template_name = 'browsing/edition_list_generic.html'
+    filter_class = EditionListFilter
+    formhelper_class = GenericFilterFormHelper
 
-	# def get_context_data(self, **kwargs):
-	# 	context = super(GenericListView, self).get_context_data()
- #        context[self.context_filter_name] = self.filter
- #        return context
+    def get_context_data(self, **kwargs):
+        context = super(GenericListView, self).get_context_data()
+        context[self.context_filter_name] = self.filter
+        edition_names = []
+        for edition in Edition.objects.all():
+            edition_names.append(edition.name)
+        context["edition_names"] = set(edition_names)
+        manager_names = []
+        for person in Person.objects.all():
+            manager_names.append(person.name)
+        context["manager_names"] = set(manager_names)
+        return context
 
 
 # class InstitutionListView(GenericListView):

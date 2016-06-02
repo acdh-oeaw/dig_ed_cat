@@ -37,14 +37,14 @@
             <img src="//clarin.oeaw.ac.at/piwik/piwik.php?idsite=31" style="border:0;" alt="" />
           </p>
       </noscript>
+      <!-- End Piwik Code -->
       <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
         <script type="text/javascript">
-            window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+            window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"{% url 'webpage:imprint' %}","theme":"dark-bottom"};
         </script>
-
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-<!-- End Cookie Consent plugin -->
-<!-- End Piwik Code -->
+        <!-- End Cookie Consent plugin -->
+
       {% block scriptHeader %}
         {% endblock %}
   </head>
@@ -70,6 +70,9 @@
                   <ul class="dropdown-menu">
                     <li>
                         <a href="{% url 'webpage:start' %}">Start</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'webpage:imprint' %}">Imprint/Impressum</a>
                     </li>
                   </ul>
                 </li>

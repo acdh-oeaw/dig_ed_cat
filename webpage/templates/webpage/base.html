@@ -44,7 +44,20 @@
         </script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
         <!-- End Cookie Consent plugin -->
-
+        <style type="text/css">
+           footer {
+              flex: 0 0 auto;
+              background-color: #333; /*#F8F8F8*/
+              color: #ffffff;
+              font-size: 13px;
+              padding: 20px;
+              position: absolute;
+              left: 0;
+              right: 0;
+              width: 100%;
+              margin-top: 50px;
+              }       
+        </style>
       {% block scriptHeader %}
         {% endblock %}
   </head>
@@ -114,27 +127,36 @@
             </ul>
         </div>
     </nav>
-    <div class="alert alert-danger">
-      <strong>Be Aware!</strong> This Site/Service is at a very early state of development. Everything can change at any time.
+    <div class="alert alert-warning">
+      <strong>Warning!</strong> Work in Progress. But entered data will be preserved.<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
     </div>
+
 
     <div id="content" class="container">
       {% block content %}
       {% endblock %}
     </div>
-
-    <div class="container text-center">
+<div class="container">
+   <footer>
       <div class="row text-center">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/logo.png' %}" alt="ACDH" width="25%"/>   
-              <p>
-                <strong>Austrian Centre for Digital Humanities</strong>
-              </p>
+              <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" alt="ACDH" width="25%"/>   
+          </a>
+        </div>
+        <div class="col-sm-4">
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/by-sa.png' %}" alt="CC-BY-SA-4.0" width="25%"/>                 
+          </a>
+        </div>
+        <div class="col-sm-4">
+          <a href="https://github.com/acdh-oeaw/dig_ed_cat" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" alt="ACDH" width="10%"/>   
           </a>
         </div>
       </div>
-    </div>
+  </footer>
+</div>
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>

@@ -45,24 +45,39 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
         <!-- End Cookie Consent plugin -->
         <style type="text/css">
-           footer {
-              flex: 0 0 auto;
-              background-color: #333; /*#F8F8F8*/
-              color: #ffffff;
-              font-size: 13px;
-              padding: 20px;
-              position: absolute;
-              left: 0;
-              right: 0;
-              width: 100%;
-              margin-top: 50px;
-              }       
+        html {
+        height: 100%;
+        }
+        body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        }
+        header {
+        flex: 0 0 auto;
+        }
+        .main-content {
+        flex: 1 0 auto;
+        }
+        footer {
+        flex: 0 0 auto;
+        background-color: #333; /*#F8F8F8*/
+        color: #ffffff;
+        font-size: 13px;
+        padding: 20px;
+       /* position: absolute;*/
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 10px;
+        }       
         </style>
       {% block scriptHeader %}
         {% endblock %}
   </head>
 
   <body role="document">
+  <header>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -127,18 +142,19 @@
             </ul>
         </div>
     </nav>
+</header>
+<section class="main-content">
     <div class="alert alert-warning">
       <strong>Warning!</strong> Work in Progress. But entered data will be preserved.<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
     </div>
-
-
     <div id="content" class="container">
       {% block content %}
       {% endblock %}
     </div>
-<div class="container">
-   <footer>
-      <div class="row text-center">
+</section>
+<footer>
+     <div class="container">
+        <div class="row text-center">
         <div class="col-sm-4">
           <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
               <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" alt="ACDH" width="25%"/>   
@@ -150,13 +166,14 @@
           </a>
         </div>
         <div class="col-sm-4">
-          <a href="https://github.com/acdh-oeaw/DAAC-DB" class="navlink" target="_blank">
+          <a href="https://github.com/acdh-oeaw/dig_ed_cat" class="navlink" target="_blank">
               <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" alt="ACDH" width="10%"/>   
           </a>
         </div>
       </div>
-  </footer>
-</div>
+    </div>  
+</footer>
+
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>

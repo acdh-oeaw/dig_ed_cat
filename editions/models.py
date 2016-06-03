@@ -74,19 +74,19 @@ class Edition(models.Model):
     )
     scholarly = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition."
+        help_text="An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition. (Patrick Sahle)"
     )
     digital = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities)"
+        help_text="A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities). (Patrick Sahle)"
     )
     edition = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition."
+        help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition. (Patrick Sahle)"
     )
     prototype = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype."
+        help_text="A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype. (Patrick Sahle)"
     )
     language = models.ManyToManyField(
         Language, blank=True, related_name="lang_source",

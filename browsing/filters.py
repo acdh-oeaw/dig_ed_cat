@@ -83,7 +83,7 @@ CHOICES_OCR = (
 class EditionListFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(
         lookup_expr='icontains', label='Edition name',
-        help_text=Edition._meta.get_field('name').help_text
+        help_text=Edition._meta.get_field('name').help_text,
     )
     url = django_filters.CharFilter(
         lookup_expr='icontains', help_text=Edition._meta.get_field('url').help_text)

@@ -17,7 +17,7 @@ class Institution(models.Model):
         max_length=255, blank=True, help_text="The Instituion's name."
     )
     place = models.ForeignKey(
-        Place, blank=True, help_text="Place which the institution is associated with."
+        Place, blank=True, null=True, help_text="Place which the institution is associated with."
     )
     gnd_id = models.CharField(
         max_length=255, blank=True, help_text="GND id of Institution."

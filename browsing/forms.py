@@ -54,4 +54,4 @@ class GenericFilterFormHelper(FormHelper):
             	css_id="advanced_search_fields"
             	),
         )
-        #self.render_required_fields = True
+

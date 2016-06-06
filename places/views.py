@@ -10,9 +10,10 @@ from django.utils.decorators import method_decorator
 from .models import Place
 from .forms import PlaceForm
 
+
 class PlaceListView(generic.ListView):
-	template_name ="places/list_places.html"
-	context_object_name = 'object_list'
+    template_name ="places/list_places.html"
+    context_object_name = 'object_list'
 
 	def get_queryset(self):
 		return Place.objects.all()

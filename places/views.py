@@ -15,8 +15,8 @@ class PlaceListView(generic.ListView):
     template_name ="places/list_places.html"
     context_object_name = 'object_list'
 
-	def get_queryset(self):
-		return Place.objects.all()
+    def get_queryset(self):
+        return Place.objects.all()
 
 
 @login_required

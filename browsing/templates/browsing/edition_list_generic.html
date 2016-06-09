@@ -1,8 +1,11 @@
 {% extends "browsing/generic_list.html" %}
+{% block Titel %}Browse Editions{% endblock %}
 {% block list_title %}Browse Editions{% endblock %}
 
 {% block reset_button %}
- <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}">Reset search</a>      
+<a class ="btn btn-default"  id="01">Show/Hide Advanced search options</a></br>
+ <p></p>
+ <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}">Reset search</a>     
 {% endblock %}
 
 {% block customScripts %}
@@ -31,5 +34,13 @@ $(function() {
     });
 
 
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#advanced_search_fields").hide();
+    $("#01").click(function(){
+        $("#advanced_search_fields").toggle();
+    });
+});
 </script>
 {% endblock %}

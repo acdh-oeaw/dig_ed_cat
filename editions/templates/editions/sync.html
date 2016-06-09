@@ -1,0 +1,13 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<div class="container" style="text-align:center;">
+<h3>Info</h3>
+<p>A click on the button will trigger a script which fetches the data from <a href="https://github.com/gfranzini/digEds_cat">GitHub</a> and override any changes in database. This may take a while. After the synchronization process has finished you will be redirected to a new site. </p>
+<p>
+<a id="trigger" href="{% url 'editions:sync_status' %}" type="button" class="btn btn-primary btn-block">click me to sync</a>
+</p>
+</div>
+
+{% endblock %}

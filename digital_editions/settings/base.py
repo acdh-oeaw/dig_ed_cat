@@ -53,9 +53,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'digital_editions.wsgi.application'
 
 
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -96,4 +93,4 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
-FILTERS_HELP_TEXT_FILTER=False
+FILTERS_HELP_TEXT_FILTER = False

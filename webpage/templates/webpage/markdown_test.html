@@ -1,0 +1,26 @@
+{% extends "webpage/base.html" %}
+{% load markdown_deux_tags %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container">
+{% markdown STYLE %}
+
+[[TOC]]
+
+#Markdown
+The content of this page was created using [Markdown](http://daringfireball.net/projects/markdown/)
+## How?
+The only thing needed is the django-package **[django-markdown-deux](https://github.com/trentm/django-markdown-deux)**.
+## And django template tags
+Don't worry, using django template tags works. This [link]({% url 'browsing:browse_editions' %}) for example was created with the `{% verbatim %}{% url %}{% endverbatim %}` template tage. And yes, to force django to ignore the template tag `{% verbatim %}{% url %}{% endverbatim %´}` the template tag `{% verbatim %}{% verbatim %}{% endverbatim %}` was used.
+## and static files
+Guess how the image below came on this page...
+ 
+![alt text]({% static 'webpage/img/by-sa.png' %})
+
+{% endmarkdown %}
+
+
+</div>
+{% endblock %}

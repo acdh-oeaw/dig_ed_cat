@@ -1,8 +1,9 @@
 {% extends "webpage/base.html" %}
-
+{% load staticfiles %}
 {% block content %}
 
 <div class="container"></br>
+
 {% if form.errors %}
 
 <p style="color: red;">Please correct the error{{ form.errors|pluralize }} below.</p>

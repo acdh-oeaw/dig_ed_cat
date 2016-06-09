@@ -11,3 +11,5 @@ __pycache__/
 /digital_editions/settings/server.py
 /digedcat3.4
 /digital_editions/settings/ksenia_server.py
+/playAndTry.ipynb
+/digital_editions/db.sqlite3

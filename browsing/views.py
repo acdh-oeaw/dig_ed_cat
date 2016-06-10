@@ -53,6 +53,14 @@ class EditionListView(GenericListView):
         for inst in Institution.objects.all():
             institution_names.append(inst.name)
         context["institution_names"] = set(institution_names)
+        country_names = []
+        for inst in Place.objects.filter(place_type="country"):
+            country_names.append(inst.name)
+        context["country_names"] = set(country_names)
+        city_names = []
+        for inst in Place.objects.filter(place_type="city"):
+            city_names.append(inst.name)
+        context["city_names"] = set(city_names)
         return context
 
 

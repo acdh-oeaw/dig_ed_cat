@@ -14,6 +14,8 @@
 var edition_names = [{% for name in edition_names %} "{{ name }}", {% endfor %}];
 var institution_names = [{% for name in institution_names %} "{{ name }}", {% endfor %}];
 var manager_names = [{% for name in manager_names %} "{{ name }}", {% endfor %}];
+var country_names = [{% for name in country_names %} "{{ name }}", {% endfor %}];
+var city_names = [{% for name in city_names %} "{{ name }}", {% endfor %}];
 
 
 $(function() {
@@ -30,6 +32,18 @@ $(function() {
 $(function() {
     $("#id_manager__name").autocomplete({
         source:manager_names
+        }); 
+    });
+
+$(function() {
+    $("#id_country_name").autocomplete({
+        source:country_names
+        }); 
+    });
+
+$(function() {
+    $("#id_city_name").autocomplete({
+        source:city_names
         }); 
     });
 

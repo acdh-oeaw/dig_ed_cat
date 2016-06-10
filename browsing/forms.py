@@ -20,9 +20,11 @@ class GenericFilterFormHelper(FormHelper):
             	'url',
             	'historical_period',
             	'language',
+                'country_name',
             	css_id="basic_search_fields"),
             Fieldset(
             	'Advanced search options',
+                'city_name',
             	'scholarly',
             	'digital',
             	'edition',

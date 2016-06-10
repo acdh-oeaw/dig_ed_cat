@@ -3,7 +3,6 @@ from editions.models import *
 from places.models import *
 
 
-
 django_filters.filters.LOOKUP_TYPES = [
     ('', '---------'),
     ('exact', 'Is equal to'),
@@ -90,125 +89,95 @@ class EditionListFilter(django_filters.FilterSet):
     institution__name = django_filters.CharFilter(lookup_expr='icontains',
         help_text=Edition._meta.get_field('institution').help_text)
     historical_period = django_filters.ModelMultipleChoiceFilter(
-        queryset=Period.objects.all(),label='Period',help_text=Edition._meta.get_field('historical_period').help_text
-        )
+        queryset=Period.objects.all(), label='Period',
+        help_text=Edition._meta.get_field('historical_period').help_text)
+    country_name = django_filters.MethodFilter(lookup_expr='icontains',
+        action='country_name_filter', label="Country the Edition was created.")
+    city_name = django_filters.MethodFilter(
+        lookup_expr='icontains', action='city_name_filter', label="City the Edition was created.")
     scholarly = django_filters.ChoiceFilter(
-        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('scholarly').help_text
-        )
+        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('scholarly').help_text)
     digital = django_filters.ChoiceFilter(
-        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('digital').help_text
-        )
+        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('digital').help_text)
     edition = django_filters.ChoiceFilter(
-        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('edition').help_text
-        )
+        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('edition').help_text)
     prototype = django_filters.ChoiceFilter(
-        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('prototype').help_text
-        )
+        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('prototype').help_text)
     language = django_filters.ModelMultipleChoiceFilter(
-        queryset=Language.objects.all(), help_text=Edition._meta.get_field('language').help_text
-        )
+        queryset=Language.objects.all(), help_text=Edition._meta.get_field('language').help_text)
     writing_support = django_filters.CharFilter(
-        lookup_expr='icontains', help_text=Edition._meta.get_field('writing_support').help_text
-        )
+        lookup_expr='icontains', help_text=Edition._meta.get_field('writing_support').help_text)
     begin_date = django_filters.DateFilter(
-        help_text=Edition._meta.get_field('begin_date').help_text
-        )
+        help_text=Edition._meta.get_field('begin_date').help_text)
     end_date = django_filters.DateFilter(
-        help_text=Edition._meta.get_field('end_date').help_text
-        )
+        help_text=Edition._meta.get_field('end_date').help_text)
     manager__name = django_filters.CharFilter(lookup_expr='icontains',
-        help_text=Edition._meta.get_field('manager').help_text
-        )
+        help_text=Edition._meta.get_field('manager').help_text)
     audience = django_filters.CharFilter(
-        lookup_expr='icontains', help_text=Edition._meta.get_field('audience').help_text
-        )
+        lookup_expr='icontains', help_text=Edition._meta.get_field('audience').help_text)
     philological_statement = django_filters.ChoiceFilter(
-        choices=CHOICES_PHILOLOGICAL, help_text=Edition._meta.get_field('philological_statement').help_text
-        )
+        choices=CHOICES_PHILOLOGICAL, help_text=Edition._meta.get_field('philological_statement').help_text)
     textual_variance = django_filters.ChoiceFilter(
-        choices=CHOICES_TEXTUAL, help_text=Edition._meta.get_field('textual_variance').help_text
-        )
+        choices=CHOICES_TEXTUAL, help_text=Edition._meta.get_field('textual_variance').help_text)
     value_witnesses = django_filters.ChoiceFilter(
-        choices=CHOICES_WITNESS, help_text=Edition._meta.get_field('value_witnesses').help_text
-        )
+        choices=CHOICES_WITNESS, help_text=Edition._meta.get_field('value_witnesses').help_text)
     tei_transcription = django_filters.ChoiceFilter(
         choices=CHOICES_TEI, label='XML-TEI transcription',
-        help_text=Edition._meta.get_field('tei_transcription').help_text
-        )
+        help_text=Edition._meta.get_field('tei_transcription').help_text)
     download = django_filters.ChoiceFilter(
         choices=CHOICES_DOWNLOAD, label='XML-TEI transcription to download',
-        help_text=Edition._meta.get_field('download').help_text
-        )
+        help_text=Edition._meta.get_field('download').help_text)
     images = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('images').help_text
-        )
+        help_text=Edition._meta.get_field('images').help_text)
     zoom_images = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('zoom_images').help_text
-        )
+        help_text=Edition._meta.get_field('zoom_images').help_text)
     image_manipulation = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('image_manipulation').help_text
-        )
-    text_image= django_filters.ChoiceFilter(
+        help_text=Edition._meta.get_field('image_manipulation').help_text)
+    text_image = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('text_image').help_text
-        )
+        help_text=Edition._meta.get_field('text_image').help_text)
     source_translation = django_filters.CharFilter(
         lookup_expr='icontains', label='Source text translation',
-        help_text=Edition._meta.get_field('source_translation').help_text
-        )
+        help_text=Edition._meta.get_field('source_translation').help_text)
     website_language = django_filters.ModelMultipleChoiceFilter(
-        queryset=Language.objects.all(), help_text=Edition._meta.get_field('website_language').help_text
-        )
+        queryset=Language.objects.all(), help_text=Edition._meta.get_field('website_language').help_text)
     glossary = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('glossary').help_text
-        )
+        help_text=Edition._meta.get_field('glossary').help_text)
     indices = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('indices').help_text
-        )
+        help_text=Edition._meta.get_field('indices').help_text)
     search = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES, label='String matching search',
-        help_text=Edition._meta.get_field('search').help_text
-        )
+        help_text=Edition._meta.get_field('search').help_text)
     advanced_search = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('advanced_search').help_text
-        )
+        help_text=Edition._meta.get_field('advanced_search').help_text)
     cc_license = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES, label='Creative Commons License',
-        help_text=Edition._meta.get_field('cc_license').help_text
-        )
+        help_text=Edition._meta.get_field('cc_license').help_text)
     open_source = django_filters.ChoiceFilter(
         choices=CHOICES_OPENSOURCE, label='Open Access/Source',
-        help_text=Edition._meta.get_field('open_source').help_text
-        )
+        help_text=Edition._meta.get_field('open_source').help_text)
     infrastructure = django_filters.CharFilter(
         lookup_expr='icontains',
-        help_text=Edition._meta.get_field('infrastructure').help_text
-        )
+        help_text=Edition._meta.get_field('infrastructure').help_text)
     key_or_ocr = django_filters.ChoiceFilter(
         choices=CHOICES_OCR, label='OCR or keyed?',
-        help_text=Edition._meta.get_field('key_or_ocr').help_text
-        )
+        help_text=Edition._meta.get_field('key_or_ocr').help_text)
     print_friendly = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
-        help_text=Edition._meta.get_field('print_friendly').help_text
-        )
+        help_text=Edition._meta.get_field('print_friendly').help_text)
+
+    def country_name_filter(self, queryset, value):
+        return queryset.filter(institution__place__part_of__name__icontains=value).distinct()
+
+    def city_name_filter(self, queryset, value):
+        return queryset.filter(institution__place__name__icontains=value).distinct()
 
     class Meta:
         model = Edition
-        fields = ['name','institution__name', 'manager__name']
-
-
-# class InstitutionListFilter(django_filters.FilterSet): #refers to places models
-#   name = django_filters.CharFilter(lookup_expr='icontains', label='Place name', help_text=False)
-#   alternative_name__name = django_filters.ModelMultipleChoiceFilter(queryset=AlternativeName.objects.all(), help_text=False)
-#   geonames_id = django_filters.CharFilter(lookup_expr='icontains', label='Geonames ID', help_text=False)
-
-#   class Meta:
-#       model = Place
-#       fields = ['name']
+        fields = ['name', 'institution__name', 'manager__name']

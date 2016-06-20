@@ -1,217 +1,248 @@
 {% extends "webpage/base.html" %}
-
+{% load staticfiles %}
+{% block scriptHeader %}<!--leafletjs -->
+    <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet/leaflet.css' %}"/></link>
+    <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
+        <style>
+            #map { height: 500px; }
+        </style>
+{% endblock %}
 {% block content %}
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2>{{ object.name }} <span id="clickme" title="click to toggle info" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></h2>
     </div>
-    <div class="panel panel-body">
-        <table class="table table-bordered table-hover table-condensed">
-            <tr>
-                <th class="col-sm-3">url</th>
-                <td class="readmore col-sm-3"><small>The URL of the edition (project).</small></td>
-                <td class="col-sm-6"><a href="{{ object.url }}">{{ object.url }}</td>
-            </tr>
-            <tr>
-                <th>Historical Period</th>
-                <td class="readmore"><small>This field broadly categorises an edition by periods</small></td>
-                <td>{% for x in object.historical_period.all %} {{ x.name }}<br/> {% endfor %}</td>
-            </tr>
-            <tr>
-                <th>scholarly</th>
-                <td class="readmore"><small>An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition.</small></td>
-                <td>{{ object.scholarly }}</td>
-            </tr>
-             <tr>
-                <th>digital</th>
-                <td class="readmore"<small><small>A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities).</small></td>
-                <td>{{ object.digital }}</td>
-            </tr>
-             <tr>
-                <th>edition</th>
-                <td class="readmore"><small>An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition.</small></td>
-                <td>{{ object.edition }}</td>
-            </tr>
-             <tr>
-                <th>Writing support</th>
-                <td class="readmore"><small>The nature of the source text (manuscript, letter, notebook, etc.).</small></td>
-                <td>{{ object.writing_support }}</td>
-            </tr>
-             <tr>
-                <th>prototype</th>
-                <td class="readmore"><small>A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype.</small></td>
-                <td>{{ object.prototype }}</td>
-            </tr>
-            <tr>
-                <th>language</th>
-                <td class="readmore"><small>The language(s) of the source text. Three-letter ISO Codes are used.</small></td>
-                <td>{% for x in object.language.all %} {{ x.iso_code }}<br/>{% endfor %}</td>
-            </tr>
-             <tr>
-                <th>Begin Date</th>
-                <td class="readmore"><small>Year the project started.</small></td>
-                <td>{{ object.begin_date|date:"Y" }}</td>
-            </tr>
-             <tr>
-                <th>End Date</th>
-                <td class="readmore"><small>Year the project ended. If ongoing, leave blank.</small></td>
-                <td>{{ object.end_date|date:"Y" }}</td>
-            </tr>
-             <tr>
-                <th>Manager</th>
-                <td class="readmore"><small>Name of project manager(s).</small></td>
-                <td>{% for x in object.manager.all %} {{ x.name }}<br/>{% endfor %}</td>
-            </tr>
-             <tr>
-                <th>Institution</th>
-                <td class="readmore"><small>Name(s) of institution(s) involved in the project.</small></td>
-                <td>{% for x in object.institution.all %} {{ x.name }}<br/> {% endfor %}</td>
-            </tr>
-             <tr>
-                <th>Audience</th>
-                <td class="readmore"><small>The target audience of the edition project (scholars, general public, etc.).</small></td>
-                <td>{{ object.audience }}</td>
-            </tr>
-             <tr>
-                <th>Philological statement</th>
-                <td class="readmore"><small>
-                <li>0: No information on the editorial methods and practices nor on the source (digital or printed) of the text.</li>
-                <li>0.5: No information on the source, but some information about the author, date and accuracy of the digital edition.</li>
-                <li>1: Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software. Values may include a large range of standards used, including HTML, XML-TEI etc.</li></small></td>
-                <td>{{ object.philological_statement }}</td>
-            </tr>
-            <tr>
-                <th>Account of textual variance</th>
-                <td class="readmore"><small>
-                <li>0: No account of textual variance is given. The digital edition is a reproduction of a given print edition without any account of variants.</li>
-                <li>0.5: The digital edition is a reproduction of a given print scholarly edition and reproduces the selected textual variants extant in the apparatus criticus of that edition, or: the edition does not follow a digital paradigm, in that the variants are not automatically computable the way they are encoded.</li>
-                <li>1: This edition is “based on full-text transcription of original texts into electronic form” (vd. Proposition 2 in <a href="http://www.tei-c.org/About/Archive_new/ETE/Preview/robinson.xml">this article</a> by P. Robinson).</li></small></td>
-                <td>{{ object.textual_variance }}</td>
-            </tr>
-            <tr>
-                <th>Value of witnesses</th>
-                <td class="readmore"><small>
-                    <li>N/A: Not applicable, as no information about the source of the text is given, though it is easily assumable that the source is another digital edition or a printed edition (possibly even a scholarly edition).</li>
-                    <li>0: The only witness modelled digitally is a printed non-scholarly edition, used as a source for the digital edition.</li>
-                    <li>0.5: Same as above, but the witness/source is a scholarly edition.</li>
-                    <li>1: The witnesses are traditional philological primary sources (including manuscripts, inscriptions or papyri).</li></small>
-                </td>
-                <td>{{ object.value_witnesses }}</td>
-            </tr>
-            <tr>
-                <th>XML-TEI transcription</th>
-                <td class="readmore"><small>
-                    The source text is encoded in XML-TEI. Possible values:<br/>
-                    <li>0: no</li>
-                    <li>0.5: partially</li>
-                    <li>1: yes</li>
-                </small>
-                </td>
-                <td>{{ object.tei_transcription }}</td>
-            </tr>
-            <tr>
-                <th>XML-TEI transcription to download</th>
-                <td class="readmore"><small>
-                    The XML-TEI encoded text is available for download.<br/>
-                    <li>0: XML not used</li>
-                    <li>0.5: XML but not TEI</li>
-                    <li>1: XML-TEI is used</li>
-                </small>
-                </td>
-                <td>{{ object.tei_transcription }}</td>
-            </tr>
-            <tr>
-                <th>Images</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition comes with images.</small></td>
-                <td>{{ objects.images }}</td>
-            </tr>
-            <tr>
-                <th>Zoom images</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell us if the user can zoom in or out of images within the edition.</small></td>
-                <td>{{ object.zoom_imgaes }}</td>
-            </tr>
-            <tr>
-                <th>Image manipulation</th>
-                <td class="readmore"><small>The values 1 and 0 are used to tell us whether the user can manipulate these images in any way within the edition (brightness, saturation, etc.).</small></td>
-                <td>{{ object.image_manipulation }}</td>
-            </tr>
-            <tr>
-                <th>Text-image linking</th>
-                <td class="readmore"><small>The transcription and the image are linked so that clicking on a word in the image brings up the corresponding textual token and viceversa.</small></td>
-                <td>{{ object.text_image }}</td>
-            </tr>
-            <tr>
-                <th>Source text translation</th>
-                <td class="readmore"><small>The project provides a translation (not necessarily in English!) of the source text. If so, the corresponding <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">three-letter ISO code</a> should be used. If not, type 0.</small></td>
-                <td>{{ object.source_translation }}</td>
-            </tr>
-            <tr>
-                <th>Website language</th>
-                <td class="readmore"><small>The language the project website is written in. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">Three-letter ISO codes</a> should be used.</small></td>
-                <td>{% for x in object.website_language.all %} {{ x.iso_code }} <br/> {% endfor %}</td>
-            </tr>
-            <tr>
-                <th>Glossary</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides a glossary.</small></td>
-                <td>{{ object.glossary }}</td>
-            </tr>
-            <tr>
-                <th>Indices</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides indices.</small></td>
-                <td>{{ object.indices }}</td>
-            </tr>
-            <tr>
-                <th>String matching search</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.</small></td>
-                <td>{{ object.search }}</td>
-            </tr>
-            <tr>
-                <th>Advanced search</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides an advanced search functionality.</small></td>
-                <td>{{ object.advanced_search }}</td>
-            </tr>
-            <tr>
-                <th>Creative Commons License</th>
-                <td class="readmore"><small>The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.</small></td>
-                <td>{{ object.cc_license }}</td>
-            </tr>
-            <tr>
-                <th>Open Source/Open Access</th>
-                <td class="readmore"><small>
-                    <li>0: Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription.</li>
-                    <li>0.5: Same as above, but the subscription is free of charge.</li>
-                    <li>1: Open Access. The texts may be accessed through specific software, but the source is not accessible.</li>
-                    <li>1.5: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>
-                </small></td>
-                <td>{{ object.open_source }}</td>
-            </tr>
-            <tr>
-                <th>OCR or keyed?</th>
-                <td class="readmore"><small>The source text was digitised with Optical Character Recognition (OCR) software or manually keyed in.</small></td>
-                <td>{{ object.key_or_ocr }}</td>
-            </tr>
-            <tr>
-                <th>Print-friendly view</th>
-                <td class="readmore"><small>The values 1 or 0 are used to tell if the project provides a print-friendly view of the text (e.g. PDF).</small></td>
-                <td>{{ object.print_friendly }}</td>
-            </tr>
-            {% if user.is_authenticated %}
-            <tr>
-                <td><a href="{% url 'editions:edition_edit' pk=object.id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
-            </tr>
-            {% endif %}
-           
-        </table>
-    </div>
+        <div class="panel panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-hover table-condensed">
+                <tr>
+                    <th class="col-sm-3">url</th>
+                    <td class="readmore col-sm-3"><small>The URL of the edition (project).</small></td>
+                    <td class="col-sm-6"><a href="{{ object.url }}">{{ object.url }}</a></td>
+                </tr>
+                <tr>
+                    <th>Historical Period</th>
+                    <td class="readmore"><small>This field broadly categorises an edition by periods</small></td>
+                    <td>{% for x in object.historical_period.all %} {{ x.name }}<br/> {% endfor %}</td>
+                </tr>
+                <tr>
+                    <th>scholarly</th>
+                    <td class="readmore"><small>An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition.</small></td>
+                    <td>{{ object.scholarly }}</td>
+                </tr>
+                 <tr>
+                    <th>digital</th>
+                    <td class="readmore"<small><small>A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities).</small></td>
+                    <td>{{ object.digital }}</td>
+                </tr>
+                 <tr>
+                    <th>edition</th>
+                    <td class="readmore"><small>An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition.</small></td>
+                    <td>{{ object.edition }}</td>
+                </tr>
+                 <tr>
+                    <th>Writing support</th>
+                    <td class="readmore"><small>The nature of the source text (manuscript, letter, notebook, etc.).</small></td>
+                    <td>{{ object.writing_support }}</td>
+                </tr>
+                 <tr>
+                    <th>prototype</th>
+                    <td class="readmore"><small>A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype.</small></td>
+                    <td>{{ object.prototype }}</td>
+                </tr>
+                <tr>
+                    <th>language</th>
+                    <td class="readmore"><small>The language(s) of the source text. Three-letter ISO Codes are used.</small></td>
+                    <td>{% for x in object.language.all %} {{ x.iso_code }}<br/>{% endfor %}</td>
+                </tr>
+                 <tr>
+                    <th>Begin Date</th>
+                    <td class="readmore"><small>Year the project started.</small></td>
+                    <td>{{ object.begin_date|date:"Y" }}</td>
+                </tr>
+                 <tr>
+                    <th>End Date</th>
+                    <td class="readmore"><small>Year the project ended. If ongoing, leave blank.</small></td>
+                    <td>{{ object.end_date|date:"Y" }}</td>
+                </tr>
+                 <tr>
+                    <th>Manager</th>
+                    <td class="readmore"><small>Name of project manager(s).</small></td>
+                    <td>{% for x in object.manager.all %} {{ x.name }}<br/>{% endfor %}</td>
+                </tr>
+                 <tr>
+                    <th>Institution</th>
+                    <td class="readmore"><small>Name(s) of institution(s) involved in the project.</small></td>
+                    <td>{% for x in object.institution.all %} {{ x.name }}<br/> {% endfor %}</td>
+                </tr>
+                 <tr>
+                    <th>Audience</th>
+                    <td class="readmore"><small>The target audience of the edition project (scholars, general public, etc.).</small></td>
+                    <td>{{ object.audience }}</td>
+                </tr>
+                 <tr>
+                    <th>Philological statement</th>
+                    <td class="readmore"><small>
+                    <li>0: No information on the editorial methods and practices nor on the source (digital or printed) of the text.</li>
+                    <li>0.5: No information on the source, but some information about the author, date and accuracy of the digital edition.</li>
+                    <li>1: Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software. Values may include a large range of standards used, including HTML, XML-TEI etc.</li></small></td>
+                    <td>{{ object.philological_statement }}</td>
+                </tr>
+                <tr>
+                    <th>Account of textual variance</th>
+                    <td class="readmore"><small>
+                    <li>0: No account of textual variance is given. The digital edition is a reproduction of a given print edition without any account of variants.</li>
+                    <li>0.5: The digital edition is a reproduction of a given print scholarly edition and reproduces the selected textual variants extant in the apparatus criticus of that edition, or: the edition does not follow a digital paradigm, in that the variants are not automatically computable the way they are encoded.</li>
+                    <li>1: This edition is “based on full-text transcription of original texts into electronic form” (vd. Proposition 2 in <a href="http://www.tei-c.org/About/Archive_new/ETE/Preview/robinson.xml">this article</a> by P. Robinson).</li></small></td>
+                    <td>{{ object.textual_variance }}</td>
+                </tr>
+                <tr>
+                    <th>Value of witnesses</th>
+                    <td class="readmore"><small>
+                        <li>N/A: Not applicable, as no information about the source of the text is given, though it is easily assumable that the source is another digital edition or a printed edition (possibly even a scholarly edition).</li>
+                        <li>0: The only witness modelled digitally is a printed non-scholarly edition, used as a source for the digital edition.</li>
+                        <li>0.5: Same as above, but the witness/source is a scholarly edition.</li>
+                        <li>1: The witnesses are traditional philological primary sources (including manuscripts, inscriptions or papyri).</li></small>
+                    </td>
+                    <td>{{ object.value_witnesses }}</td>
+                </tr>
+                <tr>
+                    <th>XML-TEI transcription</th>
+                    <td class="readmore"><small>
+                        The source text is encoded in XML-TEI. Possible values:<br/>
+                        <li>0: no</li>
+                        <li>0.5: partially</li>
+                        <li>1: yes</li>
+                    </small>
+                    </td>
+                    <td>{{ object.tei_transcription }}</td>
+                </tr>
+                <tr>
+                    <th>XML-TEI transcription to download</th>
+                    <td class="readmore"><small>
+                        The XML-TEI encoded text is available for download.<br/>
+                        <li>0: XML not used</li>
+                        <li>0.5: XML but not TEI</li>
+                        <li>1: XML-TEI is used</li>
+                    </small>
+                    </td>
+                    <td>{{ object.tei_transcription }}</td>
+                </tr>
+                <tr>
+                    <th>Images</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition comes with images.</small></td>
+                    <td>{{ objects.images }}</td>
+                </tr>
+                <tr>
+                    <th>Zoom images</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell us if the user can zoom in or out of images within the edition.</small></td>
+                    <td>{{ object.zoom_imgaes }}</td>
+                </tr>
+                <tr>
+                    <th>Image manipulation</th>
+                    <td class="readmore"><small>The values 1 and 0 are used to tell us whether the user can manipulate these images in any way within the edition (brightness, saturation, etc.).</small></td>
+                    <td>{{ object.image_manipulation }}</td>
+                </tr>
+                <tr>
+                    <th>Text-image linking</th>
+                    <td class="readmore"><small>The transcription and the image are linked so that clicking on a word in the image brings up the corresponding textual token and viceversa.</small></td>
+                    <td>{{ object.text_image }}</td>
+                </tr>
+                <tr>
+                    <th>Source text translation</th>
+                    <td class="readmore"><small>The project provides a translation (not necessarily in English!) of the source text. If so, the corresponding <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">three-letter ISO code</a> should be used. If not, type 0.</small></td>
+                    <td>{{ object.source_translation }}</td>
+                </tr>
+                <tr>
+                    <th>Website language</th>
+                    <td class="readmore"><small>The language the project website is written in. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">Three-letter ISO codes</a> should be used.</small></td>
+                    <td>{% for x in object.website_language.all %} {{ x.iso_code }} <br/> {% endfor %}</td>
+                </tr>
+                <tr>
+                    <th>Glossary</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides a glossary.</small></td>
+                    <td>{{ object.glossary }}</td>
+                </tr>
+                <tr>
+                    <th>Indices</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides indices.</small></td>
+                    <td>{{ object.indices }}</td>
+                </tr>
+                <tr>
+                    <th>String matching search</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.</small></td>
+                    <td>{{ object.search }}</td>
+                </tr>
+                <tr>
+                    <th>Advanced search</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides an advanced search functionality.</small></td>
+                    <td>{{ object.advanced_search }}</td>
+                </tr>
+                <tr>
+                    <th>Creative Commons License</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.</small></td>
+                    <td>{{ object.cc_license }}</td>
+                </tr>
+                <tr>
+                    <th>Open Source/Open Access</th>
+                    <td class="readmore"><small>
+                        <li>0: Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription.</li>
+                        <li>0.5: Same as above, but the subscription is free of charge.</li>
+                        <li>1: Open Access. The texts may be accessed through specific software, but the source is not accessible.</li>
+                        <li>1.5: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>
+                    </small></td>
+                    <td>{{ object.open_source }}</td>
+                </tr>
+                <tr>
+                    <th>OCR or keyed?</th>
+                    <td class="readmore"><small>The source text was digitised with Optical Character Recognition (OCR) software or manually keyed in.</small></td>
+                    <td>{{ object.key_or_ocr }}</td>
+                </tr>
+                <tr>
+                    <th>Print-friendly view</th>
+                    <td class="readmore"><small>The values 1 or 0 are used to tell if the project provides a print-friendly view of the text (e.g. PDF).</small></td>
+                    <td>{{ object.print_friendly }}</td>
+                </tr>
+                {% if user.is_authenticated %}
+                <tr>
+                    <td><a href="{% url 'editions:edition_edit' pk=object.id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
+                </tr>
+                {% endif %} 
+                    </table>
+                </div>
+                <div>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-    $( "td[class~='readmore']" ).hide();
-})
-$("#clickme").click(function(){
-    $( "td[class~='readmore']" ).toggle("slow");
-})
-    
+    $(document).ready(function(){
+        $( "td[class~='readmore']" ).hide();
+    })
+    $("#clickme").click(function(){
+        $( "td[class~='readmore']" ).toggle("slow");
+    })  
+</script>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        var map = L.map('map').setView([48.69096, 9.14062], 5);
+
+        L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
+        attribution: 'Data, imagery and map information provided by MapQuest, OpenStreetMap <http://www.openstreetmap.org/copyright> and contributors, ODbL <http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F>',
+        maxZoom: 18
+        }).addTo(map);
+
+        {% for x in object.institution.all %} 
+        {% if x.lat %}
+        L.marker([{{ x.lat }}, {{ x.lng }}])
+        .addTo(map)
+        .bindPopup("<h3> {{object.name}}</h3><table class='table table-striped'> <tr> <td>responsible Institution: </td> <td>{{ x.name }}</td> </tr> <tr> <td>located in: </td> <td>{{ x.place.name }} ({{ x.place.part_of.name }})</td> </tr><tr> <td>more projects from this institution: </td> <td><a href='{% url 'browsing:browse_editions' %}?name=&institution__name={{x.name}}'>{{ x.name }}</a></td> </tr>  </table>");
+        {% endif %}
+        {% endfor %}
+        });
 </script>
 {% endblock %}
 

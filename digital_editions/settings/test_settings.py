@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     'markdown_deux',
     'crispy_forms',
     'django_spaghetti',
@@ -53,6 +54,11 @@ SPAGHETTI_SAUCE = {
     'apps': ['places', 'editions'],
     'show_fields': False,
     'exclude': {'auth': ['user']}
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'PAGE_SIZE': 10
 }
 
 MIDDLEWARE_CLASSES = [

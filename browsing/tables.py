@@ -3,6 +3,7 @@ from django_tables2.utils import A
 from editions.models import *
 from places.models import *
 
+
 class EditionTable(tables.Table):
     name = tables.LinkColumn('editions:edition_detail', args=[A('pk')], verbose_name='edition name')
     institution = tables.Column(empty_values=())

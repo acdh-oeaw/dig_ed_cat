@@ -37,6 +37,29 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django_extensions',
+    'rest_framework',
+    'markdown_deux',
+    'crispy_forms',
+    'django_spaghetti',
+    'webpage',
+    'places',
+    'editions',
+    'django_filters',
+    'django_tables2',
+    'browsing',
+    'charts',
+]
+
 ROOT_URLCONF = 'digital_editions.urls'
 
 TEMPLATES = [

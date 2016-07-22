@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'places/', include('places.urls', namespace='places')),
     url(r'^datamodel/', include('django_spaghetti.urls', namespace='datamodel')),
     url(r'browsing/', include('browsing.urls', namespace='browsing')),
+    url(r'charts/', include('charts.urls', namespace='charts'))
 ]

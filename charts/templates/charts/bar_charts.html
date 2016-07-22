@@ -1,0 +1,110 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% block Titel %}some charts{% endblock %}
+
+{% block scriptHeader %}
+    <!--highcharts -->
+        <script src="{% static 'charts/highcharts/highcharts.js' %}"></script>
+        <script src="{% static 'charts/highcharts/highcharts-3d.js' %}"></script>
+        <script src="{% static 'charts/highcharts/exporting.js' %}"></script>
+    <!--highcharts END -->
+{% endblock %}
+{% block content %}
+<div class="panel panel-default" style="text-align:center">
+    <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
+        <select id="chartselector" class="form-control">
+                <option value="---">---</option>
+                <!-- <option value="{% url 'charts:test_json' %}">LASK4EVER</option> -->
+                <option value="{% url 'charts:historical_periode_json' %}">Editions by Periods</option>
+        </select>
+    </div>
+    <div class="panel-body">
+        <div id="bar"/>
+    </div>
+</div>
+    
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $("#chartselector").change(function(){
+            var which_chart = $("#chartselector option:selected").val();
+            console.log(which_chart);
+            $.getJSON( which_chart, function( data ) {
+                $('html, body').css("cursor", "default");        
+                var items = (data.payload).slice(1, data.payload.items);
+                var measuredObject = data.measuredObject
+                var header = data.title;
+                $("h1").text(header);
+                console.log(items);
+                $(function () {
+                    $('#bar').highcharts({
+                    chart: {
+                        type: 'column',
+                        options3d: {
+                                enabled: true,
+                                alpha: 20
+                            }
+                    },
+                    title: {
+                        text: ""
+                        },
+                    subtitle: {
+                        text: data.subtitle
+                        },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                        rotation: -45,
+                        style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                        }
+                        }
+                        },
+                    yAxis: {
+                        min: data.ymin,
+                        title: {
+                        text: data.legendy
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                        },
+                    tooltip: {
+                    },
+                    series: [{
+                    name: measuredObject,
+                    data: items,
+                    dataLabels: {
+                    enabled: false,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.1f}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                    }
+                    }
+                    }]
+                    });
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
+    <!-- scroll-up-bottom -->        
+    <script type="text/javascript">
+            // Setup plugin with default settings
+            $(document).ready(function() {
+                $.apScrollTop({
+                    'onInit': function(evt) {
+                        console.log('apScrollTop: init');
+                    }
+                });
+            });
+    </script>    
+{% endblock %}
+

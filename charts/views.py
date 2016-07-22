@@ -43,6 +43,36 @@ def piecharts_view(request):
     return render(request, 'charts/pie_charts.html', context)
 
 
+def xmltei_json(request):
+    CHOICES_TEI = {
+        "N/A": "N/A",
+        "no information provided": "no information provided",
+        "0": "XML not used",
+        "0.5": "XML but not TEI",
+        "1": "XML-TEI is used"
+    }
+
+    editions = Edition.objects.values('tei_transcription').annotate(total=Count('tei_transcription')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["tei_transcription"] is not None:
+            legend = CHOICES_TEI[x["tei_transcription"]]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Usage of XML and TEI",
+        "subtitle": "The source text is encoded in XML-TEI.",
+        "legendx": "Encoding",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
 def historical_periode_json(request):
     editions = Edition.objects.values('historical_period').annotate(total=Count('historical_period')).order_by('-total')
     payload = []
@@ -62,6 +92,7 @@ def historical_periode_json(request):
         "ymin": 0,
         "payload": payload
     }
+
     return JsonResponse(data)
 
 

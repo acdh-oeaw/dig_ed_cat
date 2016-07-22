@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^piecharts/$', views.piecharts_view, name='pie_charts'),
     url(r'^testjsonpie/$', views.test_json_pie, name='test_json_pie'),
     url(r'^historicalperiodsjson/$', views.historical_periode_json, name='historical_periode_json'),
+    url(r'^xmlteijson/$', views.xmltei_json, name='xmltei_json'),
 ]

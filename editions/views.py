@@ -58,55 +58,54 @@ def sync_status(request):
             temp_ed.scholarly = BOOLEAN_CHOICES[str(row[4])]
             temp_ed.digital = BOOLEAN_CHOICES[str(row[5])]
             temp_ed.edition = BOOLEAN_CHOICES[str(row[6])]
-            temp_ed.prototype = BOOLEAN_CHOICES[str(row[7])]
-            if row[8] != "":
-                langs1 = row[8].split(",")
+            if row[7] != "":
+                langs1 = row[7].split(",")
                 for x in langs1:
                     temp_lang_source, _ = Language.objects.get_or_create(
                         iso_code=(x.strip().lower())[:3])
                     temp_ed.language.add(temp_lang_source)
-            temp_ed.writing_support = row[9]
-            if row[10] != "":
-                start_date = re.match("\d{4}", row[10])
+            temp_ed.writing_support = row[8]
+            if row[9] != "":
+                start_date = re.match("\d{4}", row[9])
                 if start_date:
                     start_date = datetime.strptime(start_date.group(), '%Y')
                     temp_ed.begin_date = start_date
-            if row[11] != "":
-                end_date = re.match("\d{4}", row[11])
+            if row[10] != "":
+                end_date = re.match("\d{4}", row[10])
                 if end_date:
                     end_date = datetime.strptime(end_date.group(), '%Y')
                     temp_ed.end_date = end_date
-            for pers in row[12].split(";"):
+            for pers in row[11].split(";"):
                 pers_temp, _ = Person.objects.get_or_create(name=pers.strip())
                 temp_ed.manager.add(pers_temp)
-            for inst in row[13].split(";"):
+            for inst in row[12].split(";"):
                 inst_temp, _ = Institution.objects.get_or_create(name=inst.strip())
                 temp_ed.institution.add(inst_temp)
-            temp_ed.audience = str(row[14])
-            temp_ed.philological_statement = str(row[15])
-            temp_ed.textual_variance = str(row[16])
-            temp_ed.value_witnesses = str(row[17])
-            temp_ed.tei_transcription = str(row[18]).strip()
-            temp_ed.download = str(row[19]).strip()
-            temp_ed.images = BOOLEAN_CHOICES[str(row[20])]
-            temp_ed.zoom_images = BOOLEAN_CHOICES[str(row[21])]
-            temp_ed.image_manipulation = BOOLEAN_CHOICES[str(row[22])]
-            temp_ed.text_image = BOOLEAN_CHOICES[str(row[23])]
-            if row[25] != "":
-                langs = row[25].split(";")
+            temp_ed.audience = str(row[13])
+            temp_ed.philological_statement = str(row[14])
+            temp_ed.textual_variance = str(row[15])
+            temp_ed.value_witnesses = str(row[16])
+            temp_ed.tei_transcription = str(row[17]).strip()
+            temp_ed.download = str(row[18]).strip()
+            temp_ed.images = BOOLEAN_CHOICES[str(row[19])]
+            temp_ed.zoom_images = BOOLEAN_CHOICES[str(row[20])]
+            temp_ed.image_manipulation = BOOLEAN_CHOICES[str(row[21])]
+            temp_ed.text_image = BOOLEAN_CHOICES[str(row[22])]
+            if row[24] != "":
+                langs = row[23].split(";")
                 for y in langs:
                     temp_lang_website, _ = Language.objects.get_or_create(
                         iso_code=(y.strip().lower())[:3])
                     temp_ed.website_language.add(temp_lang_website)
-            temp_ed.glossary = BOOLEAN_CHOICES[str(row[26])]
-            temp_ed.indices = BOOLEAN_CHOICES[str(row[27])]
-            temp_ed.search = BOOLEAN_CHOICES[str(row[28])]
-            temp_ed.advanced_search = BOOLEAN_CHOICES[str(row[29])]
-            temp_ed.cc_license = BOOLEAN_CHOICES[str(row[30])]
-            temp_ed.open_source = row[31]
-            temp_ed.key_or_ocr = str(row[37])
-            temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]
-            temp_ed.infrastructure = str(row[45])
+            temp_ed.glossary = BOOLEAN_CHOICES[str(row[25])]
+            temp_ed.indices = BOOLEAN_CHOICES[str(row[26])]
+            temp_ed.search = BOOLEAN_CHOICES[str(row[27])]
+            temp_ed.advanced_search = BOOLEAN_CHOICES[str(row[28])]
+            temp_ed.cc_license = BOOLEAN_CHOICES[str(row[29])]
+            temp_ed.open_source = row[30]
+            temp_ed.key_or_ocr = str(row[36])
+            temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[38])]
+            temp_ed.infrastructure = str(row[44])
             temp_ed.historical_period.add(temp_per)
             temp_ed.save()
     context["nr_editions_now"] = len(Edition.objects.all())

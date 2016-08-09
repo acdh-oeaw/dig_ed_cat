@@ -92,10 +92,10 @@ class EditionListFilter(django_filters.FilterSet):
     historical_period = django_filters.ModelMultipleChoiceFilter(
         queryset=Period.objects.all(), label='Period',
         help_text=Edition._meta.get_field('historical_period').help_text)
-    country_name = django_filters.MethodFilter(lookup_expr='icontains',
-        action='country_name_filter', label="Country the Edition was created.")
-    city_name = django_filters.MethodFilter(
-        lookup_expr='icontains', action='city_name_filter', label="City the Edition was created.")
+    # country_name = django_filters.MethodFilter(lookup_expr='icontains',
+    #     action='country_name_filter', label="Country the Edition was created.")
+    # city_name = django_filters.MethodFilter(
+    #     lookup_expr='icontains', action='city_name_filter', label="City the Edition was created.")
     scholarly = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('scholarly').help_text)
     digital = django_filters.ChoiceFilter(

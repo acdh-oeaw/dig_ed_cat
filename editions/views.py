@@ -1,7 +1,9 @@
 import csv
 import re
+import time
+import datetime
 import requests
-from datetime import datetime
+from django.http import HttpResponse
 from django.views import generic
 from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404, redirect
@@ -11,6 +13,37 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from places import *
 from .forms import EditionForm
+
+
+def institution_csv(request):
+    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+    response = HttpResponse(content_type='text/csv')
+    filename = "institutions_{}.csv".format(timestamp)
+    response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
+    writer = csv.writer(response, delimiter=";")
+    writer.writerow([
+        'Institution Name', 'Institution GND',
+        'Institution Lat', 'Institution Lng',
+        'located at', 'location geonames ID', 'location Lat',
+        'location Lng', 'part of', 'type of location']
+    )
+    for x in Institution.objects.all():
+        if x.place:
+            writer.writerow(
+                [x.name, x.gnd_id, x.lat, x.lng, x.place.name, x.place.geonames_id,
+                x.place.lat, x.place.lng, x.place.part_of, x.place.place_type]
+            )
+        else:
+            writer.writerow([x.name, x.gnd_id, x.lat, x.lng])
+    return response
+
+
+class InstitutionListView(generic.ListView):
+    template_name = "editions/institution_csv.html"
+    context_object_name = 'object_list'
+
+    def get_queryset(self):
+        return Institution.objects.all()
 
 
 @login_required

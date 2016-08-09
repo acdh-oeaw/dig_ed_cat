@@ -92,7 +92,7 @@ def sync_status(request):
             temp_ed.image_manipulation = BOOLEAN_CHOICES[str(row[21])]
             temp_ed.text_image = BOOLEAN_CHOICES[str(row[22])]
             if row[24] != "":
-                langs = row[23].split(";")
+                langs = row[24].split(";")
                 for y in langs:
                     temp_lang_website, _ = Language.objects.get_or_create(
                         iso_code=(y.strip().lower())[:3])
@@ -103,9 +103,9 @@ def sync_status(request):
             temp_ed.advanced_search = BOOLEAN_CHOICES[str(row[28])]
             temp_ed.cc_license = BOOLEAN_CHOICES[str(row[29])]
             temp_ed.open_source = row[30]
-            temp_ed.key_or_ocr = str(row[36])
-            temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[38])]
-            temp_ed.infrastructure = str(row[44])
+            temp_ed.key_or_ocr = str(row[37])
+            temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]
+            temp_ed.infrastructure = str(row[45])
             temp_ed.historical_period.add(temp_per)
             temp_ed.save()
     context["nr_editions_now"] = len(Edition.objects.all())

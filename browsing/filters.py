@@ -42,6 +42,7 @@ CHOICES_OPENSOURCE = (
         ("0.5", "Same as above, but the subscription is free of charge."),
         ("1", "Open Access. The texts may be accessed through specific software, but the source is not accessible."),
         ("1.5", " Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse)"),
+        ("2", "Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse)."),
     )
 
 BOOLEAN_CHOICES = (

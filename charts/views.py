@@ -47,6 +47,7 @@ def xmltei_json(request):
     CHOICES_TEI = {
         "N/A": "N/A",
         "no information provided": "no information provided",
+        "not provided": "not provided",
         "0": "XML not used",
         "0.5": "XML but not TEI",
         "1": "XML-TEI is used"

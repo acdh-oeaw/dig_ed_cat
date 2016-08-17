@@ -101,12 +101,12 @@ def sync_status(request):
             if row[9] != "":
                 start_date = re.match("\d{4}", row[9])
                 if start_date:
-                    start_date = datetime.strptime(start_date.group(), '%Y')
+                    start_date = datetime.datetime.strptime(start_date.group(), '%Y')
                     temp_ed.begin_date = start_date
             if row[10] != "":
                 end_date = re.match("\d{4}", row[10])
                 if end_date:
-                    end_date = datetime.strptime(end_date.group(), '%Y')
+                    end_date = datetime.datetime.strptime(end_date.group(), '%Y')
                     temp_ed.end_date = end_date
             for pers in row[11].split(";"):
                 pers_temp, _ = Person.objects.get_or_create(name=pers.strip())
@@ -140,6 +140,7 @@ def sync_status(request):
             temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]
             temp_ed.infrastructure = str(row[45])
             temp_ed.historical_period.add(temp_per)
+            temp_ed.api = str(row[32])
             temp_ed.save()
     context["nr_editions_now"] = len(Edition.objects.all())
     return render(request, 'editions/sync_status.html', context)

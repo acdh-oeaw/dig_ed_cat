@@ -251,6 +251,10 @@ class Edition(models.Model):
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell if the project provides a print-friendly view of the text (e.g. PDF)."
     )
+    api = models.CharField(
+        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
+        help_text="The values 1 or 0 are used to specify if the project comes with an API (Application Programming Interface)."
+    )
 
     def __str__(self):
         return "{}".format(self.name)

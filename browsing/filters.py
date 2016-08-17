@@ -172,6 +172,9 @@ class EditionListFilter(django_filters.FilterSet):
     print_friendly = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
         help_text=Edition._meta.get_field('print_friendly').help_text)
+    api = django_filters.ChoiceFilter(
+        choices=BOOLEAN_CHOICES,
+        help_text=Edition._meta.get_field('api').help_text)
 
     def country_name_filter(self, queryset, value):
         return queryset.filter(institution__place__part_of__name__icontains=value).distinct()

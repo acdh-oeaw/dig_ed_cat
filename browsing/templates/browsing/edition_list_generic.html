@@ -9,6 +9,12 @@
 {% endblock %}
 
 {% block customScripts %}
+
+
+<script>
+$( "#advanced_search_fields" ).append(  '<div class="controls "><label>entries per page</label><input type="number" class="form-control" name="amount"></div>' );
+</script>
+
 <script>
 
 var edition_names = [{% for name in edition_names %} "{{ name }}", {% endfor %}];

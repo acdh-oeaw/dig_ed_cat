@@ -21,8 +21,12 @@ class GenericListView(SingleTableView):
 
     def get_table(self, **kwargs):
         table = super(GenericListView, self).get_table()
+        if self.request.GET.get('amount') is not None:
+            nr_of_rows = self.request.GET.get('amount')
+        else:
+            nr_of_rows = 25
         RequestConfig(self.request, paginate={
-            'page': 1, 'per_page': self.paginate_by}).configure(table)
+            'page': 1, 'per_page': nr_of_rows}).configure(table)
         return table
 
     def get_context_data(self, **kwargs):

@@ -5,6 +5,7 @@ from places.models import *
 
 
 class GenericFilterFormHelper(FormHelper):
+
     def __init__(self, *args, **kwargs):
         super(GenericFilterFormHelper, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -20,11 +21,9 @@ class GenericFilterFormHelper(FormHelper):
                 'url',
                 'historical_period',
                 'language',
-                'country_name',
                 css_id="basic_search_fields"),
             Fieldset(
                 'Advanced search options',
-                'city_name',
                 'scholarly',
                 'digital',
                 'edition',

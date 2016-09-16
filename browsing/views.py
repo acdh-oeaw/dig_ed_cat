@@ -44,13 +44,16 @@ class EditionListView(GenericListView):
         edition_names = []
         infrastructure_names = []
         audience_names = []
+        writing_support_names = []
         for edition in Edition.objects.all():
             edition_names.append(edition.name)
             infrastructure_names.append(edition.infrastructure)
             audience_names.append(edition.audience)
+            writing_support_names.append(edition.writing_support)
         context["edition_names"] = set(edition_names)
         context["infrastructure_names"] = set(infrastructure_names)
         context["audience_names"] = set(audience_names)
+        context["writing_support_names"] = set(writing_support_names)
         manager_names = []
         for person in Person.objects.all():
             manager_names.append(person.name)

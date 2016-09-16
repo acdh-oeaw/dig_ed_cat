@@ -159,7 +159,19 @@ class EditionDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EditionDetailView, self).get_context_data(**kwargs)
+        edition_ids = [x.id for x in Edition.objects.all()]
+        self_id = int(self.kwargs['pk'])
+        if self_id == edition_ids[-1]:
+            next_entry = None
+        else:
+            next_entry = edition_ids[edition_ids.index(self_id) + 1]
+        context["next_entry"] = next_entry
 
+        if edition_ids.index(self_id) == 0:
+            previous_entry = None
+        else:
+            previous_entry = edition_ids[edition_ids.index(self_id) - 1]
+        context["previous_entry"] = previous_entry
         return context
 
 

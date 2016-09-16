@@ -140,7 +140,7 @@ def sync_status(request):
             temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]
             temp_ed.infrastructure = str(row[45])
             temp_ed.historical_period.add(temp_per)
-            temp_ed.api = str(row[32])
+            temp_ed.api = BOOLEAN_CHOICES[str(row[32])]
             temp_ed.save()
     context["nr_editions_now"] = len(Edition.objects.all())
     return render(request, 'editions/sync_status.html', context)

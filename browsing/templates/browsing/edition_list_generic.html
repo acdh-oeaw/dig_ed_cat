@@ -14,8 +14,9 @@
 var edition_names = [{% for name in edition_names %} "{{ name }}", {% endfor %}];
 var institution_names = [{% for name in institution_names %} "{{ name }}", {% endfor %}];
 var manager_names = [{% for name in manager_names %} "{{ name }}", {% endfor %}];
-var country_names = [{% for name in country_names %} "{{ name }}", {% endfor %}];
-var city_names = [{% for name in city_names %} "{{ name }}", {% endfor %}];
+var infrastructure_names = [{% for name in infrastructure_names %} "{{ name }}", {% endfor %}];
+var audience_names = [{% for name in audience_names %} "{{ name }}", {% endfor %}];
+
 
 
 $(function() {
@@ -34,19 +35,16 @@ $(function() {
         source:manager_names
         }); 
     });
-
 $(function() {
-    $("#id_country_name").autocomplete({
-        source:country_names
+    $("#id_infrastructure").autocomplete({
+        source:infrastructure_names
         }); 
     });
-
 $(function() {
-    $("#id_city_name").autocomplete({
-        source:city_names
+    $("#id_audience").autocomplete({
+        source:audience_names
         }); 
     });
-
 
 </script>
 <script type="text/javascript">

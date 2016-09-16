@@ -42,9 +42,15 @@ class EditionListView(GenericListView):
         context = super(GenericListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
         edition_names = []
+        infrastructure_names = []
+        audience_names = []
         for edition in Edition.objects.all():
             edition_names.append(edition.name)
+            infrastructure_names.append(edition.infrastructure)
+            audience_names.append(edition.audience)
         context["edition_names"] = set(edition_names)
+        context["infrastructure_names"] = set(infrastructure_names)
+        context["audience_names"] = set(audience_names)
         manager_names = []
         for person in Person.objects.all():
             manager_names.append(person.name)
@@ -53,14 +59,6 @@ class EditionListView(GenericListView):
         for inst in Institution.objects.all():
             institution_names.append(inst.name)
         context["institution_names"] = set(institution_names)
-        country_names = []
-        for inst in Place.objects.filter(place_type="country"):
-            country_names.append(inst.name)
-        context["country_names"] = set(country_names)
-        city_names = []
-        for inst in Place.objects.filter(place_type="city"):
-            city_names.append(inst.name)
-        context["city_names"] = set(city_names)
         return context
 
 

@@ -53,7 +53,8 @@ def xmltei_json(request):
         "1": "XML-TEI is used"
     }
 
-    editions = Edition.objects.values('tei_transcription').annotate(total=Count('tei_transcription')).order_by('-total')
+    editions = Edition.objects.values(
+        'tei_transcription').annotate(total=Count('tei_transcription')).order_by('-total')
     payload = []
     for x in editions:
         if x["tei_transcription"] is not None:
@@ -74,8 +75,138 @@ def xmltei_json(request):
 
     return JsonResponse(data)
 
+
+def xmldownload_json(request):
+    CHOICES_DOWNLOAD = (
+        ("", "----"),
+        ("no information provided", "no information provided"),
+        ("0", "no"),
+        ("0.5", "partially"),
+        ("1", "yes"),
+        ("N/A", "N/A")
+    )
+
+    editions = Edition.objects.values(
+        'download').annotate(total=Count('download')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["download"] is not None:
+            legend = dict(CHOICES_DOWNLOAD)[x["download"]]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Access to the Data",
+        "subtitle": "The XML-TEI encoded text is available for download.",
+        "legendx": "download possible",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
+
+def indices_json(request):
+    editions = Edition.objects.values(
+        'indices').annotate(total=Count('indices')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["indices"] is not None:
+            legend = x["indices"]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Indices provided",
+        "subtitle": "Is the edition's content accessable by indices?",
+        "legendx": "indices",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
+
+def cc_json(request):
+    editions = Edition.objects.values(
+        'cc_license').annotate(total=Count('cc_license')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["cc_license"] is not None:
+            legend = x["cc_license"]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Creative Commons License",
+        "subtitle": "Is the work published using a Creative Commons-license",
+        "legendx": "cc-license",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
+
+def advanced_search_json(request):
+    editions = Edition.objects.values(
+        'advanced_search').annotate(total=Count('advanced_search')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["advanced_search"] is not None:
+            legend = x["advanced_search"]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Advanced Search Functionalites",
+        "subtitle": "Are there any advanced search functionalites available?",
+        "legendx": "advanced search",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
+
+def search_json(request):
+    editions = Edition.objects.values(
+        'search').annotate(total=Count('search')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["search"] is not None:
+            legend = x["search"]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Full Text Search",
+        "subtitle": "Is the work searchable in its full text (string match search)?",
+        "legendx": "searchable",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
 def historical_periode_json(request):
-    editions = Edition.objects.values('historical_period').annotate(total=Count('historical_period')).order_by('-total')
+    editions = Edition.objects.values(
+        'historical_period').annotate(total=Count('historical_period')).order_by('-total')
     payload = []
     for x in editions:
         if x["historical_period"] is not None:

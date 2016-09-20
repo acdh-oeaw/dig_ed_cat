@@ -1,0 +1,47 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% block scriptHeader %}
+    <script type="text/javascript" src="{% static 'wordcloud/wordcloud-js/wordcloud2.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-default" style="text-align:center">
+    <div class="panel-heading">
+        <h1>No DH-Project without Wordclouds</h1><br/>
+        <select id="chartselector" class="form-control">
+                <option value="---">---</option>
+                <option value="{% url 'wordclouds:titlewords_js' %}">Title/Name of the Edition</option>
+                <option value="{% url 'wordclouds:infrastructure_js' %}">Used Infrastructure</option>
+                <!-- <option value="{% url 'charts:historical_periode_json' %}">Editions by Periods</option> -->
+        </select>
+    </div>
+    <div class="panel-body">
+    <h1 id="wordcloud-title"></h1>
+        <canvas id="my_canvas"  width="600" height="600"></canvas>
+        <div style="display:none;">realized with <a href='https://github.com/timdream/wordcloud2.js'>wordcloud2.js</a></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#chartselector").change(function(){
+        var which_cloud = $("#chartselector option:selected").val();
+        console.log(which_cloud);
+            $.getJSON( which_cloud, function( data ) {
+                $('html, body').css("cursor", "default");        
+                var items = data.payload;
+                var header = data.title;
+                $("#wordcloud-title").text(header);
+                $( "div:hidden" ).show( "fast" );
+                WordCloud(
+                    document.getElementById('my_canvas'),
+                    {list: items}/*,
+                    {options: {
+                        weightFactor: 16,
+                        minSize: 40,
+                        backgroundColor: "#ff0000",
+                        },
+                    }*/
+                );
+            });
+    });
+</script>    
+{% endblock %}

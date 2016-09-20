@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'browsing',
     'charts',
+    'wordcloud',
 ]
 
 ROOT_URLCONF = 'digital_editions.urls'

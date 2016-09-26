@@ -13,3 +13,5 @@ __pycache__/
 /digital_editions/settings/ksenia_server.py
 /playAndTry.ipynb
 /digital_editions/db.sqlite3
+/digital_editions/settings/mysql.py
+/enhanceInstitutions.ipynb

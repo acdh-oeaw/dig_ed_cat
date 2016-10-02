@@ -8,6 +8,9 @@
         <script src="{% static 'charts/highcharts/exporting.js' %}"></script>
         <script src="{% static 'charts/highcharts/highcharts-3d.js' %}"></script>
     <!--highcharts END -->
+    <!-- history.js -->
+        <script src="{% static 'charts/historyjs/jquery.history.js ' %}"></script>
+    <!-- history.js END-->
 {% endblock %}
 {% block content %}
 <div class="panel panel-default" style="text-align:center">
@@ -31,9 +34,56 @@
 
 {% endblock %}
 {% block scripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var fetched_url = History.getState().url;
+            var fetched_param = fetched_url.substr(fetched_url.indexOf("=") + 1)
+            console.log(fetched_param);
+            $.getJSON( fetched_param, function( data ) {
+                $('html, body').css("cursor", "default");        
+                var items = (data.payload).slice(1, data.payload.items);
+                var measuredObject = data.measuredObject
+                var header = data.title;
+                $("h1").text(data.title);
+                console.log(items);
+                    $('#donut').highcharts({
+                        chart: {
+                            
+                            type: 'pie',
+                            options3d: {
+                                enabled: true,
+                                alpha: 45
+                            }
+                        },
+                        title: {
+                        text: ""
+                        },
+                        subtitle: {
+                            text: data.subtitle
+                        },
+                        plotOptions: {
+                            pie: {
+                                innerSize: 50,
+                                depth: 40
+                            }
+                        },
+                        series: [{
+                            name: measuredObject,
+                            data:data.payload
+                        }]
+                    });
+                });
+            });
+    </script>
+    
+
     <script type="text/javascript">
         $("#chartselector").change(function(){
+            var chart_label = $("#chartselector option:selected").text();
             var which_chart = $("#chartselector option:selected").val();
+            var url_param = "?chart="+which_chart
+            History.pushState({chart:url_param}, chart_label, url_param);
             console.log(which_chart);
             $.getJSON( which_chart, function( data ) {
                 $('html, body').css("cursor", "default");        

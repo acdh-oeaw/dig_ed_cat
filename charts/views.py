@@ -204,6 +204,7 @@ def search_json(request):
 
     return JsonResponse(data)
 
+
 def historical_periode_json(request):
     editions = Edition.objects.values(
         'historical_period').annotate(total=Count('historical_period')).order_by('-total')
@@ -217,7 +218,7 @@ def historical_periode_json(request):
     data = {
         "items": len(Edition.objects.all()),
         "title": "Editions per Period",
-        "subtitle": "Distribution of Editions over Regions",
+        "subtitle": "Distribution of Editions over Periods",
         "legendx": "Historical Periods",
         "legendy": "# of Editions",
         "measuredObject": "Editions",

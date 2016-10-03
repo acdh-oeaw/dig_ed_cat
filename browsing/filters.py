@@ -102,8 +102,8 @@ class EditionListFilter(django_filters.FilterSet):
         choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('digital').help_text)
     edition = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('edition').help_text)
-    prototype = django_filters.ChoiceFilter(
-        choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('prototype').help_text)
+    # prototype = django_filters.ChoiceFilter(
+    #     choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('prototype').help_text)
     language = django_filters.ModelMultipleChoiceFilter(
         queryset=Language.objects.all(), help_text=Edition._meta.get_field('language').help_text)
     writing_support = django_filters.CharFilter(

@@ -27,7 +27,7 @@ class GenericFilterFormHelper(FormHelper):
                 'scholarly',
                 'digital',
                 'edition',
-                'prototype',
+                # 'prototype',
                 'writing_support',
                 'begin_date',
                 'end_date',

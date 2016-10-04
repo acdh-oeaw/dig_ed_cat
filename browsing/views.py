@@ -45,6 +45,7 @@ class EditionListView(GenericListView):
     def get_context_data(self, **kwargs):
         context = super(GenericListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
+        context['snyc_log'] = SyncLog.objects.last()
         edition_names = []
         infrastructure_names = []
         audience_names = []

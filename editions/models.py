@@ -1,6 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from places.models import Place
+
+
+class SyncLog(models.Model):
+    actor = models.ForeignKey(User, blank=True)
+    sync_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "last time synced {} by {}".format(
+            (self.sync_date).strftime('%Y/%m/%d %H:%M:%S'), self.actor
+        )
 
 
 class Person(models.Model):

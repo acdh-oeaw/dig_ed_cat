@@ -54,6 +54,10 @@ def sync(request):
 
 @login_required
 def sync_status(request):
+    try:
+        userobject = request.user
+    except:
+        userobject = None
     context = {}
     context["nr_editions_start"] = len(Edition.objects.all())
     url = 'https://raw.githubusercontent.com/gfranzini/digEds_cat/master/digEds_cat.csv'
@@ -143,6 +147,9 @@ def sync_status(request):
             temp_ed.api = BOOLEAN_CHOICES[str(row[32])]
             temp_ed.save()
     context["nr_editions_now"] = len(Edition.objects.all())
+    new_log = SyncLog(actor=userobject)
+    new_log.save()
+    context['log'] = new_log
     return render(request, 'editions/sync_status.html', context)
 
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.db.models import Count
 from editions.models import Edition, Period
+from collections import Counter
 
 DATA = {"status": "ok",
         "query": "api:graph",
@@ -67,6 +68,31 @@ def xmltei_json(request):
         "title": "Usage of XML and TEI",
         "subtitle": "The source text is encoded in XML-TEI.",
         "legendx": "Encoding",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
+
+def editions_per_country_json(request):
+    editions = Edition.objects.all()
+    countries = []
+    for x in editions:
+        for y in x.institution.all():
+            if y.place is not None:
+                countries.append(y.place.part_of.name)
+
+    countries = Counter(countries)
+    payload = list(map(list, countries.items()))
+
+    data = {
+        "items": len(editions),
+        "title": "Editions per country",
+        "subtitle": "How many editions were related to which countries.",
+        "legendx": "Countries",
         "legendy": "# of Editions",
         "measuredObject": "Editions",
         "ymin": 0,

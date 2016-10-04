@@ -83,8 +83,8 @@ def sync_status(request):
         "0.5": "no",
         "0,5": "no",
         "PDF will be available": "no"}
-    for row in cleaned_data:
-        if row[3] != "" and row[0] != "Historical Period":
+    for row in cleaned_data[1:-2]:
+        if row[3] != "":
             temp_per, _ = Period.objects.get_or_create(name=row[0])
             temp_ed, _ = Edition.objects.get_or_create(url=row[3])
             temp_ed.name = row[2]

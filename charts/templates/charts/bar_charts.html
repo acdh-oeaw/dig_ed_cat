@@ -13,6 +13,7 @@
     <!-- history.js END-->
 {% endblock %}
 {% block content %}
+<div class="container">
 <div class="panel panel-default" style="text-align:center">
     <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
         <select id="chartselector" class="form-control">
@@ -29,13 +30,9 @@
         </select>
     </div>
     <div class="panel-body">
-        <div id="bar"/>
+        <div id="bar"></div>
     </div>
 </div>
-    
-{% endblock %}
-{% block scripts %}
-
     <script type="text/javascript">
         $(document).ready(function() {
             var fetched_url = History.getState().url;
@@ -106,7 +103,6 @@
            
              
         });
-
     </script>
     <script type="text/javascript">
         $("#chartselector").change(function(){
@@ -192,6 +188,21 @@
                 });
             });
     </script> 
-
+    <script type="text/javascript">
+        $(function (){
+          var options = {
+            twitter: {
+              text: 'So many digital editions!',
+              via: ''
+            },
+            facebook : true,
+            googlePlus : true
+          };
+          $('.socialShare').shareButtons(options);
+        });
+      </script>
+</div>
+{% endblock %}
+{% block scripts %}
 {% endblock %}
 

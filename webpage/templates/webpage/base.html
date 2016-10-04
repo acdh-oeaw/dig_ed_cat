@@ -19,6 +19,10 @@
       <script type="text/javascript" src="{% static 'webpage/libraries/jquery/jquery.js' %}"></script>
       <!--scroll to top -->
       <script src="{% static 'webpage/libraries/scroll-to-top/js/ap-scroll-top.min.js'%}"></script>
+      <!-- cool-share plugin http://tutorialzine.com/2014/08/cool-share-jquery-plugin/ -->
+        <link rel="stylesheet" href="{% static 'webpage/libraries/cool-share/plugin.css' %}"/></link>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+        <script src="{% static 'webpage/libraries/cool-share/plugin.js' %}"/></script>
       <!-- Piwik -->
       <script type="text/javascript">
           var _paq = _paq || [];
@@ -188,6 +192,9 @@
       {% endblock %}
     </div>
 </section>
+      <div align="text-center">
+        <span class="socialShare"> <!-- The share buttons will be inserted here --> </span>
+      </div>
 <footer>
      <div class="container">
         <div class="row text-center">
@@ -218,17 +225,32 @@
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/jquery-ui-1.11.4/jquery-ui.min.js' %}"></script>
+    <!-- cool share -->
+      <script type="text/javascript">
+        $(function (){
+          var options = {
+            twitter: {
+              text: 'So many digital editions!',
+              via: ''
+            },
+            facebook : true,
+            googlePlus : true
+          };
+          $('.socialShare').shareButtons(options);
+        });
+      </script>
+
     <!-- scroll-up-bottom -->        
-    <script type="text/javascript">
-            // Setup plugin with default settings
-            $(document).ready(function() {
-                $.apScrollTop({
-                    'onInit': function(evt) {
-                        console.log('apScrollTop: init');
-                    }
-                });
-            });
-    </script>    
+      <script type="text/javascript">
+              // Setup plugin with default settings
+              $(document).ready(function() {
+                  $.apScrollTop({
+                      'onInit': function(evt) {
+                          console.log('apScrollTop: init');
+                      }
+                  });
+              });
+      </script>    
     {% endblock %}
   </body>
 </html>

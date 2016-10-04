@@ -1,0 +1,168 @@
+/* Container Of The Plugin */
+
+.socialPlugin {
+	text-align: center;
+	width: 40px;
+	margin: 20px auto 0;
+	height: 30px;
+	display: block;
+}
+
+.socialPlugin .showSocialButtons {
+	font-size:15px;
+	cursor:pointer;
+	padding:0.333em 0.667em;
+	border-radius: 4px;
+	border: 1px solid rgba(0,0,0,0.3);
+	color: rgba(0,0,0,0.7);
+}
+
+.socialPlugin .socials {
+	width: 260px;
+	color: white;
+	line-height: 10px;
+	text-align: center;
+	margin-top: -85px;
+	margin-left: -35px;
+	display:block;
+	transform-origin:50% 0%;
+
+	-webkit-transform: scale(0) translateY(-150px);
+	-moz-transform:scale(0) translateY(-150px);
+	-o-transform:scale(0) translateY(-150px);
+	transform:scale(0) translateY(-150px);
+
+	-webkit-transition:.5s;
+	-moz-transition:.5s;
+	-o-transition:.5s;
+	transition:.5s;
+	
+
+	opacity:0;
+}
+
+.socialPlugin .socials:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 4px auto;
+	height: 0;
+	width: 0;
+	border-left: 15px solid rgba(0, 0, 0, 0);
+	border-right: 15px solid rgba(0, 0, 0, 0);
+	border-top: 15px solid #becade;
+}
+
+@media all and (max-width: 992px) {
+	.socialPlugin .socials {
+		margin-top: -90px;
+	}
+}
+
+
+/* Toggled State */
+
+.socialPlugin .socials.opened {
+	opacity:1;
+	-webkit-transform: scale(1) translateY(-60px);
+	-moz-transform:scale(1) translateY(-60px);
+	-o-transform:scale(1) translateY(-60px);
+	transform:scale(1) translateY(-60px);
+	-webkit-transition:.5s;
+	-moz-transition:.5s;
+	-o-transition:.5s;
+	transition:.5s;
+}
+
+
+/* Share buttons */
+
+.socialPlugin .socials .fa {
+	height: 2.5em;
+	font-size: 2em;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	width: 2.5em;
+	-webkit-backface-visibility: hidden;
+}
+
+.socialPlugin .socials .fa:before, .socialPlugin .socials .fa:after {
+	left: 0;
+	position: absolute;
+	text-align: center;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	top: 50%;
+	width: 100%;
+}
+
+.socialPlugin .socials .fa:before {
+	color: white;
+	-webkit-transform: translate3D(0, -50%, 0);
+	-ms-transform: translate3D(0, -50%, 0);
+	transform: translate3D(0, -50%, 0);
+	z-index: 2;
+}
+
+.socialPlugin .socials .fa:after {
+	padding-bottom: 25%;
+	padding-top: 300%;
+	top: 0;
+}
+
+.socialPlugin .socials .fa:hover:after {
+	-webkit-transform: translate3D(0, -73%, 0);
+	-ms-transform: translate3D(0, -73%, 0);
+	transform: translate3D(0, -73%, 0);
+}
+
+.socialPlugin .socials .fa:hover:before {
+	-webkit-transform: translate3D(0, -250%, 0);
+	-ms-transform: translate3D(0, -250%, 0);
+	transform: translate3D(0, -250%, 0);
+}
+
+/* The social icons */
+
+.socialPlugin .socials .fa-twitter:after {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #00acee), color-stop(75%, #ffffff));
+	background-image: -webkit-linear-gradient(#00acee 25%, #ffffff 75%);
+	background-image: linear-gradient(#00acee 25%, #ffffff 75%);
+	content: "\f099";
+	color: #00acee;
+}
+
+.socialPlugin .socials .fa-facebook:after {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #3b5998), color-stop(75%, #ffffff));
+	background-image: -webkit-linear-gradient(#3b5998 25%, #ffffff 75%);
+	background-image: linear-gradient(#3b5998 25%, #ffffff 75%);
+	content: "\f09a";
+	color: #3b5998;
+}
+
+.socialPlugin .socials .fa-google-plus:after {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #bb0000), color-stop(75%, #ffffff));
+	background-image: -webkit-linear-gradient(#bb0000 25%, #ffffff 75%);
+	background-image: linear-gradient(#bb0000 25%, #ffffff 75%);
+	content: "\f0d5";
+	color: #bb0000;
+}
+
+.socialPlugin .socials .fa-pinterest:after {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #cb2027), color-stop(75%, #ffffff));
+	background-image: -webkit-linear-gradient(#cb2027 25%, #ffffff 75%);
+	background-image: linear-gradient(#cb2027 25%, #ffffff 75%);
+	content: "\f0d2";
+	color: #cb2027;
+}
+
+.socialPlugin .socials .fa-tumblr:after {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #2C4762), color-stop(75%, #ffffff));
+	background-image: -webkit-linear-gradient(#2C4762 25%, #ffffff 75%);
+	background-image: linear-gradient(#2C4762 25%, #ffffff 75%);
+	content: "\f173";
+	color: #2C4762;
+}

@@ -13,23 +13,25 @@
     <!-- history.js END-->
 {% endblock %}
 {% block content %}
-<div class="panel panel-default" style="text-align:center">
-    <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
-        <select id="chartselector" class="form-control">
-                <option value="---">---</option>
-                <!-- <option value="{% url 'charts:test_json_pie' %}">LASK4EVER</option> -->
-                <option value="{% url 'charts:historical_periode_json' %}">Editions by Periods</option>
-                <option value="{% url 'charts:xmltei_json' %}">Usage of XML and TEI</option>
-                <option value="{% url 'charts:xmldownload_json' %}">Data downloadable</option>
-                <option value="{% url 'charts:cc_json' %}">Creative Commons License</option>
-                <option value="{% url 'charts:search_json' %}">Full Text Search</option>
-                <option value="{% url 'charts:advanced_search_json' %}">Advanced Search Functionalites</option>
-                <option value="{% url 'charts:indices_json' %}">Indices provided</option>
-                <option value="{% url 'charts:editions_per_country_json' %}">Editions per Country</option>
-        </select>
-    </div>
-    <div class="panel-body">
-        <div id="donut"/>
+<div class="container">
+    <div class="panel panel-default" style="text-align:center">
+        <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
+            <select id="chartselector" class="form-control">
+                    <option value="---">---</option>
+                    <!-- <option value="{% url 'charts:test_json_pie' %}">LASK4EVER</option> -->
+                    <option value="{% url 'charts:historical_periode_json' %}">Editions by Periods</option>
+                    <option value="{% url 'charts:xmltei_json' %}">Usage of XML and TEI</option>
+                    <option value="{% url 'charts:xmldownload_json' %}">Data downloadable</option>
+                    <option value="{% url 'charts:cc_json' %}">Creative Commons License</option>
+                    <option value="{% url 'charts:search_json' %}">Full Text Search</option>
+                    <option value="{% url 'charts:advanced_search_json' %}">Advanced Search Functionalites</option>
+                    <option value="{% url 'charts:indices_json' %}">Indices provided</option>
+                    <option value="{% url 'charts:editions_per_country_json' %}">Editions per Country</option>
+            </select>
+        </div>
+        <div class="panel-body">
+            <div id="donut"/>
+        </div>
     </div>
 </div>
 
@@ -135,5 +137,18 @@
                 });
             });
     </script>    
+    <script type="text/javascript">
+        $(function (){
+          var options = {
+            twitter: {
+              text: 'So many digital editions!',
+              via: ''
+            },
+            facebook : true,
+            googlePlus : true
+          };
+          $('.socialShare').shareButtons(options);
+        });
+      </script>
 {% endblock %}
 

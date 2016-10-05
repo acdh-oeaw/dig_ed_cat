@@ -91,7 +91,7 @@ def editions_per_country_json(request):
     data = {
         "items": len(editions),
         "title": "Editions per country",
-        "subtitle": "How many editions were related to which countries.",
+        "subtitle": "Geographical distribution of editions based on producing institutions.",
         "legendx": "Countries",
         "legendy": "# of Editions",
         "measuredObject": "Editions",

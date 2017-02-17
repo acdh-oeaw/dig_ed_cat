@@ -8,8 +8,13 @@
         </style>
 {% endblock %}
 {% block content %}
+<div class="alert alert-info alert-dismissable" style="text-align:center;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Use the blue previous/next arrows below to view the projects in the order in which they appear in the Catalogue. If you've reached this page through the filtering options provided in the <a href="{% url 'browsing:browse_editions' %}"><font color="white"><strong>Browse Catalogue page</strong></font></a>, you can navigate back to your filtered list using the previous/next arrows of your browser.
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">
+
         <div class="row">
             <div class="col-md-2">
             {% if previous_entry %}
@@ -233,7 +238,7 @@
                     <tr>
                         <td><a href="{% url 'editions:edition_edit' pk=object.id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
                     </tr>
-                    {% endif %} 
+                    {% endif %}
                         </table>
                 </div>
                 <div class="col-md-6">
@@ -249,7 +254,7 @@
     })
     $("#clickme").click(function(){
         $( "td[class~='readmore']" ).toggle("slow");
-    })  
+    })
 </script>
 
 <script type="text/javascript">
@@ -263,7 +268,7 @@
         accessToken: 'pk.eyJ1Ijoic2VubmllcmVyIiwiYSI6ImNpbHk1YWV0bDAwZnB2dW01d2l1Y3phdmkifQ.OljQLEhqeAygai2y6VoSwQ'
         }).addTo(map);
 
-        {% for x in object.institution.all %} 
+        {% for x in object.institution.all %}
         {% if x.lat %}
         L.marker([{{ x.lat }}, {{ x.lng }}])
         .addTo(map)
@@ -273,4 +278,3 @@
         });
 </script>
 {% endblock %}
-

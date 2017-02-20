@@ -175,11 +175,6 @@
                         <td>{{ object.text_image }}</td>
                     </tr>
                     <tr>
-                        <th>Source text translation</th>
-                        <td class="readmore"><small>The project provides a translation (not necessarily in English!) of the source text. If so, the corresponding <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">three-letter ISO code</a> should be used. If not, type 0.</small></td>
-                        <td>{{ object.source_translation }}</td>
-                    </tr>
-                    <tr>
                         <th>Website language</th>
                         <td class="readmore"><small>The language the project website is written in. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">Three-letter ISO codes</a> should be used.</small></td>
                         <td>{% for x in object.website_language.all %} {{ x.iso_code }} <br/> {% endfor %}</td>

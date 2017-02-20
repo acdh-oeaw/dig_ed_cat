@@ -41,7 +41,6 @@ class GenericFilterFormHelper(FormHelper):
                 'zoom_images',
                 'image_manipulation',
                 'text_image',
-                'source_translation',
                 'website_language',
                 'glossary',
                 'indices',

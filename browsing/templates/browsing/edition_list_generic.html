@@ -5,7 +5,7 @@
 {% block reset_button %}
 <a class ="btn btn-default"  id="01">Show/Hide Advanced search options</a></br>
  <p></p>
- <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}">Reset search</a>     
+ <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}">Reset search</a>
 {% endblock %}
 
 {% block customScripts %}
@@ -29,33 +29,33 @@ var writing_support_names = [{% for name in writing_support_names %} "{{ name }}
 $(function() {
 	$("#id_name").autocomplete({
 		source:edition_names
-        }); 
+        });
     });
 $(function() {
     $("#id_institution__name").autocomplete({
         source:institution_names
-        }); 
+        });
     });
 
 $(function() {
     $("#id_manager__name").autocomplete({
         source:manager_names
-        }); 
+        });
     });
 $(function() {
     $("#id_infrastructure").autocomplete({
         source:infrastructure_names
-        }); 
+        });
     });
 $(function() {
     $("#id_audience").autocomplete({
         source:audience_names
-        }); 
+        });
     });
 $(function() {
     $("#id_writing_support").autocomplete({
         source:writing_support_names
-        }); 
+        });
     });
 
 </script>

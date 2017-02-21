@@ -27,10 +27,24 @@
             </div>
             <div class="col-md-8">
                 {% render_table table %}
+
+
+                {% block pagination.allpages %}
+
+                <ul class="pagination pagination-sm">
+                  {% for p in table.paginator.page_range %}
+                  <li><a href="{% querystring table.prefixed_page_field=p %}">{{ p }}</a></li>
+                  {% endfor %}
+                </ul>
+                {% endblock pagination.allpages %}
+
+
+
             </div>
         </div>
     </div>
 </div>
 </div>
+
 {% block customScripts %}{% endblock %}
 {% endblock %}

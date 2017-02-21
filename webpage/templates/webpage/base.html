@@ -95,43 +95,29 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+              <li>
+                <a href="{% url 'webpage:start' %}">Home</a>
+              </li>
+              <li>
+                <a href="{% url 'browsing:browse_editions' %}">Browse the catalogue</a>
+              </li>
+              {% if user.is_authenticated %}
               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Curate the Data
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
-                    <li>
-                        <a href="{% url 'webpage:start' %}">Start</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'webpage:imprint' %}">Imprint/Impressum</a>
-                    </li>
-                  </ul>
-                </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse the Data
-                  <span class="caret"/>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                        <a href="{% url 'browsing:browse_editions' %}">Browse the catalogue</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'datamodel:plate' %}">Catalogue's data model</a>
-                    </li>
-                    {% if user.is_authenticated %}
+                    <
                     <li>
                         <a href="{% url 'places:place_list' %}">Places</a>
                     </li>
                     <li>
                         <a href="{% url 'editions:sync' %}">Sync with GitHub</a>
                     </li>
-                    {% endif %}
-                    <!-- <li>
-                        <a href="#">DummyLink</a>
-                    </li> -->
                   </ul>
                 </li>
+              {% endif %}
+
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Analyze the Data<span class="caret"/>
                   </a>
@@ -144,6 +130,9 @@
                     </li>
                     <li>
                          <a href="{% url 'wordclouds:show' %}">WordClouds</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'datamodel:plate' %}">Catalogue's data model</a>
                     </li>
                     <!-- <li>
                         <a href="{% url 'webpage:user_logout' %}">Logout</a>
@@ -167,6 +156,9 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="{% url 'webpage:imprint' %}">Imprint/Impressum</a>
+              </li>
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LogIn/Out<span class="caret"/>
                   </a>
@@ -184,9 +176,6 @@
     </nav>
 </header>
 <section class="main-content">
-    <div class="alert alert-warning">
-      <strong>Warning!</strong> Work in Progress. But entered data will be preserved.<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-    </div>
     <div id="content" class="container">
       {% block content %}
       {% endblock %}

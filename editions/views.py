@@ -31,7 +31,7 @@ def institution_csv(request):
         if x.place:
             writer.writerow(
                 [x.name, x.gnd_id, x.lat, x.lng, x.place.name, x.place.geonames_id,
-                x.place.lat, x.place.lng, x.place.part_of, x.place.place_type]
+                    x.place.lat, x.place.lng, x.place.part_of, x.place.place_type]
             )
         else:
             writer.writerow([x.name, x.gnd_id, x.lat, x.lng])
@@ -87,7 +87,7 @@ def sync_status(request):
         "0.5": "no",
         "0,5": "no",
         "PDF will be available": "no"}
-    for row in cleaned_data[1:-2]:
+    for row in cleaned_data[1:-1]:
         if row[3] != "":
             temp_per, _ = Period.objects.get_or_create(name=row[0])
             temp_ed, _ = Edition.objects.get_or_create(url=row[3])

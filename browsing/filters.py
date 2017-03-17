@@ -80,6 +80,15 @@ CHOICES_OCR = (
     )
 
 
+CHOICES_CC_License = (
+    ("", "----"),
+    ("no information provided", "no information provided"),
+    ("0", "No Creative Commons License at all used."),
+    ("0.5", "CC licences but only for parts of the project."),
+    ("1", "Everything under a Creative Commons License."),
+)
+
+
 class EditionListFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(
         lookup_expr='icontains', label='Edition name',
@@ -158,7 +167,7 @@ class EditionListFilter(django_filters.FilterSet):
         choices=BOOLEAN_CHOICES,
         help_text=Edition._meta.get_field('advanced_search').help_text)
     cc_license = django_filters.ChoiceFilter(
-        choices=BOOLEAN_CHOICES, label='Creative Commons License',
+        choices=CHOICES_CC_License, label='Creative Commons License',
         help_text=Edition._meta.get_field('cc_license').help_text)
     open_source = django_filters.ChoiceFilter(
         choices=CHOICES_OPENSOURCE, label='Open Access/Source',

@@ -12,6 +12,15 @@
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Use the blue previous/next arrows below to view the projects in the order in which they appear in the Catalogue. If you've reached this page through the filtering options provided in the <a href="{% url 'browsing:browse_editions' %}"><font color="white"><strong>Browse Catalogue page</strong></font></a>, you can navigate back to your filtered list using the previous/next arrows of your browser.
 </div>
+{% if object.current_availability == True %}
+
+    {% else %}
+    <div class="alert alert-danger alert-dismissable" style="text-align:center;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Edition not longer available under <a href="{{ object.url }}"><font color="white"><strong>provided link</strong></font></a>
+    </div>
+{% endif %}
+
 <div class="panel panel-default">
     <div class="panel-heading">
 

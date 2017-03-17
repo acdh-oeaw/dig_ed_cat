@@ -266,6 +266,8 @@ class Edition(models.Model):
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to specify if the project comes with an API (Application Programming Interface)."
     )
+    current_availability = models.NullBooleanField(
+        blank=True, null=True, help_text="1 means STILL AVAILABLE and 0 means DEAD.")
 
     def __str__(self):
         return "{}".format(self.name)

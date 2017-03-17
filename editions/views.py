@@ -87,6 +87,7 @@ def sync_status(request):
         "0.5": "no",
         "0,5": "no",
         "PDF will be available": "no"}
+
     for row in cleaned_data[1:-1]:
         if row[3] != "":
             temp_per, _ = Period.objects.get_or_create(name=row[0])
@@ -138,7 +139,7 @@ def sync_status(request):
             temp_ed.indices = BOOLEAN_CHOICES[str(row[26])]
             temp_ed.search = BOOLEAN_CHOICES[str(row[27])]
             temp_ed.advanced_search = BOOLEAN_CHOICES[str(row[28])]
-            temp_ed.cc_license = BOOLEAN_CHOICES[str(row[29])]
+            temp_ed.cc_license = row[29]
             temp_ed.open_source = row[30]
             temp_ed.key_or_ocr = str(row[37])
             temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]

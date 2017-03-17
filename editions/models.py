@@ -218,15 +218,22 @@ class Edition(models.Model):
     )
     search = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text = "The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.",
+        help_text="The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.",
         verbose_name="String matching search"
     )
     advanced_search = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to tell us if the edition provides an advanced search functionality."
     )
+    CHOICES_CC_License = (
+        ("", "----"),
+        ("no information provided", "no information provided"),
+        ("0", "No Creative Commons License at all used."),
+        ("0.5", "CC licences but only for parts of the project."),
+        ("1", "Everything under a Creative Commons License."),
+    )
     cc_license = models.CharField(
-        choices=BOOLEAN_CHOICES, blank=True, max_length=40,
+        choices=CHOICES_CC_License, blank=True, max_length=40,
         help_text="The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.",
         verbose_name="Creative Commons License"
     )

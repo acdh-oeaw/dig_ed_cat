@@ -83,9 +83,9 @@ CHOICES_OCR = (
 CHOICES_CC_License = (
     ("", "----"),
     ("no information provided", "no information provided"),
-    ("0", "No Creative Commons License at all used."),
-    ("0.5", "CC licences but only for parts of the project."),
-    ("1", "Everything under a Creative Commons License."),
+    ("0", "No CC License used."),
+    ("0.5", " CC License but only for parts of the project."),
+    ("1", "Everything under a CC License."),
 )
 
 

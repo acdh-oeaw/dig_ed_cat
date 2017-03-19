@@ -5,7 +5,7 @@ from places.models import *
 
 
 class EditionTable(tables.Table):
-    name = tables.LinkColumn('editions:edition_detail', args=[A('pk')], verbose_name='edition name')
+    name = tables.LinkColumn('editions:edition_detail', args=[A('legacy_id')], verbose_name='edition name')
     institution = tables.Column(empty_values=())
 
     def render_institution(self, record):   # for ManyToMany field to display all institutions

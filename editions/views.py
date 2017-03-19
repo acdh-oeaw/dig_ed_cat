@@ -87,11 +87,12 @@ def sync_status(request):
         "0.5": "no",
         "0,5": "no",
         "PDF will be available": "no"}
-
+    counter = 1
     for row in cleaned_data[1:-1]:
         if row[3] != "":
             temp_per, _ = Period.objects.get_or_create(name=row[0])
-            temp_ed, _ = Edition.objects.get_or_create(url=row[3])
+            temp_ed, _ = Edition.objects.get_or_create(legacy_id=counter)
+            temp_ed.url = row[3]
             temp_ed.name = row[2]
             temp_ed.scholarly = BOOLEAN_CHOICES[str(row[4])]
             temp_ed.digital = BOOLEAN_CHOICES[str(row[5])]
@@ -117,8 +118,11 @@ def sync_status(request):
                 pers_temp, _ = Person.objects.get_or_create(name=pers.strip())
                 temp_ed.manager.add(pers_temp)
             for inst in row[12].split(";"):
-                inst_temp, _ = Institution.objects.get_or_create(name=inst.strip())
-                temp_ed.institution.add(inst_temp)
+                try:
+                    inst_temp, _ = Institution.objects.get(name=inst.strip())
+                    temp_ed.institution.add(inst_temp)
+                except:
+                    pass
             temp_ed.audience = str(row[13])
             temp_ed.philological_statement = str(row[14])
             temp_ed.textual_variance = str(row[15])
@@ -152,6 +156,7 @@ def sync_status(request):
             temp_ed.historical_period.add(temp_per)
             temp_ed.api = BOOLEAN_CHOICES[str(row[32])]
             temp_ed.save()
+            counter += 1
     context["nr_editions_now"] = len(Edition.objects.all())
     new_log = SyncLog(actor=userobject)
     new_log.save()
@@ -172,7 +177,7 @@ class EditionDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EditionDetailView, self).get_context_data(**kwargs)
-        edition_ids = [x.id for x in Edition.objects.all()]
+        edition_ids = [x.legacy_id for x in Edition.objects.all()]
         self_id = int(self.kwargs['pk'])
         if self_id == edition_ids[-1]:
             next_entry = None
@@ -190,7 +195,7 @@ class EditionDetailView(DetailView):
 
 @login_required
 def edit_edition(request, pk):
-    instance = get_object_or_404(Edition, id=pk)
+    instance = get_object_or_404(Edition, legacy_id=pk)
     if request.method == "POST":
         form = EditionForm(request.POST, instance=instance)
         if form.is_valid():

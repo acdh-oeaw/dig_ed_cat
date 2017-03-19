@@ -241,7 +241,7 @@
                     </tr>
                     {% if user.is_authenticated %}
                     <tr>
-                        <td><a href="{% url 'editions:edition_edit' pk=object.id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
+                        <td><a href="{% url 'editions:edition_edit' pk=object.legacy_id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
                     </tr>
                     {% endif %}
                         </table>

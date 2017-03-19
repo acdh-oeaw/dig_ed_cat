@@ -3,7 +3,7 @@
 {% block Titel %}Edit Places{% endblock %}
 
 {% block scriptHeader %}
-<!-- In case you are using any autocomplete-functions, don´t forget to 
+<!-- In case you are using any autocomplete-functions, don´t forget to
     include 'autocomplete_light/static.html
 -->
 <!--leafletjs -->
@@ -39,7 +39,7 @@
                 </form>
            </div>
        </div>
-{% if object %}       
+{% if object %}
    </div>
     <div class ="col-md-8">
         <div class="panel panel-default">
@@ -135,7 +135,7 @@
         id: 'mapbox.light',
         accessToken: 'pk.eyJ1Ijoic2VubmllcmVyIiwiYSI6ImNpbHk1YWV0bDAwZnB2dW01d2l1Y3phdmkifQ.OljQLEhqeAygai2y6VoSwQ'
         }).addTo(map);
-        
+
         L.marker([gps1, gps2]).addTo(map)
             .bindPopup(placeName)
             .openPopup();

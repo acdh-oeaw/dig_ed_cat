@@ -28,7 +28,7 @@
 					<tbody>
 						{% for object in object_list %}
 						<tr>
-							<td><a href="{% url 'places:place_edit' pk=object.id %}">{{ object }} (edit)</a></td>
+							<td><a href="{% url 'places:place_edit' pk=object.legacy_id %}">{{ object }} (edit)</a></td>
 							<td>{{ object.geonames_id }}</td>
 						</tr>
 						{% endfor %}

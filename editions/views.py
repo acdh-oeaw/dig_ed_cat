@@ -118,6 +118,7 @@ def sync_status(request):
                 pers_temp, _ = Person.objects.get_or_create(name=pers.strip())
                 temp_ed.manager.add(pers_temp)
             for inst in row[12].split(";"):
+
                 try:
                     inst_temp = Institution.objects.get(name=inst.strip())
                     temp_ed.institution.add(inst_temp)

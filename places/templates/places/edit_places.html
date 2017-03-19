@@ -34,7 +34,7 @@
                     {% endif %}
                     <input class="btn btn-primary btn-block" type="submit" value="Save" />
                     {% if object %}
-                    <a class ="btn btn-danger btn-sm" href="{% url 'places:place_delete' pk=object.id %}">delete</a>
+                    <a class ="btn btn-danger btn-sm" href="{% url 'places:place_delete' pk=object.legacy_id %}">delete</a>
                     {% endif %}
                 </form>
            </div>

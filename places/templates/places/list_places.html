@@ -28,12 +28,12 @@
 					<tbody>
 						{% for object in object_list %}
 						<tr>
-							<td><a href="{% url 'places:place_edit' pk=object.legacy_id %}">{{ object }} (edit)</a></td>
+							<td><a href="{% url 'places:place_edit' pk=object.id %}">{{ object }} (edit)</a></td>
 							<td>{{ object.geonames_id }}</td>
 						</tr>
 						{% endfor %}
-					</tbody>	
-				</table>					
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 	$( document ).ready(function() {
  		$("#map").remove()
     	$("#parentMap").append("<div id='map'></div>");
-        
+
     	var map = L.map('map').setView([48.69096, 9.14062], 5);
 
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {

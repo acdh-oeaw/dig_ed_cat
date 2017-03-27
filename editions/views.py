@@ -20,7 +20,7 @@ def institution_csv(request):
     response = HttpResponse(content_type='text/csv')
     filename = "institutions_{}.csv".format(timestamp)
     response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
-    writer = csv.writer(response, delimiter=";")
+    writer = csv.writer(response, delimiter=",")
     writer.writerow([
         'Institution Name', 'Institution GND',
         'Institution Lat', 'Institution Lng',

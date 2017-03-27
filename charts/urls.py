@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^searchjson/$', views.search_json, name='search_json'),
     url(r'^advancedsearchjson/$', views.advanced_search_json, name='advanced_search_json'),
     url(r'^indicesjson/$', views.indices_json, name='indices_json'),
+    url(r'^imagesjson/$', views.indices_json, name='images_json'),
     url(r'^editionspercountryjson/$', views.editions_per_country_json,
         name='editions_per_country_json'),
 ]

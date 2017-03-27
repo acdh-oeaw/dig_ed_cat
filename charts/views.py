@@ -102,6 +102,39 @@ def editions_per_country_json(request):
     return JsonResponse(data)
 
 
+def images_json(request):
+    CHOICES_DOWNLOAD = (
+        ("", "----"),
+        ("no information provided", "no information provided"),
+        ("0", "images not available"),
+        ("0.5", "some images available"),
+        ("1", "images available"),
+        ("N/A", "N/A")
+    )
+
+    editions = Edition.objects.values(
+        'images').annotate(total=Count('images')).order_by('-total')
+    payload = []
+    for x in editions:
+        if x["images"] is not None:
+            legend = dict(CHOICES_DOWNLOAD)[x["images"]]
+            entry = [legend, x['total']]
+            payload.append(entry)
+
+    data = {
+        "items": len(Edition.objects.all()),
+        "title": "Images?",
+        "subtitle": "Are editions linked to images?.",
+        "legendx": "images?",
+        "legendy": "# of Editions",
+        "measuredObject": "Editions",
+        "ymin": 0,
+        "payload": payload
+    }
+
+    return JsonResponse(data)
+
+
 def xmldownload_json(request):
     CHOICES_DOWNLOAD = (
         ("", "----"),

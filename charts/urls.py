@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     url(r'^barcharts/$', views.barcharts_view, name='bar_charts'),
     url(r'^testjson/$', views.test_json, name='test_json'),
+    url(r'^facsjson/$', views.facs_json, name='facs_json'),
     url(r'^piecharts/$', views.piecharts_view, name='pie_charts'),
     url(r'^testjsonpie/$', views.test_json_pie, name='test_json_pie'),
     url(r'^historicalperiodsjson/$', views.historical_periode_json, name='historical_periode_json'),
@@ -13,7 +14,6 @@ urlpatterns = [
     url(r'^searchjson/$', views.search_json, name='search_json'),
     url(r'^advancedsearchjson/$', views.advanced_search_json, name='advanced_search_json'),
     url(r'^indicesjson/$', views.indices_json, name='indices_json'),
-    url(r'^imagesjson/$', views.indices_json, name='images_json'),
     url(r'^editionspercountryjson/$', views.editions_per_country_json,
         name='editions_per_country_json'),
 ]

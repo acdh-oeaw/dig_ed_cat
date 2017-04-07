@@ -16,6 +16,11 @@ def start_view(request):
     return render(request, 'webpage/index.html', context)
 
 
+def documentation_view(request):
+    context = RequestContext(request)
+    return render(request, 'webpage/documentation.html', context)
+
+
 def markdown_view(request):
     context = RequestContext(request)
     return render(request, 'webpage/markdown_test.html', context)

@@ -70,6 +70,7 @@ def sync_status(request):
     for row in datalist:
         cleaned_row = []
         for cell in row:
+            cell = re.sub("not provided", "no information provided", cell)
             if str(cell) == "":
                 cell = re.sub("", "no information provided", cell)
                 cleaned_row.append(cell)

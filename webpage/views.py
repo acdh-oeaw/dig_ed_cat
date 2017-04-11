@@ -6,6 +6,11 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import form_user_login
 
 
+def faq_view(request):
+    context = RequestContext(request)
+    return render(request, 'webpage/faq.html', context)
+
+
 def survey_view(request):
     context = RequestContext(request)
     return render(request, 'webpage/survey2017.html', context)

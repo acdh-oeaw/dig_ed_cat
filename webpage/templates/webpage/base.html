@@ -99,7 +99,7 @@
                 <a href="{% url 'webpage:start' %}">Home</a>
               </li>
               <li>
-                <a href="{% url 'browsing:browse_editions' %}">Browse the catalogue</a>
+                <a href="{% url 'browsing:browse_editions' %}">Browse the Catalogue</a>
               </li>
               {% if user.is_authenticated %}
               <li class="dropdown">
@@ -123,16 +123,16 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                         <a href="{% url 'charts:bar_charts' %}">BarCharts</a>
+                         <a href="{% url 'charts:bar_charts' %}">Bar Charts</a>
                     </li>
                     <li>
-                         <a href="{% url 'charts:pie_charts' %}">PieCharts</a>
+                         <a href="{% url 'charts:pie_charts' %}">Pie Charts</a>
                     </li>
                     <li>
-                         <a href="{% url 'wordclouds:show' %}">WordClouds</a>
+                         <a href="{% url 'wordclouds:show' %}">Word Clouds</a>
                     </li>
                     <li>
-                        <a href="{% url 'datamodel:plate' %}">Catalogue's data model</a>
+                        <a href="{% url 'datamodel:plate' %}">Catalogue's Data Model</a>
                     </li>
                     <!-- <li>
                         <a href="{% url 'webpage:user_logout' %}">Logout</a>
@@ -147,7 +147,7 @@
                          <a href="{% url 'api-root' %}">JSON</a>
                     </li>
                     <li>
-                         <a href="{% url 'editions:institution_csv' %}">Download Institution and Places (csv)</a>
+                         <a href="{% url 'editions:institution_csv' %}">Download Institution and Places (.csv)</a>
                     </li>
                     <!-- <li>
                         <a href="{% url 'webpage:user_logout' %}">Logout</a>
@@ -166,7 +166,7 @@
                 <a href="{% url 'webpage:survey' %}">Survey</a>
               </li>
               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LogIn/Out<span class="caret"/>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
                     <li>

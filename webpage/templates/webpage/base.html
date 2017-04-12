@@ -75,6 +75,30 @@
           width: 100%;
           margin-top: 10px;
           }
+          p {
+            text-align: justify;
+          }
+          #explore-btn {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 10px;
+            margin-right: 10px;
+            background-color: #ffffff;
+            color: #5bc0de;
+            border: 3px solid #5bc0de;
+            font-weight: bold;
+            white-space: normal;
+          }
+          #explore-btn:hover {
+            background-color: #5bc0de;
+            color: #ffffff;
+            border: 3px solid #5bc0de;
+            font-weight: bold;
+          }
+          .footer-logo {
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
         </style>
       {% block scriptHeader %}
         {% endblock %}
@@ -154,19 +178,19 @@
                     </li> -->
                   </ul>
               </li>
+              <li>
+                <a href="{% url 'webpage:survey' %}">Survey 2017</a>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a href="{% url 'webpage:imprint' %}">Imprint/Impressum</a>
-              </li>
               <li>
                 <a href="{% url 'webpage:documentation' %}">Documentation</a>
               </li>
               <li>
-                <a href="{% url 'webpage:survey' %}">Survey</a>
+                <a href="{% url 'webpage:faq' %}">FAQ</a>
               </li>
               <li>
-                <a href="{% url 'webpage:faq' %}">FAQ</a>
+                <a href="{% url 'webpage:imprint' %}">Imprint</a>
               </li>
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"/>
@@ -198,22 +222,22 @@
         <div class="row text-center">
         <div class="col-sm-3">
           <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" alt="ACDH" width="25%"/>
+              <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" class="footer-logo" alt="ACDH" title="Austrian Centre for Digital Humanities" width="25%"/>
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/by-sa.png' %}" alt="CC-BY-SA-4.0" width="25%"/>
+          <a href="https://creativecommons.org/licenses/by/4.0/" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/by-sa.png' %}" class="footer-logo" alt="CC-BY-SA-4.0" title="CC-BY-SA-4.0 license" width="25%"/>
           </a>
         </div>
         <div class="col-sm-3">
           <a href="https://github.com/acdh-oeaw/dig_ed_cat" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" alt="ACDH" width="10%"/>
+              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" class="footer-logo" alt="ACDH" title="Github" width="10%"/>
           </a>
         </div>
         <div class="col-sm-3">
           <a href="http://www.ucl.ac.uk/dh/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/ucldh.png' %}" alt="UCLDH" width="25%"/>
+              <img src="{% static 'webpage/img/ucldh.png' %}" class="footer-logo" alt="UCLDH" title="UCL Centre for Digital Humanities" width="25%"/>
           </a>
       </div>
     </div>

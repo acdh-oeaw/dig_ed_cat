@@ -9,7 +9,7 @@ The application was build with Python 3.4. Be aware that it uses a modularized s
 1. clone the repo
 2. create a virtual environment and run install the required packages `pip install > requirements`
 3. makemigrations and migrate `python manage.py makemigrations --settings=digital_editions.settings.dev` and `python manage.py migrate --settings=digital_editions.settings.dev`
-4. start the dev-server `python manage.py runserver `--settings=digital_editions.settings.dev`
+4. start the dev-server `python manage.py runserver --settings=digital_editions.settings.dev`
 5. browse to http://127.0.0.1:8000/
 
 ## Upload the data

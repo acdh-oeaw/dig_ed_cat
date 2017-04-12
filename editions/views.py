@@ -60,6 +60,48 @@ def sync_status(request):
         userobject = None
     context = {}
     context["nr_editions_start"] = len(Edition.objects.all())
+
+    url = 'https://raw.githubusercontent.com/gfranzini/digEds_cat/master/institutions_places_enriched.csv'
+    with requests.Session() as s:
+        download = s.get(url)
+        decoded_content = download.content.decode('utf-8')
+        cr = csv.reader(decoded_content.splitlines(), delimiter=',')
+        datalist = list(cr)
+
+    for x in datalist[1:]:
+        temp_partof, _ = Place.objects.get_or_create(name=x[8])
+        temp_partof.place_type = "country"
+        temp_partof.save()
+        temp_place, _ = Place.objects.get_or_create(name=x[4])
+        temp_place.place_type = "city"
+        temp_place.part_of = temp_partof
+        try:
+            temp_place.geonames_id = x[5]
+        except:
+            pass
+        try:
+            temp_place.lat = x[6]
+        except:
+            pass
+        try:
+            temp_place.lng = x[7]
+        except:
+            pass
+        temp_place.save()
+
+        temp_inst, _ = Institution.objects.get_or_create(name=x[0])
+        temp_inst.gnd_id = x[2]
+        try:
+            temp_inst.lat = x[3]
+        except:
+            pass
+        try:
+            temp_inst.lng = x[2]
+        except:
+            pass
+        temp_inst.place = temp_place
+        temp_inst.save()
+
     url = 'https://raw.githubusercontent.com/gfranzini/digEds_cat/master/digEds_cat.csv'
     with requests.Session() as s:
         download = s.get(url)

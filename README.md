@@ -15,7 +15,7 @@ The application was build with Python 3.4. Be aware that it uses a modularized s
 ## Upload the data
 To fetch the last version of the catalogue data, 
 
-1. you have to create a (super)user account `python manage.py createsuperuser --settings=py .settings.dev`.
+1. you have to create a (super)user account `python manage.py createsuperuser--settings=digital_editions.settings.dev`
 2. browse to http://127.0.0.1:8000/
 3. log in (icon in the top right corner)
 4. then you'll see a 'Curate the Data' -> 'Sync with GitHub' nav bar entry, 

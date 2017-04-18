@@ -115,7 +115,7 @@ def facs_json(request):
     data = {
         "items": len(Edition.objects.all()),
         "title": "Images available?",
-        "subtitle": "Are editions linked to images?.",
+        "subtitle": "Do editions contain digital images of the primary source(s)?",
         "legendx": "images?",
         "legendy": "# of Editions",
         "measuredObject": "Editions",
@@ -196,7 +196,7 @@ def cc_json(request):
     data = {
         "items": len(Edition.objects.all()),
         "title": "Creative Commons License",
-        "subtitle": "Is the work published using a Creative Commons-license",
+        "subtitle": "Is the work published using a Creative Commons License",
         "legendx": "cc-license",
         "legendy": "# of Editions",
         "measuredObject": "Editions",

@@ -3,7 +3,7 @@ from django_tables2 import SingleTableView, RequestConfig
 from editions.models import *
 from places.models import *
 from .filters import EditionListFilter
-from .forms import GenericFilterFormHelper
+from .forms import GenericFilterFormHelper, MapFilterFormHelper
 from .tables import EditionTable
 
 
@@ -72,6 +72,8 @@ class EditionListView(GenericListView):
 
 class MapView(EditionListView):
     template_name = 'browsing/mapview.html'
+    filter_class = EditionListFilter
+    formhelper_class = MapFilterFormHelper
 
     def get_queryset(self, **kwargs):
         qs = Edition.objects.all()

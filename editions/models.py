@@ -121,7 +121,7 @@ class Edition(models.Model):
     )
     institution = models.ManyToManyField(
         Institution, blank=True,
-        help_text="Name(s) of institution(s) involved in the project."
+        help_text="Name(s) of institution(s) involved in the project.", related_name="projects"
     )
     audience = models.TextField(
         blank=True,

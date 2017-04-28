@@ -4,6 +4,7 @@ __pycache__/
 
 #Ipython Notebook
 .ipynb_checkpoints
+/staticfiles/*
 
 #migrations
 /db.sqlite3
@@ -15,3 +16,4 @@ __pycache__/
 /digital_editions/db.sqlite3
 /digital_editions/settings/mysql.py
 /enhanceInstitutions.ipynb
+/play.ipynb

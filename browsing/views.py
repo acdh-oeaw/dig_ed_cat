@@ -70,6 +70,50 @@ class EditionListView(GenericListView):
         return context
 
 
+class MapView(EditionListView):
+    template_name = 'browsing/mapview.html'
+
+    def get_queryset(self, **kwargs):
+        qs = Edition.objects.all()
+        self.filter = self.filter_class(self.request.GET, queryset=qs)
+        self.filter.form.helper = self.formhelper_class()
+        return self.filter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super(EditionListView, self).get_context_data()
+        context[self.context_filter_name] = self.filter
+        context['snyc_log'] = SyncLog.objects.last()
+        edition_names = []
+        infrastructure_names = []
+        audience_names = []
+        writing_support_names = []
+        for edition in Edition.objects.all():
+            edition_names.append(edition.name)
+            infrastructure_names.append(edition.infrastructure)
+            audience_names.append(edition.audience)
+            writing_support_names.append(edition.writing_support)
+        context["edition_names"] = set(edition_names)
+        context["infrastructure_names"] = set(infrastructure_names)
+        context["audience_names"] = set(audience_names)
+        context["writing_support_names"] = set(writing_support_names)
+        manager_names = []
+        for person in Person.objects.all():
+            manager_names.append(person.name)
+        context["manager_names"] = set(manager_names)
+        institution_names = []
+        for inst in Institution.objects.all():
+            institution_names.append(inst.name)
+        context["institution_names"] = set(institution_names)
+        institutions = []
+        for x in self.get_queryset():
+            for y in x.institution.all():
+                try:
+                    y.place.lat
+                    institutions.append(y)
+                except:
+                    pass
+        context["institutions"] = set(institutions)
+        return context
 # class InstitutionListView(GenericListView):
 #  	model = Place
 #  	table_class = InstitutionTable

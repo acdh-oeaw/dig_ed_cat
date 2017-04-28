@@ -6,6 +6,16 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import form_user_login
 
 
+def faq_view(request):
+    context = RequestContext(request)
+    return render(request, 'webpage/faq.html', context)
+
+
+def survey_view(request):
+    context = RequestContext(request)
+    return render(request, 'webpage/survey2017.html', context)
+
+
 def imprint(request):
     context = RequestContext(request)
     return render(request, 'webpage/imprint.html', context)
@@ -14,6 +24,11 @@ def imprint(request):
 def start_view(request):
     context = RequestContext(request)
     return render(request, 'webpage/index.html', context)
+
+
+def documentation_view(request):
+    context = RequestContext(request)
+    return render(request, 'webpage/documentation.html', context)
 
 
 def markdown_view(request):

@@ -3,11 +3,6 @@
 
 {% block content %}
 <div class="container">
-    <!--<img src="{% static 'webpage/img/DigEds_Cat_logo_transp.png' %}" class="img-responsive" alt="logo" height="600">-->
-    <!--<div style="text-align:center;">
-        <a href="{% url 'browsing:browse_editions' %}" class="btn btn-info btn-lg" title="Click HERE to browse the editions or select an option from the black menu bar above">explore</a>
-        <p></p>
-    </div>-->
 
     <h1>Documentation</h1>
 
@@ -24,18 +19,17 @@
     <h3>Components and repositories</h3>
     <p>The <em>Catalogue of Digital Editions Web Application</em> is made-up of two interacting components, each stored in its own GitHub repository: 1) the data, and 2) the web application to display the data to the user. The two components are connected via a custom script that regularly fetches the latest updates from the data repository and delivers them to the web application.</p>
 
-        <h4>Data <small>component</small></h4>
-        <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic criteria: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from online lists (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a>), conferences, publications, social media, word of mouth, web browsing and chaining.</p> 
 
-        <p>The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" file contains the digital editions, while the second file contains geographical information associated with the institutions mentioned in the master file (including <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs). This second file allows us to place digital editions on a map.</p>
-        <p>The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
+    <h4>Data <small>component</small></h4>
+    <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic criteria: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from online lists (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a>), conferences, publications, social media, word of mouth, web browsing and chaining.</p>
+    <p>The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" file contains the digital editions, while the second file contains geographical information associated with the institutions mentioned in the master file (including <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs). This second file allows us to place digital editions on a map.</p>
+    <p>The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
 
-
-        <h4>Web application <small>component</small></h4>
-        <p>The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.</p> 
-        <p>Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'.</p>
-        <p>The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information.</p>
-        <p>The web application's GitHub repository is: <a href="https://github.com/acdh-oeaw/dig_ed_cat" target="_blank" title="Opens in new tab">https://github.com/acdh-oeaw/dig_ed_cat</a></p>
+    <h4>Web application <small>component</small></h4>
+    <p>The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.</p>
+    <p>Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'.</p>
+    <p>The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information.</p>
+    <p>The web application's GitHub repository is: <a href="https://github.com/acdh-oeaw/dig_ed_cat" target="_blank" title="Opens in new tab">https://github.com/acdh-oeaw/dig_ed_cat</a></p>
 
 
     <h3>Progress</h3>
@@ -67,11 +61,11 @@
 
 
     <h3>Copyright</h3>
-    <p>As per the <a href="https://dig-ed-cat.eos.arz.oeaw.ac.at/imprint/">Imprint</a> page of this website, the data and code constituting this project are published under a Creative Commons Attribution Share-Alike International 4.0 License (CC-BY-SA 4.0).</p>
+    <p>As per the <a href="{% url 'webpage:imprint' %}">Imprint</a> page of this website, the data and code constituting this project are published under a Creative Commons Attribution Share-Alike International 4.0 License (CC-BY-SA 4.0).</p>
 
-    
+
     <h3>Reading list</h3>
-    
+
     <ul>
         <li>Franzini, G., Mahony, S., and Terras, M. (2016), ‘A Catalogue of Digital Editions’, In: Pierazzo, E. and Driscoll, M. J. (eds) <em><a href="http://www.openbookpublishers.com/htmlreader/978-1-78374-238-7/ch9.xhtml#_idTextAnchor023" target="_blank" title="Opens in new tab">Digital Scholarly Editing: Theories and Practices</a></em>. Cambridge: Open Book Publishers. [<strong>early version</strong> of the <em>Catalogue of Digital Editions</em>]</li>
         <li>Krippendorf, K. (2004) <em>Content Analysis: An Introduction to Its Methodology</em>. 2nd edn. Thousand Oaks, CA: Sage.</li>
@@ -79,10 +73,10 @@
 
 
     <h3>Other relevant resources</h3>
-    
+
     <ul>
     <li>This project is one of two catalogues of digital editions in existence. We strongly encourage you to explore Patrick Sahle's <em><a href="http://www.digitale-edition.de/" target="_blank" title="Opens in new tab">Catalog of Scholarly Digital Editions</a></em>, which collects digital editions with a strong critical component and from which <em>this Catalogue</em> borrows key data definitions.</li>
-    
+
     <li>As the name suggests, the <a href="http://ride.i-d-e.de/" target="_blank" title="Opens in new tab"><em>RIDE review journal for digital editions and resources</em></a> publishes peer-reviewed reviews of digital editions in multiple languages.</li>
 
     <li>The multilingual <a href="http://uahost.uantwerpen.be/lse/" target="_blank" title="Opens in new tab">Lexicon of Digital Scholarly Editing</a>.</li>

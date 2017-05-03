@@ -17,29 +17,58 @@
      </style>
 {% endblock %}
 {% block content %}
-    <div>
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1>A Map of all involved Institutions</h1><br/>
                 <small>{{ snyc_log }}</small>
+
+
             </div>
+            <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+<!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Search options</h4>
+
+      </div>
+      <div class="modal-body">
+        {% load django_tables2 crispy_forms_tags %}
+        {% crispy filter.form filter.form.helper %}
+        <a class ="btn btn-default"  id="01" style="white-space: normal;">Show/Hide Advanced search options</a></br>
+         <p></p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--Modal ends-->
+</div> <!--panel panel-default ends -->
+        <div>
+          <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" style="margin-top:10px;">
+            Search
+          </button>
+          <a class ="btn btn-default"  href="{% url 'browsing:map' %}" style="margin-top:10px;">
+            Reset search
+          </a>
+        </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-2">
-
-                        {% load django_tables2 crispy_forms_tags %}
-                        {% crispy filter.form filter.form.helper %}
-                        <a class ="btn btn-default"  id="01">Show/Hide Advanced search options</a></br>
-                         <p></p>
-                         <a class ="btn btn-default"  href="{% url 'browsing:map' %}">Reset search</a>
-                    </div>
-                    <div class="col-md-10">
+                    <div>
                         <div id="map"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+
     <script>
     var mapLayerGroups = [];
     function onEachFeature(feature, layer) {

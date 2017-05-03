@@ -3,9 +3,9 @@
 {% block list_title %}Browse Editions{% endblock %}
 
 {% block reset_button %}
-<a class ="btn btn-default"  id="01">Show/Hide Advanced search options</a></br>
+<a class ="btn btn-default"  id="01" style="white-space: normal;">Show/Hide Advanced search options</a></br>
  <p></p>
- <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}">Reset search</a>
+ <a class ="btn btn-default"  href="{% url 'browsing:browse_editions' %}" style="margin-bottom:15px;">Reset search</a>
 {% endblock %}
 
 {% block customScripts %}

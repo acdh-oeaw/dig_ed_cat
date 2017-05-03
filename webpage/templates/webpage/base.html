@@ -56,6 +56,7 @@
           display: flex;
           flex-direction: column;
           height: 100%;
+          padding-top: 70px; /*always keep it when navbar-fixed-top*/
           }
           header {
           flex: 0 0 auto;
@@ -99,6 +100,27 @@
             margin-top: 10px;
             margin-bottom: 10px;
           }
+          .ui-autocomplete {
+            z-index:2147483647;
+          }
+        /*.navbar-right {
+          padding-right: 15px;
+        }*/
+        .navbar-nav.navbar-right:last-child {   /*dirty fix due to https://github.com/twbs/bootstrap/issues/18362*/
+            margin-right: 0;
+        }
+        @media (min-width: 768px) and (max-width: 1105px) {
+      .navbar-right {
+          float: none !important;
+      }
+      body {
+        padding-top: 100px;
+      }
+  }
+
+
+
+
         </style>
       {% block scriptHeader %}
         {% endblock %}
@@ -106,7 +128,7 @@
 
   <body role="document">
     <header>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -131,7 +153,6 @@
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
-                    <
                     <li>
                         <a href="{% url 'places:place_list' %}">Places</a>
                     </li>
@@ -195,18 +216,23 @@
               <li>
                 <a href="{% url 'webpage:imprint' %}">Imprint</a>
               </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"/>
+                {% if user.is_authenticated %}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"/>&nbsp;{{ user.get_username }}</span>
+                    <span class="caret"/></span>
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                        <a href="{% url 'webpage:user_login' %}">Login</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'webpage:user_logout' %}">Logout</a>
+                      <a href="{% url 'webpage:user_logout' %}">Log Out</a>
                     </li>
                   </ul>
-              </li>
+                </li>
+                {% else %}
+                <li>
+                  <a href="{% url 'webpage:user_login' %}">Log In</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

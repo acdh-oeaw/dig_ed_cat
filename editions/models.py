@@ -229,13 +229,13 @@ class Edition(models.Model):
     CHOICES_CC_License = (
         ("", "----"),
         ("no information provided", "no information provided"),
-        ("0", "No CC License used."),
-        ("0.5", " CC License but only for parts of the project."),
-        ("1", "Everything under a CC License."),
+        ("0", "no"),
+        ("0.5", "partial"),
+        ("1", "yes"),
     )
     cc_license = models.CharField(
         choices=CHOICES_CC_License, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.",
+        help_text="This field specifies if the project is protected by a Creative Commons License.",
         verbose_name="Creative Commons License"
     )
     CHOICES_OPENSOURCE = (

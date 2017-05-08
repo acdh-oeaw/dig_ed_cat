@@ -122,7 +122,7 @@
                         <li>0: No information on the editorial methods and practices nor on the source (digital or printed) of the text.</li>
                         <li>0.5: No information on the source, but some information about the author, date and accuracy of the digital edition.</li>
                         <li>1: Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software. Values may include a large range of standards used, including HTML, XML-TEI etc.</li></small></td>
-                        <td>{{ object.philological_statement }}</td>
+                        <td>{{ object.get_philological_statement_display }}</td>
                     </tr>
                     <tr>
                         <th>Account of textual variance</th>
@@ -130,7 +130,7 @@
                         <li>0: No account of textual variance is given. The digital edition is a reproduction of a given print edition without any account of variants.</li>
                         <li>0.5: The digital edition is a reproduction of a given print scholarly edition and reproduces the selected textual variants extant in the apparatus criticus of that edition, or: the edition does not follow a digital paradigm, in that the variants are not automatically computable the way they are encoded.</li>
                         <li>1: This edition is “based on full-text transcription of original texts into electronic form” (vd. Proposition 2 in <a href="http://www.tei-c.org/About/Archive_new/ETE/Preview/robinson.xml">this article</a> by P. Robinson).</li></small></td>
-                        <td>{{ object.textual_variance }}</td>
+                        <td>{{ object.get_textual_variance_display }}</td>
                     </tr>
                     <tr>
                         <th>Value of witnesses</th>
@@ -140,7 +140,7 @@
                             <li>0.5: Same as above, but the witness/source is a scholarly edition.</li>
                             <li>1: The witnesses are traditional philological primary sources (including manuscripts, inscriptions or papyri).</li></small>
                         </td>
-                        <td>{{ object.value_witnesses }}</td>
+                        <td>{{ object.get_value_witnesses_display }}</td>
                     </tr>
                     <tr>
                         <th>XML-TEI transcription</th>
@@ -151,7 +151,7 @@
                             <li>1: yes</li>
                         </small>
                         </td>
-                        <td>{{ object.tei_transcription }}</td>
+                        <td>{{ object.get_tei_transcription_display }}</td>
                     </tr>
                     <tr>
                         <th>XML-TEI transcription to download</th>
@@ -162,7 +162,7 @@
                             <li>1: XML-TEI is used</li>
                         </small>
                         </td>
-                        <td>{{ object.tei_transcription }}</td>
+                        <td>{{ object.get_download_display }}</td>
                     </tr>
                     <tr>
                         <th>Images</th>
@@ -222,12 +222,12 @@
                             <li>1: Open Access. The texts may be accessed through specific software, but the source is not accessible.</li>
                             <li>1.5: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>
                         </small></td>
-                        <td>{{ object.open_source }}</td>
+                        <td>{{ object.get_open_source_display }}</td>
                     </tr>
                     <tr>
                         <th>OCR or keyed?</th>
                         <td class="readmore"><small>The source text was digitised with Optical Character Recognition (OCR) software or manually keyed in.</small></td>
-                        <td>{{ object.key_or_ocr }}</td>
+                        <td>{{ object.get_key_or_ocr_display }}</td>
                     </tr>
                     <tr>
                         <th>Print-friendly view</th>

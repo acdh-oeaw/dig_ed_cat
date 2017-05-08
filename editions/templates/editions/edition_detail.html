@@ -166,12 +166,12 @@
                     </tr>
                     <tr>
                         <th>Images</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition comes with images.</small></td>
+                        <td class="readmore"><small>The digital edition comes with images.</small></td>
                         <td>{{ object.images }}</td>
                     </tr>
                     <tr>
                         <th>Zoom images</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell us if the user can zoom in or out of images within the edition.</small></td>
+                        <td class="readmore"><small>The user can zoom in or out of images within the edition.</small></td>
                         <td>{{ object.zoom_images }}</td>
                     </tr>
                     <tr>
@@ -191,27 +191,27 @@
                     </tr>
                     <tr>
                         <th>Glossary</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides a glossary.</small></td>
+                        <td class="readmore"><small>The digital edition provides a glossary.</small></td>
                         <td>{{ object.glossary }}</td>
                     </tr>
                     <tr>
                         <th>Indices</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides indices.</small></td>
+                        <td class="readmore"><small>The digital edition provides indices.</small></td>
                         <td>{{ object.indices }}</td>
                     </tr>
                     <tr>
                         <th>String matching search</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.</small></td>
+                        <td class="readmore"><small>The digital edition provides string matching search possibilities.</small></td>
                         <td>{{ object.search }}</td>
                     </tr>
                     <tr>
                         <th>Advanced search</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell us if the edition provides an advanced search functionality.</small></td>
+                        <td class="readmore"><small>The digital edition provides an advanced search functionality.</small></td>
                         <td>{{ object.advanced_search }}</td>
                     </tr>
                     <tr>
                         <th>Creative Commons License</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to specify if the project is protected by a Creative Commons License.</small></td>
+                        <td class="readmore"><small>The project is protected by a Creative Commons License.</small></td>
                         <td>{{ object.get_cc_license_display }}</td>
                     </tr>
                     <tr>
@@ -220,23 +220,24 @@
                             <li>0: Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription.</li>
                             <li>0.5: Same as above, but the subscription is free of charge.</li>
                             <li>1: Open Access. The texts may be accessed through specific software, but the source is not accessible.</li>
-                            <li>1.5: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>
+                            <li>1.5: Open Access and Open Source. Part of the data underlying the digital edition (e.g. text but not images) is freely available for access and reuse.</li>
+                            <li>2: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>                            
                         </small></td>
                         <td>{{ object.get_open_source_display }}</td>
                     </tr>
                     <tr>
-                        <th>OCR or keyed?</th>
+                        <th>OCR or keyed</th>
                         <td class="readmore"><small>The source text was digitised with Optical Character Recognition (OCR) software or manually keyed in.</small></td>
                         <td>{{ object.get_key_or_ocr_display }}</td>
                     </tr>
                     <tr>
                         <th>Print-friendly view</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to tell if the project provides a print-friendly view of the text (e.g. PDF).</small></td>
+                        <td class="readmore"><small>The project provides a print-friendly view of the text (e.g. PDF).</small></td>
                         <td>{{ object.print_friendly }}</td>
                     </tr>
                     <tr>
                         <th>API</th>
-                        <td class="readmore"><small>The values 1 or 0 are used to specify if the project comes with an API (Application Programming Interface)."</small></td>
+                        <td class="readmore"><small>The project comes with an API (Application Programming Interface)."</small></td>
                         <td>{{ object.api }}</td>
                     </tr>
                     {% if user.is_authenticated %}

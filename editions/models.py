@@ -244,7 +244,8 @@ class Edition(models.Model):
         ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
         ("0.5", "Same as above, but the subscription is free of charge."),
         ("1", "Open Access. The texts may be accessed through specific software, but the source is not accessible."),
-        ("1.5", " Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse)"),
+        ("1.5", "Open Access and Open Source. Part of the data underlying the digital edition (e.g. text but not images) is freely available for access and reuse."),
+        ("2", "Open Access and Open Source. All data underlying the digital edition is freely available for access and reuse.")
     )
     open_source = models.CharField(
         blank=True, max_length=255,

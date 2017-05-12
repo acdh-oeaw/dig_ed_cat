@@ -131,8 +131,8 @@ def sync_status(request):
         "forthcoming": "no",
         "download book": "no",
         "N/A": "no",
-        "0.5": "no",
-        "0,5": "no",
+        "0.5": "partially",
+        "0,5": "partially",
         "PDF will be available": "no"}
     counter = 1
     for row in cleaned_data[1:-1]:

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^documentation/$', views.documentation_view, name='documentation'),
     url(r'^survey/$', views.survey_view, name='survey'),
     url(r'^faq/$', views.faq_view, name='faq'),
+    url(r'^feedback/$', views.feedback_view, name='feedback'),
 ]

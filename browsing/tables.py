@@ -5,6 +5,7 @@ from places.models import *
 
 
 class EditionTable(tables.Table):
+    legacy_id = tables.Column(verbose_name='ID')
     name = tables.LinkColumn('editions:edition_detail', args=[A('legacy_id')], verbose_name='edition name')
     institution = tables.Column(empty_values=())
 
@@ -15,7 +16,7 @@ class EditionTable(tables.Table):
 
     class Meta:
         model = Edition
-        fields = ['name', 'institution']
+        fields = ['legacy_id', 'name', 'institution']
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 

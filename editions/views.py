@@ -154,14 +154,18 @@ def sync_status(request):
             temp_ed.writing_support = row[8]
             if row[9] != "":
                 start_date = re.match("\d{4}", row[9])
-                if start_date:
+                try:
                     start_date = datetime.datetime.strptime(start_date.group(), '%Y')
                     temp_ed.begin_date = start_date
+                except:
+                    temp_ed.begin_date_comment = str(row[9])
             if row[10] != "":
                 end_date = re.match("\d{4}", row[10])
-                if end_date:
+                try:
                     end_date = datetime.datetime.strptime(end_date.group(), '%Y')
                     temp_ed.end_date = end_date
+                except:
+                    temp_ed.end_date_comment = str(row[10])
             for pers in row[11].split(";"):
                 pers_temp, _ = Person.objects.get_or_create(name=pers.strip())
                 temp_ed.manager.add(pers_temp)

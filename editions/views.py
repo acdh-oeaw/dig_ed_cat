@@ -3,6 +3,7 @@ import re
 import time
 import datetime
 import requests
+from django.core.validators import URLValidator
 from django.http import HttpResponse
 from django.views import generic
 from django.template import RequestContext
@@ -48,7 +49,7 @@ class InstitutionListView(generic.ListView):
 
 @login_required
 def sync(request):
-    context = RequestContext(request)
+    context = {}
     return render(request, 'editions/sync.html', context)
 
 
@@ -201,6 +202,13 @@ def sync_status(request):
                 temp_ed.current_availability = alive
             except:
                 pass
+            val = URLValidator()
+            try:
+                val(str(row[47]))
+                temp_ed.ride_review = str(row[47])
+            except:
+                temp_ed.ride_review = None
+            # temp_ed.ride_review = str(row[47])
             temp_ed.historical_period.add(temp_per)
             temp_ed.api = BOOLEAN_CHOICES[str(row[32])]
             temp_ed.save()

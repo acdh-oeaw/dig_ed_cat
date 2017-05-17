@@ -221,7 +221,7 @@
                             <li>0.5: Same as above, but the subscription is free of charge.</li>
                             <li>1: Open Access. The texts may be accessed through specific software, but the source is not accessible.</li>
                             <li>1.5: Open Access and Open Source. Part of the data underlying the digital edition (e.g. text but not images) is freely available for access and reuse.</li>
-                            <li>2: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>                            
+                            <li>2: Open Access and Open Source. All data underlying the digital edition is freely available for access, study, redistribution and improvement (reuse).</li>
                         </small></td>
                         <td>{{ object.get_open_source_display }}</td>
                     </tr>
@@ -245,7 +245,7 @@
                         <td><a href="{% url 'editions:edition_edit' pk=object.legacy_id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
                     </tr>
                     {% endif %}
-                        </table>
+                </table>
                 </div>
                 <div class="col-md-6">
                     <div id="map"></div>

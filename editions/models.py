@@ -277,6 +277,10 @@ class Edition(models.Model):
     )
     current_availability = models.NullBooleanField(
         blank=True, null=True, help_text="1 means STILL AVAILABLE and 0 means DEAD.")
+    ride_review = models.CharField(
+        blank=True, null=True, help_text="Is there a RIDE review",
+        max_length=500
+    )
 
     def __str__(self):
         return "{}".format(self.name)

@@ -96,10 +96,6 @@ class Edition(models.Model):
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
         help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition. (Patrick Sahle)"
     )
-    # prototype = models.CharField(
-    #     choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-    #     help_text="A Scholarly Digital Edition (SDE) is a publication of the material in question; a SDE project is not the same as a SDE, that means a SDE is more than a plan or a prototype. (Patrick Sahle)"
-    # )
     language = models.ManyToManyField(
         Language, blank=True, related_name="lang_source",
         help_text="The language(s) of the source text. Three-letter ISO Codes are used."
@@ -112,9 +108,15 @@ class Edition(models.Model):
         null=True, blank=True,
         help_text="Year the project started."
     )
+    begin_date_comment = models.CharField(
+        max_length=50, blank=True
+    )
     end_date = models.DateField(
         null=True, blank=True,
         help_text="Year the project ended. If ongoing, leave blank."
+    )
+    end_date_comment = models.CharField(
+        max_length=50, blank=True
     )
     manager = models.ManyToManyField(
         Person, blank=True, help_text="Name of project manager(s)."

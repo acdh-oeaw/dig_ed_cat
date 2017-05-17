@@ -240,6 +240,15 @@
                         <td class="readmore"><small>The project comes with an API (Application Programming Interface)."</small></td>
                         <td>{{ object.api }}</td>
                     </tr>
+                    <tr>
+                        <th>RIDE-Review</th>
+                        <td>
+                            {% if object.ride_review %}
+                                <a href="{{ object.ride_review }}"> {{object.ride_review}}</a>
+                            {% else %} no
+                            {% endif %}
+                        </td>
+                    </tr
                     {% if user.is_authenticated %}
                     <tr>
                         <td><a href="{% url 'editions:edition_edit' pk=object.legacy_id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>

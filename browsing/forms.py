@@ -105,6 +105,7 @@ class GenericFilterFormHelper(FormHelper):
                 'key_or_ocr',
                 'print_friendly',
                 'api',
+                'ride_review',
                 css_id="advanced_search_fields"
             ),
         )

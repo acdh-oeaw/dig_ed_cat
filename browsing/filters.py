@@ -184,6 +184,10 @@ class EditionListFilter(django_filters.FilterSet):
     api = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES,
         help_text=Edition._meta.get_field('api').help_text)
+    ride_review = django_filters.BooleanFilter(
+        lookup_expr='isnull', help_text="Is there a RIDE review ?",
+        exclude=True
+        )
 
     def country_name_filter(self, queryset, value):
         return queryset.filter(institution__place__part_of__name__icontains=value).distinct()

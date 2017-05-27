@@ -15,50 +15,6 @@
 $( "#advanced_search_fields" ).append(  '<hr/><div class="controls "><label>entries per page</label><input type="number" class="form-control" name="amount"></div><br/>' );
 </script>
 
-<script>
-
-var edition_names = [{% for name in edition_names %} "{{ name }}", {% endfor %}];
-var institution_names = [{% for name in institution_names %} "{{ name }}", {% endfor %}];
-var manager_names = [{% for name in manager_names %} "{{ name }}", {% endfor %}];
-var infrastructure_names = [{% for name in infrastructure_names %} "{{ name }}", {% endfor %}];
-var audience_names = [{% for name in audience_names %} "{{ name }}", {% endfor %}];
-var writing_support_names = [{% for name in writing_support_names %} "{{ name }}", {% endfor %}];
-
-
-
-$(function() {
-	$("#id_name").autocomplete({
-		source:edition_names
-        });
-    });
-$(function() {
-    $("#id_institution__name").autocomplete({
-        source:institution_names
-        });
-    });
-
-$(function() {
-    $("#id_manager__name").autocomplete({
-        source:manager_names
-        });
-    });
-$(function() {
-    $("#id_infrastructure").autocomplete({
-        source:infrastructure_names
-        });
-    });
-$(function() {
-    $("#id_audience").autocomplete({
-        source:audience_names
-        });
-    });
-$(function() {
-    $("#id_writing_support").autocomplete({
-        source:writing_support_names
-        });
-    });
-
-</script>
 <script type="text/javascript">
 $(document).ready(function(){
     $("#advanced_search_fields").hide();

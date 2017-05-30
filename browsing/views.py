@@ -64,4 +64,13 @@ class MapView(EditionListView):
         context = super(EditionListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
         context['snyc_log'] = SyncLog.objects.last()
+        institutions = []
+        for x in self.get_queryset():
+            for y in x.institution.all():
+                try:
+                    y.place.lat
+                    institutions.append(y)
+                except:
+                    pass
+        context["institutions"] = set(institutions)
         return context

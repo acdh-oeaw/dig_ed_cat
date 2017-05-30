@@ -1,4 +1,5 @@
 import django_filters
+from dal import autocomplete
 from editions.models import *
 from places.models import *
 
@@ -90,21 +91,36 @@ CHOICES_CC_License = (
 
 
 class EditionListFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(
-        lookup_expr='icontains', label='Edition name',
-        help_text=Edition._meta.get_field('name').help_text,
-    )
+    name = django_filters.ModelMultipleChoiceFilter(
+        widget=autocomplete.Select2Multiple(
+            url='editions-ac:edition-ac',
+            attrs={
+                'data-placeholder': 'e.g. Edition Humboldt Digital',
+                'data-minimum-input-length': 3,
+            },
+        ),
+        queryset=Edition.objects.all(),
+        lookup_expr='icontains',
+        label='Edition name',
+        help_text=Edition._meta.get_field('name').help_text)
     url = django_filters.CharFilter(
         lookup_expr='icontains', help_text=Edition._meta.get_field('url').help_text)
-    institution__name = django_filters.CharFilter(lookup_expr='icontains',
-        help_text=Edition._meta.get_field('institution').help_text)
+    institution__name = django_filters.ModelMultipleChoiceFilter(
+        widget=autocomplete.Select2Multiple(
+            url='editions-ac:institution-ac',
+            attrs={
+                'data-placeholder': 'e.g. Università degli Studi di Bologna',
+                'data-minimum-input-length': 3,
+            },
+        ),
+        queryset=Institution.objects.all(),
+        lookup_expr='icontains',
+        label='Institution',
+        help_text=Edition._meta.get_field('institution').help_text
+    )
     historical_period = django_filters.ModelMultipleChoiceFilter(
         queryset=Period.objects.all(), label='Period',
         help_text=Edition._meta.get_field('historical_period').help_text)
-    # country_name = django_filters.MethodFilter(lookup_expr='icontains',
-    #     action='country_name_filter', label="Country the Edition was created.")
-    # city_name = django_filters.MethodFilter(
-    #     lookup_expr='icontains', action='city_name_filter', label="City the Edition was created.")
     scholarly = django_filters.ChoiceFilter(
         choices=BOOLEAN_CHOICES, help_text=Edition._meta.get_field('scholarly').help_text)
     digital = django_filters.ChoiceFilter(
@@ -121,8 +137,19 @@ class EditionListFilter(django_filters.FilterSet):
         help_text=Edition._meta.get_field('begin_date').help_text)
     end_date = django_filters.DateFilter(
         help_text=Edition._meta.get_field('end_date').help_text)
-    manager__name = django_filters.CharFilter(lookup_expr='icontains',
-        help_text=Edition._meta.get_field('manager').help_text)
+    manager__name = django_filters.ModelMultipleChoiceFilter(
+        widget=autocomplete.Select2Multiple(
+            url='editions-ac:person-ac',
+            attrs={
+                'data-placeholder': 'e.g. Dániel Kiss',
+                'data-minimum-input-length': 3,
+            },
+        ),
+        queryset=Person.objects.all(),
+        lookup_expr='icontains',
+        label='Manager',
+        help_text=Edition._meta.get_field('manager').help_text
+    )
     audience = django_filters.CharFilter(
         lookup_expr='icontains', help_text=Edition._meta.get_field('audience').help_text)
     philological_statement = django_filters.ChoiceFilter(

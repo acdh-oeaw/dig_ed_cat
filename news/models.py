@@ -9,3 +9,6 @@ class NewsFeed(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, related_name='blog_posts')
+
+    def __str__(self):
+        return "{}".format(self.created)

@@ -1,0 +1,3 @@
+{% for feed in feeds %}
+<p><span class="text-success"> {{ feed.created|date:"M Y" }}</span> {{ feed.body|safe }} <small>{{ feed.author }}</small></p>
+{% endfor %}

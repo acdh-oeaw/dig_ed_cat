@@ -1,6 +1,7 @@
-
 {% extends "webpage/base.html" %}
 {% load staticfiles %}
+{% load webpage_extras %}
+{% load news_extras %}
 
 {% block content %}
 <div class="container">
@@ -24,6 +25,8 @@
         <div class="col-md-8"> <!--first column-->
 
         <h3>News items</h3>
+
+        {% newsfeed  %}
 
         <p><span class="text-success">May 2017</span> - The <em>Catalogue of Digital Editions</em> links projects, where possible, to reviews published by the <em><a href="ride.i-d-e.de/" target="_blank" title="Opens in new tab">RIDE Review Journal of Scholarly Digital Editions and Resources</a></em>. We were also featured in <a href="http://karelsykora.blog.idnes.cz/blog.aspx?c=606254" target="_blank" title="Opens in new tab">iDNES.cz</a>, a Czech online news portal.</p>
 

@@ -1,15 +1,15 @@
 {% load staticfiles %}
-
+{% load webpage_extras %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <title>{% block Titel %} A digital editions catalogue {% endblock %}</title>
+      <title>{% block title %} {% projects_metadata 'title' %}{% endblock %}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       {% block metaDescription %}
-      <meta name="description" content="A Web-App">
+          <meta name="description" content="{% projects_metadata 'description' %}">
       {% endblock %}
-      <meta name="author" content="Peter Andorfer">
+      <meta name="author" content="{% projects_metadata 'author' %}">
       <!-- favicons, created with http://www.favicon-generator.org/ -->
           <link rel="apple-touch-icon" sizes="57x57" href="{% static 'webpage/img/favicon/apple-icon-57x57.png' %}">
           <link rel="apple-touch-icon" sizes="60x60" href="{% static 'webpage/img/favicon/apple-icon-60x60.png' %}">
@@ -273,6 +273,9 @@
 </section>
       <div align="text-center">
         <span class="socialShare"> <!-- The share buttons will be inserted here --> </span>
+      </div>
+      <div align="right">
+          <small>Version {% projects_metadata 'version' %}</small>
       </div>
 <footer>
      <div class="container">

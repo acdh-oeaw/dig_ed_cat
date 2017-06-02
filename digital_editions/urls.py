@@ -4,6 +4,7 @@ from rest_framework import routers
 from editions.api_views import (
     InstitutionViewSet, PeriodViewSet, PersonViewSet, LanguageViewSet, EditionViewSet)
 from places.apis_views import PlaceViewSet, AlternativNameViewSet
+from news.api_views import NewsFeedViewSet
 
 router = routers.DefaultRouter()
 router.register(r'institutions', InstitutionViewSet)
@@ -13,6 +14,7 @@ router.register(r'periods', PeriodViewSet)
 router.register(r'languages', LanguageViewSet)
 router.register(r'persons', PersonViewSet)
 router.register(r'editions', EditionViewSet)
+router.register(r'newsfeeds', NewsFeedViewSet)
 
 
 urlpatterns = [

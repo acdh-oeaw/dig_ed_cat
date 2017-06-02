@@ -1,6 +1,10 @@
-
 {% extends "webpage/base.html" %}
 {% load staticfiles %}
+{% load webpage_extras %}
+{% load news_extras %}
+<style type="text/css">
+
+</style>
 
 {% block content %}
 <div class="container">
@@ -14,7 +18,7 @@
     <p></p>
 
     <p class="text-justify">Since 2012 the <strong><em>Catalogue of Digital Editions</em></strong> has been gathering digital editions and texts in an attempt to survey and identify best practice in the field of digital scholarly editing. Analogous initiatives exist but don't provide the granular analysis of features necessary to better understand the rationale and methodology behind the creation of a digital edition. This <em>Catalogue</em> provides an accessible record of standards and building technologies used, and thus an insight into past and present projects.</p>
-    
+
     <p class="text-justify">Development on this web application began in 2016 and aims at delivering the <em>Catalogue</em> data in an interactive and user-friendly manner, allowing users to browse, search, filter and order projects around their research interests.</p>
 
     <p class="text-justify">The <em>Catalogue</em> is growing and always seeks contributions. For instructions on how to submit a digital edition to the <em>Catalogue</em>, please visit the <a target="_blank" href="{% url 'webpage:documentation' %}">Documentation</a> page of this site. <strong>Projects added will be exposed to 317 German libraries thanks to the <em>Catalogue</em>'s integration into the German Library Network (DBIS)</strong>.</p>
@@ -24,6 +28,8 @@
         <div class="col-md-8"> <!--first column-->
 
         <h3>News items</h3>
+
+        {% newsfeed  %}
 
         <p><span class="text-success">May 2017</span> - The <em>Catalogue of Digital Editions</em> links projects, where possible, to reviews published by the <em><a href="ride.i-d-e.de/" target="_blank" title="Opens in new tab">RIDE Review Journal of Scholarly Digital Editions and Resources</a></em>. We were also featured in <a href="http://karelsykora.blog.idnes.cz/blog.aspx?c=606254" target="_blank" title="Opens in new tab">iDNES.cz</a>, a Czech online news portal.</p>
 

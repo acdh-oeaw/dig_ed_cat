@@ -62,7 +62,7 @@
       <!-- End Piwik Code -->
       <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
         <script type="text/javascript">
-            window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"{% url 'webpage:imprint' %}","theme":"dark-bottom"};
+            window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"{% url 'webpage:staticpage' template='imprint' %}","theme":"dark-bottom"};
         </script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
         <!-- End Cookie Consent plugin -->
@@ -173,7 +173,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li>
-                <a href="{% url 'webpage:start' %}">Home</a>
+                <a href="{% url 'webpage:start'%}">Home</a>
               </li>
               <li>
                 <a href="{% url 'browsing:browse_editions' %}">Browse the Catalogue</a>
@@ -234,21 +234,21 @@
                   </ul>
               </li>
               <li>
-                <a href="{% url 'webpage:survey' %}">Survey 2017</a>
+                <a href="{% url 'webpage:staticpage' template='survey2017' %}">Survey 2017</a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <a href="{% url 'webpage:documentation' %}">Documentation</a>
+                <a href="{% url 'webpage:staticpage' template='documentation' %}">Documentation</a>
               </li>
               <li>
-                <a href="{% url 'webpage:faq' %}">FAQ</a>
+                <a href="{% url 'webpage:staticpage' template='faq' %}">FAQ</a>
               </li>
               <li>
-                <a href="{% url 'webpage:feedback' %}">User Feedback</a>
+                <a href="{% url 'webpage:staticpage' template='user-feedback' %}">User Feedback</a>
               </li>
               <li>
-                <a href="{% url 'webpage:imprint' %}">Imprint</a>
+                <a href="{% url 'webpage:staticpage' template='imprint' %}">Imprint</a>
               </li>
                 {% if user.is_authenticated %}
                 <li class="dropdown">

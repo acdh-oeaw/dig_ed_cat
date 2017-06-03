@@ -21,12 +21,12 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('webpage.urls', namespace='webpage')),
     url(r'editions/', include('editions.urls', namespace='editions')),
     url(r'^editions-ac/', include('editions.dal_urls', namespace='editions-ac')),
     url(r'places/', include('places.urls', namespace='places')),
     url(r'^datamodel/', include('django_spaghetti.urls', namespace='datamodel')),
     url(r'browsing/', include('browsing.urls', namespace='browsing')),
     url(r'charts/', include('charts.urls', namespace='charts')),
-    url(r'wordclouds/', include('wordcloud.urls', namespace='wordclouds'))
+    url(r'wordclouds/', include('wordcloud.urls', namespace='wordclouds')),
+    url(r'^', include('webpage.urls', namespace='webpage')),
 ]

@@ -1,9 +1,23 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import TemplateView
 
 from .forms import form_user_login
+
+
+class GenericWebpageView(TemplateView):
+    template_name = 'webpage/index.html'
+
+    def get_template_names(self):
+        template_name = "webpage/{}.html".format(self.kwargs.get("template", 'index'))
+        try:
+            loader.select_template([template_name])
+            template_name = "webpage/{}.html".format(self.kwargs.get("template", 'index'))
+        except:
+            template_name = "webpage/index.html"
+        return [template_name]
 
 
 def feedback_view(request):

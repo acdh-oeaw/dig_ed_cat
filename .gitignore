@@ -17,3 +17,4 @@ __pycache__/
 /digital_editions/settings/mysql.py
 /enhanceInstitutions.ipynb
 /play.ipynb
+src

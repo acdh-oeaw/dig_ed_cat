@@ -101,7 +101,28 @@
               color: #43ac6a;
           }
           .feed.meta{
-              font-size: 50%;
+              font-size: 70%;
+          }
+          .verticalLine {
+            border-left: 1px solid black;
+          }
+          .index-wrapper {
+            margin-bottom: 80px;
+          }
+          .news-wrapper {
+            border: none !important;
+            box-shadow: none;
+            text-align: justify;
+          }
+          .news-wrapper > .panel-heading {
+            background-color: white;
+            border-top: 3px solid black;
+            border-bottom: none !important;
+          }
+          /*to extend twitter widget when page grows*/
+          iframe[id^='twitter-widget-'] {
+            height:700px !important;
+            margin-bottom:10px !important;
           }
           #explore-btn {
             margin-top: 30px;
@@ -149,10 +170,21 @@
       }
   }
 
-
-
-
         </style>
+
+<!-- to extend twitter widget when page grows       -->
+<script type="text/javascript">
+ $(window).on('load', function () {
+   $('iframe[id^=twitter-widget-]').each(function () {
+     var head = $(this).contents().find('head');
+     if (head.length) {
+       head.append('<style>.timeline { max-width: 100% !important; width: 100% !important; } .timeline .stream { max-width: none !important; width: 100% !important; }</style>');
+     }
+     $('#twitter-widget-0').append($('<div class=timeline>'));
+    })
+ });
+
+</script>
       {% block scriptHeader %}
         {% endblock %}
   </head>

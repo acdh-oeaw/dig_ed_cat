@@ -8,6 +8,7 @@
 
 {% block content %}
 <div class="container">
+  <div class="index-wrapper">
     <img src="{% static 'webpage/img/DigEds_Cat_logo_transp.png' %}" class="img-responsive" alt="logo" height="600">
     <div style="text-align:center;">
         <a href="{% url 'browsing:browse_editions' %}" class="btn btn-info btn-lg" title="Click HERE to browse the editions or select an option from the black menu bar above" id="explore-btn">
@@ -22,17 +23,24 @@
     <p class="text-justify">Development on this web application began in 2016 and aims at delivering the <em>Catalogue</em> data in an interactive and user-friendly manner, allowing users to browse, search, filter and order projects around their research interests.</p>
 
     <p class="text-justify">The <em>Catalogue</em> is growing and always seeks contributions. For instructions on how to submit a digital edition to the <em>Catalogue</em>, please visit the <a target="_blank" href="{% url 'webpage:staticpage' template='documentation' %}">Documentation</a> page of this site. <strong>Projects added will be exposed to 317 German libraries thanks to the <em>Catalogue</em>'s integration into the German Library Network (DBIS)</strong>.</p>
-
+    </div>
 
     <div class="row">
         <div class="col-md-8">
-            <h3>News items</h3>
-            {% newsfeed_last_items %}
+            <h3><b>News items</b></h3>
+            {% newsfeed_bootstrap_panel %}
         </div>
 
         <div class="col-md-4">
-            <a class="twitter-timeline"  href="https://twitter.com/hashtag/digEdsCat" data-widget-id="855092028652257281">Catalogue tweets</a>
+          <h3><b><a href="https://twitter.com/search?q=%23digEdsCat" style="color: black;">#digEdsCat</a> on Twitter</b></h3>
+          <div class="panel panel-default news-wrapper">
+            <div class="panel-heading">
+              </div>
+              <div class="panel-body">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/digEdsCat" data-widget-id="855092028652257281" data-chrome="transparent noheader" >Catalogue tweets</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+        </div>
         </div>
     </div>
 

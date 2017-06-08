@@ -1,0 +1,19 @@
+{% for feed in feeds %}
+
+  <div class="panel panel-default news-wrapper">
+    <div class="panel-heading">
+      <span class="feed title"><b>{{ feed.title }}</b></span>
+    </div>
+    <div class="panel-body">
+
+    <span class="feed body">{{ feed.body|safe }}</span>
+    <br>
+    <span class="feed meta">
+        <span class="feed author"><abbr title="posted by">{{ feed.author }}</abbr></span> |
+        <span class="feed updated"><abbr title="updated">{{ feed.updated|date:"M Y d" }}</abbr></span> |
+        <span class="feed created"><abbr title="created">{{ feed.created|date:"M Y d" }}</abbr></span>
+    </span>
+    </div>
+  </div>
+
+{% endfor %}

@@ -213,7 +213,7 @@ class EditionListFilter(django_filters.FilterSet):
         help_text=Edition._meta.get_field('api').help_text)
     ride_review = django_filters.BooleanFilter(
         lookup_expr='isnull', help_text="Is there a RIDE review ?",
-        exclude=True
+        exclude=True, label="RIDE review"
         )
 
     def country_name_filter(self, queryset, value):

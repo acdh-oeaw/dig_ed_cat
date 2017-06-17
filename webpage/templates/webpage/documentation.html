@@ -165,6 +165,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-3">
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/data-sheet.png' %}">
@@ -174,15 +175,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+
+                        <div class="col-md-3"> <!-- two images in this column, because they're small-->
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/navi-arrows.png' %}">
                                 <img src="{% static 'webpage/images/navi-arrows.png' %}" alt="Arrows" style="width:100%"></a>
                                 <div class="caption">
                                     <p>Figure 3. Blue back/forward arrows placed at each side of the project title allow users to move between digital editions.</p>
                                 </div>
+                            </div><br />
+                            <div class="thumbnail">
+                                <a href="{% static 'webpage/images/red-banner.png' %}">
+                                <img src="{% static 'webpage/images/red-banner.png' %}" alt="Red banner" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 5. A red banner notifies the user of an expire project URL.</p>
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-md-3">
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/info.png' %}">
@@ -192,34 +202,13 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="row">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <a href="{% static 'webpage/images/red-banner.png' %}">
-                                <img src="{% static 'webpage/images/red-banner.png' %}" alt="Red banner" style="width:100%"></a>
-                                <div class="caption">
-                                    <p>Figure 5. A red banner notifies the user of an expire project URL.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <!---->
-                        </div>
-                        <div class="col-md-3">
-                            <!---->
-                        </div>
-                        <div class="col-md-3">
-                            <!---->
-                        </div>
-
+                    </div>
 
 
                 <h4>Chart view</h4>
 
-                    <p>The menu tab <em>Analyze the data</em> provides bar and pie charts of a number of catalogued features, as well as a map of all involved institutions. For pie and bar charts, a drop-down menu lists possible visualisations (Figure 5 and Figure 6). Hovering over a particular pie slice or bar reveals the exact project count. All charts can be downloaded as PNG, JPEG, PDF and SVG files.<br />
-                    The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 7). The user can either click on a location marker or search for an institution using the search button placed above the map. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.<br />
+                    <p>The menu tab <em>Analyze the data</em> provides bar and pie charts of a number of catalogued features, as well as a map of all involved institutions. For pie and bar charts, a drop-down menu lists possible visualisations (Figure 6 and Figure 7). Hovering over a particular pie slice or bar reveals the exact project count. All charts can be downloaded as PNG, JPEG, PDF and SVG files.<br />
+                    The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 8). The user can either click on a location marker or search for an institution using the search button placed above the map. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.<br />
                     Finally, we also provide wordclouds for those interested in identifying particular words.</p>
 
                     <div class="row">
@@ -253,8 +242,9 @@
                         <div class="col-md-3">
                             <!---->
                         </div>
-        </div>
+                    </div>
 
+        
         <div id="section15">
             <h3>Other menu pages</h3>
             <p>The <em>Get the Data</em> menu tab provides the <em>Catalogue</em>'s API. The <em>Login</em> menu item is for the <em>Catalogue's</em> team use only. All other pages should be self-explanatory.</p>

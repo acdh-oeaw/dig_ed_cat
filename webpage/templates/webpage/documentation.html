@@ -7,107 +7,267 @@
     <h1>Documentation</h1>
 
 
-    <h3>Team</h3>
-    <p>This project is a collaboration between <a href="http://www.oeaw.ac.at/acdh/en/andorfer" target="_blank" title="Opens in new page">Peter Andorfer</a> and <a href="http://www.oeaw.ac.at/acdh/en/zaytseva" target="_blank" title="Opens in new page">Ksenia Zaytseva</a> of the <a href="http://www.oeaw.ac.at/acdh/" target="_blank" title="Opens in new tab">Austrian Centre for Digital Humanities</a> (ACDH, Vienna) and <a href="http://gretafranzini.com/" title="Opens in new tab" target="_blank">Greta Franzini</a> of the <a href="https://www.ucl.ac.uk/dh/" target="_blank" title="Opens in new tab">UCL Centre for Digital Humanities</a> (UCLDH, London). Peter and Ksenia develop the web application while Greta curates the data.</p>
+    <h2>Overview</h2>
 
-    <h3>Duration</h3>
-    <p>The <em>Catalogue of Digital Editions</em> began collecting digital editions in 2012. Development on the web application began in the summer of 2016 and kick-started the collaboration. The project will continue for as long as the team's means allow.</p>
-
-    <h3>Funding</h3>
-    <p>This project receives no funding. Peter Andorfer and Ksenia Zaytseva are supported as ACDH staff, and Greta Franzini's contribution is entirely voluntary.</p>
-
-    <h3>Components and repositories</h3>
-    <p>The <em>Catalogue of Digital Editions Web Application</em> is made-up of two interacting components, each stored in its own GitHub repository: 1) the data, and 2) the web application to display the data to the user. The two components are connected via a custom script that regularly fetches the latest updates from the data repository and delivers them to the web application.</p>
+        <!--Team-->
+        <div id="section1">
+            <h3>Team</h3>
+            <p>This project is a collaboration between <a href="http://www.oeaw.ac.at/acdh/en/andorfer" target="_blank" title="Opens in new page">Peter Andorfer</a> and <a href="http://www.oeaw.ac.at/acdh/en/zaytseva" target="_blank" title="Opens in new page">Ksenia Zaytseva</a> of the <a href="http://www.oeaw.ac.at/acdh/" target="_blank" title="Opens in new tab">Austrian Centre for Digital Humanities</a> (ACDH, Vienna) and <a href="http://gretafranzini.com/" title="Opens in new tab" target="_blank">Greta Franzini</a> of the <a href="https://www.ucl.ac.uk/dh/" target="_blank" title="Opens in new tab">UCL Centre for Digital Humanities</a> (UCLDH, London). Peter and Ksenia develop the web application while Greta curates the data.</p>
+        </div>
 
 
-    <h4 style="text-indent: 20px">Data <small>component</small></h4>
-    <p style="text-indent: 20px">The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic criteria: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from online lists (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a>), conferences, publications, social media, word of mouth, web browsing and chaining.<br />
-    The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file (including <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs). This second file allows us to place digital editions on a map.<br />
-    The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
+        <!--Duration-->
+        <div id="section2">
+            <h3>Duration</h3>
+            <p>The <em>Catalogue of Digital Editions</em> began collecting digital editions in 2012. Development on the web application began in the summer of 2016 and kick-started the collaboration. The project will continue for as long as the team's means allow.</p>
+        </div>
+
+
+        <!--Funding-->
+        <div id="section3">
+        <h3>Funding</h3>
+            <p>This project receives no funding. Peter Andorfer and Ksenia Zaytseva are supported as ACDH staff, and Greta Franzini's contribution is entirely voluntary.</p>
+        </div>
+
+
+        <!--Components-->
+        <div id="section4">
+            <h3>Components and repositories</h3>
+            <p>The <em>Catalogue of Digital Editions Web Application</em> is made-up of two interacting components, each stored in its own GitHub repository: 1) the data, and 2) the web application to display the data to the user. The two components are connected via a custom script that regularly fetches the latest updates from the data repository and delivers them to the web application.</p>
+
+                <h4>Data <small>component</small></h4>
+                <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic criteria: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from online lists (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a>), conferences, publications, social media, word of mouth, web browsing and chaining.<br />
+                The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file, including their respective <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs. This second file allows us to place digital editions on a map and to add them to the <a href="http://programminghistorian.org/lessons/intro-to-linked-data" title="Opens in new tab" target="_blank">Linked Open Data</a> (LOD) cloud.<br />
+                The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
 
 
 
-    <h4 style="text-indent: 20px">Web application <small>component</small></h4>
-    <p style="text-indent: 20px">The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.<br /> Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'.<br />
-    The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information.<br />
-    The web application's GitHub repository is: <a href="https://github.com/acdh-oeaw/dig_ed_cat" target="_blank" title="Opens in new tab">https://github.com/acdh-oeaw/dig_ed_cat</a></p>
+                <h4>Web application <small>component</small></h4>
+                <p>The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.<br /> Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'.<br />
+                The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information.<br />
+                The web application's GitHub repository is: <a href="https://github.com/acdh-oeaw/dig_ed_cat" target="_blank" title="Opens in new tab">https://github.com/acdh-oeaw/dig_ed_cat</a></p>
+        </div>
+
+        <!--Progress-->
+        <div id="section5">
+            <h3>Progress</h3>
+            <p>As of early 2017, the web application is still in its beta phase and despite a few bugs we're making good progress on both data accuracy and front/back-end development.</p>
+        </div>
 
 
-    <h3>Progress</h3>
-    <p>As of early 2017, the web application is still in its beta phase and despite a few bugs we're making good progress on both data accuracy and front/back-end development.</p>
+        <!--Limitations-->
+        <div id="section6">
+            <h3>Limitations</h3>
+            <p>Users might have noticed from the <em>Catalogue</em> that projects from Asian and African countries are underrepresented if not completely absent. The only reason for this large gap in the data is the language barrier. A Japanese project and website can only be correctly catalogued by someone who can read Japanese. Browser plugins to automatically translate webpages exist but we hesitate to use them as any machine-translation errors would go unnoticed and possibly lead to incorrect cataloguing. This is where <strong>user contributions become necessary to help paint a global, rather than a Western-centric, picture of digital edition initiatives</strong>.</p>
+        </div>
 
 
-    <h3>Limitations</h3>
-    <p>Users might have noticed from the <em>Catalogue</em> that projects from Asian and African countries are underrepresented if not completely absent. The only reason for this large gap in the data is the language barrier. A Japanese project and website can only be correctly catalogued by someone who can read Japanese. Browser plugins to automatically translate webpages exist but we hesitate to use them as any machine-translation errors would go unnoticed and possibly lead to incorrect cataloguing. This is where <strong>user contributions become necessary to help paint a global, rather than a Western-centric, picture of digital edition initiatives</strong>.</p>
+        <!--How to contribute-->
+        <div id="section7">
+            <h3>How to contribute to the <em>Catalogue</em></h3>
+            <p>If you wish to contribute a digital edition to the <em>Catalogue</em> or correct an existing entry, you can do so in one of three ways:</p>
+            <ul>
+                <li>If you're familiar with GitHub, you can fork <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">the data repository</a>, edit the <code>.csv</code> file and create a pull request.</li>
+                <li>If you're not familiar with GitHub, you can create <a href="https://github.com/gfranzini/digEds_cat/issues" target="_blank" title="Opens in new tab">a GitHub issue</a> with as much information about the edition as possible (see 'Data fields' <a href="https://github.com/gfranzini/digEds_cat/wiki/Data-description-&-contribution#data-fields-in-the-catalogue" target="_blank" title="Opens in new tab">here</a>). The more information you provide, the sooner the edition will appear in the <em>Catalogue</em>.</li>
+                <li>If you'd rather not use GitHub at all, you can fill-in a Google Form at this address: <a href="https://goo.gl/forms/4Ya3jwRCBi0VSexx2" title="Opens in new tab" target="_blank">https://goo.gl/forms/4Ya3jwRCBi0VSexx2</a>. Your entry will be moderated and promptly added to the <em>Catalogue</em>.</li>
+            </ul>
+        	<p><strong>The project you contribute will be exposed to 317 libraries in Germany thanks to the <em>Catalogue</em>'s integration and syndication in the <a href="http://rzblx10.uni-regensburg.de/dbinfo/detail.php?bib_id=allefreien&colors=&ocolors=&lett=k&tid=0&titel_id=102043" target="_blank" title="Opens in new tab">Datenbank-Infosystem (DBIS)</a>.</strong></p>
+        </div>
 
 
-    <h3>How to contribute to the <em>Catalogue</em></h3>
-    <p>If you wish to contribute a digital edition to the <em>Catalogue</em> or correct an existing entry, you can do so in one of three ways:</p>
-    <ul>
-        <li>If you're familiar with GitHub, you can fork <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">the data repository</a>, edit the <code>.csv</code> file and create a pull request.</li>
-        <li>If you're not familiar with GitHub, you can create <a href="https://github.com/gfranzini/digEds_cat/issues" target="_blank" title="Opens in new tab">a GitHub issue</a> with as much information about the edition as possible (see 'Data fields' <a href="https://github.com/gfranzini/digEds_cat/wiki/Data-description-&-contribution#data-fields-in-the-catalogue" target="_blank" title="Opens in new tab">here</a>). The more information you provide, the sooner the edition will appear in the <em>Catalogue</em>.</li>
-        <li>If you'd rather not use GitHub at all, you can fill-in a Google Form at this address: <a href="https://goo.gl/forms/4Ya3jwRCBi0VSexx2" title="Opens in new tab" target="_blank">https://goo.gl/forms/4Ya3jwRCBi0VSexx2</a>. Your entry will be moderated and promptly added to the <em>Catalogue</em>.</li>
-    </ul>
-	<p><strong>The project you contribute will be exposed to 317 libraries in Germany thanks to the <em>Catalogue</em>'s integration and syndication in the <a href="http://rzblx10.uni-regensburg.de/dbinfo/detail.php?bib_id=allefreien&colors=&ocolors=&lett=k&tid=0&titel_id=102043" target="_blank" title="Opens in new tab">Datenbank-Infosystem (DBIS)</a>.</strong></p>
+        <!--How to cite-->
+        <div id="section8">
+            <h3>How to cite this project</h3>
+            <p>There are two citations for this project. If you wish to cite <em>the data only</em>, please adapt the following according to your preferred referencing style:<br />
+            <blockquote>Franzini, G. (2012-) <em>Catalogue of Digital Editions</em>. Web. &lt;https://github.com/gfranzini/digEds_cat&gt;</blockquote>
+            </p>
+
+            <p>If you wish to cite <em>the web application as a whole</em>, please adapt the following:<br />
+            <blockquote>Franzini, G., Andorfer, P., Zaytseva, K. (2016-) <em>Catalogue of Digital Editions: The Web Application</em>. Web. &lt;https://dig-ed-cat.acdh.oeaw.ac.at/&gt;</blockquote>
+            </p>
+        </div>
 
 
-    <h3>How to cite this project</h3>
-    <p>There are two citations for this project. If you wish to cite <em>the data only</em>, please adapt the following according to your preferred referencing style:<br />
-    <blockquote>Franzini, G. (2012-) <em>Catalogue of Digital Editions</em>. Web. &lt;https://github.com/gfranzini/digEds_cat&gt;</blockquote>
-    </p>
-
-    <p>If you wish to cite <em>the web application as a whole</em>, please adapt the following:<br />
-    <blockquote>Franzini, G., Andorfer, P., Zaytseva, K. (2016-) <em>Catalogue of Digital Editions: The Web Application</em>. Web. &lt;https://dig-ed-cat.acdh.oeaw.ac.at/&gt;</blockquote>
-    </p>
-
-    <h3>Web analytics</h3>
-    <p>We monitor visits to the <em>Catalogue</em> with the <a href="https://piwik.org/" target="_blank" title="Opens in new tab">Piwik Open Analytics</a> platform. This allows us to improve the resource and, to some extent, understand user behaviour on the site.</p>
-
-    <h3>Copyright</h3>
-    <p>As per the <a href="{% url 'webpage:staticpage' template='imprint' %}">Imprint</a> page of this website, the data and code constituting this project are published under a Creative Commons Attribution Share-Alike International 4.0 License (CC-BY-SA 4.0). This means that you are free to reuse all contents as long as you make your copies or adaptations available under the same or a similar license.</p>
+        <!--Web analytics-->
+        <div id="section9">
+            <h3>Web analytics</h3>
+            <p>We monitor visits to the <em>Catalogue</em> with the <a href="https://piwik.org/" target="_blank" title="Opens in new tab">Piwik Open Analytics</a> platform. This allows us to improve the resource and, to some extent, understand user behaviour on the site.</p>
+        </div>
 
 
-    <h3>Relevant reading</h3>
-
-    <ul>
-        <li>Franzini, G., Mahony, S., and Terras, M. (2016), 'A Catalogue of Digital Editions', In: Pierazzo, E. and Driscoll, M. J. (eds) <em><a href="http://www.openbookpublishers.com/htmlreader/978-1-78374-238-7/ch9.xhtml#_idTextAnchor023" target="_blank" title="Opens in new tab">Digital Scholarly Editing: Theories and Practices</a></em>. Cambridge: Open Book Publishers. [<strong>describes an early version</strong> of the <em>Catalogue of Digital Editions</em>]</li>
-        <li>Krippendorf, K. (2004) <em>Content Analysis: An Introduction to Its Methodology</em>. 2nd edn. Thousand Oaks, CA: Sage.</li>
-    </ul>
-
-
-    <h3>Relevant resources</h3>
-
-    <ul>
-	    <li>Other catalogues
-	    	<ul>
-	    		<li>The first ever catalogue of digital editions was published and is still maintained by Patrick Sahle under the name <em><a href="http://www.digitale-edition.de/" target="_blank" title="Opens in new tab">Catalog of Scholarly Digital Editions</a></em>. Sahle's catalogue collects digital editions with a strong critical ("scholarly") component and from which <em>our Catalogue</em> borrows key data definitions.</li>
-	    		<li>In December 2016, a catalogue of Spanish digital editions and texts also appeared on the web and can be accessed <a href="http://www.morethanbooks.eu/atlas-de-datos-digital-editions-spanish/" target="_blank" title="Opens in new tab">here</a>.</li>
-	    	</ul>
-	    </li>
+        <!--Copyright-->
+        <div id="section10">
+            <h3>Copyright</h3>
+            <p>As per the <a href="{% url 'webpage:staticpage' template='imprint' %}">Imprint</a> page of this website, the data and code constituting this project are published under a Creative Commons Attribution Share-Alike International 4.0 License (CC-BY-SA 4.0). This means that you are free to reuse all contents as long as you make your copies or adaptations available under the same or a similar license.</p>
+        </div>
 
 
-	    <li>As the name suggests, the <a href="http://ride.i-d-e.de/" target="_blank" title="Opens in new tab"><em>RIDE review journal for digital editions and resources</em></a> publishes peer-reviewed reviews of digital editions in multiple languages.</li>
+        <!--Relevant reading-->
+        <div id="section11">
+            <h3>Relevant reading</h3>
+            <ul>
+                <li>Franzini, G., Mahony, S., and Terras, M. (2016), 'A Catalogue of Digital Editions', In: Pierazzo, E. and Driscoll, M. J. (eds) <em><a href="http://www.openbookpublishers.com/htmlreader/978-1-78374-238-7/ch9.xhtml#_idTextAnchor023" target="_blank" title="Opens in new tab">Digital Scholarly Editing: Theories and Practices</a></em>. Cambridge: Open Book Publishers. [<strong>describes an early version</strong> of the <em>Catalogue of Digital Editions</em>]</li>
+                <li>Krippendorf, K. (2004) <em>Content Analysis: An Introduction to Its Methodology</em>. 2nd edn. Thousand Oaks, CA: Sage.</li>
+            </ul>
+        </div>
 
-	    <li>The multilingual <a href="http://uahost.uantwerpen.be/lse/" target="_blank" title="Opens in new tab">Lexicon of Digital Scholarly Editing</a> brings together field-specific definitions, concepts and terminology found in existing literature.</li>
 
-	    <li>The Austrian <a href="http://www.digitale-edition.at/" target="_blank" title="Opens in new tab">KONDE - Digital Edition Competence Network</a>.</li>
+        <!--Relevant resources-->
+        <div id="section12">
+            <h3>Relevant resources</h3>
+            <ul>
+        	    <li>Other catalogues
+        	    	<ul>
+        	    		<li>The first ever catalogue of digital editions was published and is still maintained by Patrick Sahle under the name <em><a href="http://www.digitale-edition.de/" target="_blank" title="Opens in new tab">Catalog of Scholarly Digital Editions</a></em>. Sahle's catalogue collects digital editions with a strong critical ("scholarly") component and from which <em>our Catalogue</em> borrows key data definitions.</li>
+        	    		<li>In December 2016, a catalogue of Spanish digital editions and texts also appeared on the web and can be accessed <a href="http://www.morethanbooks.eu/atlas-de-datos-digital-editions-spanish/" target="_blank" title="Opens in new tab">here</a>.</li>
+        	    	</ul>
+        	    </li>
 
-        <li><a href="http://correspsearch.net/index.xql" target="_blank" title="Opens in new tab">correspSearch</a>: Search Scholarly Editions of Letters.</li>
 
-    </ul>
+        	    <li>As the name suggests, the <a href="http://ride.i-d-e.de/" target="_blank" title="Opens in new tab"><em>RIDE review journal for digital editions and resources</em></a> publishes peer-reviewed reviews of digital editions in multiple languages.</li>
+
+        	    <li>The multilingual <a href="http://uahost.uantwerpen.be/lse/" target="_blank" title="Opens in new tab">Lexicon of Digital Scholarly Editing</a> brings together field-specific definitions, concepts and terminology found in existing literature.</li>
+
+        	    <li>The Austrian <a href="http://www.digitale-edition.at/" target="_blank" title="Opens in new tab">KONDE - Digital Edition Competence Network</a>.</li>
+
+                <li><a href="http://correspsearch.net/index.xql" target="_blank" title="Opens in new tab">correspSearch</a>: Search Scholarly Editions of Letters.</li>
+            </ul>
+        </div>
 
 
-    <h3>Acknowledgments</h3>
-    <p>This project wouldn't have unfolded were it not for the continuous support and encouragement of <a href="https://www.ucl.ac.uk/dis/people/melissaterras" target="_blank" title="Opens in new tab">Professor Melissa Terras</a> and <a href="http://www.ucl.ac.uk/dis/people/simonmahony" target="_blank" title="Opens in new tab">Simon Mahony</a>.</p>
+        <!--Acknowledgments-->
+        <div id="section13">
+            <h3>Acknowledgments</h3>
+            <p>This project wouldn't have unfolded were it not for the continuous support and encouragement of <a href="https://www.ucl.ac.uk/dis/people/melissaterras" target="_blank" title="Opens in new tab">Professor Melissa Terras</a> and <a href="http://www.ucl.ac.uk/dis/people/simonmahony" target="_blank" title="Opens in new tab">Simon Mahony</a>.</p>
+        </div>
 
 
     <hr />
 
-    <h2>Feedback</h2>
-    <p>For general comments and suggestions, please email Greta Franzini at <a href="mailto:g.franzini.11@ucl.ac.uk">g.franzini.11@ucl.ac.uk</a><br />
-    For specific requests, bug reports or corrections, please create GitHub issues in the relevant repository.</p>
-    <p>We'd love to hear from you!</p>
 
+    <h2>Navigating the Web Application</h2>
+
+        <div id="section14">
+            <h3>Browsing the data</h3>
+            <p>This web application provides two ways of browsing the digital editions in the <em>Catalogue</em>, either as a table or as charts. 
+
+                <h4>Table view</h4>
+
+                    <p>The menu tab <em>Browse the Catalogue</em> lists digital editions in table form and allows users to search for a particular project using one or multiple filters. A bottom pagination indicates the number of data pages present in the <em>Catalogue</em> at any one time (25 digital editions per page), giving users the option to jump between pages (Figure 1). Clicking on a digital edition opens up its corresponding data sheet (Figure 2). Users can also move between projects from the individual data sheets by using the blue back/forward arrows at the top of the screen (Figure 3). A black, round information icon below the project title provides a collapsable column with definitions of each catalogued feature (Figure 4). A red banner is used to inform users of expired project URLs (Figure 5); the banner disappears upon the addition of a working or updated URL.</p> </p>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/pagination.png">
+                                <img src="../images/pagination.png" alt="Pagination" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 1. Pagination at the bottom of the main <em>Browse the Catalogue</em> view allows users to jump between data pages in the <em>Catalogue</em>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/data-sheet.png">
+                                <img src="../images/data-sheet.png" alt="Data sheet" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 2. Example data sheet of a digital edition.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/navi-arrows.png">
+                                <img src="../images/navi-arrows.png" alt="Arrows" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 3. Blue back/forward arrows placed at each side of the project title allow users to move between digital editions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/info.png">
+                                <img src="../images/info.png" alt="Information button" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 4. The black circular information icon below the project title reveals a collapsable column (second column in this image) with definitions of each catalogued feature.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/red-banner.png">
+                                <img src="../images/red-banner.png" alt="Red banner" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 5. A red banner notifies the user of an expire project URL.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <!---->
+                        </div>
+                        <div class="col-md-3">
+                            <!---->
+                        </div>
+                        <div class="col-md-3">
+                            <!---->
+                        </div>
+
+
+
+                <h4>Chart view</h4>
+
+                    <p>The menu tab <em>Analyze the data</em> provides bar and pie charts of a number of catalogued features, as well as a map of all involved institutions. For pie and bar charts, a drop-down menu lists possible visualisations (Figure 5 and Figure 6). Hovering over a particular pie slice or bar reveals the exact project count. All charts can be downloaded as PNG, JPEG, PDF and SVG files.<br />
+                    The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 7). The user can either click on a location marker or search for an institution using the search button placed above the map. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.<br />
+                    Finally, we also provide wordclouds for those interested in identifying particular words.</p>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/pie-chart.png">
+                                <img src="../images/pie-chart.png" alt="Pie charts" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 5. A pie chart illustrating projects that make use of a Creative Commons License.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/bar-chart.png">
+                                <img src="../images/bar-chart.png" alt="Bar charts" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 6. A bar chart illustrating projects by country.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="../images/map.png">
+                                <img src="../images/map.png" alt="Map" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 7. A map of the world locates institutions involved in the creation of the digital editions present in the <em>Catalogue</em>. Click on a marker reveals a pop-up with the institution name and its projects.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <!---->
+                        </div>
+        </div>
+
+        <div id="section15">
+            <h3>Other menu pages</h3>
+            <p>The <em>Get the Data</em> menu tab provides the <em>Catalogue</em>'s API. The <em>Login</em> menu item is for the <em>Catalogue's</em> team use only. All other pages should be self-explanatory.</p>
+        </div>
+
+
+    <hr />
+
+
+    <h2>Feedback</h2>
+        <p>For general comments and suggestions, please email Greta Franzini at <a href="mailto:g.franzini.11@ucl.ac.uk">g.franzini.11@ucl.ac.uk</a><br />
+        For specific requests, bug reports or corrections, please create GitHub issues in the relevant repository.</p>
+        <p>We'd love to hear from you!</p>
 
 </div>
 {% endblock %}

@@ -283,6 +283,9 @@ class Edition(models.Model):
         blank=True, null=True, help_text="Is there a RIDE review",
         max_length=500
     )
+    budget = models.CharField(
+        blank=True, max_length=250, help_text="SOON TO COME"
+    )
 
     def __str__(self):
         return "{}".format(self.name)

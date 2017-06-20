@@ -200,6 +200,7 @@ def sync_status(request):
             temp_ed.open_source = row[30]
             temp_ed.key_or_ocr = str(row[37])
             temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]
+            temp_ed.budget = str(row[44])
             temp_ed.infrastructure = str(row[45])
             try:
                 alive = int(row[46])

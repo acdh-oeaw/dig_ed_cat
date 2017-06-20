@@ -284,7 +284,7 @@ class Edition(models.Model):
         max_length=500
     )
     budget = models.CharField(
-        blank=True, max_length=250, help_text="SOON TO COME"
+        blank=True, max_length=250, help_text="How much the project cost. All currencies are supported and the numeric value should use commas as thousands separators (e.g. £10,000). The value not provided is used to indicate that the project website does not make this information known; 0 is used to indicate that the project specifies that it does not rely on funding."
     )
 
     def __str__(self):

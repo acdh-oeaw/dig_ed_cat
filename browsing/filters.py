@@ -95,7 +95,7 @@ class EditionListFilter(django_filters.FilterSet):
         widget=autocomplete.Select2Multiple(
             url='editions-ac:edition-ac',
             attrs={
-                'data-placeholder': 'e.g. Edition Humboldt Digital',
+                'data-placeholder': 'Humbo...',
                 'data-minimum-input-length': 3,
             },
         ),
@@ -109,7 +109,7 @@ class EditionListFilter(django_filters.FilterSet):
         widget=autocomplete.Select2Multiple(
             url='editions-ac:institution-ac',
             attrs={
-                'data-placeholder': 'e.g. Università degli Studi di Bologna',
+                'data-placeholder': 'Bologna...',
                 'data-minimum-input-length': 3,
             },
         ),

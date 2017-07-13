@@ -264,7 +264,7 @@ class Edition(models.Model):
         ("OCR", "OCR"),
     )
     key_or_ocr = models.CharField(
-        blank=True, max_length=12,
+        blank=True, max_length=40,
         help_text="The source text was digitised with Optical Character Recognition (OCR) software or manually keyed in.",
         choices=CHOICES_OCR,
         verbose_name="OCR or keyed?"

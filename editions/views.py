@@ -119,7 +119,7 @@ def sync_status(request):
         for cell in row:
             cell = re.sub("not provided", "no information provided", cell)
             if str(cell) == "":
-                cell = re.sub("", "no information provided", cell)
+                cell = re.sub("", "not catalogued yet", cell)
                 cleaned_row.append(cell)
             else:
                 cleaned_row.append(cell)
@@ -128,6 +128,7 @@ def sync_status(request):
         "1": "yes",
         "0": "no",
         "no information provided": "no information provided",
+        "not catalogued yet": "not catalogued yet",
         "trial": "no",
         "forthcoming": "no",
         "download book": "no",

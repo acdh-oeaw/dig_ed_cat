@@ -1,4 +1,8 @@
+import csv
+import time
+import datetime
 from django.shortcuts import render
+from django.http import HttpResponse
 from django_tables2 import SingleTableView, RequestConfig
 from editions.models import *
 from places.models import *
@@ -35,6 +39,30 @@ class GenericListView(SingleTableView):
         return context
 
 
+class EditionDownloadView(GenericListView):
+    model = Edition
+    table_class = EditionTable
+    template_name = 'browsing/edition_list_generic.html'
+    filter_class = EditionListFilter
+    formhelper_class = GenericFilterFormHelper
+
+    def render_to_response(self, context):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        response = HttpResponse(content_type='text/csv')
+        filename = "editions_{}".format(timestamp)
+        response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
+        writer = csv.writer(response, delimiter=",")
+        hansi = Edition._meta.get_fields()
+        writer.writerow([x.name for x in hansi])
+        franz = []
+        for x in self.get_queryset().values():
+            values = []
+            for y in x.items():
+                values.append(y[1])
+            writer.writerow(values)
+        return response
+
+
 class EditionListView(GenericListView):
     model = Edition
     table_class = EditionTable
@@ -53,12 +81,6 @@ class MapView(EditionListView):
     template_name = 'browsing/mapview.html'
     filter_class = EditionListFilter
     formhelper_class = MapFilterFormHelper
-
-    def get_queryset(self, **kwargs):
-        qs = Edition.objects.all()
-        self.filter = self.filter_class(self.request.GET, queryset=qs)
-        self.filter.form.helper = self.formhelper_class()
-        return self.filter.qs
 
     def get_context_data(self, **kwargs):
         context = super(EditionListView, self).get_context_data()

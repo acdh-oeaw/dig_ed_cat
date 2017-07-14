@@ -19,7 +19,7 @@ from .forms import EditionForm
 def institution_csv(request):
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
     response = HttpResponse(content_type='text/csv')
-    filename = "institutions_{}.csv".format(timestamp)
+    filename = "institutions_{}".format(timestamp)
     response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
     writer = csv.writer(response, delimiter=",")
     writer.writerow([

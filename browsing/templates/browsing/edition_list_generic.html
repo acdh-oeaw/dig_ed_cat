@@ -1,6 +1,6 @@
 {% extends "browsing/generic_list.html" %}
 {% block Titel %}Browse Editions{% endblock %}
-{% block list_title %}Browse Editions{% endblock %}
+{% block list_title %}Browse Editions |  <a class ="btn btn-default"  title="This is a generic/lazy implementation. Therefore not all values of an Edition are fetched." href="{% url 'browsing:dl' %}" style="margin-bottom:15px;">download results as csv</a>{% endblock %}
 
 {% block reset_button %}
 <a class ="btn btn-default"  id="01" style="white-space: normal;">Show/Hide Advanced search options</a></br>

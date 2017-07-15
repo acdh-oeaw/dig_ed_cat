@@ -11,6 +11,20 @@ from .forms import GenericFilterFormHelper, MapFilterFormHelper
 from .tables import EditionTable
 
 
+def serialize(modelclass):
+    fields = modelclass._meta.get_fields()
+    serialized = []
+    for x in fields:
+        if x.get_internal_type() == "ManyToManyField":
+            attrs = getattr(modelclass, x.name)
+            values = "|".join([y[1] for y in attrs.values_list()])
+            key_value = values
+        else:
+            key_value = getattr(modelclass, x.name)
+        serialized.append(key_value)
+    return serialized
+
+
 class GenericListView(SingleTableView):
     filter_class = None
     formhelper_class = None
@@ -52,14 +66,10 @@ class EditionDownloadView(GenericListView):
         filename = "editions_{}".format(timestamp)
         response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
         writer = csv.writer(response, delimiter=",")
-        hansi = Edition._meta.get_fields()
-        writer.writerow([x.name for x in hansi])
-        franz = []
-        for x in self.get_queryset().values():
-            values = []
-            for y in x.items():
-                values.append(y[1])
-            writer.writerow(values)
+        writer.writerow([x.name for x in Edition._meta.get_fields()])
+        for x in self.get_queryset():
+            row = serialize(x)
+            writer.writerow(row)
         return response
 
 

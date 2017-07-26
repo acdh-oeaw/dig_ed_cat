@@ -49,6 +49,7 @@ def xmltei_json(request):
         "N/A": "N/A",
         "no information provided": "no information provided",
         "not provided": "not provided",
+        "not catalogued yet": "not catalogued yet",
         "0": "XML not used",
         "0.5": "XML but not TEI",
         "1": "XML-TEI is used"
@@ -130,6 +131,7 @@ def xmldownload_json(request):
     CHOICES_DOWNLOAD = (
         ("", "----"),
         ("no information provided", "no information provided"),
+        ("not catalogued yet", "not catalogued yet"),
         ("0", "no"),
         ("0.5", "partially"),
         ("1", "yes"),

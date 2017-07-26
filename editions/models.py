@@ -28,7 +28,7 @@ class Institution(models.Model):
         max_length=255, blank=True, help_text="The Instituion's name."
     )
     place = models.ForeignKey(
-        Place, blank=True, null=True, help_text="Place which the institution is associated with."
+        Place, blank=True, null=True, help_text="Place with which the institution is associated with."
     )
     gnd_id = models.CharField(
         max_length=255, blank=True, help_text="GND id of Institution."
@@ -78,23 +78,23 @@ class Edition(models.Model):
     )
     legacy_id = models.IntegerField(primary_key=True)
     name = models.CharField(
-        max_length=255, blank=True, help_text="The name of the edition (project).")
+        max_length=255, blank=True, help_text="The name of the project.")
     url = models.CharField(
-        max_length=255, blank=True, help_text="The URL of the edition (project).")
+        max_length=255, blank=True, help_text="The URL of the project.")
     historical_period = models.ManyToManyField(
-        Period, blank=True, help_text="This field broadly categorises an edition by periods"
+        Period, blank=True, help_text="Historical period to which the source text belongs."
     )
     scholarly = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition. (Patrick Sahle)"
+        help_text="An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition (Patrick Sahle)."
     )
     digital = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities). (Patrick Sahle)"
+        help_text="A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities) (Patrick Sahle)."
     )
     edition = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition. (Patrick Sahle)"
+        help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition (Patrick Sahle)."
     )
     language = models.ManyToManyField(
         Language, blank=True, related_name="lang_source",
@@ -187,15 +187,15 @@ class Edition(models.Model):
     )
     images = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell us if the edition comes with images."
+        help_text="The project comes with images."
     )
     zoom_images = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell us if the user can zoom in or out of images within the edition."
+        help_text="The images are zoomable."
     )
     image_manipulation = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 and 0 are used to tell us whether the user can manipulate these images in any way within the edition (brightness, saturation, etc.)."
+        help_text="The images can be manipulated in some way within the edition (brightness, rotation, etc.)."
     )
     text_image = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
@@ -204,29 +204,29 @@ class Edition(models.Model):
     )
     source_translation = models.CharField(
         blank=True, max_length=3,
-        help_text="The project provides a translation of the source text. If so, the corresponding three-letter ISO code should be used. If not, type 0.",
+        help_text="The project provides a translation of the source text.",
         verbose_name="Source text translation"
     )
     website_language = models.ManyToManyField(
         Language, blank=True, max_length=3, related_name="lang_website",
-        help_text="The language the project website is written in. Three-letter ISO Codes should be used."
+        help_text="The language of the website/interface."
     )
     glossary = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell us if the edition provides a glossary."
+        help_text="The project provides a glossary."
     )
     indices = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell us if the edition provides indices."
+        help_text="The project provides indices."
     )
     search = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell us if the edition provides string matching search possibilities.",
+        help_text="The project provides string matching search possibilities.",
         verbose_name="String matching search"
     )
     advanced_search = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell us if the edition provides an advanced search functionality."
+        help_text="The project provides an advanced search functionality."
     )
     CHOICES_CC_License = (
         ("", "----"),
@@ -237,7 +237,7 @@ class Edition(models.Model):
     )
     cc_license = models.CharField(
         choices=CHOICES_CC_License, blank=True, max_length=40,
-        help_text="This field specifies if the project is protected by a Creative Commons License.",
+        help_text="The project is protected by a Creative Commons License.",
         verbose_name="Creative Commons License"
     )
     CHOICES_OPENSOURCE = (
@@ -252,7 +252,7 @@ class Edition(models.Model):
     open_source = models.CharField(
         blank=True, max_length=255,
         choices=CHOICES_OPENSOURCE,
-        verbose_name="Open Source/Open Access", help_text='add helptext'
+        verbose_name="Open Source/Open Access", help_text='The project adheres to an Open Source/Access policy.'
     )
     infrastructure = models.CharField(
         blank=True, max_length=255,
@@ -271,20 +271,20 @@ class Edition(models.Model):
     )
     print_friendly = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to tell if the project provides a print-friendly view of the text (e.g. PDF)."
+        help_text="The project provides a print-friendly view of the text (e.g. PDF)."
     )
     api = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The values 1 or 0 are used to specify if the project comes with an API (Application Programming Interface)."
+        help_text="The project comes with an API (Application Programming Interface)."
     )
     current_availability = models.NullBooleanField(
         blank=True, null=True, help_text="1 means STILL AVAILABLE and 0 means DEAD.")
     ride_review = models.CharField(
-        blank=True, null=True, help_text="Is there a RIDE review",
+        blank=True, null=True, help_text="The project has been reviewed in the RIDE Journal.",
         max_length=500
     )
     budget = models.CharField(
-        blank=True, max_length=250, help_text="How much the project cost. All currencies are supported and the numeric value should use commas as thousands separators (e.g. £10,000). The value not provided is used to indicate that the project website does not make this information known; 0 is used to indicate that the project specifies that it does not rely on funding."
+        blank=True, max_length=250, help_text="How much the project cost."
     )
 
     def __str__(self):

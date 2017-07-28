@@ -217,6 +217,12 @@ def sync_status(request):
             # temp_ed.ride_review = str(row[47])
             temp_ed.historical_period.add(temp_per)
             temp_ed.api = BOOLEAN_CHOICES[str(row[32])]
+            for inst1 in row[41].split(";"):
+                try:
+                    inst_temp1, _ = Institution.objects.get_or_create(name=inst1.strip())
+                    temp_ed.holding_repo.add(inst_temp1)
+                except:
+                    pass
             temp_ed.save()
             counter += 1
     context["nr_editions_now"] = len(Edition.objects.all())

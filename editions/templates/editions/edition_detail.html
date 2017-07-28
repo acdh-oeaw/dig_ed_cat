@@ -123,6 +123,11 @@
                         <td class="readmore"><small>Name(s) of institution(s) involved in the project.</small></td>
                         <td>{% for x in object.institution.all %} {{ x.name }}<br/> {% endfor %}</td>
                     </tr>
+                    <tr>
+                       <th>Repository of Source Material(s)</th>
+                       <td class="readmore"><small>The institution(s) that house the source text(s).</small></td>
+                       <td>{% for x in object.holding_repo.all %} {{ x.name }}<br/> {% endfor %}</td>
+                   </tr>
                      <tr>
                         <th>Audience</th>
                         <td class="readmore"><small>The project's target audience.</small></td>

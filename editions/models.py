@@ -286,6 +286,10 @@ class Edition(models.Model):
     budget = models.CharField(
         blank=True, max_length=250, help_text="How much the project cost."
     )
+    holding_repo = models.ManyToManyField(
+        Institution, blank=True, verbose_name="Repository of Source Material(s)",
+        help_text="The institution(s) that house the source text(s).", related_name="holding_repo"
+    )
 
     def __str__(self):
         return "{}".format(self.name)

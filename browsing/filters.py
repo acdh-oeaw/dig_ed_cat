@@ -118,6 +118,19 @@ class EditionListFilter(django_filters.FilterSet):
         label='Institution',
         help_text=Edition._meta.get_field('institution').help_text
     )
+    holding_repo__name = django_filters.ModelMultipleChoiceFilter(
+        widget=autocomplete.Select2Multiple(
+            url='editions-ac:institution-ac',
+            attrs={
+                'data-placeholder': 'Variou...',
+                'data-minimum-input-length': 3,
+            },
+        ),
+        queryset=Institution.objects.all(),
+        lookup_expr='icontains',
+        label='Repository of Source Material(s)',
+        help_text=Edition._meta.get_field('holding_repo').help_text
+    )
     historical_period = django_filters.ModelMultipleChoiceFilter(
         queryset=Period.objects.all(), label='Period',
         help_text=Edition._meta.get_field('historical_period').help_text)
@@ -224,4 +237,4 @@ class EditionListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Edition
-        fields = ['name', 'institution__name', 'manager__name']
+        fields = ['name', 'institution__name', 'holding_repo__name', 'manager__name']

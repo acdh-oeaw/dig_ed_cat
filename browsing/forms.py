@@ -17,6 +17,7 @@ class MapFilterFormHelper(FormHelper):
                 'Basic search options',
                 'name',
                 'institution__name',
+                'holding_repo__name',
                 css_id="basic_search_fields"),
             Fieldset(
                 'Advanced search options',
@@ -70,6 +71,7 @@ class GenericFilterFormHelper(FormHelper):
                 'Basic search options',
                 'name',
                 'institution__name',
+                'holding_repo__name',
                 'manager__name',
                 'url',
                 'historical_period',

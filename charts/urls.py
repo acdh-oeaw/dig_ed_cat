@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from . import views
+from . import views, ml_views
 
 urlpatterns = [
     url(r'^barcharts/$', views.barcharts_view, name='bar_charts'),
@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^indicesjson/$', views.indices_json, name='indices_json'),
     url(r'^editionspercountryjson/$', views.editions_per_country_json,
         name='editions_per_country_json'),
+    url(r'^kmeansjson/$', ml_views.kmeans_json, name='kmeans_json'),
 ]

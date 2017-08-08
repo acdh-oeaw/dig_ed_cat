@@ -137,6 +137,7 @@ def sync_status(request):
         "0,5": "partially",
         "PDF will be available": "no"}
     counter = 1
+    Edition.objects.all().delete()
     for row in cleaned_data[1:-1]:
         if row[3] != "":
             temp_per, _ = Period.objects.get_or_create(name=row[0])

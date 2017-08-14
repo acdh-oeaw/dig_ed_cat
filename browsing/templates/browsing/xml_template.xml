@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+{% for object in editions %}
+<rdf:Description rdf:about="{{ object.url }}">
+<dc:title id="{{ object.pk }}">
+    {{ object.name }}
+</dc:title>
+{% for x in object.language.all %}
+<dc:language>
+    {{ x.iso_code }}
+</dc:language>
+{% endfor %} 
+{% for x in object.historical_period.all %}
+<dc:coverage>
+    {{ x.name }}
+</dc:coverage>
+{% endfor %}
+<dc:date>
+    {{ object.begin_date }}
+</dc:date>
+{% for x in object.institution.all %}
+<dc:publisher>
+    {{ x.name }}
+</dc:publisher>
+{% endfor %} 
+{% for x in object.manager.all %}
+<dc:creator>
+    {{ x.name }}
+</dc:creator>
+{% endfor %} 
+{% for x in object.holding_repo.all %}
+<dc:source>
+    {{ x.name }}
+</dc:source>
+{% endfor %}
+<dc:format>
+    {{ object.get_tei_transcription_display }}
+</dc:format>
+<dc:rights>
+    {{ object.get_open_source_display }}
+</dc:rights>
+<dc:identifier>
+    {{ object.legacy_id }}
+</dc:identifier>
+</rdf:Description>
+{% endfor %}
+</rdf:RDF>

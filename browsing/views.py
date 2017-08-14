@@ -9,6 +9,8 @@ from places.models import *
 from .filters import EditionListFilter
 from .forms import GenericFilterFormHelper, MapFilterFormHelper
 from .tables import EditionTable
+from django.template.loader import render_to_string
+from django.shortcuts import render_to_response
 
 
 def serialize(modelclass):
@@ -71,6 +73,12 @@ class EditionDownloadView(GenericListView):
             row = serialize(x)
             writer.writerow(row)
         return response
+
+
+def EditionXMLView(request):
+    response = render_to_response('browsing/xml_template.xml', {'editions': Edition.objects.all(),})
+    response['Content-Type'] = 'application/xml;'
+    return response
 
 
 class EditionListView(GenericListView):

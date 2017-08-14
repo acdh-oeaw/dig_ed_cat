@@ -264,9 +264,11 @@
                     <li>
                          <a href="{% url 'editions:institution_csv' %}">Download Institution and Places (.csv)</a>
                     </li>
-                    <!-- <li>
-                        <a href="{% url 'webpage:user_logout' %}">Logout</a>
-                    </li> -->
+                     {% if user.is_authenticated %}
+                    <li>
+                         <a href="{% url 'browsing:xml' %}">RDF/XML</a>
+                    </li>
+                    {% endif %}
                   </ul>
               </li>
               <li>

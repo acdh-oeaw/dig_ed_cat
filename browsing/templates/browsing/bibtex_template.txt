@@ -1,0 +1,11 @@
+{% for object in editions %}
+@misc{id=https://dig-ed-cat.acdh.oeaw.ac.at/editions/{{ object.pk }},
+	title = { {{ object.name }} },
+	copyright = { {{ object.get_open_source_display }} },
+	url = { {{ object.url }} },
+	abstract = {},
+	language = { {% for x in object.language.all %}{{ x.iso_code }}{% endfor %} },
+	year = { {% if object.begin_date is not None %} {{ object.begin_date }} {% endif %} {% if object.begin_date is not None and object.end_date is not None %} - {% endif %} {% if object.end_date is not None %} {{ object.end_date }} {% endif %} },
+	keywords = {digital edition}
+}
+{% endfor %}

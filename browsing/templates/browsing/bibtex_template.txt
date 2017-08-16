@@ -1,11 +1,22 @@
 {% for object in editions %}
 @misc{id=https://dig-ed-cat.acdh.oeaw.ac.at/editions/{{ object.pk }},
 	title = { {{ object.name }} },
-	copyright = { {{ object.get_open_source_display }} },
 	url = { {{ object.url }} },
-	abstract = {},
-	language = { {% for x in object.language.all %}{{ x.iso_code }}{% endfor %} },
-	year = { {% if object.begin_date is not None %} {{ object.begin_date }} {% endif %} {% if object.begin_date is not None and object.end_date is not None %} - {% endif %} {% if object.end_date is not None %} {{ object.end_date }} {% endif %} },
-	keywords = {digital edition}
+	{% spaceless %}
+	{% if object.manager %}{% for x in object.manager.all %}
+	author = { {{x.name}} },{% endfor %}{% endif %}
+	{% endspaceless %}
+	{% spaceless %}
+	{% if object.institution %}publisher = { {% for x in object.institution.all %}{{x.name}}{%if not forloop.last%}, {%endif%}{% endfor %} },{% endif %}
+	{% endspaceless %}
+	{% spaceless %}
+	copyright = { {{ object.get_open_source_display }} },
+	{% if object.language %}language = { {% for x in object.language.all %}{{ x.iso_code }}{% endfor %} },{% endif %}
+	{% if object.philological_statement %}note = { {{object.get_philological_statement_display }} },{% endif %}
+	{% endspaceless %}
+	{% spaceless %}
+	{% if object.begin_date or object.end_date %}year = { {% if object.begin_date is not None %}{{ object.begin_date|date:"Y" }}{% endif %}{% if object.begin_date is not None and object.end_date is not None %} - {% endif %}{% if object.end_date is not None %}{{ object.end_date|date:"Y" }}{% endif %} },{% endif %}
+	keywords = { digital edition }
+	{% endspaceless %}
 }
 {% endfor %}

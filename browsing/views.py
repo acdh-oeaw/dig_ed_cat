@@ -81,6 +81,12 @@ def EditionXMLView(request):
     return response
 
 
+def EditionBibtextView(request):
+    response = render_to_response('browsing/bibtex_template.txt', {'editions': Edition.objects.all(),})
+    response['Content-Type'] = 'text/plain;'
+    return response
+
+
 class EditionListView(GenericListView):
     model = Edition
     table_class = EditionTable

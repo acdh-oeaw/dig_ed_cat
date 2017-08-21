@@ -42,7 +42,7 @@
     {{ object.get_open_source_display }}
 </dc:rights>
 <dc:identifier>
-    {{ object.legacy_id }}
+	https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/{{object.legacy_id}}
 </dc:identifier>
 </rdf:Description>
 {% endfor %}

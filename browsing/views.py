@@ -11,6 +11,10 @@ from .forms import GenericFilterFormHelper, MapFilterFormHelper
 from .tables import EditionTable
 from django.template.loader import render_to_string
 from django.shortcuts import render_to_response
+import rdflib
+from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef, RDFS, ConjunctiveGraph
+from rdflib.namespace import DC, FOAF, RDFS
+from rdflib.namespace import SKOS
 
 
 def serialize(modelclass):
@@ -77,14 +81,78 @@ class EditionDownloadView(GenericListView):
 
 def EditionXMLView(request):
     response = render_to_response('browsing/xml_template.xml', {'editions': Edition.objects.all(),})
-    response['Content-Type'] = 'application/xml;'
+    response['Content-Type'] = 'application/xml; charset=utf-8'
     return response
 
 
 def EditionBibtextView(request):
     response = render_to_response('browsing/bibtex_template.txt', {'editions': Edition.objects.all(),})
-    response['Content-Type'] = 'text/plain;'
+    response['Content-Type'] = 'text/plain; charset=utf-8'
     return response
+
+
+class TestRDFLibView(GenericListView):
+    model = Edition
+    table_class = EditionTable
+    template_name = 'browsing/rdflib_template.txt'
+    filter_class = EditionListFilter
+    formhelper_class = GenericFilterFormHelper
+
+    def render_to_response(self, context):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        response = HttpResponse(content_type='application/xml; charset=utf-8')
+        filename = "editions_{}".format(timestamp)
+        response['Content-Disposition'] = 'attachment; filename="{}.rdf"'.format(filename)
+        g = rdflib.Graph()
+        DC = Namespace("http://purl.org/dc/elements/1.1/")
+        g.bind('dc', DC)
+        for obj in Edition.objects.all()[:30]:
+            edition = URIRef(obj.url)
+            title = Literal(obj.name)
+            g.add((RDF.Description, RDF.about, edition))
+            g.add((edition, DC.title, title))
+            for x in obj.language.all():
+                language = Literal(x.iso_code)
+                g.add((edition, DC.language, language))
+            for x in obj.historical_period.all():
+                historical_period = Literal(x.name)
+                g.add((edition, DC.coverage, historical_period))
+            if obj.begin_date and obj.end_date:
+                date = Literal(str(obj.begin_date.strftime("%Y"))+' - '+str(obj.end_date.strftime("%Y")))
+                g.add((edition, DC.date, date))
+            elif obj.begin_date:
+                date = Literal(str(obj.begin_date.strftime("%Y")))
+                g.add((edition, DC.date, date))
+            elif obj.end_date:
+                date = Literal(str(obj.end_date.strftime("%Y")))
+                g.add((edition, DC.date, date))
+            else:
+                pass
+            for x in obj.institution.all():
+                publisher = Literal(x.name)
+                g.add((edition, DC.publisher, publisher))
+            for x in obj.manager.all():
+                creator = Literal(x.name)
+                g.add((edition, DC.creator, creator))
+            for x in obj.holding_repo.all():
+                source = Literal(x.name)
+                g.add((edition, DC.source, source))
+            if obj.tei_transcription == "0.5":
+                dcformat = Literal("text/xml")
+                g.add((edition, DC.type, dcformat))
+            elif obj.tei_transcription == "1":
+                dcformat = Literal("application/tei+xml")
+                g.add((edition, DC.type, dcformat))
+            else:
+                pass
+            rights = Literal(obj.get_open_source_display())
+            g.add((edition, DC.rights, rights))
+            identifier = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
+            g.add((edition, DC.identifier, identifier))
+           
+        
+        result = g.serialize(destination=response, format='pretty-xml')
+        return response
 
 
 class EditionListView(GenericListView):

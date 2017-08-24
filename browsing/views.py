@@ -106,10 +106,10 @@ class TestRDFLibView(GenericListView):
         g = rdflib.Graph()
         DC = Namespace("http://purl.org/dc/elements/1.1/")
         g.bind('dc', DC)
-        for obj in Edition.objects.all()[:30]:
+        for obj in Edition.objects.all():
             edition = URIRef(obj.url)
             title = Literal(obj.name)
-            g.add((RDF.Description, RDF.about, edition))
+            # g.add((RDF.Description, RDF.about, edition))
             g.add((edition, DC.title, title))
             for x in obj.language.all():
                 language = Literal(x.iso_code)
@@ -139,18 +139,19 @@ class TestRDFLibView(GenericListView):
                 g.add((edition, DC.source, source))
             if obj.tei_transcription == "0.5":
                 dcformat = Literal("text/xml")
-                g.add((edition, DC.type, dcformat))
+                #this is tricky due to that rdflib takes 'format' for built-in python method and throws an error,
+                #found this example http://rdflib.readthedocs.io/en/stable/intro_to_creating_rdf.html#an-example
+                #tried and it worked to fix the error 
+                g.add((edition, DC['format'], dcformat))
             elif obj.tei_transcription == "1":
                 dcformat = Literal("application/tei+xml")
-                g.add((edition, DC.type, dcformat))
+                g.add((edition, DC['format'], dcformat))
             else:
                 pass
             rights = Literal(obj.get_open_source_display())
             g.add((edition, DC.rights, rights))
             identifier = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
             g.add((edition, DC.identifier, identifier))
-           
-        
         result = g.serialize(destination=response, format='pretty-xml')
         return response
 

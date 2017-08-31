@@ -40,6 +40,9 @@ class Institution(models.Model):
     lng = models.DecimalField(
         max_digits=20, decimal_places=12, blank=True, null=True
     )
+    website = models.CharField(
+        max_length=255, blank=True, help_text="Website of the Institution."
+    )
 
     def __str__(self):
         return "{}".format(self.name)

@@ -93,6 +93,10 @@ def sync_status(request):
 
             temp_inst, _ = Institution.objects.get_or_create(name=x[0])
             temp_inst.gnd_id = x[2]
+            temp_inst.place = temp_place
+            temp_inst.save()
+        else:
+            temp_inst, _ = Institution.objects.get_or_create(name=x[0])
             try:
                 temp_inst.lat = x[3]
             except:
@@ -101,11 +105,12 @@ def sync_status(request):
                 temp_inst.lng = x[2]
             except:
                 pass
-            temp_inst.place = temp_place
+        temp_inst.website = x[10]
+        temp_inst.gnd_id = x[2]
+        try:
             temp_inst.save()
-        else:
+        except:
             temp_inst, _ = Institution.objects.get_or_create(name=x[0])
-            temp_inst.save()
 
     url = 'https://raw.githubusercontent.com/gfranzini/digEds_cat/master/digEds_cat.csv'
     with requests.Session() as s:

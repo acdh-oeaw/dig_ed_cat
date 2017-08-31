@@ -277,6 +277,16 @@
                             {% endif %}
                         </td>
                     </tr>
+                    <tr>
+                        <th>Sahle Catalog</th>
+                        <td class="readmore"><small>Indicates whether a digital edition is also present in <a href="http://www.digitale-edition.de/">Patrick Sahle's Catalog of Digital Scholarly Editions</a>. The values 0 [no] or 1 [yes] are used.</small></td>
+                        <td>
+                            {% if object.ride_review %}
+                                <a href="{{ object.ride_review }}"> {{object.ride_review}}</a>
+                            {% else %} no
+                            {% endif %}
+                        </td>
+                    </tr>
                     {% if user.is_authenticated %}
                     <tr>
                         <td><a href="{% url 'editions:edition_edit' pk=object.legacy_id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>

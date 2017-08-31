@@ -215,6 +215,12 @@ def sync_status(request):
                 temp_ed.ride_review = str(row[47])
             except:
                 temp_ed.ride_review = None
+
+            try:
+                alive = int(row[48])
+                temp_ed.sahle_cat = alive
+            except:
+                pass
             # temp_ed.ride_review = str(row[47])
             temp_ed.historical_period.add(temp_per)
             temp_ed.api = BOOLEAN_CHOICES[str(row[32])]

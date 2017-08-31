@@ -81,7 +81,9 @@ class Edition(models.Model):
     )
     legacy_id = models.IntegerField(primary_key=True)
     name = models.CharField(
-        max_length=255, blank=True, help_text="The name of the project.")
+        max_length=255, blank=True, verbose_name="HANSI4EVER",
+        help_text="The name of the project."
+    )
     url = models.CharField(
         max_length=255, blank=True, help_text="The URL of the project.")
     historical_period = models.ManyToManyField(

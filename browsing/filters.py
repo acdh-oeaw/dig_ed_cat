@@ -101,7 +101,7 @@ class EditionListFilter(django_filters.FilterSet):
         ),
         queryset=Edition.objects.all(),
         lookup_expr='icontains',
-        label='Edition name',
+        label=Edition._meta.get_field('name').verbose_name,
         help_text=Edition._meta.get_field('name').help_text)
     url = django_filters.CharFilter(
         lookup_expr='icontains', help_text=Edition._meta.get_field('url').help_text)

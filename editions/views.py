@@ -217,8 +217,8 @@ def sync_status(request):
                 temp_ed.ride_review = None
 
             try:
-                alive = int(row[48])
-                temp_ed.sahle_cat = alive
+                sahlcat = int(row[48])
+                temp_ed.sahle_cat = sahlcat
             except:
                 pass
             # temp_ed.ride_review = str(row[47])

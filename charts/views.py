@@ -1,8 +1,66 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.db.models import Count
 from editions.models import Edition, Period
+from browsing.filters import EditionListFilter
+from browsing.forms import GenericFilterFormHelper
+from browsing.views import GenericListView
+from browsing.views import EditionTable
 from collections import Counter
+
+
+class DynChartView(GenericListView):
+    model = Edition
+    table_class = EditionTable
+    template_name = 'charts/dynchart.html'
+    filter_class = EditionListFilter
+    formhelper_class = GenericFilterFormHelper
+
+    def get_lookup_table(self, **kwargs):
+        values = {}
+        for x in self.filter_class.declared_filters.items():
+            values[x[0]] = {'lookup': x[0], 'label': x[1].label}
+        return values
+
+    def get_context_data(self, **kwargs):
+        context = super(GenericListView, self).get_context_data()
+        context[self.context_filter_name] = self.filter
+        property_name = (self.kwargs['property'])
+        lookup_table = self.get_lookup_table()
+        plotted_item = lookup_table[property_name]
+        payload = {}
+        for x in self.get_queryset().values(property_name).annotate(amount=Count(property_name)):
+            payload[x[property_name]] = x['amount']
+        context['all'] = Edition.objects.count()
+        data = {
+            "items": "{} out of {}".format(self.get_queryset().count(), context['all']),
+            "title": "Editions per {}".format(plotted_item['label']),
+            "subtitle": "Editions per {}".format(property_name.title()),
+            "legendx": property_name.title(),
+            "legendy": "# of Editions",
+            "categories": "sorted(dates)",
+            "measuredObject": "Editions",
+            "ymin": 0,
+            "payload": payload
+        }
+        context['data'] = data
+
+        return context
+
+
+class ChartSelector(TemplateView):
+
+    template_name = 'charts/select_chart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ChartSelector, self).get_context_data()
+        values = {}
+        for x in EditionListFilter.declared_filters.items():
+            values[x[0]] = {'lookup': x[0], 'label': x[1].label, 'help_text': x[1].lookup_expr}
+        context['links'] = values
+        return context
+
 
 DATA = {"status": "ok",
         "query": "api:graph",

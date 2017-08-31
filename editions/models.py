@@ -290,6 +290,10 @@ class Edition(models.Model):
         Institution, blank=True, verbose_name="Repository of Source Material(s)",
         help_text="The institution(s) that house the source text(s).", related_name="holding_repo"
     )
+    sahle_cat = models.NullBooleanField(
+        blank=True, null=True, verbose_name="Sahle Catalog",
+        help_text="Indicates whether a digital edition is also present in Patrick Sahle's Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/). The values 0 [no] or 1 [yes] are used."
+    )
 
     def __str__(self):
         return "{}".format(self.name)

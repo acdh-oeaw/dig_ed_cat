@@ -5,8 +5,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing advanced search functionality",
+        "label": "Advanced search",
         "lookup_expr": "exact"
     },
     "api": {
@@ -15,8 +15,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing APIs (Application Programming Interface)",
+        "label": "API",
         "lookup_expr": "exact"
     },
     "audience": {
@@ -25,8 +25,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "The target audience of the project",
+        "label": "Audience",
         "lookup_expr": "icontains"
     },
     "begin_date": {
@@ -35,8 +35,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Project start years",
+        "label": "Begin year",
         "lookup_expr": "exact"
     },
     "cc_license": {
@@ -45,7 +45,7 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
+        "help_text": "Projects protected by a Creative Commons License",
         "label": "Creative Commons License",
         "lookup_expr": "exact"
     },
@@ -55,8 +55,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "How digital projects are",
+        "label": "Digital",
         "lookup_expr": "exact"
     },
     "download": {
@@ -65,8 +65,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "XML-TEI transcription to download",
+        "help_text": "Projects that provide downloadable XML(-TEI)-encoded text(s)",
+        "label": "Downloadable XML(-TEI)",
         "lookup_expr": "exact"
     },
     "edition": {
@@ -85,8 +85,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Project end years",
+        "label": "End year",
         "lookup_expr": "exact"
     },
     "glossary": {
@@ -95,8 +95,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing glossaries",
+        "label": "Glossary",
         "lookup_expr": "exact"
     },
     "historical_period": {
@@ -105,8 +105,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "Period",
+        "help_text": "Historical periods covered",
+        "label": "Historical period",
         "lookup_expr": "exact"
     },
     "holding_repo__name": {
@@ -115,7 +115,7 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
+        "help_text": "Institution(s) that house the source text(s)",
         "label": "Repository of Source Material(s)",
         "lookup_expr": "icontains"
     },
@@ -125,8 +125,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing the option to manipulate images (e.g. rotation, brightness, etc.",
+        "label": "Image manipulation",
         "lookup_expr": "exact"
     },
     "images": {
@@ -135,8 +135,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "The project comes with (high definition) images",
+        "label": "Images",
         "lookup_expr": "exact"
     },
     "indices": {
@@ -145,8 +145,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing indices",
+        "label": "Indices",
         "lookup_expr": "exact"
     },
     "infrastructure": {

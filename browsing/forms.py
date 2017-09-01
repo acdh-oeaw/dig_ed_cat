@@ -108,6 +108,7 @@ class GenericFilterFormHelper(FormHelper):
                 'print_friendly',
                 'api',
                 'ride_review',
+                'sahle_cat',
                 css_id="advanced_search_fields"
             ),
         )

@@ -70,6 +70,8 @@ def sync_status(request):
         datalist = list(cr)
 
     for x in datalist[1:]:
+        temp_inst, _ = Institution.objects.get_or_create(name=x[0])
+        temp_inst.gnd_id = x[1]
         if x[4] != '':
             temp_partof, _ = Place.objects.get_or_create(name=x[8])
             temp_partof.place_type = "country"
@@ -90,9 +92,6 @@ def sync_status(request):
             except:
                 pass
             temp_place.save()
-
-            temp_inst, _ = Institution.objects.get_or_create(name=x[0])
-            temp_inst.gnd_id = x[1]
             temp_inst.place = temp_place
             temp_inst.save()
         else:

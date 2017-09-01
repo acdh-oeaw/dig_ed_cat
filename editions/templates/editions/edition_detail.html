@@ -299,9 +299,10 @@
                         <th>Sahle Catalog</th>
                         <td class="readmore"><small>Indicates whether a digital edition is also present in <a href="http://www.digitale-edition.de/">Patrick Sahle's Catalog of Digital Scholarly Editions</a>. The values 0 [no] or 1 [yes] are used.</small></td>
                         <td>
-                            {% if object.ride_review %}
-                                <a href="http://www.digitale-edition.de/"> {{object.sahle_cat}}</a>
-                            {% else %} no
+                            {% if object.sahle_cat %}
+                                <a href="http://www.digitale-edition.de/"> {{object.get_sahle_cat_display}}</a>
+                            {% else %} 
+                            {{object.get_sahle_cat_display}}
                             {% endif %}
                         </td>
                     </tr>

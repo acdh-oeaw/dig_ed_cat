@@ -88,6 +88,10 @@ CHOICES_CC_License = (
     ("0.5", " CC License but only for parts of the project."),
     ("1", "Everything under a CC License."),
 )
+YESNO = (
+    (True, "Yes"),
+    (False, "No")
+)
 
 
 class EditionListFilter(django_filters.FilterSet):
@@ -228,6 +232,11 @@ class EditionListFilter(django_filters.FilterSet):
         lookup_expr='isnull', help_text="Is there a RIDE review ?",
         exclude=True, label="RIDE review"
         )
+    sahle_cat = django_filters.ChoiceFilter(
+        null_label='Unknown',
+        help_text=Edition._meta.get_field('sahle_cat').help_text,
+        choices=YESNO
+    )
 
     def country_name_filter(self, queryset, value):
         return queryset.filter(institution__place__part_of__name__icontains=value).distinct()

@@ -44,8 +44,8 @@ class DynChartView(GenericListView):
         context['all'] = self.model.objects.count()
         data = {
             "items": "{} out of {}".format(objects.count(), context['all']),
-            "title": "{}s per {}".format(modelname, plotted_item['label']),
-            "subtitle": "{}s per {}".format(modelname, plotted_item['help_text']),
+            "title": "{}".format(plotted_item['label']),
+            "subtitle": "{}".format(plotted_item['help_text']),
             "legendx": property_name.title(),
             "legendy": "# of {}s".format(modelname),
             "categories": "sorted(dates)",

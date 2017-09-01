@@ -239,16 +239,16 @@ EDITION_CHART_CONF = {
         "label": "no label provided",
         "lookup_expr": "exact"
     },
-    "ride_review": {
-        "chart_types": [
-            "bar",
-            "line",
-            "pie"
-        ],
-        "help_text": "Provide some",
-        "label": "RIDE review",
-        "lookup_expr": "isnull"
-    },
+    # "ride_review": {
+    #     "chart_types": [
+    #         "bar",
+    #         "line",
+    #         "pie"
+    #     ],
+    #     "help_text": "Provide some",
+    #     "label": "RIDE review",
+    #     "lookup_expr": "isnull"
+    # },
     "scholarly": {
         "chart_types": [
             "bar",

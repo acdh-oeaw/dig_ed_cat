@@ -295,8 +295,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing text-image linking",
+        "label": "Text-image linking",
         "lookup_expr": "exact"
     },
     "textual_variance": {
@@ -335,8 +335,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Project website/interface languages",
+        "label": "Website language",
         "lookup_expr": "exact"
     },
     "writing_support": {
@@ -345,8 +345,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Types of writing support",
+        "label": "Writing support",
         "lookup_expr": "icontains"
     },
     "zoom_images": {
@@ -355,8 +355,8 @@ EDITION_CHART_CONF = {
             "line",
             "pie"
         ],
-        "help_text": "Provide some",
-        "label": "no label provided",
+        "help_text": "Projects providing zoomable images",
+        "label": "Zoomable images",
         "lookup_expr": "exact"
     }
 }

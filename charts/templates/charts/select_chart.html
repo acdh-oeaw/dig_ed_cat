@@ -3,13 +3,44 @@
 {% load django_tables2 crispy_forms_tags %}
 
 {% block content %}
-<h1>Generic customizable Charts</h1>
-<div class="alert alert-warning">
-  <strong>Warning!</strong> Early stage of developement.
+<div class="alert alert-warning alert-dismissable">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Warning!</strong> This overview and the related charts are still work in progress.
 </div>
-    {% for key, value in links.items %}
-    <li>
-        <a href="./{{ key }}">{{ value.label }} <small>{{ value.help_text }}</small></a>
-    </li>
-    {% endfor %}
+<h1 style="text-align:center;">Make your choice</h1>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Property to visualize
+            </th>
+            <th>
+                What will it show
+            </th>
+            <th>
+                Type of visualization
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in links.items %}
+        <tr>
+            <td>
+                {{ value.label }}
+            </td>
+            <td>
+                <small>{{ value.help_text }}</small>
+            </td>
+            <td>
+                {% for x in value.chart_types %}
+                <a href="{% url 'charts:dynchart' property=key charttype=x%}">
+                    <i class="fa fa-{{ x }}-chart" aria-hidden="true" title="{{ x }}-chart"></i>
+                </a>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

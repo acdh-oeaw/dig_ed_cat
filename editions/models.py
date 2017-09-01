@@ -40,6 +40,9 @@ class Institution(models.Model):
     lng = models.DecimalField(
         max_digits=20, decimal_places=12, blank=True, null=True
     )
+    website = models.CharField(
+        max_length=255, blank=True, help_text="Website of the Institution."
+    )
 
     def __str__(self):
         return "{}".format(self.name)
@@ -78,7 +81,9 @@ class Edition(models.Model):
     )
     legacy_id = models.IntegerField(primary_key=True)
     name = models.CharField(
-        max_length=255, blank=True, help_text="The name of the project.")
+        max_length=255, blank=True, verbose_name="HANSI4EVER",
+        help_text="The name of the project."
+    )
     url = models.CharField(
         max_length=255, blank=True, help_text="The URL of the project.")
     historical_period = models.ManyToManyField(
@@ -289,6 +294,10 @@ class Edition(models.Model):
     holding_repo = models.ManyToManyField(
         Institution, blank=True, verbose_name="Repository of Source Material(s)",
         help_text="The institution(s) that house the source text(s).", related_name="holding_repo"
+    )
+    sahle_cat = models.NullBooleanField(
+        blank=True, null=True, verbose_name="Sahle Catalog",
+        help_text="Indicates whether a digital edition is also present in Patrick Sahle's Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/). The values 0 [no] or 1 [yes] are used."
     )
 
     def __str__(self):

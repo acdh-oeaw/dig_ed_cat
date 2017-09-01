@@ -1,0 +1,15 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% load django_tables2 crispy_forms_tags %}
+
+{% block content %}
+<h1>Generic customizable Charts</h1>
+<div class="alert alert-warning">
+  <strong>Warning!</strong> Early stage of developement.
+</div>
+    {% for key, value in links.items %}
+    <li>
+        <a href="./{{ key }}">{{ value.label }} <small>{{ value.help_text }}</small></a>
+    </li>
+    {% endfor %}
+{% endblock %}

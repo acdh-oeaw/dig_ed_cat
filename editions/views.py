@@ -93,6 +93,10 @@ def sync_status(request):
 
             temp_inst, _ = Institution.objects.get_or_create(name=x[0])
             temp_inst.gnd_id = x[2]
+            temp_inst.place = temp_place
+            temp_inst.save()
+        else:
+            temp_inst, _ = Institution.objects.get_or_create(name=x[0])
             try:
                 temp_inst.lat = x[3]
             except:
@@ -101,11 +105,12 @@ def sync_status(request):
                 temp_inst.lng = x[2]
             except:
                 pass
-            temp_inst.place = temp_place
+        temp_inst.website = x[10]
+        temp_inst.gnd_id = x[2]
+        try:
             temp_inst.save()
-        else:
+        except:
             temp_inst, _ = Institution.objects.get_or_create(name=x[0])
-            temp_inst.save()
 
     url = 'https://raw.githubusercontent.com/gfranzini/digEds_cat/master/digEds_cat.csv'
     with requests.Session() as s:
@@ -215,6 +220,12 @@ def sync_status(request):
                 temp_ed.ride_review = str(row[47])
             except:
                 temp_ed.ride_review = None
+
+            try:
+                sahlcat = int(row[48])
+                temp_ed.sahle_cat = sahlcat
+            except:
+                temp_ed.sahle_cat = None
             # temp_ed.ride_review = str(row[47])
             temp_ed.historical_period.add(temp_per)
             temp_ed.api = BOOLEAN_CHOICES[str(row[32])]

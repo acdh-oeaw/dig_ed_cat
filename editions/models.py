@@ -88,7 +88,7 @@ class Edition(models.Model):
     )
     legacy_id = models.IntegerField(primary_key=True)
     name = models.CharField(
-        max_length=255, blank=True, verbose_name="HANSI4EVER",
+        max_length=255, blank=True, verbose_name="Name of the Project",
         help_text="The name of the project."
     )
     url = models.CharField(

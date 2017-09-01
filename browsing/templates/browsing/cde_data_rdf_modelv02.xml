@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vcard="https://www.w3.org/TR/vcard-rdf/#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:gn="http://www.geonames.org/ontology#" xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:geo="https://www.w3.org/2003/01/geo/">
+    <rdf:Description rdf:about="http://www.gasconrolls.org/en/">
+        <dc:format>application/tei+xml</dc:format>
+        <dc:source>The National Archives at Kew in class C 61</dc:source>
+        <dc:date>2008</dc:date>
+        <dc:creator>Paul Spence</dc:creator>
+        <dc:publisher rdf:resource="https://www.liverpool.ac.uk/" />
+        <dc:title>The Gascon Rolls Project</dc:title>
+        <dc:language>lat</dc:language>
+        <dc:rights>Open Access. The texts may be accessed through specific software, but the source is not accessible.</dc:rights>
+        <dc:identifier rdf:resource="https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/87" />
+        <dc:coverage>Middle Ages</dc:coverage>
+        <dc:publisher rdf:resource="https://www.kcl.ac.uk/artshums/depts/ddh/index.aspx" />
+    </rdf:Description>
+    <rdf:Description rdf:about="https://www.liverpool.ac.uk/">
+    </rdf:Description>
+    <rdf:Description rdf:about="https://www.liverpool.ac.uk/">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+        <foaf:name>University of Liverpool</foaf:name>
+        <foaf:homepage rdf:resource="https://www.liverpool.ac.uk/" />
+        <geo:Point>
+            <geo:lat>obj.instituion.lat</geo:lat>
+            <geo:long>obj.instituion.lng</geo:long>
+        </geo:Point>
+        <foaf:based_near rdf:resource="http://sws.geonames.org/{object.instituion.place.geonames_id}">
+            <rdfs:seeAlso rdf:resource="http://d-nb.info/gnd/261911-8">
+    </rdf:Description>
+    <rdf:Description rdf:about="https://www.kcl.ac.uk/artshums/depts/ddh/index.aspx">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+        <foaf:name>King's College London (Department of Digital Humanities) </foaf:name>
+        <foaf:homepage rdf:resource="https://www.kcl.ac.uk/artshums/depts/ddh/index.aspx" />
+        <geo:Point>
+            <geo:lat>{obj.instituion.lat}</geo:lat>
+            <geo:long>{obj.instituion.lng}</geo:long>
+        </geo:Point>
+        <foaf:based_near rdf:resource="http://sws.geonames.org/{object.instituion.place.geonames_id}">
+    </rdf:Description>
+    <rdf:Description rdf:about="http://sws.geonames.org/{object.instituion.place.geonames_id}">
+        <rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" />
+        <rdf:type rdf:resource="http://www.geonames.org/ontology#Feature" />
+        <gn:name>{object.instituion.place.name}</gn:name>
+        <wgs:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">{object.instituion.place.lat}</wgs:lat>
+        <wgs:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">{object.instituion.place.lng}</wgs:long>
+        <gn:parentFeature rdf:resource="http://sws.geonames.org/{object.instituion.place.part_of.geonames_id}" />
+    </rdf:Description>
+</rdf:RDF>

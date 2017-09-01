@@ -206,7 +206,7 @@ EDITION_CHART_CONF = {
             "pie"
         ],
         "help_text": "Provide some",
-        "label": "HANSI4EVER",
+        "label": "Name of the Project",
         "lookup_expr": "icontains"
     },
     "open_source": {

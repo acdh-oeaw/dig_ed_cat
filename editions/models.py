@@ -139,7 +139,7 @@ class Edition(models.Model):
     )
     audience = models.TextField(
         blank=True,
-        help_text="The target audience of the edition project (scholars, general public, etc.)."
+        help_text="The target audience of the project (scholars, general public, etc.)."
     )
     CHOICES_PHILOLOGICAL = (
         ("", "----"),

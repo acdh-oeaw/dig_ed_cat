@@ -8,45 +8,7 @@ from browsing.forms import GenericFilterFormHelper
 from browsing.views import GenericListView
 from browsing.views import EditionTable
 from collections import Counter
-
-
-class DynChartView(GenericListView):
-    model = Edition
-    table_class = EditionTable
-    template_name = 'charts/dynchart.html'
-    filter_class = EditionListFilter
-    formhelper_class = GenericFilterFormHelper
-
-    def get_lookup_table(self, **kwargs):
-        values = {}
-        for x in self.filter_class.declared_filters.items():
-            values[x[0]] = {'lookup': x[0], 'label': x[1].label}
-        return values
-
-    def get_context_data(self, **kwargs):
-        context = super(GenericListView, self).get_context_data()
-        context[self.context_filter_name] = self.filter
-        property_name = (self.kwargs['property'])
-        lookup_table = self.get_lookup_table()
-        plotted_item = lookup_table[property_name]
-        payload = {}
-        for x in self.get_queryset().values(property_name).annotate(amount=Count(property_name)):
-            payload[x[property_name]] = x['amount']
-        context['all'] = Edition.objects.count()
-        data = {
-            "items": "{} out of {}".format(self.get_queryset().count(), context['all']),
-            "title": "Editions per {}".format(plotted_item['label']),
-            "subtitle": "Editions per {}".format(property_name.title()),
-            "legendx": property_name.title(),
-            "legendy": "# of Editions",
-            "categories": "sorted(dates)",
-            "measuredObject": "Editions",
-            "ymin": 0,
-            "payload": payload
-        }
-        context['data'] = data
-
-        return context
+from .chart_config import EDITION_CHART_CONF
 
 
 class ChartSelector(TemplateView):
@@ -55,10 +17,44 @@ class ChartSelector(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ChartSelector, self).get_context_data()
-        values = {}
-        for x in EditionListFilter.declared_filters.items():
-            values[x[0]] = {'lookup': x[0], 'label': x[1].label, 'help_text': x[1].lookup_expr}
-        context['links'] = values
+        context['links'] = EDITION_CHART_CONF
+        return context
+
+
+class DynChartView(GenericListView):
+
+    model = Edition
+    table_class = EditionTable
+    filter_class = EditionListFilter
+    formhelper_class = GenericFilterFormHelper
+    template_name = 'charts/dynchart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DynChartView, self).get_context_data()
+        context[self.context_filter_name] = self.filter
+        context['charttype'] = self.kwargs['charttype']
+        property_name = self.kwargs['property']
+        plotted_item = EDITION_CHART_CONF[property_name]
+        modelname = self.model.__name__
+        payload = {}
+        objects = self.get_queryset()
+        for x in objects.values(property_name).annotate(
+                amount=Count(property_name)).order_by('amount'):
+            payload[x[property_name]] = x['amount']
+        context['all'] = self.model.objects.count()
+        data = {
+            "items": "{} out of {}".format(objects.count(), context['all']),
+            "title": "{}s per {}".format(modelname, plotted_item['label']),
+            "subtitle": "{}s per {}".format(modelname, plotted_item['help_text']),
+            "legendx": property_name.title(),
+            "legendy": "# of {}s".format(modelname),
+            "categories": "sorted(dates)",
+            "measuredObject": "{}s".format(modelname),
+            "ymin": 0,
+            "payload": payload
+        }
+        context['data'] = data
+
         return context
 
 

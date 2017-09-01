@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    {{ data }}
+
     <div class="panel panel-default">
         <div class="panel-heading" style="text-align:center;">
             <h1>{{ data.title }}</h1>
@@ -22,13 +22,16 @@
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myFilter" title="click to add filter">
             <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
           </button>
+           <button  type="button" class="btn btn-default" data-toggle="collapse" data-target="#howtocite" id="howtocite-btn">JSON data</button>
+
+     <div id="howtocite" class="collapse">
+     <p>{{data}}</p>
+     </div>
         </div>
         <div class="panel-body">
             <div id="bar"></div>
         </div>
     </div>
-
-
 
   <!-- Modal -->
   <div class="modal fade" id="myFilter" role="dialog">
@@ -56,7 +59,7 @@
         $(function () {
             $('#bar').highcharts({
             chart: {
-                type: 'column',
+                type: '{{ charttype }}',
                 options3d: {
                         enabled: true,
                         alpha: 20

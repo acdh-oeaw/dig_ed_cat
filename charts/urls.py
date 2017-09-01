@@ -2,8 +2,11 @@ from django.conf.urls import url
 from . import views, ml_views
 
 urlpatterns = [
-    url(r'^barcharts/$', views.ChartSelector.as_view(), name='chart_selector'),
-    url(r'^barcharts/(?P<property>[\w\-]+)/$', views.DynChartView.as_view(), name='dynchart'),
+    url(r'^chartselector/$', views.ChartSelector.as_view(), name='chart_selector'),
+    url(
+        r'^chart/(?P<property>[\w\-]+)/(?P<charttype>[\w\-]+)/$',
+        views.DynChartView.as_view(), name='dynchart'
+    ),
     url(r'^barcharts/$', views.barcharts_view, name='bar_charts'),
     url(r'^testjson/$', views.test_json, name='test_json'),
     url(r'^facsjson/$', views.facs_json, name='facs_json'),

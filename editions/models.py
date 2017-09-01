@@ -73,6 +73,13 @@ class Edition(models.Model):
     """Holds the (meta)data of a digital editions project. Information taken from
     https://github.com/gfranzini/digEds_cat/wiki/Contribute"""
 
+    #Choices for NullBooleanField
+    NULL_BOOLEAN_CHOICES = (
+    (None, "unknown"),
+    (True, "yes"),
+    (False, "no")
+    )
+
     BOOLEAN_CHOICES = (
         ("", "----"),
         ("yes", "yes"),
@@ -296,8 +303,9 @@ class Edition(models.Model):
         help_text="The institution(s) that house the source text(s).", related_name="holding_repo"
     )
     sahle_cat = models.NullBooleanField(
+        choices=NULL_BOOLEAN_CHOICES,
         blank=True, null=True, verbose_name="Sahle Catalog",
-        help_text="Indicates whether a digital edition is also present in Patrick Sahle's Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/). The values 0 [no] or 1 [yes] are used."
+        help_text="Indicates whether a digital edition is also present in Patrick Sahle's Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/).The values 0 [no] or 1 [yes] are used."
     )
 
     def __str__(self):

@@ -105,7 +105,9 @@ class TestRDFLibView(GenericListView):
         response['Content-Disposition'] = 'attachment; filename="{}.rdf"'.format(filename)
         g = rdflib.Graph()
         DC = Namespace("http://purl.org/dc/elements/1.1/")
+        FOAF = Namespace("http://xmlns.com/foaf/0.1/")
         g.bind('dc', DC)
+        g.bind('foaf', FOAF)
         for obj in Edition.objects.all():
             edition = URIRef(obj.url)
             title = Literal(obj.name)
@@ -129,8 +131,10 @@ class TestRDFLibView(GenericListView):
             else:
                 pass
             for x in obj.institution.all():
-                publisher = Literal(x.name)
+                publisher = URIRef(x.website)
                 g.add((edition, DC.publisher, publisher))
+                name = Literal(x.name)
+                g.add((publisher, FOAF.name, name))
             for x in obj.manager.all():
                 creator = Literal(x.name)
                 g.add((edition, DC.creator, creator))

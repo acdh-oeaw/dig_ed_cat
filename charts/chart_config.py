@@ -109,7 +109,7 @@ EDITION_CHART_CONF = {
         "label": "Historical period",
         "lookup_expr": "exact"
     },
-    #"holding_repo__name": {
+    # "holding_repo__name": {
     #    "chart_types": [
     #        "bar",
     #        "line",
@@ -118,7 +118,7 @@ EDITION_CHART_CONF = {
     #    "help_text": "Institution(s) that house the source text(s)",
     #    "label": "Repository of Source Material(s)",
     #    "lookup_expr": "icontains"
-    },
+    # },
     "image_manipulation": {
         "chart_types": [
             "bar",

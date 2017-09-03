@@ -14,7 +14,7 @@ class ChartType(models.Model):
     )
 
     def __str__(self):
-        return self.label
+        return self.name
 
 
 class ChartConfig(models.Model):
@@ -40,4 +40,4 @@ class ChartConfig(models.Model):
     )
 
     def __str__(self):
-        return self.label
+        return "{} ({})".format(self.label, self.field_path)

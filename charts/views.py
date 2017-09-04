@@ -50,12 +50,16 @@ class DynChartView(GenericListView):
             else:
                 payload.append(['None', x['amount']])
         context['all'] = self.model.objects.count()
+        if chart.legend_x:
+            legendx = chart.legend_x
+        else:
+            legendx = "# of {}s".format(modelname)
         data = {
             "items": "{} out of {}".format(objects.count(), context['all']),
             "title": "{}".format(chart.label),
             "subtitle": "{}".format(chart.help_text),
-            "legendy": property_name.title(),
-            "legendx": "# of {}s".format(modelname),
+            "legendy": chart.legend_y,
+            "legendx": legendx,
             "categories": "sorted(dates)",
             "measuredObject": "{}s".format(modelname),
             "ymin": 0,

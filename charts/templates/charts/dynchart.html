@@ -64,7 +64,7 @@
             chart: {
                 type: '{{ charttype }}',
                 options3d: {
-                        enabled: true,
+                        enabled: false,
                         alpha: 20
                     }
             },
@@ -76,6 +76,9 @@
                 },
             xAxis: {
                 type: 'category',
+                title: {
+                text: "{{data.legendy}}"
+            },
                 labels: {
                     rotation: -45,
                     style: {
@@ -88,7 +91,7 @@
                 // type: 'category',
                 min: "{{data.ymin}}",
                 title: {
-                text: "{{data.legendy}}"
+                text: "{{data.legendx}}"
                 }
             },
             legend: {

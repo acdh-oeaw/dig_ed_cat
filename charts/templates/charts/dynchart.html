@@ -13,6 +13,9 @@
     <!--highcharts END -->
 {% endblock %}
 {% block content %}
+{% if error %}
+<h1>Some error occured, most likely, the property <code>{{ property_name }}</code> you would like to display does not exist</h1>
+{% else %}
 <div class="container">
 
     <div class="panel panel-default">
@@ -54,7 +57,7 @@
 
 <script>
     $(document).ready(function() {
-        var payload = [{% for key, value in data.payload.items %} ["{{ key }}", {{ value }} ], {% endfor %}].sort()
+        var payload = {{ data.payload | safe }}
         console.log(payload)
         $(function () {
             $('#bar').highcharts({
@@ -69,7 +72,7 @@
                 text: ""
                 },
             subtitle: {
-                text: "{{ data.subtitle }}"
+                text: "{{ data.subtitle|safe }}"
                 },
             xAxis: {
                 type: 'category',
@@ -82,22 +85,23 @@
                     }
                 },
             yAxis: {
+                // type: 'category',
                 min: "{{data.ymin}}",
                 title: {
                 text: "{{data.legendy}}"
                 }
             },
             legend: {
-                enabled: false
+                enabled: true
                 },
             tooltip: {
             },
             series: [{
-            name: "{{data.measuredObject}}",
+            name: "{{ data.measuredObject }}",
             data: payload,
             dataLabels: {
             enabled: false,
-            rotation: -90,
+            rotation: 0,
             color: '#FFFFFF',
             align: 'right',
             format: '{point.y:.1f}', // one decimal
@@ -116,4 +120,5 @@
 
 
 </div>
+{% endif %}
 {% endblock %}

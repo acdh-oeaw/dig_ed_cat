@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 from django.http import JsonResponse
 from django.db.models import Count
+from .models import ChartConfig
 from editions.models import Edition, Period
 from browsing.filters import EditionListFilter
 from browsing.forms import GenericFilterFormHelper
@@ -11,14 +13,9 @@ from collections import Counter
 from .chart_config import EDITION_CHART_CONF
 
 
-class ChartSelector(TemplateView):
-
+class ChartSelector(ListView):
+    model = ChartConfig
     template_name = 'charts/select_chart.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ChartSelector, self).get_context_data()
-        context['links'] = EDITION_CHART_CONF
-        return context
 
 
 class DynChartView(GenericListView):
@@ -31,23 +28,34 @@ class DynChartView(GenericListView):
 
     def get_context_data(self, **kwargs):
         context = super(DynChartView, self).get_context_data()
+        property_name = self.kwargs['property']
+        context['property_name'] = property_name
+        try:
+            chart = ChartConfig.objects.get(
+                field_path=self.kwargs['property']
+            )
+        except:
+            context['error'] = True
+            return context
+
         context[self.context_filter_name] = self.filter
         context['charttype'] = self.kwargs['charttype']
-        property_name = self.kwargs['property']
-        plotted_item = EDITION_CHART_CONF[property_name]
         modelname = self.model.__name__
-        payload = {}
+        payload = []
         objects = self.get_queryset()
         for x in objects.values(property_name).annotate(
                 amount=Count(property_name)).order_by('amount'):
-            payload[x[property_name]] = x['amount']
+            if x[property_name]:
+                payload.append([x[property_name], x['amount']])
+            else:
+                payload.append(['None', x['amount']])
         context['all'] = self.model.objects.count()
         data = {
             "items": "{} out of {}".format(objects.count(), context['all']),
-            "title": "{}".format(plotted_item['label']),
-            "subtitle": "{}".format(plotted_item['help_text']),
-            "legendx": property_name.title(),
-            "legendy": "# of {}s".format(modelname),
+            "title": "{}".format(chart.label),
+            "subtitle": "{}".format(chart.help_text),
+            "legendy": property_name.title(),
+            "legendx": "# of {}s".format(modelname),
             "categories": "sorted(dates)",
             "measuredObject": "{}s".format(modelname),
             "ymin": 0,

@@ -24,18 +24,18 @@
         </tr>
     </thead>
     <tbody>
-        {% for key, value in links.items %}
+        {% for x in object_list %}
         <tr>
             <td>
-                {{ value.label }}
+                {{ x.label }}
             </td>
             <td>
-                <small>{{ value.help_text }}</small>
+                <small>{{ x.help_text }}</small>
             </td>
             <td>
-                {% for x in value.chart_types %}
-                <a href="{% url 'charts:dynchart' property=key charttype=x%}">
-                    <i class="fa fa-{{ x }}-chart" aria-hidden="true" title="{{ x }}-chart"></i>
+                {% for chart in x.chart_types.all  %}
+                <a href="{% url 'charts:dynchart' property=x.field_path charttype=chart.name %}">
+                    {{ chart.icon | safe }}
                 </a>
                 {% endfor %}
             </td>

@@ -77,7 +77,7 @@
             xAxis: {
                 type: 'category',
                 title: {
-                text: "{{data.legendy}}"
+                text: {% if charttype == 'bar' %} "{{data.legendy}}" {% else %} "{{data.legendx}}" {% endif %}
             },
                 labels: {
                     rotation: -45,
@@ -91,7 +91,7 @@
                 // type: 'category',
                 min: "{{data.ymin}}",
                 title: {
-                text: "{{data.legendx}}"
+                text:{% if charttype == 'bar' %} "{{data.legendx}}" {% else %} "{{data.legendy}}" {% endif %}
                 }
             },
             legend: {

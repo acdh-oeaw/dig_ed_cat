@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	url(r'test/$', views.TestRDFLibView.as_view(), name='test'),
+	url(r'n3/$', views.EditionN3View.as_view(), name='n3'),
 	url(r'xml/$', views.EditionXMLView, name='xml'),
 	url(r'bibtex/$', views.EditionBibtextView, name='bibtex'),
     url(r'editions/$', views.EditionListView.as_view(), name='browse_editions'),

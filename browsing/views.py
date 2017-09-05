@@ -91,7 +91,7 @@ def EditionBibtextView(request):
     return response
 
 
-class TestRDFLibView(GenericListView):
+class EditionN3View(GenericListView):
     model = Edition
     table_class = EditionTable
     template_name = 'browsing/rdflib_template.txt'
@@ -114,7 +114,7 @@ class TestRDFLibView(GenericListView):
         g.bind('geo', GEO)
         g.bind('gn', GN)
         g.bind('wgs', WGS)
-        for obj in Edition.objects.all()[:10]:
+        for obj in Edition.objects.all():
             edition = URIRef(obj.url)
             title = Literal(obj.name)
             # g.add((RDF.Description, RDF.about, edition))
@@ -143,25 +143,27 @@ class TestRDFLibView(GenericListView):
                 g.add((publisher, RDF.type, FOAF.Organization))
                 g.add((publisher, FOAF.name, name))
                 g.add((publisher, FOAF.homepage, publisher))
-                geo_lat = Literal(x.lat)
-                geo_long = Literal(x.lng)
-                g.add((publisher, GEO.lat, geo_lat))
-                g.add((publisher, GEO.long, geo_long))
+                if x.lat or x.lng:
+                    geo_lat = Literal(x.lat)
+                    geo_long = Literal(x.lng)
+                    g.add((publisher, GEO.lat, geo_lat))
+                    g.add((publisher, GEO.long, geo_long))
                 if x.gnd_id:
                     seeAlso = URIRef(x.gnd_id)
                     g.add((publisher, RDFS.seeAlso, seeAlso))
-                g.add((publisher, FOAF.based_near, URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))))
-                based_near = URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))
-                gn_name = Literal(x.place.name)
-                g.add((based_near, RDF.type, GN.Feature))
-                g.add((based_near, RDF.type, GEO.SpatialThing))
-                g.add((based_near, GN.name, gn_name))
-                wgs_lat = Literal(x.place.lat)
-                g.add((based_near, WGS.lat, wgs_lat))
-                wgs_long = Literal(x.place.lng)
-                g.add((based_near, WGS.long, wgs_long))
-                parent_feature = URIRef("http://sws.geonames.org/"+str(x.place.part_of.geonames_id))
-                g.add((based_near, GN.parentFeature, parent_feature))
+                if x.place:
+                    g.add((publisher, FOAF.based_near, URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))))
+                    based_near = URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))
+                    gn_name = Literal(x.place.name)
+                    g.add((based_near, RDF.type, GN.Feature))
+                    g.add((based_near, RDF.type, GEO.SpatialThing))
+                    g.add((based_near, GN.name, gn_name))
+                    wgs_lat = Literal(x.place.lat)
+                    g.add((based_near, WGS.lat, wgs_lat))
+                    wgs_long = Literal(x.place.lng)
+                    g.add((based_near, WGS.long, wgs_long))
+                    parent_feature = URIRef("http://sws.geonames.org/"+str(x.place.part_of.geonames_id))
+                    g.add((based_near, GN.parentFeature, parent_feature))
             for x in obj.manager.all():
                 creator = Literal(x.name)
                 g.add((edition, DC.creator, creator))

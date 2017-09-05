@@ -106,9 +106,15 @@ class TestRDFLibView(GenericListView):
         g = rdflib.Graph()
         DC = Namespace("http://purl.org/dc/elements/1.1/")
         FOAF = Namespace("http://xmlns.com/foaf/0.1/")
+        GEO = Namespace("https://www.w3.org/2003/01/geo/")
+        GN = Namespace("http://www.geonames.org/ontology#")
+        WGS = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
         g.bind('dc', DC)
         g.bind('foaf', FOAF)
-        for obj in Edition.objects.all():
+        g.bind('geo', GEO)
+        g.bind('gn', GN)
+        g.bind('wgs', WGS)
+        for obj in Edition.objects.all()[:10]:
             edition = URIRef(obj.url)
             title = Literal(obj.name)
             # g.add((RDF.Description, RDF.about, edition))
@@ -131,10 +137,31 @@ class TestRDFLibView(GenericListView):
             else:
                 pass
             for x in obj.institution.all():
+                g.add((edition, DC.publisher, URIRef(x.website)))
                 publisher = URIRef(x.website)
-                g.add((edition, DC.publisher, publisher))
                 name = Literal(x.name)
+                g.add((publisher, RDF.type, FOAF.Organization))
                 g.add((publisher, FOAF.name, name))
+                g.add((publisher, FOAF.homepage, publisher))
+                geo_lat = Literal(x.lat)
+                geo_long = Literal(x.lng)
+                g.add((publisher, GEO.lat, geo_lat))
+                g.add((publisher, GEO.long, geo_long))
+                if x.gnd_id:
+                    seeAlso = URIRef(x.gnd_id)
+                    g.add((publisher, RDFS.seeAlso, seeAlso))
+                g.add((publisher, FOAF.based_near, URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))))
+                based_near = URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))
+                gn_name = Literal(x.place.name)
+                g.add((based_near, RDF.type, GN.Feature))
+                g.add((based_near, RDF.type, GEO.SpatialThing))
+                g.add((based_near, GN.name, gn_name))
+                wgs_lat = Literal(x.place.lat)
+                g.add((based_near, WGS.lat, wgs_lat))
+                wgs_long = Literal(x.place.lng)
+                g.add((based_near, WGS.long, wgs_long))
+                parent_feature = URIRef("http://sws.geonames.org/"+str(x.place.part_of.geonames_id))
+                g.add((based_near, GN.parentFeature, parent_feature))
             for x in obj.manager.all():
                 creator = Literal(x.name)
                 g.add((edition, DC.creator, creator))
@@ -156,7 +183,7 @@ class TestRDFLibView(GenericListView):
             g.add((edition, DC.rights, rights))
             identifier = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
             g.add((edition, DC.identifier, identifier))
-        result = g.serialize(destination=response, format='pretty-xml')
+        result = g.serialize(destination=response, format='n3') #pretty-xml
         return response
 
 

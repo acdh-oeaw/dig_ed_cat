@@ -301,7 +301,7 @@
                         <td>
                             {% if object.sahle_cat %}
                                 <a href="http://www.digitale-edition.de/"> {{object.get_sahle_cat_display}}</a>
-                            {% else %} 
+                            {% else %}
                             {{object.get_sahle_cat_display}}
                             {% endif %}
                         </td>
@@ -348,7 +348,7 @@
 
         {% for x in object.institution.all %}
         {% if x.lat %}
-        L.marker([{{ x.lng }}, {{ x.lat }}])
+        L.marker([{{ x.lat }}, {{ x.lng }}])
         .addTo(map)
         .bindPopup("<h3> {{object.name}}</h3><table class='table table-striped'> <tr> <td>responsible Institution: </td> <td>{{ x.name }}</td> </tr> <tr> <td>located in: </td> <td>{{ x.place.name }} ({{ x.place.part_of.name }})</td> </tr><tr> <td>more projects from this institution: </td> <td><a href='{% url 'browsing:browse_editions' %}?institution__name={{x.id}}'>{{ x.name }}</a></td> </tr>  </table>");
         {% endif %}

@@ -104,45 +104,49 @@ class EditionRDFView(GenericListView):
         filename = "editions_{}".format(timestamp)
         response['Content-Disposition'] = 'attachment; filename="{}.rdf"'.format(filename)
         g = rdflib.Graph()
-        DC = Namespace("http://purl.org/dc/elements/1.1/")
+        DCAT = Namespace("http://www.w3.org/ns/dcat#")
+        DCT = Namespace("http://dublincore.org/documents/dcmi-terms/")
         FOAF = Namespace("http://xmlns.com/foaf/0.1/")
         GEO = Namespace("https://www.w3.org/2003/01/geo/")
         GN = Namespace("http://www.geonames.org/ontology#")
         WGS = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
-        g.bind('dc', DC)
+        g.bind('dcat', DCAT)
+        g.bind('dct', DCT)
         g.bind('foaf', FOAF)
         g.bind('geo', GEO)
         g.bind('gn', GN)
         g.bind('wgs', WGS)
         for obj in Edition.objects.all():
-            edition = URIRef(obj.url)
+            edition = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
             title = Literal(obj.name)
-            # g.add((RDF.Description, RDF.about, edition))
-            g.add((edition, DC.title, title))
+            g.add((edition, RDF.type, DCAT.Dataset))
+            g.add((edition, DCT.title, title))
             for x in obj.language.all():
                 language = Literal(x.iso_code)
-                g.add((edition, DC.language, language))
+                g.add((edition, DCT.language, language))
             for x in obj.historical_period.all():
                 historical_period = Literal(x.name)
-                g.add((edition, DC.coverage, historical_period))
+                g.add((edition, DCT.temporal, historical_period))
             if obj.begin_date and obj.end_date:
                 date = Literal(str(obj.begin_date.strftime("%Y"))+' - '+str(obj.end_date.strftime("%Y")))
-                g.add((edition, DC.date, date))
+                g.add((edition, DCT.date, date))
             elif obj.begin_date:
                 date = Literal(str(obj.begin_date.strftime("%Y")))
-                g.add((edition, DC.date, date))
+                g.add((edition, DCT.date, date))
             elif obj.end_date:
                 date = Literal(str(obj.end_date.strftime("%Y")))
-                g.add((edition, DC.date, date))
+                g.add((edition, DCT.date, date))
             else:
                 pass
             for x in obj.institution.all():
-                g.add((edition, DC.publisher, URIRef(x.website)))
-                publisher = URIRef(x.website)
+                publisher = URIRef("#cde/institution/"+str(x.id))
+                g.add((edition, DCT.publisher, publisher))
+                
                 name = Literal(x.name)
                 g.add((publisher, RDF.type, FOAF.Organization))
                 g.add((publisher, FOAF.name, name))
-                g.add((publisher, FOAF.homepage, publisher))
+                homepage = URIRef(x.website)
+                g.add((publisher, FOAF.homepage, homepage))
                 if x.lat or x.lng:
                     geo_lat = Literal(x.lat)
                     geo_long = Literal(x.lng)
@@ -166,25 +170,27 @@ class EditionRDFView(GenericListView):
                     g.add((based_near, GN.parentFeature, parent_feature))
             for x in obj.manager.all():
                 creator = Literal(x.name)
-                g.add((edition, DC.creator, creator))
+                g.add((edition, DCT.creator, creator))
             for x in obj.holding_repo.all():
                 source = Literal(x.name)
-                g.add((edition, DC.source, source))
+                g.add((edition, DCT.source, source))
             if obj.tei_transcription == "0.5":
-                dcformat = Literal("text/xml")
+                dctformat = Literal("text/xml")
                 #this is tricky due to that rdflib takes 'format' for built-in python method and throws an error,
                 #found this example http://rdflib.readthedocs.io/en/stable/intro_to_creating_rdf.html#an-example
                 #tried and it worked to fix the error 
-                g.add((edition, DC['format'], dcformat))
+                g.add((edition, DCT['format'], dctformat))
             elif obj.tei_transcription == "1":
-                dcformat = Literal("application/tei+xml")
-                g.add((edition, DC['format'], dcformat))
+                dctformat = Literal("application/tei+xml")
+                g.add((edition, DCT['format'], dctformat))
             else:
                 pass
             rights = Literal(obj.get_open_source_display())
-            g.add((edition, DC.rights, rights))
+            g.add((edition, DCT.rights, rights))
+            landingPage = URIRef(obj.url)
+            g.add((edition, DCAT.landingPage, landingPage))
             identifier = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
-            g.add((edition, DC.identifier, identifier))
+            g.add((edition, DCT.identifier, identifier))
         get_format = self.request.GET.get('format', default='n3')
         result = g.serialize(destination=response, format=get_format)
         return response

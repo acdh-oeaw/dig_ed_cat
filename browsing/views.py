@@ -91,7 +91,7 @@ def EditionBibtextView(request):
     return response
 
 
-class EditionN3View(GenericListView):
+class EditionRDFView(GenericListView):
     model = Edition
     table_class = EditionTable
     template_name = 'browsing/rdflib_template.txt'
@@ -185,7 +185,8 @@ class EditionN3View(GenericListView):
             g.add((edition, DC.rights, rights))
             identifier = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
             g.add((edition, DC.identifier, identifier))
-        result = g.serialize(destination=response, format='n3') #pretty-xml
+        get_format = self.request.GET.get('format', default='n3')
+        result = g.serialize(destination=response, format=get_format)
         return response
 
 

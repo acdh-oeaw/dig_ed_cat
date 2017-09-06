@@ -269,13 +269,13 @@
                     </li>
                      {% if user.is_authenticated %}
                     <li>
-                         <a href="{% url 'browsing:xml' %}">RDF/XML</a>
-                    </li>
-                    <li>
                          <a href="{% url 'browsing:bibtex' %}">Bibtex</a>
                     </li>
+                     <li>
+                         <a href="{% url 'browsing:rdf' %}?format=n3">N3</a>
+                    </li>
                     <li>
-                         <a href="{% url 'browsing:n3' %}">n3</a>
+                         <a href="{% url 'browsing:rdf' %}?format=pretty-xml">RDF</a>
                     </li>
                     {% endif %}
                   </ul>

@@ -1,6 +1,7 @@
 import json
 import os
 from browsing.filters import EditionListFilter
+from charts.models import *
 
 
 class ChartConfigurator():

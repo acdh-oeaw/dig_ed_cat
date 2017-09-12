@@ -46,3 +46,9 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return render_to_response('webpage/user_logout.html')
+
+
+def handler404(request):
+    response = render_to_response('webpage/404-error.html')
+    response.status_code = 404
+    return response

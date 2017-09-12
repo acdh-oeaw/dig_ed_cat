@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import url, include, handler404
 from django.contrib import admin
 from rest_framework import routers
 from editions.api_views import (
@@ -31,3 +31,5 @@ urlpatterns = [
     url(r'wordclouds/', include('wordcloud.urls', namespace='wordclouds')),
     url(r'^', include('webpage.urls', namespace='webpage')),
 ]
+
+handler404 = 'webpage.views.handler404'

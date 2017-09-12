@@ -246,15 +246,14 @@
                     <li>
                          <a href="{% url 'charts:pie_charts' %}">Pie Charts</a>
                     </li>
-                    <li>
-                         <a href="{% url 'wordclouds:show' %}">Word Clouds</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li>
+                             <a href="{% url 'wordclouds:show' %}">Word Clouds</a>
+                        </li>
+                    {% endif %}
                     <li>
                         <a href="{% url 'datamodel:plate' %}">Catalogue's Data Model</a>
                     </li>
-                    <!-- <li>
-                        <a href="{% url 'webpage:user_logout' %}">Logout</a>
-                    </li> -->
                   </ul>
               </li>
               <li class="dropdown">
@@ -267,16 +266,16 @@
                     <li>
                          <a href="{% url 'editions:institution_csv' %}">Download Institution and Places (.csv)</a>
                     </li>
-                     {% if user.is_authenticated %}
-                    <li>
-                         <a href="{% url 'browsing:bibtex' %}">Bibtex</a>
-                    </li>
-                     <li>
-                         <a href="{% url 'browsing:rdf' %}?format=n3">N3</a>
-                    </li>
-                    <li>
-                         <a href="{% url 'browsing:rdf' %}?format=pretty-xml">RDF</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li>
+                             <a href="{% url 'browsing:bibtex' %}">Bibtex</a>
+                        </li>
+                         <li>
+                             <a href="{% url 'browsing:rdf' %}?format=n3">N3</a>
+                        </li>
+                        <li>
+                             <a href="{% url 'browsing:rdf' %}?format=pretty-xml">RDF</a>
+                        </li>
                     {% endif %}
                   </ul>
               </li>

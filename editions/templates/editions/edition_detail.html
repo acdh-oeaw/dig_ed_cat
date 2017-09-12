@@ -1,5 +1,6 @@
 {% extends "webpage/base.html" %}
 {% load staticfiles %}
+{% load django_tables2 %}
 {% block scriptHeader %}<!--leafletjs -->
     <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet/leaflet.css' %}"/></link>
     <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
@@ -34,6 +35,10 @@
             </div>
             <div class="col-md-8">
                 <h2 style="text-align:center;">{{ object.name }}</h2>
+                <div class="row text-center">
+                Download: <a href="{% url 'browsing:rdf' %}?format=n3&name={{ object.legacy_id }}">n3</a>
+                | <a href="{% url 'browsing:rdf' %}?format=pretty-xml&name={{ object.legacy_id }}">rdf/xml</a>
+                </div>
                 <h4 style="text-align:center;">
                     <span id="clickme" title="click to toggle info" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                 </h4>

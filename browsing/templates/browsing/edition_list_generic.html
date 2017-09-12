@@ -4,6 +4,8 @@
 {% block list_title %}
     Browse Editions
     | <a href="{% url 'browsing:dl' %}{% querystring %}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true" title="Download the currently selected editions as .csv."></span></a>
+    | <a href="{% url 'browsing:rdf' %}?format=n3&{% querystring %}" title="Download the currently selected editions as n3 rdf file.">n3 file</a>
+    | <a href="{% url 'browsing:rdf' %}?format=pretty-xml&{% querystring %}" title="Download the currently selected editions as rdf/xml file.">rdf/xml file</a>
 
 {% endblock %}
 

@@ -266,17 +266,15 @@
                     <li>
                          <a href="{% url 'editions:institution_csv' %}">Download Institution and Places (.csv)</a>
                     </li>
-                    {% if user.is_authenticated %}
-                        <li>
-                             <a href="{% url 'browsing:bibtex' %}">Bibtex</a>
-                        </li>
-                         <li>
-                             <a href="{% url 'browsing:rdf' %}?format=n3">N3</a>
-                        </li>
-                        <li>
-                             <a href="{% url 'browsing:rdf' %}?format=pretty-xml">RDF</a>
-                        </li>
-                    {% endif %}
+                    <li>
+                        <a href="{% url 'browsing:bibtex' %}">Bibtex</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'browsing:rdf' %}?format=n3">N3</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'browsing:rdf' %}?format=pretty-xml">RDF/XML</a>
+                    </li>
                   </ul>
               </li>
               <li>

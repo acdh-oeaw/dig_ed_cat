@@ -116,7 +116,7 @@ class EditionRDFView(GenericListView):
         g.bind('geo', GEO)
         g.bind('gn', GN)
         g.bind('wgs', WGS)
-        for obj in Edition.objects.all():
+        for obj in self.get_queryset():
             edition = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
             title = Literal(obj.name)
             g.add((edition, RDF.type, DCAT.Dataset))

@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container">
 
-    <h1>Documentation</h1>
+    <h1>Documentation <small>Last updated: 13 September 2017</small></h1>
 
 
     <h2>Overview</h2>
@@ -145,6 +145,8 @@
         </div>
 
 
+    
+
     <hr />
 
 
@@ -152,77 +154,107 @@
 
         <div id="section14">
             <h3>Browsing the data</h3>
-            <p>This web application provides two ways of browsing the digital editions in the <em>Catalogue</em>, either as a table or as charts.
+            <p>This web application provides different ways of browsing the digital editions in the <em>Catalogue</em>, either as a table or as map and chart visualisations.
 
+                
+                <br />
                 <h4>Table view</h4>
 
-                    <p>The menu tab <em>Browse the Catalogue</em> lists digital editions in table form and allows users to search for a particular project using one or multiple filters. A bulk-download button <i class="glyphicon glyphicon-download-alt" aria-hidden="true"></i> on the <em>Browse the Catalogue</em> page allows users to download the most recent data in the <em>Catalogue</em> as a single <code>.csv</code> file (Figure 1). A bottom pagination indicates the number of data pages present in the <em>Catalogue</em> at any one time (25 digital editions per page), giving users the option to jump between pages (Figure 2). Clicking on a digital edition opens up its corresponding data sheet (Figure 3). Users can also move between projects from the individual data sheets by using the blue back/forward arrows at the top of the screen (Figure 4). A black, round information icon below the project title provides a collapsable column with definitions of each catalogued feature (Figure 5). A red banner is used to inform users of expired project URLs (Figure 6); the banner disappears upon the addition of a working or updated URL.</p> </p>
+                    <p>The menu tab <em>Browse the Catalogue</em> lists digital editions in table form and allows users to search for a particular project using one or multiple filters. A bottom pagination indicates the number of data pages present in the <em>Catalogue</em> at any one time (25 digital editions per page), giving users the option to jump between pages. Clicking on a digital edition opens up its corresponding data sheet (Figure 2). Users can also move between projects from the individual data sheets by using the blue back/forward arrows at the top of the screen (Figure 3). A black, round information icon below the project title provides a collapsable column with definitions of each catalogued feature (Figure 4). A red banner is used to inform users of expired project URLs (Figure 5); the banner disappears upon the addition of a working or updated URL.</p>
+
+                    <p>From the <em>Browse the Catalogue page</em>, users can download all digital editions in the <em>Catalogue</em> at any one time as:</p>  
+                        <ul>
+                            <li><code>.csv</code>;</li>
+                            <li><code>rdf/xml</code>, which maps the data against the FOAF, GeoNames, Data Catalog and Dublin Core Metadata Vocabularies;</li>
+                            <li><code>n3</code>.</li>
+                        </ul>
+                     
+                    <p>In addition, the menu tab <em>Get the Data</em> gives the user the option of downloading the data as a BibTeX file, which can be imported into bibliographic managers such as Zotero for citation purposes. The project's API is also available under <em>Get the Data</em>.</p>
+
 
                     <div class="row">
                         <div class="col-md-3">
                             <div class="thumbnail">
-                                <a href="{% static 'webpage/images/bulk-download.png' %}" title="Click to enlarge">
-                                <img src="{% static 'webpage/images/bulk-download.png' %}" alt="Bulk-download" style="width:100%"></a>
-                                <div class="caption">
-                                    <p>Figure 1. The bulk-download button on the <em>Browse the Catalogue</em> page allows users to download the most recent data in the <em>Catalogue</em> as a single <code>.csv</code> file.</p>
-                                </div>
-                            </div><br />
-                            <div class="thumbnail">
-                                <a href="{% static 'webpage/images/pagination.png' %}" title="Click to enlarge"
+                                <a href="{% static 'webpage/images/pagination.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/pagination.png' %}" alt="Pagination" style="width:100%"></a>
                                 <div class="caption">
-                                    <p>Figure 2. Pagination at the bottom of the main <em>Browse the Catalogue</em> view allows users to jump between data pages in the <em>Catalogue</em>.</p>
+                                    <p>Figure 1. Pagination at the bottom of the main <em>Browse the Catalogue</em> view allows users to jump between data pages in the <em>Catalogue</em>.</p>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
+                            </div><br />
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/data-sheet.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/data-sheet.png' %}" alt="Data sheet" style="width:100%"></a>
                                 <div class="caption">
-                                    <p>Figure 3. Example data sheet of a digital edition.</p>
+                                    <p>Figure 2. Example data sheet of a digital edition.</p>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="col-md-3"> <!-- two images in this column, because they're small-->
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/navi-arrows.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/navi-arrows.png' %}" alt="Arrows" style="width:100%"></a>
                                 <div class="caption">
-                                    <p>Figure 4. Blue back/forward arrows placed at each side of the project title allow users to move between digital editions.</p>
+                                    <p>Figure 3. Blue back/forward arrows placed at each side of the project title allow users to move between digital editions.</p>
                                 </div>
                             </div><br />
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/info.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/info.png' %}" alt="Information button" style="width:100%"></a>
                                 <div class="caption">
-                                    <p>Figure 5. The black circular information icon below the project title reveals a collapsable column (second column in this image) with definitions of each catalogued feature.</p>
+                                    <p>Figure 4. The black circular information icon below the project title reveals a collapsable column (second column in this image) with definitions of each catalogued feature.</p>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="col-md-3">
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/red-banner.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/red-banner.png' %}" alt="Red banner" style="width:100%"></a>
                                 <div class="caption">
-                                    <p>Figure 6. A red banner notifies the user of an expire project URL.</p>
+                                    <p>Figure 5. A red banner notifies the user of an expire project URL.</p>
                                 </div>
                             </div>
+                            </div><br />
+                            <div class="thumbnail">
+                                <a href="{% static 'webpage/images/bulk-download.png' %}" title="Click to enlarge">
+                                <img src="{% static 'webpage/images/bulk-download.png' %}" alt="Bulk-download" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 6. The bulk-download button on the <em>Browse the Catalogue</em> page allows users to download the most recent data in the <em>Catalogue</em> as <code>.csv</code>, <code>rdf/xml</code> and <code>n3</code> files.</p>
+                                </div>
                         </div>
                     </div>
 
 
-                <h4>Chart view</h4>
+                <br />    
+                <h4>Chart and map view</h4>  
 
-                    <p>The menu tab <em>Analyze the data</em> provides bar and pie charts of a number of catalogued features, as well as a map of all involved institutions. For pie and bar charts, a drop-down menu lists possible visualisations (Figure 7 and Figure 8). Hovering over a particular pie slice or bar reveals the exact project count. All charts can be downloaded as PNG, JPEG, PDF and SVG files.<br />
-                    The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 9). The user can either click on a location marker or search for an institution using the search button placed above the map. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.<br />
-                    Finally, we also provide wordclouds for those interested in identifying particular words.</p>
+                    <p>The menu tab <em>Analyze the data</em> provides chart and map visualisations of the data contained in the <em>Catalogue</em>.</p>
+                    <p>The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 7). The user can either click on a location marker or search for an institution using the search button placed above the map. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.</p>
+
+                    
+                    <p>The menu option <a href="https://dig-ed-cat.acdh.oeaw.ac.at/charts/chartselector/"><em>Select charts</em></a> provides a list of catalogued features to visualise as bar, line or pie charts. Hovering over a particular pie slice or bar reveals the exact project count. All charts can be downloaded as PNG, JPEG, PDF and SVG files.</p> 
+
+                    <div class="alert alert-info">
+                        <strong>Attention!</strong> 'Select charts' was implemented in September 2017 as a replacement of the previous <em>Bar charts</em> and <em>Pie charts</em> menu items.
+                    </div>
 
                     <div class="row">
                         <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="{% static 'webpage/images/map.png' %}" title="Click to enlarge">
+                                <img src="{% static 'webpage/images/map.png' %}" alt="Map" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 7. A map of the world locates institutions involved in the creation of the digital editions present in the <em>Catalogue</em>. Click on a marker reveals a pop-up with the institution name and its projects.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="col-md-3">
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/pie-chart.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/pie-chart.png' %}" alt="Pie charts" style="width:100%"></a>
@@ -231,6 +263,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-3">
                             <div class="thumbnail">
                                 <a href="{% static 'webpage/images/bar-chart.png' %}" title="Click to enlarge">
@@ -239,25 +272,18 @@
                                     <p>Figure 8. A bar chart illustrating projects by country.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <a href="{% static 'webpage/images/map.png' %}" title="Click to enlarge">
-                                <img src="{% static 'webpage/images/map.png' %}" alt="Map" style="width:100%"></a>
-                                <div class="caption">
-                                    <p>Figure 9. A map of the world locates institutions involved in the creation of the digital editions present in the <em>Catalogue</em>. Click on a marker reveals a pop-up with the institution name and its projects.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <!---->
-                        </div>
+                        </div>-->
+                        
                     </div>
+
+                    <!--OLD: bar and pie charts of a number of catalogued features, as well as a map of all involved institutions. For pie and bar charts, a drop-down menu lists possible visualisations (Figure 7 and Figure 8)<br />.-->
+
+                    
 
         
         <div id="section15">
             <h3>Other menu pages</h3>
-            <p>The <em>Get the Data</em> menu tab provides the <em>Catalogue</em>'s API. The <em>Login</em> menu item is for the <em>Catalogue's</em> team use only. All other pages should be self-explanatory.</p>
+            <p>The <em>Login</em> menu item is for the project team's use only. All other pages should be self-explanatory.</p>
         </div>
 
 

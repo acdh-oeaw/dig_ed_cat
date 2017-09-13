@@ -240,12 +240,6 @@
                       <li>
                            <a href="{% url 'browsing:map' %}">a map, A MAP!!!!</a>
                       </li>
-                    <li>
-                         <a href="{% url 'charts:bar_charts' %}">Bar Charts</a>
-                    </li>
-                    <li>
-                         <a href="{% url 'charts:pie_charts' %}">Pie Charts</a>
-                    </li>
                     {% if user.is_authenticated %}
                         <li>
                              <a href="{% url 'wordclouds:show' %}">Word Clouds</a>

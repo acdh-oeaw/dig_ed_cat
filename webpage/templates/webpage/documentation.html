@@ -4,7 +4,9 @@
 {% block content %}
 <div class="container">
 
-    <h1>Documentation <small>Last updated: 13 September 2017</small></h1>
+    <h1>Documentation</h1>
+    <p style="font-size: 8"><i class="fa fa-clock-o" aria-hidden="true"></i> Last updated: Sept 14th, 2017</p>
+
 
 
     <h2>Overview</h2>
@@ -36,8 +38,9 @@
             <p>The <em>Catalogue of Digital Editions Web Application</em> is made-up of two interacting components, each stored in its own GitHub repository: 1) the data, and 2) the web application to display the data to the user. The two components are connected via a custom script that regularly fetches the latest updates from the data repository and delivers them to the web application.</p>
 
                 <h4>Data <small>component</small></h4>
-                <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic criteria: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from online lists (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a>), conferences, publications, social media, word of mouth, web browsing and chaining.<br />
-                The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file, including their respective <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs. This second file allows us to place digital editions on a map and to add them to the <a href="http://programminghistorian.org/lessons/intro-to-linked-data" title="Opens in new tab" target="_blank">Linked Open Data</a> (LOD) cloud.<br />
+                <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic <a href="https://github.com/gfranzini/digEds_cat/blob/master/CONTRIBUTING.md" target="_blank" title="Opens in new tab">criteria</a>: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from aggregators (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a> or <a href="https://dhcommons.org/projects" target="_blank" title="Opens in new tab">DH Commons - Projects</a>), conferences presentations, publications, social media posts, word of mouth, and the web.</p><br />
+
+                <p>The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file, including their respective <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs. This second file allows us to place digital editions on a map and to add them to the <a href="http://programminghistorian.org/lessons/intro-to-linked-data" title="Opens in new tab" target="_blank">Linked Open Data</a> (LOD) cloud.<br />
                 The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
 
 
@@ -58,7 +61,7 @@
         <!--Limitations-->
         <div id="section6">
             <h3>Limitations</h3>
-            <p>Users might have noticed from the <em>Catalogue</em> that projects from Asian and African countries are underrepresented if not completely absent. The only reason for this large gap in the data is the language barrier. A Japanese project and website can only be correctly catalogued by someone who can read Japanese. Browser plugins to automatically translate webpages exist but we hesitate to use them as any machine-translation errors would go unnoticed and possibly lead to incorrect cataloguing. This is where <strong>user contributions become necessary to help paint a global, rather than a Western-centric, picture of digital edition initiatives</strong>.</p>
+            <p>Users might have noticed from the <em>Catalogue</em> that projects from Asian and African countries are underrepresented if not completely absent. The only reason for this large gap in the data is the language barrier. A Japanese project and website can only be correctly catalogued by someone who can read Japanese. Browser plugins to automatically translate webpages exist but we hesitate to use them as any machine-translation errors would go unnoticed and possibly lead to incorrect cataloguing. This is where <strong>user contributions become necessary to help provide a global, rather than a Western-centric, picture of digital edition initiatives</strong>.</p>
         </div>
 
 
@@ -219,7 +222,7 @@
                                 <a href="{% static 'webpage/images/red-banner.png' %}" title="Click to enlarge">
                                 <img src="{% static 'webpage/images/red-banner.png' %}" alt="Red banner" style="width:100%"></a>
                                 <div class="caption">
-                                    <p>Figure 5. A red banner notifies the user of an expire project URL.</p>
+                                    <p>Figure 5. A red banner notifies the user of an expired project URL.</p>
                                 </div>
                             </div><br />
                             <div class="thumbnail">

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'charts',
     'wordcloud',
     'news',
+    'sparql',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"

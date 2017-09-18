@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
+    url(r'^sparql/', include('sparql.urls', namespace='sparql')),
     url(r'editions/', include('editions.urls', namespace='editions')),
     url(r'^editions-ac/', include('editions.dal_urls', namespace='editions-ac')),
     url(r'places/', include('places.urls', namespace='places')),

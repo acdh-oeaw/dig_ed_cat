@@ -1,0 +1,67 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load webpage_extras %}
+{% block title %} SPARQL {% endblock %}
+{% block content %}
+<link href='//cdn.jsdelivr.net/yasqe/2.11.10/yasqe.min.css' rel='stylesheet' type='text/css'/>
+<link href='//cdn.jsdelivr.net/g/yasqe@2.2(yasqe.min.css),yasr@2.4(yasr.min.css)' rel='stylesheet' type='text/css'/>
+<script src='//cdn.jsdelivr.net/yasr/2.4/yasr.bundled.min.js'></script>
+<script src='//cdn.jsdelivr.net/yasqe/2.11.10/yasqe.bundled.min.js'></script>
+<div class="container">
+    <div class="panel panel-default procustom-panel-create">
+        <div class="panel-heading procustom-panel-heading">
+            <h1 style="text-align: center;">Example-Queries</h1>
+            {% for x in examples %}
+                <h3><abbr title="{{ x.description }}">{{ x.title }}</abbr></h3>
+                <code>{{ x.query }}</code>
+            {% endfor %}
+            </div>
+            <div class="panel-body">
+                {% crispy form %}
+            </div>
+            <div>
+                <h2>Result</h2>
+                <hr/>
+                <div id="yasr"></div>
+                <br/>
+                <hr/>
+
+                <div class="alert alert-success">
+                    <strong>Thanks</strong> <a href="http://about.yasgui.org/">http://about.yasgui.org/</a>
+                </div>
+                <table class="table table-bordered table-hover table-condensed">
+                    <tr>
+                        {{ results.bindings|first}}
+                    </tr>
+                    {% for x in results.bindings %}
+                        <tr>
+                            {% for key, value in x.items %}
+                            <td>
+                                {{ value.value }}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+</div>
+<script>
+var yasqe = YASQE.fromTextArea(document.getElementById('id_query'),{
+    sparql: {
+		showQueryButton: true,
+        endpoint: "{% url 'sparql:tunnel' %}",
+        requestMethod: 'GET'
+	}
+});
+
+var yasr = YASR(document.getElementById("yasr"), {
+	//this way, the URLs in the results are prettified using the defined prefixes in the query
+	getUsedPrefixes: yasqe.getPrefixesFromQuery
+});
+
+yasqe.options.sparql.callbacks.complete = yasr.setResponse;
+
+</script>
+{% endblock %}

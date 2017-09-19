@@ -17,7 +17,7 @@ class EditionTable(tables.Table):
     class Meta:
         model = Edition
         fields = ['legacy_id', 'name', 'institution']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-hover table-responsive table-striped"}
 
 
 

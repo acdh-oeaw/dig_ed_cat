@@ -17,11 +17,21 @@
 {% endblock %}
 {% block content %}
 
-        <div class="panel panel-default">
+      <div class="panel panel-default">
             <div class="panel-heading">
-                <h1>A Map of all involved Institutions</h1><br/>
+                <h2>A Map of all involved Institutions</h2>
+                <div>
+          <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" style="margin-top:10px;">
+            Search
+          </button>
+          <a class ="btn btn-default"  href="{% url 'browsing:map' %}" style="margin-top:10px;">
+            Reset search
+          </a>
+        </div>
+        <br>
                 <small>{{ snyc_log }}</small>
             </div>
+
             <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
@@ -36,35 +46,28 @@
       <div class="modal-body">
         {% load django_tables2 crispy_forms_tags %}
         {% crispy filter.form filter.form.helper %}
-        <a class ="btn btn-default"  id="01" style="white-space: normal;">Show/Hide Advanced search options</a></br>
-         <p></p>
-
+        <a class ="btn btn-default"  id="01" style="white-space: normal;">Show/Hide Advanced search options</a><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-    </div>
+    </div><!-- class="modal-content"-->
 
-  </div>
-</div>
+  </div> <!-- class="modal-dialog"-->
+</div><!--id="myModal"-->
 <!--Modal ends-->
-</div> <!--panel panel-default ends -->
-        <div>
-          <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" style="margin-top:10px;">
-            Search
-          </button>
-          <a class ="btn btn-default"  href="{% url 'browsing:map' %}" style="margin-top:10px;">
-            Reset search
-          </a>
-        </div>
+
+        
             <div class="panel-body">
                 <div class="row">
+                
+        <br>
                     <div>
                         <div id="map"></div>
                     </div>
                 </div>
             </div>
-
+</div> <!--panel panel-default ends -->
 
     <script>
     var mapLayerGroups = [];
@@ -87,6 +90,7 @@
 
         };
 
+
         var mymap = L.map('map', {
             fullscreenControl: true,
         }).setView([0, 0], 2);
@@ -98,18 +102,14 @@
             accessToken: 'pk.eyJ1Ijoic2VubmllcmVyIiwiYSI6ImNpbHk1YWV0bDAwZnB2dW01d2l1Y3phdmkifQ.OljQLEhqeAygai2y6VoSwQ'
         }).addTo(mymap);
         var markers = L.markerClusterGroup({});
-
+        var bounds = new L.LatLngBounds(markers);
         var build_data =  [{% for obj in institutions %}{"geometry": {"type": "Point", "coordinates": [ {{ obj.place.lng }}, {{obj.place.lat }} ]}, "type": "Feature",
             "properties": {"popupContent": "<table class='table table-striped'><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
         var geoJsonLayer = L.geoJson( build_data, {onEachFeature: onEachFeature});
         markers.addLayer(geoJsonLayer);
         mymap.addLayer(markers);
-        mymap.fitBounds(markers.getBounds(), {'maxZoom': 12});
+        mymap.fitBounds(bounds, {'maxZoom': 12});
     </script>
-
-<script>
-$( "#advanced_search_fields" ).append(  '<hr/><div class="controls "><label>entries per page</label><input type="number" class="form-control" name="amount"></div><br/>' );
-</script>
 
 <script type="text/javascript">
 $(document).ready(function(){

@@ -12,27 +12,29 @@
      <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
      <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
      <style>
-         #map { height: 800px; }
+         #map { 
+          height: 800px; 
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
      </style>
 {% endblock %}
 {% block content %}
+<div class="container">
 
-      <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2>A Map of all involved Institutions</h2>
-                <div>
+        <h1>A Map of all involved Institutions</h1>
+        
+          <small>{{ snyc_log }}</small>
+          <br>
+
           <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" style="margin-top:10px;">
             Search
           </button>
           <a class ="btn btn-default"  href="{% url 'browsing:map' %}" style="margin-top:10px;">
             Reset search
           </a>
-        </div>
-        <br>
-                <small>{{ snyc_log }}</small>
-            </div>
-
-            <!-- Modal -->
+            
+<!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
 
@@ -57,17 +59,9 @@
 </div><!--id="myModal"-->
 <!--Modal ends-->
 
-        
-            <div class="panel-body">
-                <div class="row">
-                
-        <br>
-                    <div>
-                        <div id="map"></div>
-                    </div>
-                </div>
-            </div>
-</div> <!--panel panel-default ends -->
+<div id="map"></div>
+
+</div>
 
     <script>
     var mapLayerGroups = [];

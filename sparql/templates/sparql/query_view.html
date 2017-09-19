@@ -8,50 +8,38 @@
 <link href='//cdn.jsdelivr.net/g/yasqe@2.2(yasqe.min.css),yasr@2.4(yasr.min.css)' rel='stylesheet' type='text/css'/>
 <script src='//cdn.jsdelivr.net/yasr/2.4/yasr.bundled.min.js'></script>
 <script src='//cdn.jsdelivr.net/yasqe/2.11.10/yasqe.bundled.min.js'></script>
-<style>
 
-</style>
 <div class="container">
-
 <div>
     <h1 style="text-align:center">SPARQL Endpoint</h1>
-  </div>
-
-
+</div>
     {% if examples %}
- <div id="examples">
+<div id="examples">
     <h3>Example queries</h3>
-    <hr/>
-{% for x in examples %}
-<button  type="button" class="btn btn-default" data-toggle="collapse" data-target="#see-example-{{ x.id }}" id="see-example-btn-{{ x.id }}">{{ x.title }}</button>
-
-     <div id="see-example-{{ x.id }}" class="collapse">
-     <h5>{{ x.title }}: {{ x.description }}</abbr></h5>
-            <code>{{ x.query }}</code>
-     </div>
-     <br>
- {% endfor %}
- </div>
- {% endif %}
-
- <br>
-
- <div id="query-editor">
+    <hr/> {% for x in examples %}
+    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#see-example-{{ x.id }}" id="see-example-btn-{{ x.id }}">{{ x.title }}</button>
+    <div id="see-example-{{ x.id }}" class="collapse">
+        <h5>{{ x.title }}: {{ x.description }}</abbr></h5>
+        <code>{{ x.query }}</code>
+    </div>
+    <br> {% endfor %}
+</div>
+{% endif %}
+<br>
+<div id="query-editor">
     {% crispy form %}
 </div>
 <br>
 <div id="sparql-results">
     <h3>Results</h3>
-        <hr/>
+    <hr/>
     <div id="yasr"></div>
 </div>
 <br>
 <div class="panel panel-info">
-      <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span>  Credits</div>
-      <div class="panel-body">SPARQL endpoint interface is built with <a href="http://about.yasgui.org/">YASGUI</a> package.</div>
+    <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> Credits</div>
+    <div class="panel-body">SPARQL endpoint interface is built with <a href="http://about.yasgui.org/">YASGUI</a> package.</div>
 </div>
-
-
 </div>
 <script>
 var yasqe = YASQE.fromTextArea(document.getElementById('id_query'),{

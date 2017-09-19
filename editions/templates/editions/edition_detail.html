@@ -32,13 +32,18 @@
                 </h2>
             {% endif %}
             </div>
-            <div class="col-md-8">
-                <h2 style="text-align:center;">{{ object.name }}</h2>
-                <div class="row text-center">
-                Download: <a href="{% url 'browsing:rdf' %}?format=n3&name={{ object.legacy_id }}">n3</a>
-                | <a href="{% url 'browsing:rdf' %}?format=pretty-xml&name={{ object.legacy_id }}">rdf/xml</a>
+            <div class="col-md-8" style="text-align:center;">
+                <h2 ><b>{{ object.name }}</b></h2>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Download <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{% url 'browsing:rdf' %}?format=n3&name={{ object.legacy_id }}" title="Download current edition as n3 file"><b>N3</b></a></li>
+                        <li><a href="{% url 'browsing:rdf' %}?format=pretty-xml&name={{ object.legacy_id }}" title="Download current edition as rdf/xml file"><b>RDF/XML</b></a></li>
+                    </ul>
+
                 </div>
-                <h4 style="text-align:center;">
+                <h4>
                     <span id="clickme" title="click to toggle info" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                 </h4>
             </div>
@@ -50,7 +55,8 @@
             {% endif %}
             </div>
         </div>
-        <div class="panel panel-body">
+        </div>
+        <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-hover table-condensed">
@@ -310,16 +316,18 @@
                             {% endif %}
                         </td>
                     </tr>
-                    {% if user.is_authenticated %}
-                    <tr>
-                        <td><a href="{% url 'editions:edition_edit' pk=object.legacy_id %}"><button type="button" class="btn btn-primary">edit Edition</button></a></td>
-                    </tr>
-                    {% endif %}
                 </table>
+                  {% if user.is_authenticated %}
+
+                    <a href="{% url 'editions:edition_edit' pk=object.legacy_id %}">
+                    <button type="button" class="btn btn-primary" style="margin-bottom: 10px;">edit Edition</button>
+                    </a>
+
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
                     <div id="map"></div>
-                    <hr/>
+                    
                     <div class="text-center">
                       <a href="https://github.com/gfranzini/digEds_cat/issues" class="btn btn-md procustom-btn" title="Report a bug or an update for this project on Github" id="report-btn">
                         report a bug or an update for this project

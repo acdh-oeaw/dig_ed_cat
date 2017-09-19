@@ -2,10 +2,17 @@
 {% load django_tables2 %}
 {% block Titel %}Browse Editions{% endblock %}
 {% block list_title %}
-    Browse Editions
-    | <a href="{% url 'browsing:dl' %}{% querystring %}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true" title="Download the currently selected editions as .csv."></span></a>
-    | <a href="{% url 'browsing:rdf' %}?format=n3&{% querystring %}" title="Download the currently selected editions as n3 rdf file.">n3</a>
-    | <a href="{% url 'browsing:rdf' %}?format=pretty-xml&{% querystring %}" title="Download the currently selected editions as rdf/xml file.">rdf/xml</a>
+    Browse Catalogue
+    | 
+ <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    Download <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="{% url 'browsing:dl' %}{% querystring %}" title="Download the currently selected editions as csv file"><b>CSV</b></a></li>
+      <li><a href="{% url 'browsing:rdf' %}?format=n3&{% querystring %}" title="Download the currently selected editions as n3 rdf file"><b>N3</b></a></li>
+      <li><a href="{% url 'browsing:rdf' %}?format=pretty-xml&{% querystring %}" title="Download the currently selected editions as rdf/xml file"><b>RDF/XML</b></a></li>
+    </ul>
+  </div>
 
 {% endblock %}
 

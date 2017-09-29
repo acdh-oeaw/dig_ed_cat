@@ -2,14 +2,40 @@
 {% load staticfiles %}
 
 {% block content %}
+
 <div class="container">
 
     <h1>Documentation</h1>
     <p style="font-size: 8"><i class="fa fa-clock-o" aria-hidden="true"></i> Last updated: Sept 14th, 2017</p>
 
 
+      <ul id="docs-outline">
+      <li><a href="#overview"><b>Overview</b></a></li>
+      <ul>
+        <li><a href="#section1">Team</a></li>
+        <li><a href="#section2">Duration</a></li>
+        <li><a href="#section3">Funding</a></li>
+        <li><a href="#section4">Components and repositories</a></li>
+        <!-- <li><a href="#section5">Section 5</a></li> -->
+        <li><a href="#section6">Limitations</a></li>
+        <li><a href="#section7">How to contribute to the Catalogue</a></li>
+        <li><a href="#section8">How to cite this project</a></li>
+        <li><a href="#section9">Web analytics</a></li>
+        <li><a href="#section10">Copyright</a></li>
+        <li><a href="#section11">Relevant reading</a></li>
+        <li><a href="#section12">Relevant resources</a></li>
+        <li><a href="#section13">Acknowledgments</a></li>
+      </ul>
+    <li><a href="#navigating"><b>Navigating the Web Application</b></a></li>
+      <ul>
+        <li><a href="#section14">Browsing the data</a></li>
+        <li><a href="#section15">Other menu pages</a></li>
+    </ul>
+    <li><a href="#feedback"><b>Feedback</b></a></li>
+      </ul>
+  
 
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 
         <!--Team-->
         <div id="section1">
@@ -155,7 +181,7 @@
     <br />
     <br />
 
-    <h2>Navigating the Web Application</h2>
+    <h2 id="navigating" >Navigating the Web Application</h2>
 
         <div id="section14">
             <h3>Browsing the data</h3>
@@ -292,14 +318,11 @@
             <p>The <em>Login</em> menu item is for the project team's use only. All other pages should be self-explanatory.</p>
         </div>
 
-
-    <hr />
-
-
+  <div id="feedback">
     <h2>Feedback</h2>
         <p>For general comments and suggestions, please email Greta Franzini at <a href="mailto:g.franzini.11@ucl.ac.uk">g.franzini.11@ucl.ac.uk</a><br />
         For specific requests, bug reports or corrections, please create GitHub issues in the relevant repository.</p>
         <p>We'd love to hear from you!</p>
-
+</div>
 </div>
 {% endblock %}

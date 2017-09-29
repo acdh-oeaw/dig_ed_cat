@@ -186,6 +186,15 @@
       .panel-heading > h2 {
         font-weight: bold;
       }
+      #docs-outline { 
+        list-style-type: none;
+        padding-left: 0px; 
+
+      }
+      #docs-outline > ul { 
+        list-style-type: none;
+        
+      }
 
 
 </style>
@@ -203,6 +212,11 @@
  });
 
 </script>
+ <script>
+    var shiftWindow = function() { scrollBy(0, -50) };
+    window.addEventListener("hashchange", shiftWindow);
+    function load() { if (window.location.hash) shiftWindow(); }
+  </script>
       {% block scriptHeader %}
         {% endblock %}
   </head>

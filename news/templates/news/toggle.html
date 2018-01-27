@@ -1,0 +1,11 @@
+<button id="clickme">Click me</button>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('div[class*="news-wrapper-hidden"]').hide();
+    })
+    $("#clickme").click(function(){
+        $('div[class*="news-wrapper-hidden"]').toggle("slow");
+        console.log('hansi4ever')
+    })
+</script>

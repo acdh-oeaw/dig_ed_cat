@@ -1,11 +1,10 @@
-<button id="clickme">Click me</button>
+<span class="glyphicon glyphicon-info-sign" title="show all newsfeeds" id="toggle_news"></span>
 
 <script type="text/javascript">
     $(document).ready(function(){
         $('div[class*="news-wrapper-hidden"]').hide();
     })
-    $("#clickme").click(function(){
+    $("#toggle_news").click(function(){
         $('div[class*="news-wrapper-hidden"]').toggle("slow");
-        console.log('hansi4ever')
     })
 </script>

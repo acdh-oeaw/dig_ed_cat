@@ -1,11 +1,19 @@
 {% extends "webpage/base.html" %}
 {% load staticfiles %}
-{% block scriptHeader %}<!--leafletjs -->
+{% block scriptHeader %}
     <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet/leaflet.css' %}"/></link>
-    <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
-        <style>
-            #map { height: 500px; }
-        </style>
+    <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet.markercluster/dist/MarkerCluster.css' %}"/></link>
+    <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet.markercluster/dist/MarkerCluster.Default.css' %}"/></link>
+
+     <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
+     <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
+     <style>
+         #map {
+          height: 800px;
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
+     </style>
 {% endblock %}
 {% block content %}
 <div class="alert alert-info alert-dismissable" style="text-align:center;">
@@ -327,7 +335,7 @@
                 </div>
                 <div class="col-md-6">
                     <div id="map"></div>
-                    
+
                     <div class="text-center">
                       <a href="https://github.com/gfranzini/digEds_cat/issues" class="btn btn-md procustom-btn" title="Report a bug or an update for this project on Github" id="report-btn">
                         report a bug or an update for this project
@@ -347,24 +355,46 @@
     })
 </script>
 
-<script type="text/javascript">
-    $( document ).ready(function() {
-        var map = L.map('map').setView([48.69096, 9.14062], 5);
+<script>
+    var mapLayerGroups = [];
+    function onEachFeature(feature, layer) {
+            var lg = mapLayerGroups[feature.relation_type];
+            if (lg === undefined) {
+                lg = new L.layerGroup();
+                mapLayerGroups[feature.relation_type] = lg;
+            }
+
+            //add the feature to the layer
+            lg.addLayer(layer);
+            //mymap.fitBounds(lg.getBounds(), {'maxZoom': 12});
+
+            if (feature.properties && feature.properties.popupContent) {
+                popupContent = feature.properties.popupContent;
+            }
+
+            layer.bindPopup(feature.properties.popupContent);
+
+        };
+
+
+        var mymap = L.map('map', {
+            fullscreenControl: true,
+        }).setView([0, 0], 2);
 
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.light',
-        accessToken: 'pk.eyJ1Ijoic2VubmllcmVyIiwiYSI6ImNpbHk1YWV0bDAwZnB2dW01d2l1Y3phdmkifQ.OljQLEhqeAygai2y6VoSwQ'
-        }).addTo(map);
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.light',
+            accessToken: 'pk.eyJ1Ijoic2VubmllcmVyIiwiYSI6ImNpbHk1YWV0bDAwZnB2dW01d2l1Y3phdmkifQ.OljQLEhqeAygai2y6VoSwQ'
+        }).addTo(mymap);
+        var markers = L.markerClusterGroup({});
+        var bounds = new L.LatLngBounds(markers);
+        var build_data =  [{% for obj in object.institution.all %}{"geometry": {"type": "Point", "coordinates": [ {{ obj.place.lng }}, {{obj.place.lat }} ]}, "type": "Feature",
+            "properties": {"popupContent": "<table class='table table-striped'><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
+        var geoJsonLayer = L.geoJson( build_data, {onEachFeature: onEachFeature});
+        markers.addLayer(geoJsonLayer);
+        mymap.addLayer(markers);
+        mymap.fitBounds(bounds, {'maxZoom': 12});
+    </script>
 
-        {% for x in object.institution.all %}
-        {% if x.lat %}
-        L.marker([{{ x.lat }}, {{ x.lng }}])
-        .addTo(map)
-        .bindPopup("<h3> {{object.name}}</h3><table class='table table-striped'> <tr> <td>responsible Institution: </td> <td>{{ x.name }}</td> </tr> <tr> <td>located in: </td> <td>{{ x.place.name }} ({{ x.place.part_of.name }})</td> </tr><tr> <td>more projects from this institution: </td> <td><a href='{% url 'browsing:browse_editions' %}?institution__name={{x.id}}'>{{ x.name }}</a></td> </tr>  </table>");
-        {% endif %}
-        {% endfor %}
-        });
-</script>
 {% endblock %}

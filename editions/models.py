@@ -75,11 +75,10 @@ class Edition(models.Model):
     """Holds the (meta)data of a digital editions project. Information taken from
     https://github.com/gfranzini/digEds_cat/wiki/Contribute"""
 
-    #Choices for NullBooleanField
     NULL_BOOLEAN_CHOICES = (
-    (None, "unknown"),
-    (True, "yes"),
-    (False, "no")
+        (None, "unknown"),
+        (True, "yes"),
+        (False, "no")
     )
 
     BOOLEAN_CHOICES = (

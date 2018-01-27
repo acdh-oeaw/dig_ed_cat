@@ -12,8 +12,8 @@
      <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
      <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
      <style>
-         #map { 
-          height: 800px; 
+         #map {
+          height: 800px;
           margin-top: 30px;
           margin-bottom: 30px;
         }
@@ -23,7 +23,7 @@
 <div class="container">
 
         <h1>A Map of all involved Institutions</h1>
-        
+
           <small>{{ snyc_log }}</small>
           <br>
 
@@ -33,7 +33,7 @@
           <a class ="btn btn-default"  href="{% url 'browsing:map' %}" style="margin-top:10px;">
             Reset search
           </a>
-            
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
@@ -62,8 +62,7 @@
 <div id="map"></div>
 
 </div>
-
-    <script>
+<script>
     var mapLayerGroups = [];
     function onEachFeature(feature, layer) {
             var lg = mapLayerGroups[feature.relation_type];

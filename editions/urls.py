@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = 'editions'
+
 urlpatterns = [
     url(r'list/$', views.EditionListView.as_view(), name='edition_list'),
     url(r'institution-csv/$', views.institution_csv, name='institution_csv'),

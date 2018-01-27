@@ -3,6 +3,7 @@ from . import views
 from . import dal_views
 from .models import Person, Institution
 
+app_name = 'editions'
 
 urlpatterns = [
     url(

@@ -35,7 +35,9 @@ class Place(models.Model):
         max_digits=20, decimal_places=12, blank=True, null=True
     )
     part_of = models.ForeignKey(
-        "Place", null=True, blank=True, help_text="A place (country) this place is part of."
+        "Place", null=True, blank=True,
+        help_text="A place (country) this place is part of.",
+        on_delete=models.PROTECT
     )
     place_type = models.CharField(choices=PLACE_TYPES, null=True, blank=True, max_length=50)
 

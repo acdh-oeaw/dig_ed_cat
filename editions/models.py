@@ -5,7 +5,7 @@ from places.models import Place
 
 
 class SyncLog(models.Model):
-    actor = models.ForeignKey(User, blank=True)
+    actor = models.ForeignKey(User, blank=True, on_delete=models.PROTECT)
     sync_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -28,7 +28,9 @@ class Institution(models.Model):
         max_length=255, blank=True, help_text="The Instituion's name."
     )
     place = models.ForeignKey(
-        Place, blank=True, null=True, help_text="Place with which the institution is associated with."
+        Place, blank=True, null=True,
+        help_text="Place with which the institution is associated with.",
+        on_delete=models.PROTECT
     )
     gnd_id = models.CharField(
         max_length=255, blank=True, help_text="GND id of Institution."

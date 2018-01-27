@@ -4,7 +4,7 @@ from django.shortcuts import (render, render_to_response, get_object_or_404,
 	redirect)
 from django.views import generic
 from django.views.generic.edit import DeleteView
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Place

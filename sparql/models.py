@@ -21,7 +21,9 @@ class SparqlConfig(models.Model):
 
 class Query(models.Model):
     """Stores sparql-queries"""
-    endpoint = models.ForeignKey(SparqlConfig, blank=True, null=True)
+    endpoint = models.ForeignKey(
+        SparqlConfig, blank=True, null=True, on_delete=models.PROTECT
+    )
     query = models.TextField(blank=True, null=True)
     title = models.CharField(default="An example Query", max_length=200)
     description = models.TextField(blank=True, null=True)

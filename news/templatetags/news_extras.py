@@ -4,22 +4,27 @@ from news.models import NewsFeed
 register = template.Library()
 
 
+@register.inclusion_tag('news/toggle.html')
+def toggle_feeds():
+    return {'some_context': 'Some Context'}
+
+
 @register.inclusion_tag('news/newsfeed.html')
-def newsfeed(amount=None):
+def newsfeed(amount=None, default_visible=5):
     if amount is None:
         feeds = NewsFeed.objects.all()
     else:
         feeds = NewsFeed.objects.all()[0:amount]
-    return {'feeds': feeds}
+    return {'feeds': feeds, 'default_visible': default_visible}
 
 
 @register.inclusion_tag('news/newsfeed_bootstrap_panel.html')
-def newsfeed_bootstrap_panel(amount=None):
+def newsfeed_bootstrap_panel(amount=None, default_visible=3):
     if amount is None:
         feeds = NewsFeed.objects.all()
     else:
         feeds = NewsFeed.objects.all()[0:amount]
-    return {'feeds': feeds}
+    return {'feeds': feeds, 'default_visible': default_visible}
 
 
 @register.inclusion_tag('news/newsfeed_list.html')

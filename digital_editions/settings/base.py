@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'crispy_forms',
-    'django_spaghetti',
     'webpage',
     'places',
     'editions',
@@ -46,23 +45,15 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
-    'PAGE_SIZE': 10
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
-SPAGHETTI_SAUCE = {
-    'apps': ['places', 'editions'],
-    'show_fields': False,
-    'exclude': {'auth': ['user']}
-}
-
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

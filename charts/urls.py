@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views, ml_views
 
+app_name = 'charts'
+
 urlpatterns = [
     url(r'^chartselector/$', views.ChartSelector.as_view(), name='chart_selector'),
     url(

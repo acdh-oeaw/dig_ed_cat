@@ -1,0 +1,10 @@
+<span class="glyphicon glyphicon-info-sign" title="show all newsfeeds" id="toggle_news"></span>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('div[class*="news-wrapper-hidden"]').hide();
+    })
+    $("#toggle_news").click(function(){
+        $('div[class*="news-wrapper-hidden"]').toggle("slow");
+    })
+</script>

@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = 'webpage'
+
 urlpatterns = [
     url(r'^$', views.GenericWebpageView.as_view(), name="start"),
     url(r'^login/$', views.user_login, name='user_login'),

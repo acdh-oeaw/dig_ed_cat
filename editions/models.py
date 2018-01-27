@@ -147,7 +147,7 @@ class Edition(models.Model):
         ("", "----"),
         ("0", "No information on the editorial methods and practices nor on the source (digital or printed) of the text."),
         ("0.5", "No information on the source, but some information about the author, date and accuracy of the digital edition."),
-        ("1", " Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software. Values may include a large range of standards used, including HTML, XML-TEI etc."),
+        ("1", " Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software."),
     )
     philological_statement = models.CharField(
         blank=True, max_length=255,
@@ -157,7 +157,7 @@ class Edition(models.Model):
         ("", "----"),
         ("0", "No account of textual variance is given. The digital edition is a reproduction of a given print edition without any account of variants."),
         ("0.5", "The digital edition is a reproduction of a given print scholarly edition and reproduces the selected textual variants extant in the apparatus criticus of that edition, or: the edition does not follow a digital paradigm, in that the variants are not automatically computable the way they are encoded."),
-        ("1", "This edition is 'based on full-text transcription of original texts into electronic form'."),
+        ("1", "This edition is based on full-text transcription of original texts into electronic form."),
     )
     textual_variance = models.CharField(
         blank=True, max_length=255,
@@ -169,7 +169,7 @@ class Edition(models.Model):
         ("N/A", "Not applicable, as no information about the source of the text is given, though it is easily assumable that the source is another digital edition or a printed edition (possibly even a scholarly edition"),
         ("0", "The only witness modelled digitally is a printed non-scholarly edition, used as a source for the digital edition."),
         ("0.5", "Same as above, but the witness/source is a scholarly edition."),
-        ("1", "The witnesses are traditional philological primary sources (including manuscripts, inscriptions or papyri)"),
+        ("1", "The witnesses are traditional philological primary sources."),
     )
     value_witnesses = models.CharField(
         choices=CHOICES_WITNESS, blank=True, null=True, max_length=255,

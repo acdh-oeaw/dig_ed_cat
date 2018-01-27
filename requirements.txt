@@ -31,7 +31,7 @@ nbconvert==5.2.1
 nbformat==4.3.0
 -e git+https://github.com/acdh-oeaw/django-acdh-news@187e7945d2d6637349aeb20f0efa629ace8b6049#egg=news
 notebook==5.0.0
-numpy==1.13.1+mkl
+#numpy==1.13.1+mkl
 pandas==0.20.3
 pandocfilters==1.4.1
 pickleshare==0.7.4

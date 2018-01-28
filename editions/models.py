@@ -1,3 +1,4 @@
+import json
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -311,3 +312,60 @@ class Edition(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
+
+    def netviz_data(self):
+        nodes = [
+            {
+                'id': "edition_{}".format(self.pk),
+                'name': "{}".format(self.name),
+                'color': "red",
+                'type': "Edition"
+            }
+        ]
+        edges = []
+
+        for y in self.institution.all():
+            node = {
+                'id': "institution_{}".format(y.pk),
+                'label': y.name,
+                'color': 'green',
+                'type': 'Institution'
+            }
+            edge = {
+                'from': "edition_{}".format(self.pk),
+                'to': "institution_{}".format(y.pk)
+            }
+            nodes.append(node)
+            edges.append(edge)
+            try:
+                newedge = {
+                    'from': "institution_{}".format(y.pk),
+                    'to': "place_{}".format(y.place.pk)
+                }
+                newnode = {
+                    'id': "place_{}".format(y.place.pk),
+                    'label': "{}".format(y.place.name),
+                    'color': "yellow",
+                    'type': "Place"
+                }
+                nodes.append(newnode)
+                edges.append(newedge)
+            except AttributeError:
+                print("IVANA IST MEINE EINZIGE ABER IMMERHIN GROESSTE LIEBE")
+        for y in self.manager.all():
+            node = {
+                'id': "person_{}".format(y.pk),
+                'label': y.name,
+                'color': "blue",
+            }
+            nodes.append(node)
+            edge = {
+                'from': "edition_{}".format(self.pk),
+                'to': "person_{}".format(y.pk)
+            }
+            edges.append(edge)
+        data = {
+                'nodes': nodes,
+                'edges': edges
+            }
+        return json.dumps(data)

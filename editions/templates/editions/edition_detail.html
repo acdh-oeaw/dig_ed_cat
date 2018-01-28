@@ -7,12 +7,20 @@
 
      <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
      <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
      <style>
          #map {
-          height: 800px;
+          height: 500px;
           margin-top: 30px;
           margin-bottom: 30px;
         }
+     </style>
+     <style type="text/css">
+       #mynetwork {
+         width: 600px;
+         height: 500px;
+       }
      </style>
 {% endblock %}
 {% block content %}
@@ -335,6 +343,7 @@
                 </div>
                 <div class="col-md-6">
                     <div id="map"></div>
+                    <div id="mynetwork"></div>
 
                     <div class="text-center">
                       <a href="https://github.com/gfranzini/digEds_cat/issues" class="btn btn-md procustom-btn" title="Report a bug or an update for this project on Github" id="report-btn">
@@ -344,6 +353,45 @@
 
                 </div>
             </div>
+
+
+
+
+<script type="text/javascript">
+  // create an array with nodes
+  var sourceData = {{ object.netviz_data|safe }};
+  var nodes = new vis.DataSet([
+    {id: 1, label:'html color', color: 'lime'},
+    {id: 2, label:'rgb color', color: 'rgb(255,168,7)'},
+    {id: 3, label:'hex color', color: '#7BE141'},
+    {id: 4, label:'rgba color', color: 'rgba(97,195,238,0.5)'},
+    {id: 5, label:'colorObject', color: {background:'pink', border:'purple'}},
+    {id: 6, label:'colorObject + highlight', color: {background:'#F03967', border:'#713E7F',highlight:{background:'red',border:'black'}}},
+    {id: 7, label:'colorObject + highlight + hover', color: {background:'cyan', border:'blue',highlight:{background:'red',border:'blue'},hover:{background:'white',border:'red'}}}
+  ])
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {from: 1, to: 3},
+    {from: 1, to: 2},
+    {from: 2, to: 4},
+    {from: 2, to: 5},
+    {from: 2, to: 6},
+    {from: 4, to: 7},
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: sourceData.nodes,
+    edges: sourceData.edges
+  };
+  var options = {
+    nodes: {borderWidth: 2},
+    interaction: {hover: true}
+  }
+  var network = new vis.Network(container, data, options);
+</script>
         </div>
 
 <script type="text/javascript">

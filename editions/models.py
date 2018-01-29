@@ -1,5 +1,6 @@
 import json
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 from places.models import Place
@@ -22,6 +23,12 @@ class Person(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
+
+    def get_browsing_url(self):
+        return "{}?manager__name={}".format(
+            reverse('browsing:browse_editions'),
+            self.pk
+        )
 
 
 class Institution(models.Model):
@@ -49,6 +56,12 @@ class Institution(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
+
+    def get_browsing_url(self):
+        return "{}?institution__name={}".format(
+            reverse('browsing:browse_editions'),
+            self.pk
+        )
 
 
 class Period(models.Model):
@@ -100,15 +113,20 @@ class Edition(models.Model):
     )
     scholarly = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="An edition must be critical, must have critical components - a pure facsimile is not an edition, a digital library is not an edition (Patrick Sahle)."
+        help_text="An edition must be critical, must have critical components - a pure facsimile\
+        is not an edition, a digital library is not an edition (Patrick Sahle)."
     )
     digital = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="A digital edition can not be converted to a printed edition without substantial loss of content or functionality - vice versa: a retrodigitized printed edition is not a Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new content or functionalities) (Patrick Sahle)."
+        help_text="A digital edition can not be converted to a printed edition without substantial\
+        loss of content or functionality - vice versa: a retrodigitized printed edition is not a\
+        Scholarly Digital Edition (but it may evolve into a Scholarly Digital Edition through new\
+        content or functionalities) (Patrick Sahle)."
     )
     edition = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="An edition must represent its material (usually as transcribed/edited text) - a catalog, an index, a descriptive database is not an edition (Patrick Sahle)."
+        help_text="An edition must represent its material (usually as transcribed/edited text)\
+        - a catalog, an index, a descriptive database is not an edition (Patrick Sahle)."
     )
     language = models.ManyToManyField(
         Language, blank=True, related_name="lang_source",
@@ -145,9 +163,13 @@ class Edition(models.Model):
     )
     CHOICES_PHILOLOGICAL = (
         ("", "----"),
-        ("0", "No information on the editorial methods and practices nor on the source (digital or printed) of the text."),
-        ("0.5", "No information on the source, but some information about the author, date and accuracy of the digital edition."),
-        ("1", " Complete information on the source of the text, as well as on the author, date and accuracy of the digital edition. Digital Humanities standards implemented, including modelling, markup language, data structure and software."),
+        ("0", "No information on the editorial methods and practices nor on the source\
+        (digital or printed) of the text."),
+        ("0.5", "No information on the source, but some information about the author,\
+        date and accuracy of the digital edition."),
+        ("1", " Complete information on the source of the text, as well as on the author,\
+        date and accuracy of the digital edition. Digital Humanities standards implemented,\
+        including modelling, markup language, data structure and software."),
     )
     philological_statement = models.CharField(
         blank=True, max_length=255,
@@ -155,9 +177,14 @@ class Edition(models.Model):
     )
     CHOICES_TEXTUAL = (
         ("", "----"),
-        ("0", "No account of textual variance is given. The digital edition is a reproduction of a given print edition without any account of variants."),
-        ("0.5", "The digital edition is a reproduction of a given print scholarly edition and reproduces the selected textual variants extant in the apparatus criticus of that edition, or: the edition does not follow a digital paradigm, in that the variants are not automatically computable the way they are encoded."),
-        ("1", "This edition is based on full-text transcription of original texts into electronic form."),
+        ("0", "No account of textual variance is given. The digital edition is a reproduction\
+        of a given print edition without any account of variants."),
+        ("0.5", "The digital edition is a reproduction of a given print scholarly edition and\
+        reproduces the selected textual variants extant in the apparatus criticus of that edition,\
+        or: the edition does not follow a digital paradigm, in that the variants are\
+        not automatically computable the way they are encoded."),
+        ("1", "This edition is based on full-text transcription of original texts\
+        into electronic form."),
     )
     textual_variance = models.CharField(
         blank=True, max_length=255,
@@ -166,8 +193,11 @@ class Edition(models.Model):
     )
     CHOICES_WITNESS = (
         ("", "----"),
-        ("N/A", "Not applicable, as no information about the source of the text is given, though it is easily assumable that the source is another digital edition or a printed edition (possibly even a scholarly edition"),
-        ("0", "The only witness modelled digitally is a printed non-scholarly edition, used as a source for the digital edition."),
+        ("N/A", "Not applicable, as no information about the source of the text is given,\
+        though it is easily assumable that the source is another digital edition\
+        or a printed edition (possibly even a scholarly edition"),
+        ("0", "The only witness modelled digitally is a printed non-scholarly edition,\
+        used as a source for the digital edition."),
         ("0.5", "Same as above, but the witness/source is a scholarly edition."),
         ("1", "The witnesses are traditional philological primary sources."),
     )
@@ -209,11 +239,13 @@ class Edition(models.Model):
     )
     image_manipulation = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The images can be manipulated in some way within the edition (brightness, rotation, etc.)."
+        help_text="The images can be manipulated in some way within\
+        the edition (brightness, rotation, etc.)."
     )
     text_image = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The transcription and the image are linked so that clicking on a word in the image brings up the corresponding textual token and viceversa.",
+        help_text="The transcription and the image are linked so that clicking on a word\
+        in the image brings up the corresponding textual token and viceversa.",
         verbose_name="Text-image linking"
     )
     source_translation = models.CharField(
@@ -257,16 +289,21 @@ class Edition(models.Model):
     CHOICES_OPENSOURCE = (
         ("", "----"),
         ("no information provided", "no information provided"),
-        ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable by other research projects. To access the material, users must pay a subscription."),
+        ("0", "Proprietary, all material is copyrighted. The ‘source’ is closed and not reusable \
+         by other research projects. To access the material, users must pay a subscription."),
         ("0.5", "Same as above, but the subscription is free of charge."),
-        ("1", "Open Access. The texts may be accessed through specific software, but the source is not accessible."),
-        ("1.5", "Open Access and Open Source. Part of the data underlying the digital edition (e.g. text but not images) is freely available for access and reuse."),
-        ("2", "Open Access and Open Source. All data underlying the digital edition is freely available for access and reuse.")
+        ("1", "Open Access. The texts may be accessed through specific software,\
+        but the source is not accessible."),
+        ("1.5", "Open Access and Open Source. Part of the data underlying the digital edition\
+        (e.g. text but not images) is freely available for access and reuse."),
+        ("2", "Open Access and Open Source. All data underlying the digital edition \
+        is freely available for access and reuse.")
     )
     open_source = models.CharField(
         blank=True, max_length=255,
         choices=CHOICES_OPENSOURCE,
-        verbose_name="Open Source/Open Access", help_text='The project adheres to an Open Source/Access policy.'
+        verbose_name="Open Source/Open Access",
+        help_text='The project adheres to an Open Source/Access policy.'
     )
     infrastructure = models.CharField(
         blank=True, max_length=255,
@@ -279,7 +316,8 @@ class Edition(models.Model):
     )
     key_or_ocr = models.CharField(
         blank=True, max_length=40,
-        help_text="The source text was digitised with Optical Character Recognition (OCR) software or manually keyed in.",
+        help_text="The source text was digitised with Optical Character Recognition (OCR) software\
+        or manually keyed in.",
         choices=CHOICES_OCR,
         verbose_name="OCR or keyed?"
     )
@@ -307,19 +345,25 @@ class Edition(models.Model):
     sahle_cat = models.NullBooleanField(
         choices=NULL_BOOLEAN_CHOICES,
         blank=True, null=True, verbose_name="Sahle Catalog",
-        help_text="Indicates whether a digital edition is also present in Patrick Sahle's Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/).The values 0 [no] or 1 [yes] are used."
+        help_text="Indicates whether a digital edition is also present in Patrick Sahle's\
+        Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/).\
+        The values 0 [no] or 1 [yes] are used."
     )
 
     def __str__(self):
         return "{}".format(self.name)
 
+    def get_absolute_url(self):
+        return reverse('editions:edition_detail', kwargs={'pk': self.legacy_id})
+
     def netviz_data(self):
         nodes = [
             {
                 'id': "edition_{}".format(self.pk),
-                'name': "{}".format(self.name),
+                'title': "{}".format(self.name),
                 'color': "red",
-                'type': "Edition"
+                'type': "Edition",
+                'url': self.get_absolute_url()
             }
         ]
         edges = []
@@ -327,15 +371,17 @@ class Edition(models.Model):
         for y in self.institution.all():
             node = {
                 'id': "institution_{}".format(y.pk),
-                'label': y.name,
+                'title': y.name,
                 'color': 'green',
-                'type': 'Institution'
+                'type': 'Institution',
+                'url': y.get_browsing_url()
             }
             edge = {
                 'from': "edition_{}".format(self.pk),
                 'to': "institution_{}".format(y.pk)
             }
-            nodes.append(node)
+            if node not in nodes:
+                nodes.append(node)
             edges.append(edge)
             try:
                 newedge = {
@@ -344,19 +390,21 @@ class Edition(models.Model):
                 }
                 newnode = {
                     'id': "place_{}".format(y.place.pk),
-                    'label': "{}".format(y.place.name),
+                    'title': "{}".format(y.place.name),
                     'color': "yellow",
-                    'type': "Place"
+                    'type': "Place",
                 }
-                nodes.append(newnode)
+                if newnode not in nodes:
+                    nodes.append(newnode)
                 edges.append(newedge)
             except AttributeError:
-                print("IVANA IST MEINE EINZIGE ABER IMMERHIN GROESSTE LIEBE")
+                pass
         for y in self.manager.all():
             node = {
                 'id': "person_{}".format(y.pk),
-                'label': y.name,
+                'title': y.name,
                 'color': "blue",
+                'url': y.get_browsing_url()
             }
             nodes.append(node)
             edge = {

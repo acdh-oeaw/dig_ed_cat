@@ -1,3 +1,5 @@
+import itertools
+import json
 import csv
 import time
 import datetime
@@ -80,13 +82,17 @@ class EditionDownloadView(GenericListView):
 
 
 def EditionXMLView(request):
-    response = render_to_response('browsing/xml_template.xml', {'editions': Edition.objects.all(),})
+    response = render_to_response(
+        'browsing/xml_template.xml', {'editions': Edition.objects.all(), }
+    )
     response['Content-Type'] = 'application/xml; charset=utf-8'
     return response
 
 
 def EditionBibtextView(request):
-    response = render_to_response('browsing/bibtex_template.txt', {'editions': Edition.objects.all(),})
+    response = render_to_response(
+        'browsing/bibtex_template.txt', {'editions': Edition.objects.all(), }
+    )
     response['Content-Type'] = 'text/plain; charset=utf-8'
     return response
 
@@ -117,7 +123,9 @@ class EditionRDFView(GenericListView):
         g.bind('gn', GN)
         g.bind('wgs', WGS)
         for obj in self.get_queryset():
-            edition = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
+            edition = URIRef(
+                "https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id)
+            )
             title = Literal(obj.name)
             g.add((edition, RDF.type, DCAT.Dataset))
             g.add((edition, DCT.title, title))
@@ -128,7 +136,9 @@ class EditionRDFView(GenericListView):
                 historical_period = Literal(x.name)
                 g.add((edition, DCT.temporal, historical_period))
             if obj.begin_date and obj.end_date:
-                date = Literal(str(obj.begin_date.strftime("%Y"))+' - '+str(obj.end_date.strftime("%Y")))
+                date = Literal(str(obj.begin_date.strftime("%Y"))+' - '+str(
+                    obj.end_date.strftime("%Y"))
+                )
                 g.add((edition, DCT.date, date))
             elif obj.begin_date:
                 date = Literal(str(obj.begin_date.strftime("%Y")))
@@ -141,7 +151,7 @@ class EditionRDFView(GenericListView):
             for x in obj.institution.all():
                 publisher = URIRef("#cde/institution/"+str(x.id))
                 g.add((edition, DCT.publisher, publisher))
-                
+
                 name = Literal(x.name)
                 g.add((publisher, RDF.type, FOAF.Organization))
                 g.add((publisher, FOAF.name, name))
@@ -156,7 +166,10 @@ class EditionRDFView(GenericListView):
                     seeAlso = URIRef(x.gnd_id)
                     g.add((publisher, RDFS.seeAlso, seeAlso))
                 if x.place:
-                    g.add((publisher, FOAF.based_near, URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))))
+                    g.add((
+                        publisher, FOAF.based_near,
+                        URIRef("http://sws.geonames.org/"+str(x.place.geonames_id)))
+                    )
                     based_near = URIRef("http://sws.geonames.org/"+str(x.place.geonames_id))
                     gn_name = Literal(x.place.name)
                     g.add((based_near, RDF.type, GN.Feature))
@@ -166,7 +179,9 @@ class EditionRDFView(GenericListView):
                     g.add((based_near, WGS.lat, wgs_lat))
                     wgs_long = Literal(x.place.lng)
                     g.add((based_near, WGS.long, wgs_long))
-                    parent_feature = URIRef("http://sws.geonames.org/"+str(x.place.part_of.geonames_id))
+                    parent_feature = URIRef(
+                        "http://sws.geonames.org/"+str(x.place.part_of.geonames_id)
+                    )
                     g.add((based_near, GN.parentFeature, parent_feature))
             for x in obj.manager.all():
                 creator = Literal(x.name)
@@ -176,9 +191,6 @@ class EditionRDFView(GenericListView):
                 g.add((edition, DCT.source, source))
             if obj.tei_transcription == "0.5":
                 dctformat = Literal("text/xml")
-                #this is tricky due to that rdflib takes 'format' for built-in python method and throws an error,
-                #found this example http://rdflib.readthedocs.io/en/stable/intro_to_creating_rdf.html#an-example
-                #tried and it worked to fix the error 
                 g.add((edition, DCT['format'], dctformat))
             elif obj.tei_transcription == "1":
                 dctformat = Literal("application/tei+xml")
@@ -189,7 +201,9 @@ class EditionRDFView(GenericListView):
             g.add((edition, DCT.rights, rights))
             landingPage = URIRef(obj.url)
             g.add((edition, DCAT.landingPage, landingPage))
-            identifier = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id))
+            identifier = URIRef(
+                "https://dig-ed-cat.acdh.oeaw.ac.at/editions/detail/"+str(obj.legacy_id)
+            )
             g.add((edition, DCT.identifier, identifier))
         get_format = self.request.GET.get('format', default='n3')
         result = g.serialize(destination=response, format=get_format)
@@ -225,7 +239,27 @@ class MapView(EditionListView):
                 try:
                     y.place.lat
                     institutions.append(y)
-                except:
+                except AttributeError:
                     pass
         context["institutions"] = set(institutions)
+        return context
+
+
+class NetVisView(EditionListView):
+    template_name = 'browsing/netvisview.html'
+    filter_class = EditionListFilter
+    formhelper_class = MapFilterFormHelper
+
+    def get_context_data(self, **kwargs):
+        context = super(EditionListView, self).get_context_data()
+        context[self.context_filter_name] = self.filter
+        net_data = [x.netviz_data(json_out=False) for x in self.get_queryset()]
+        all_nodes = [x['nodes'] for x in net_data]
+        all_nodes = list(itertools.chain(*all_nodes))
+        distinct_nodes = list({v['id']: v for v in all_nodes}.values())
+        all_edges = [x['edges'] for x in net_data]
+        netvis = {}
+        netvis['nodes'] = distinct_nodes
+        netvis['edges'] = list(itertools.chain(*all_edges))
+        context['netviz_data'] = json.dumps(netvis)
         return context

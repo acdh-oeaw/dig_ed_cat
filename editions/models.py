@@ -356,7 +356,7 @@ class Edition(models.Model):
     def get_absolute_url(self):
         return reverse('editions:edition_detail', kwargs={'pk': self.legacy_id})
 
-    def netviz_data(self):
+    def netviz_data(self, json_out=True):
         nodes = [
             {
                 'id': "edition_{}".format(self.pk),
@@ -416,4 +416,7 @@ class Edition(models.Model):
                 'nodes': nodes,
                 'edges': edges
             }
-        return json.dumps(data)
+        if json_out:
+            return json.dumps(data)
+        else:
+            return data

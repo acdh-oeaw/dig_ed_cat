@@ -1,0 +1,105 @@
+
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% load django_tables2 %}
+{% load i18n %}
+{% block Titel %} {% endblock %}
+{% block scriptHeader %}
+<script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+  #mynetwork {
+    width: 800px;
+    height: 600px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+
+        <h1>Editions and their related Institutions, Persons, Places</h1>
+
+        {{ netvis|safe }}
+
+          <br>
+
+          <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" style="margin-top:10px;">
+            Search
+          </button>
+          <a class ="btn btn-default"  href="{% url 'browsing:netvis' %}" style="margin-top:10px;">
+            Reset search
+          </a>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+<!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Search options</h4>
+
+      </div>
+      <div class="modal-body">
+        {% load django_tables2 crispy_forms_tags %}
+        {% crispy filter.form filter.form.helper %}
+        <a class ="btn btn-default"  id="01" style="white-space: normal;">Show/Hide Advanced search options</a><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- class="modal-content"-->
+
+  </div> <!-- class="modal-dialog"-->
+</div><!--id="myModal"-->
+<!--Modal ends-->
+
+<div id="mynetwork"></div>
+
+</div>
+<script type="text/javascript">
+  var sourceData = {{ netviz_data|safe }};
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: sourceData.nodes,
+    edges: sourceData.edges
+  };
+  var options = {
+    nodes: {borderWidth: 2},
+    interaction: {hover: true},
+    layout: {
+        improvedLayout: false
+    },
+    physics: {
+         stabilization: false,
+    }
+  }
+  var network = new vis.Network(container, data, options);
+  network.on("selectNode", function (params) {
+     var seeMore = params.nodes[0];
+     var nodeObject = data.nodes.filter(x => x.id == seeMore)
+     console.log(nodeObject[0]['url']);
+     if (nodeObject[0]['url'] == undefined){
+         console.log('No URL')
+     } else {
+         window.open(nodeObject[0]['url']);
+     }
+
+  });
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#advanced_search_fields").hide();
+    $("#01").click(function(){
+        $("#advanced_search_fields").toggle();
+    });
+});
+</script>
+
+{% endblock %}

@@ -107,12 +107,13 @@
             border-left: 1px solid black;
           }
           .index-wrapper {
-            margin-bottom: 80px;
+            margin-bottom: 50px;
           }
           .news-wrapper {
             border: none !important;
             box-shadow: none;
             text-align: justify;
+            /*box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);*/
           }
           .news-wrapper > .panel-heading {
             background-color: white;
@@ -125,15 +126,17 @@
             margin-bottom:10px !important;
           }
           .procustom-btn {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            /*margin-left: 10px;
+            margin-right: 10px;*/
             background-color: #ffffff;
             color: #1d5771;
             border: 3px solid #1d5771;
             font-weight: bold;
             white-space: normal;
+            padding-left: 40px;
+            padding-right: 40px;
           }
           .procustom-btn:hover {
             background-color: #1d5771;
@@ -195,7 +198,57 @@
         list-style-type: none;
 
       }
+      #index-picture {
+        width: 50%;
+        /*display: block;
+        margin-left: auto; 
+        margin-right: auto;*/
+      }
+      @media (max-width: 768px) {
+      #index-picture {
+          width: 80%;
+      }
+      }
+      .empty-div {
+      height:50px;
+      width:100%;
+      }
+      .card-image {
+      margin: 10px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);
+        }
+        .main-flexbox {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      flex-flow: row;
+      flex: 1 0 0;
+    }
+    .main-flexbox > .card {
+        /*height: 100%;*/ /*all cards are the same height*/
+      margin: 10px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);
+      flex: 3 1 50%;
+      order: 0;
 
+    }
+    
+/* Too narrow to support two columns, make one */
+@media all and (max-width: 640px) {
+    .main-flexbox {
+        display: block;
+        flex-direction: column;
+    }
+    .main-flexbox>.card {
+        margin: 10px;
+        padding: 20px;
+        /* Return them to document order */
+        order: 0;
+    }
 
 </style>
 

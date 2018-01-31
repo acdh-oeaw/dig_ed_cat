@@ -7,25 +7,36 @@
 {% block content %}
 <div class="container">
   <div class="index-wrapper">
-    <img src="{% static 'webpage/img/DigEds_Cat_logo_transp.png' %}" class="img-responsive" alt="logo" height="600">
+  <div class="card-image">
+    <img src="{% static 'webpage/img/DigEds_Cat_logo_transp.png' %}" class="img-responsive" alt="logo" id="index-picture">
+    <div class="text-right">
+     <a href="{% url 'browsing:browse_editions' %}" class="btn btn-lg procustom-btn" title="Click HERE to browse the editions or select an option from the black menu bar above" class="pull-right">
+          <b><i class="fa fa-angle-right"></i></b>&nbsp;&nbsp;explore the catalogue
+        </a>
+        </div>
+  </div>
 
+<div class="main-flexbox">
 
-    <h2 style="text-align: center; color: #1d5771;">Gathering <em>evidence</em> to understand <em>practice</em></h2>
-
-    <br /><br />
+<div class="card">
     <p class="text-justify"><strong><em>Why?</em></strong> &nbsp;&nbsp; Since 2012 the <em>Catalogue of Digital Editions</em> has been gathering digital editions and texts in an attempt to survey and identify best practice in the field of digital scholarly editing. Analogous initiatives exist but don't provide the granular analysis of features necessary to better understand the rationale and methodology behind the creation of a digital edition. This <em>Catalogue</em> provides an accessible record of standards and building technologies used, and thus an insight into past and present projects.</p>
+</div>
 
+<div class="card">
     <p class="text-justify"><strong><em>How?</em></strong> &nbsp;&nbsp; Development on this web application began in 2016 and aims at delivering the <em>Catalogue</em> data in an interactive and user-friendly manner, allowing users to browse, search, filter and order projects around their research interests.</p>
+</div>
 
+<div class="card">
     <p class="text-justify"><strong><em>What?</em></strong> &nbsp;&nbsp; The <em>Catalogue</em> continuously adds digital editions and always seeks external contributions. For instructions on how to submit a digital edition to the <em>Catalogue</em>, please visit the <a target="_blank" href="{% url 'webpage:staticpage' template='documentation' %}">Documentation</a> page of this site.<br /> 
     *Projects added will be exposed to over 300 German libraries thanks to the <em>Catalogue</em>'s integration into the <a href="http://dbis.uni-regensburg.de//fachliste.php?lett=l" target="_blank" title="Opens in new tab">German Library Network (DBIS)</a>.*</p>
-    </div>
+</div>
 
-    <div style="text-align:center;">
-        <a href="{% url 'browsing:browse_editions' %}" class="btn btn-lg procustom-btn" title="Click HERE to browse the editions or select an option from the black menu bar above">
-          explore the catalogue
-        </a>
-    </div>
+
+</div><!--main-flexbox end-->
+
+</div><!--index wrapper end-->
+
+ <div id="social-stuff-wrapper">   
 
     <div class="row">
         <div class="col-md-8">
@@ -48,7 +59,9 @@
     </div>
 
     <span class="text-muted">Please note this is a beta version of the application.</span>
-    <span class="text-muted">This site is <a href="https://search.google.com/search-console/mobile-friendly?id=8UA7fxY2iDMoX6w0qGIUNA" target="_blank" title="Opens in new tab">mobile-friendly</a>.</span>
+    <!-- <span class="text-muted">This site is <a href="https://search.google.com/search-console/mobile-friendly?id=8UA7fxY2iDMoX6w0qGIUNA" target="_blank" title="Opens in new tab">mobile-friendly</a>.</span> -->
+
+</div>
 
 </div>
 {% endblock %}

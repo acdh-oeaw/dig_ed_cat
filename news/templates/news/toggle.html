@@ -1,10 +1,22 @@
-<span class="glyphicon glyphicon-resize-full" title="show all newsfeeds" id="toggle_news"></span>
+<!-- <span class="glyphicon glyphicon-resize-full" title="show all newsfeeds" id="toggle_news"></span> -->
+<button type="button" class="btn btn-default" id="toggle_news" data-text-swap="Show less news" style="margin-bottom:20px;">Show more news</button>
 
 <script type="text/javascript">
     $(document).ready(function(){
         $('div[class*="news-wrapper-hidden"]').hide();
     })
     $("#toggle_news").click(function(){
-        $('div[class*="news-wrapper-hidden"]').toggle("slow");
+        $('div[class*="news-wrapper-hidden"]').toggle();
     })
+</script>
+<script type="text/javascript">
+$("button").on("click", function() {
+  var el = $(this);
+  if (el.text() == el.data("text-swap")) {
+    el.text(el.data("text-original"));
+  } else {
+    el.data("text-original", el.text());
+    el.text(el.data("text-swap"));
+  }
+});
 </script>

@@ -167,9 +167,8 @@ class Edition(models.Model):
         (digital or printed) of the text."),
         ("0.5", "No information on the source, but some information about the author,\
         date and accuracy of the digital edition."),
-        ("1", " Complete information on the source of the text, as well as on the author,\
-        date and accuracy of the digital edition. Digital Humanities standards implemented,\
-        including modelling, markup language, data structure and software."),
+        ("1", " Complete information on the source of the text, the author,\
+        date and accuracy of the digital edition, as well as Digital Humanities standards implemented."),
     )
     philological_statement = models.CharField(
         blank=True, max_length=255,

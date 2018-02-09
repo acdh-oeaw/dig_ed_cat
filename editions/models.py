@@ -360,7 +360,7 @@ class Edition(models.Model):
             {
                 'id': "edition_{}".format(self.pk),
                 'title': "{}".format(self.name),
-                'color': "red",
+                'color': "#ec2f00",
                 'type': "Edition",
                 'url': self.get_absolute_url()
             }
@@ -371,7 +371,7 @@ class Edition(models.Model):
             node = {
                 'id': "institution_{}".format(y.pk),
                 'title': y.name,
-                'color': 'green',
+                'color': '#30b6a9',
                 'type': 'Institution',
                 'url': y.get_browsing_url()
             }
@@ -390,7 +390,7 @@ class Edition(models.Model):
                 newnode = {
                     'id': "place_{}".format(y.place.pk),
                     'title': "{}".format(y.place.name),
-                    'color': "yellow",
+                    'color': "#f5a731",
                     'type': "Place",
                 }
                 if newnode not in nodes:
@@ -402,7 +402,8 @@ class Edition(models.Model):
             node = {
                 'id': "person_{}".format(y.pk),
                 'title': y.name,
-                'color': "blue",
+                'color': "#9b1f82",
+                'type': "Person",
                 'url': y.get_browsing_url()
             }
             nodes.append(node)

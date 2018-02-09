@@ -11,13 +11,15 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
 <style type="text/css">
   #mynetwork {
-    width: 800px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: auto;
     height: 600px;
   }
 </style>
 {% endblock %}
 {% block content %}
-<div class="container">
+
 
         <h1>Editions and their related Institutions, Persons, Places</h1>
 
@@ -58,8 +60,6 @@
 <!--Modal ends-->
 
 <div id="mynetwork"></div>
-
-</div>
 <script type="text/javascript">
   var sourceData = {{ netviz_data|safe }};
   // create a network

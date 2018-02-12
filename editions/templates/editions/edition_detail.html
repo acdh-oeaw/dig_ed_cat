@@ -12,13 +12,13 @@
      <style>
          #map {
           height: 500px;
-          margin-top: 30px;
+          /*margin-top: 10px;*/
           margin-bottom: 30px;
         }
      </style>
      <style type="text/css">
        #mynetwork {
-         width: 600px;
+         width: auto;
          height: 500px;
        }
        /* basic positioning */
@@ -33,7 +33,7 @@
           margin-left: 0px;
         }
         .legend span {
-          border: 1px solid #ccc;
+          border: 1px solid #000000;
           float: left;
           width: 14px;
           height: 14px;
@@ -51,6 +51,9 @@
         }
         .legend .person {
           background-color: #9b1f82;
+        }
+        .custom-dropdown {
+            z-index: 2000;
         }
 
      </style>
@@ -85,9 +88,11 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Download <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu custom-dropdown" role="menu">
                         <li><a href="{% url 'browsing:rdf' %}?format=n3&name={{ object.legacy_id }}" title="Download current edition as n3 file"><b>N3</b></a></li>
                         <li><a href="{% url 'browsing:rdf' %}?format=pretty-xml&name={{ object.legacy_id }}" title="Download current edition as rdf/xml file"><b>RDF/XML</b></a></li>
+                        <li><a href="{% url 'browsing:netvisjson' %}?name={{ object.legacy_id }}">
+                        <b>JSON netvis</b></a></li>
                     </ul>
 
                 </div>

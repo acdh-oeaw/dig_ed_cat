@@ -17,6 +17,7 @@ import rdflib
 from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef, RDFS, ConjunctiveGraph
 from rdflib.namespace import DC, FOAF, RDFS
 from rdflib.namespace import SKOS
+from django.http import JsonResponse
 
 
 def serialize(modelclass):
@@ -263,3 +264,26 @@ class NetVisView(EditionListView):
         netvis['edges'] = list(itertools.chain(*all_edges))
         context['netviz_data'] = json.dumps(netvis)
         return context
+
+
+class NetVisDownloadJSONView(EditionListView):
+    template_name = 'browsing/netvisview.html'
+    filter_class = EditionListFilter
+    formhelper_class = MapFilterFormHelper
+
+
+    def render_to_response(self, context):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        response = HttpResponse(content_type='application/json')
+        filename = "editions_{}".format(timestamp)
+        response['Content-Disposition'] = 'attachment; filename="{}.json"'.format(filename)
+        net_data = [x.netviz_data(json_out=False) for x in self.get_queryset()]
+        all_nodes = [x['nodes'] for x in net_data]
+        all_nodes = list(itertools.chain(*all_nodes))
+        distinct_nodes = list({v['id']: v for v in all_nodes}.values())
+        all_edges = [x['edges'] for x in net_data]
+        netvis = {}
+        netvis['nodes'] = distinct_nodes
+        netvis['edges'] = list(itertools.chain(*all_edges))
+        response = json.dumps(netvis)
+        return HttpResponse(response)

@@ -16,6 +16,38 @@
     width: auto;
     height: 600px;
   }
+  /* basic positioning */
+.legend { 
+  list-style: none; 
+  margin-top: 10px;
+  padding: 10px 10px 10px 0px;
+}
+.legend li {
+  float: left;
+  margin-right: 10px;
+  margin-left: 0px;
+}
+.legend span {
+  border: 1px solid #ccc;
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin: 2px; 
+}
+/* colors */
+.legend .edition {
+  background-color: #ec2f00;
+}
+.legend .institution {
+  background-color: #30b6a9;
+}
+.legend .place {
+  background-color: #f5a731;
+}
+.legend .person {
+  background-color: #9b1f82;
+}
+
 </style>
 {% endblock %}
 {% block content %}
@@ -33,6 +65,18 @@
           <a class ="btn btn-default"  href="{% url 'browsing:netvis' %}" style="margin-top:10px;">
             Reset search
           </a>
+          <a class ="btn btn-default"  href="{% url 'browsing:netvisjson' %}" style="margin-top:10px;">
+            json
+          </a>
+          <br>
+
+<ul class="legend">
+    <li><span class="edition"></span> Edition</li>
+    <li><span class="institution"></span> Institution</li>
+    <li><span class="place"></span> Place</li>
+    <li><span class="person"></span> Person</li>
+</ul>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">

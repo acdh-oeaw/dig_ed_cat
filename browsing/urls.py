@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'map/$', views.MapView.as_view(), name='map'),
     url(r'netvis/$', views.NetVisView.as_view(), name='netvis'),
     url(r'download/$', views.EditionDownloadView.as_view(), name='dl'),
+    url(r'netvis-json/$', views.NetVisDownloadJSONView.as_view(), name='netvisjson'),
 ]

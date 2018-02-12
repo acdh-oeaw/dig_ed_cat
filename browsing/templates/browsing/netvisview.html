@@ -65,7 +65,7 @@
           <a class ="btn btn-default"  href="{% url 'browsing:netvis' %}" style="margin-top:10px;">
             Reset search
           </a>
-          <a class ="btn btn-default"  href="{% url 'browsing:netvisjson' %}" style="margin-top:10px;">
+          <a class ="btn btn-default"  href="{% url 'browsing:netvisjson' %}{% querystring %}" style="margin-top:10px;">
             json
           </a>
           <br>

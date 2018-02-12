@@ -254,6 +254,7 @@ class NetVisView(EditionListView):
     def get_context_data(self, **kwargs):
         context = super(EditionListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
+        # net_data = [x.netviz_data(json_out=False, show_labels=True) for x in self.get_queryset()]
         net_data = [x.netviz_data(json_out=False) for x in self.get_queryset()]
         all_nodes = [x['nodes'] for x in net_data]
         all_nodes = list(itertools.chain(*all_nodes))

@@ -3,6 +3,8 @@ import re
 import time
 import datetime
 import requests
+import itertools
+import json
 from django.core.validators import URLValidator
 from django.http import HttpResponse
 from django.views import generic
@@ -14,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from places import *
 from .forms import EditionForm
+from browsing.filters import EditionListFilter
 
 
 def institution_csv(request):
@@ -253,6 +256,7 @@ class EditionListView(generic.ListView):
 
 class EditionDetailView(DetailView):
     model = Edition
+    template_name = "editions/edition_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super(EditionDetailView, self).get_context_data(**kwargs)
@@ -269,6 +273,10 @@ class EditionDetailView(DetailView):
         else:
             previous_entry = edition_ids[edition_ids.index(self_id) - 1]
         context["previous_entry"] = previous_entry
+        #netvis context
+        instance = Edition.objects.get(legacy_id=self_id)
+        net_data = instance.netviz_data(json_out=True, show_labels=True)
+        context['netviz_data'] = net_data
         return context
 
 

@@ -355,26 +355,33 @@ class Edition(models.Model):
     def get_absolute_url(self):
         return reverse('editions:edition_detail', kwargs={'pk': self.legacy_id})
 
-    def netviz_data(self, json_out=True):
+    def netviz_data(self, json_out=True, show_labels=False):
         nodes = [
             {
                 'id': "edition_{}".format(self.pk),
-                'label': "{}".format(self.name),
                 'color': "#ec2f00",
                 'type': "Edition",
                 'url': self.get_absolute_url()
             }
         ]
+        for node in nodes:
+            if show_labels:
+                node['label'] = self.name
+            else:
+                node['title'] = self.name           
         edges = []
-
         for y in self.institution.all():
             node = {
                 'id': "institution_{}".format(y.pk),
-                'label': y.name,
                 'color': '#30b6a9',
                 'type': 'Institution',
                 'url': y.get_browsing_url()
             }
+            if show_labels:
+                node['label'] = y.name
+
+            else:
+                node['title'] = y.name
             edge = {
                 'from': "edition_{}".format(self.pk),
                 'to': "institution_{}".format(y.pk)
@@ -389,10 +396,13 @@ class Edition(models.Model):
                 }
                 newnode = {
                     'id': "place_{}".format(y.place.pk),
-                    'label': "{}".format(y.place.name),
                     'color': "#f5a731",
                     'type': "Place",
                 }
+                if show_labels:
+                    newnode['label'] = y.place.name
+                else:
+                    newnode['title'] = y.place.name
                 if newnode not in nodes:
                     nodes.append(newnode)
                 edges.append(newedge)
@@ -401,11 +411,14 @@ class Edition(models.Model):
         for y in self.holding_repo.all():
             node = {
                 'id': "repository_{}".format(y.pk),
-                'label': y.name,
                 'color': '#c92166',
                 'type': 'Repository',
                 'url': y.get_browsing_url()
             }
+            if show_labels:
+                node['label'] = y.name
+            else:
+                node['title'] = y.name
             edge = {
                 'from': "edition_{}".format(self.pk),
                 'to': "repository_{}".format(y.pk)
@@ -420,10 +433,13 @@ class Edition(models.Model):
                 }
                 newnode = {
                     'id': "place_{}".format(y.place.pk),
-                    'label': "{}".format(y.place.name),
                     'color': "#f5a731",
                     'type': "Place",
                 }
+                if show_labels:
+                    newnode['label'] = y.place.name
+                else:
+                    newnode['title'] = y.place.name
                 if newnode not in nodes:
                     nodes.append(newnode)
                 edges.append(newedge)
@@ -432,15 +448,14 @@ class Edition(models.Model):
         for y in self.manager.all():
             node = {
                 'id': "person_{}".format(y.pk),
-                'label': y.name,
                 'color': "#9b1f82",
                 'type': "Person",
                 'url': y.get_browsing_url()
             }
-            # if show_labels:
-            #     node['label'] = y.name
-            # else:
-            #     node['title']= y.name 
+            if show_labels:
+                node['label'] = y.name
+            else:
+                node['title']= y.name 
             nodes.append(node)
             edge = {
                 'from': "edition_{}".format(self.pk),

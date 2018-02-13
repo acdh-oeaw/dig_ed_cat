@@ -405,7 +405,8 @@
 
 
 <script type="text/javascript">
-  var sourceData = {{ object.netviz_data|safe }};
+
+  var sourceData = {{ netviz_data|safe }};
   // create a network
   var container = document.getElementById('mynetwork');
   var data = {
@@ -428,6 +429,7 @@
      }
 
   });
+
 </script>
         </div>
 

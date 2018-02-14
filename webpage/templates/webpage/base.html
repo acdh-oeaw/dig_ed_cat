@@ -401,13 +401,17 @@
       {% block content %}
       {% endblock %}
     </div>
+    {% block vizcontent %}
+      {% endblock %}
 </section>
+      {% block socialShare %}
       <div align="text-center">
         <span class="socialShare"> <!-- The share buttons will be inserted here --> </span>
       </div>
       <div align="right">
           <small>Version {% projects_metadata 'version' %}</small>
       </div>
+      {% endblock %}
 <footer>
      <div class="container">
         <div class="row text-center">

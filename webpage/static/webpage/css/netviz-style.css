@@ -1,0 +1,66 @@
+/*css for netviz all editions*/
+
+.netviz-wrapper {
+    margin-left: 20px;
+    margin-top: -15px;
+    margin-right: 20px;
+    /*margin-bottom: -10px;*/
+}
+
+#mynetwork {
+    /*margin-top: 20px;*/
+    /*margin-bottom: 40px;*/
+    width: auto;
+    height: 800px;
+    /*border: 1px solid #000000;*/
+}
+
+#netviz-sidebar {
+    border: 1px solid #000000;
+}
+
+
+/* basic positioning */
+
+.legend {
+    list-style: none;
+    margin-top: 10px;
+    padding: 10px 10px 10px 0px;
+}
+
+.legend li {
+    /*float: left;*/
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+.legend span {
+    border: 1px solid #000000;
+    float: left;
+    width: 14px;
+    height: 14px;
+    margin: 2px;
+}
+
+
+/* colors */
+
+.legend .edition {
+    background-color: #ec2f00;
+}
+
+.legend .institution {
+    background-color: #30b6a9;
+}
+
+.legend .place {
+    background-color: #f5a731;
+}
+
+.legend .person {
+    background-color: #9b1f82;
+}
+
+.legend .repository {
+    background-color: #c92166;
+}

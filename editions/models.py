@@ -360,6 +360,7 @@ class Edition(models.Model):
             {
                 'id': "edition_{}".format(self.pk),
                 'color': "#ec2f00",
+                # 'font': {'color':'white'},
                 'type': "Edition",
                 'url': self.get_absolute_url()
             }

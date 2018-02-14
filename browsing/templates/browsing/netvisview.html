@@ -9,54 +9,13 @@
 <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-  #mynetwork {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    width: auto;
-    height: 600px;
-  }
-  /* basic positioning */
-.legend { 
-  list-style: none; 
-  margin-top: 10px;
-  padding: 10px 10px 10px 0px;
-}
-.legend li {
-  float: left;
-  margin-right: 10px;
-  margin-left: 0px;
-}
-.legend span {
-  border: 1px solid #000000;
-  float: left;
-  width: 14px;
-  height: 14px;
-  margin: 2px; 
-}
-/* colors */
-.legend .edition {
-  background-color: #ec2f00;
-}
-.legend .institution {
-  background-color: #30b6a9;
-}
-.legend .place {
-  background-color: #f5a731;
-}
-.legend .person {
-  background-color: #9b1f82;
-}
-.legend .repository {
-  background-color: #c92166;
-}
+<link rel="stylesheet" href="{% static 'webpage/css/netviz-style.css' %}" />
 
-</style>
 {% endblock %}
-{% block content %}
-
-
-        <h1>Editions and their related Institutions, Persons, Places</h1>
+{% block vizcontent %}
+<div class="row netviz-wrapper">
+<div class="col-md-2" id="netviz-sidebar">
+<h3>Editions and their related Institutions, Persons, Places</h3>
 
         {{ netvis|safe }}
 
@@ -80,12 +39,9 @@
     <li><span class="person"></span> Person</li>
     <li><span class="repository"></span> Repository</li>
 </ul>
-
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
-
 <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -106,8 +62,11 @@
   </div> <!-- class="modal-dialog"-->
 </div><!--id="myModal"-->
 <!--Modal ends-->
-
+</div>       
+<div class="col-md-10">
 <div id="mynetwork"></div>
+</div>
+</div><!--row-->
 <script type="text/javascript">
   var sourceData = {{ netviz_data|safe }};
   // create a network
@@ -117,14 +76,24 @@
     edges: sourceData.edges
   };
   var options = {
-    nodes: {borderWidth: 2},
+    nodes: {
+      borderWidth: 2,
+      shape: 'dot',
+      size: 20
+      // padding: 50
+    },
     interaction: {hover: true},
     layout: {
         improvedLayout: false
     },
     physics: {
          stabilization: false,
-    }
+         barnesHut: {
+          gravitationalConstant: -5000,
+          springConstant: 0.01,
+          springLength: 10
+        }
+    },
   }
   var network = new vis.Network(container, data, options);
   network.on("selectNode", function (params) {
@@ -139,8 +108,6 @@
 
   });
 </script>
-
-
 <script type="text/javascript">
 $(document).ready(function(){
     $("#advanced_search_fields").hide();
@@ -149,5 +116,6 @@ $(document).ready(function(){
     });
 });
 </script>
-
+{% endblock %}
+{% block socialShare %}
 {% endblock %}

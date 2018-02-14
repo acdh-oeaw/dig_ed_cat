@@ -4,61 +4,17 @@
     <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet/leaflet.css' %}"/></link>
     <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet.markercluster/dist/MarkerCluster.css' %}"/></link>
     <link rel="stylesheet" href="{% static 'webpage/libraries/leaflet.markercluster/dist/MarkerCluster.Default.css' %}"/></link>
-
-     <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
-     <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
-     <style>
-         #map {
-          height: 500px;
-          /*margin-top: 10px;*/
-          margin-bottom: 30px;
+    <script src="{% static 'webpage/libraries/leaflet/leaflet.js' %}"></script>
+    <script src="{% static 'webpage/libraries/leaflet.markercluster/src/leaflet.markercluster-src.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'webpage/css/netviz-detail-style.css' %}" />
+    <style>
+        #map {
+        height: 500px;
+        /*margin-top: 10px;*/
+        margin-bottom: 30px;
         }
-     </style>
-     <style type="text/css">
-       #mynetwork {
-         width: auto;
-         height: 500px;
-       }
-       /* basic positioning */
-        .legend { 
-          list-style: none; 
-          margin-top: 10px;
-          padding: 10px 10px 10px 0px;
-        }
-        .legend li {
-          float: left;
-          margin-right: 10px;
-          margin-left: 0px;
-        }
-        .legend span {
-          border: 1px solid #000000;
-          float: left;
-          width: 14px;
-          height: 14px;
-          margin: 2px; 
-        }
-        /* colors */
-        .legend .edition {
-          background-color: #ec2f00;
-        }
-        .legend .institution {
-          background-color: #30b6a9;
-        }
-        .legend .place {
-          background-color: #f5a731;
-        }
-        .legend .person {
-          background-color: #9b1f82;
-        }
-        .legend .repository {
-          background-color: #c92166;
-        }
-        .custom-dropdown {
-            z-index: 2000;
-        }
-
      </style>
 {% endblock %}
 {% block content %}
@@ -400,12 +356,8 @@
 
                 </div>
             </div>
-
-
-
-
+            
 <script type="text/javascript">
-
   var sourceData = {{ netviz_data|safe }};
   // create a network
   var container = document.getElementById('mynetwork');
@@ -414,7 +366,11 @@
     edges: sourceData.edges
   };
   var options = {
-    nodes: {borderWidth: 2},
+    nodes: {
+        borderWidth: 2,
+        shape: 'dot',
+        size: 20        
+    },
     interaction: {hover: true}
   }
   var network = new vis.Network(container, data, options);

@@ -418,11 +418,22 @@
             layer.bindPopup(feature.properties.popupContent);
 
         };
+        {% if object.institution.all %}
+        {% with  object.institution.all|first as x %}
+        {% if x.place.lat %}
+        var gps1 = {{ x.place.lat }};
+        var gps2 = {{ x.place.lng }};
+        {% else %}
+        var gps1 = 30.00;
+        var gps2 = 31.00;
+        {% endif %}
+        {% endwith %} 
+        {% endif %}
 
 
         var mymap = L.map('map', {
             fullscreenControl: true,
-        }).setView([0, 0], 2);
+        }).setView([gps1, gps2], 2);
 
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -433,7 +444,7 @@
         var markers = L.markerClusterGroup({});
         var bounds = new L.LatLngBounds(markers);
         var build_data =  [{% for obj in object.institution.all %}{"geometry": {"type": "Point", "coordinates": [ {{ obj.place.lng }}, {{obj.place.lat }} ]}, "type": "Feature",
-            "properties": {"popupContent": "<table class='table table-striped'><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
+            "properties": {"popupContent": "<table class='table table-bordered'><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
         var geoJsonLayer = L.geoJson( build_data, {onEachFeature: onEachFeature});
         markers.addLayer(geoJsonLayer);
         mymap.addLayer(markers);

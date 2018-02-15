@@ -1,0 +1,45 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% block scriptHeader %}
+{% endblock %}
+{% block content %}
+<div class="panel panel-default">
+<div class="panel-heading">
+<h2>{{object.name}}</h2>
+</div>
+<div class="panel-body">
+<table class="table table-bordered table-hover table-condensed">
+<tr>
+	<th>Name</th>
+	<td>{{ object.name }}</td>
+</tr>
+<tr>
+	<th>Website</th>
+	<td><a href="{{ object.website }}">{{ object.website }}</a></td>
+</tr>
+<tr>
+	<th>Editions</th>
+	<td>
+	{% for x in object.projects.all %}
+	<a href="{% url 'editions:edition_detail' pk=x.legacy_id %}">
+	{{x}}
+	</a>
+	<br>
+	{% endfor %}
+
+	</td>
+</tr>
+<tr>
+	<th>Place</th>
+	<td>{{object.place}}</td>
+</tr>
+<tr>
+	<th>Latitude</th>
+	<td>{{ object.lat }}</td>
+</tr>
+<tr>
+	<th>Longitude</th>
+	<td>{{ object.lng }}</td>
+</tr>
+</table>
+{% endblock %}

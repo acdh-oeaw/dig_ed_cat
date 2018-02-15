@@ -49,6 +49,18 @@
 	<th>Place type</th>
 	<td>{{ object.place_type }}</td>
 </tr>
+<tr>
+	<th>Institutions</th>
+	<td>
+	{% for x in object.institution_set.all %}
+	<a href="{% url 'editions:institution_detail' pk=x.id %}">
+	{{x}}
+	</a>
+	<br>
+	{% endfor %}
+
+	</td>
+</tr>
 
 
 </table>

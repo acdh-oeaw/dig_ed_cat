@@ -50,6 +50,15 @@ class InstitutionListView(generic.ListView):
         return Institution.objects.all()
 
 
+class InstitutionDetailView(DetailView):
+    model = Institution
+    template_name = 'editions/institution_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(InstitutionDetailView, self).get_context_data(**kwargs)
+        return context
+
+
 @login_required
 def sync(request):
     context = {}

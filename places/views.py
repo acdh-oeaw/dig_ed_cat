@@ -4,6 +4,7 @@ from django.shortcuts import (render, render_to_response, get_object_or_404,
 	redirect)
 from django.views import generic
 from django.views.generic.edit import DeleteView
+from django.views.generic.detail import DetailView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -66,6 +67,15 @@ def edit_place(request, pk):
         if form.is_valid():
             form.save()
         return redirect('places:place_list')
+
+
+class PlaceDetailView(DetailView):
+    model = Place
+    template_name = 'places/place_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PlaceDetailView, self).get_context_data(**kwargs)
+        return context
 
 
 class PlaceDelete(DeleteView):

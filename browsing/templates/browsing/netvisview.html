@@ -30,6 +30,9 @@
           <a class ="btn btn-default"  href="{% url 'browsing:netvisjson' %}{% querystring %}" style="margin-top:10px;">
             JSON netvis
           </a>
+          <a class ="btn btn-default"  href="{% url 'browsing:netvisgexf' %}{% querystring %}" style="margin-top:10px;">
+            GEXF netvis
+          </a>
           <br>
 
 <ul class="legend">
@@ -62,7 +65,7 @@
   </div> <!-- class="modal-dialog"-->
 </div><!--id="myModal"-->
 <!--Modal ends-->
-</div>       
+</div>
 <div class="col-md-10">
 <div id="mynetwork"></div>
 </div>

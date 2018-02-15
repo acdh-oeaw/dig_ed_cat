@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class AlternativeName(models.Model):
@@ -46,3 +47,6 @@ class Place(models.Model):
             return self.name+" (" + " ".join([str(x.name) for x in self.alternative_name.all()]) + ")"
         else:
             return self.name
+
+    def get_absolute_url(self):
+        return reverse('places:place_detail', kwargs={'pk': self.id})

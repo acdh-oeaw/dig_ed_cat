@@ -399,6 +399,7 @@ class Edition(models.Model):
                     'id': "place_{}".format(y.place.pk),
                     'color': "#f5a731",
                     'type': "Place",
+                    'url': y.place.get_absolute_url()
                 }
                 if show_labels:
                     newnode['label'] = y.place.name
@@ -436,6 +437,7 @@ class Edition(models.Model):
                     'id': "place_{}".format(y.place.pk),
                     'color': "#f5a731",
                     'type': "Place",
+                    'url': y.place.get_absolute_url()
                 }
                 if show_labels:
                     newnode['label'] = y.place.name

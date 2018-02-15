@@ -11,6 +11,7 @@ from django.views import generic
 from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.detail import DetailView
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 from .models import *
@@ -43,11 +44,15 @@ def institution_csv(request):
 
 
 class InstitutionListView(generic.ListView):
-    template_name = "editions/institution_csv.html"
+    template_name = "editions/institution_list.html"
     context_object_name = 'object_list'
 
     def get_queryset(self):
         return Institution.objects.all()
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(InstitutionListView, self).dispatch(*args, **kwargs)
 
 
 class InstitutionDetailView(DetailView):

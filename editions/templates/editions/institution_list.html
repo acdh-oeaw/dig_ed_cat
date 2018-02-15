@@ -1,0 +1,54 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% block scriptHeader %}
+{% endblock %}
+{% block content %}
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<h2>List of all Institutions</h2>
+</div>
+<div class="panel-body">
+<table class="table table-bordered table-hover table-condensed">
+<tr>
+<th>Institution</th>
+<th>Editions</th>
+<th>count</th>
+<th>housing the source materials of</th>
+<th>count</th>
+</tr>
+{% for x in object_list %}
+{% if x.projects.all or x.holding_repo.all %}
+
+<tr>
+	<th><a href='{% url "editions:institution_detail" pk=x.id %}'>{{x.name}}</a></th>
+	<td>
+		{% for y in x.projects.all %}
+		{% if x.projects.all.count > 1 %}
+		<li><a href='{% url "editions:edition_detail" pk=y.legacy_id %}'>{{y}}</a></li>
+		{% else %}
+		<a href='{% url "editions:edition_detail" pk=y.legacy_id %}'>{{y}}</a>
+		{% endif %}
+		{% endfor %}
+	</td>
+	<td>{{x.projects.all.count}}</td>
+	<td>
+		{% for y in x.holding_repo.all %}
+		{% if x.holding_repo.all.count > 1 %}
+		<li><a href='{% url "editions:edition_detail" pk=y.legacy_id %}'>{{y}}</a></li>
+		{% else %}
+		<a href='{% url "editions:edition_detail" pk=y.legacy_id %}'>{{y}}</a>
+		{% endif %}
+		{% endfor %}
+	</td>
+	<td>{{x.holding_repo.all.count}}</td>
+</tr>
+
+
+{% endif %}
+{% endfor %}
+
+</table>
+</div>
+</div>
+{% endblock %}

@@ -33,6 +33,12 @@
 	<th>Place</th>
 	<td>{{object.place}}</td>
 </tr>
+{% if object.gnd_id %}
+<tr>
+	<th>GND ID</th>
+	<td><a href="{{object.gnd_id}}">{{object.gnd_id}}</a></td>
+</tr>
+{% endif %}
 <tr>
 	<th>Latitude</th>
 	<td>{{ object.lat }}</td>

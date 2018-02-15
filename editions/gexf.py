@@ -52,4 +52,5 @@ def netdict_to_gexf(net, gexf_doc=gexf_doc):
     for idx, item in enumerate(net['nodes']):
         node = create_node(item['id'], item['title'])
         nodes_root.append(node)
-    return [nodes_root, edges_root, gexf_tree]
+    xml_stream = ET.tostring(gexf_tree, pretty_print=True, encoding="UTF-8")
+    return [nodes_root, edges_root, gexf_tree, xml_stream]

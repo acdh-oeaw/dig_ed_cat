@@ -18,6 +18,7 @@ from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef, RDFS, Conjunct
 from rdflib.namespace import DC, FOAF, RDFS
 from rdflib.namespace import SKOS
 from django.http import JsonResponse
+from editions.gexf import *
 
 
 def serialize(modelclass):
@@ -271,7 +272,6 @@ class NetVisDownloadJSONView(EditionListView):
     filter_class = EditionListFilter
     formhelper_class = MapFilterFormHelper
 
-
     def render_to_response(self, context):
         timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
         response = HttpResponse(content_type='application/json')
@@ -287,3 +287,24 @@ class NetVisDownloadJSONView(EditionListView):
         netvis['edges'] = list(itertools.chain(*all_edges))
         response = json.dumps(netvis)
         return HttpResponse(response)
+
+
+class NetVisDownloadGEXFView(EditionListView):
+    template_name = 'browsing/netvisview.html'
+    filter_class = EditionListFilter
+    formhelper_class = MapFilterFormHelper
+
+    def render_to_response(self, context):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        net_data = [x.netviz_data(json_out=False) for x in self.get_queryset()]
+        all_nodes = [x['nodes'] for x in net_data]
+        all_nodes = list(itertools.chain(*all_nodes))
+        distinct_nodes = list({v['id']: v for v in all_nodes}.values())
+        all_edges = [x['edges'] for x in net_data]
+        netvis = {}
+        netvis['nodes'] = distinct_nodes
+        netvis['edges'] = list(itertools.chain(*all_edges))
+        gexf_root = gexf_doc.format(timestamp)
+        gexf_elems = netdict_to_gexf(netvis, gexf_root)
+        response = gexf_elems[3]
+        return HttpResponse(response, content_type='application/xml; charset=utf-8')

@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'netvis/$', views.NetVisView.as_view(), name='netvis'),
     url(r'download/$', views.EditionDownloadView.as_view(), name='dl'),
     url(r'netvis-json/$', views.NetVisDownloadJSONView.as_view(), name='netvisjson'),
+    url(r'netvis-gexf/$', views.NetVisDownloadGEXFView.as_view(), name='netvisgexf'),
 ]

@@ -151,7 +151,7 @@ class EditionRDFView(GenericListView):
             else:
                 pass
             for x in obj.institution.all():
-                publisher = URIRef("#cde/institution/"+str(x.id))
+                publisher = URIRef("https://dig-ed-cat.acdh.oeaw.ac.at/editions/institution/"+str(x.id))
                 g.add((edition, DCT.publisher, publisher))
 
                 name = Literal(x.name)

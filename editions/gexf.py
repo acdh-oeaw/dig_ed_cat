@@ -7,23 +7,37 @@ gexf_doc = """
         <description>The dig-ed-cat-net</description>
     </meta>
     <graph defaultedgetype="directed">
-        <nodes></nodes>
-        <edges></edges>
+        <attributes class="node">
+            <attribute id="0" title="type" type="string"/>
+        </attributes>
+        <nodes>
+        </nodes>
+        <edges>
+        </edges>
     </graph>
 </gexf>
+
 """
 
 ns_gexf = {'gexf': "http://www.gexf.net/1.2draft"}
 ns_xml = {'xml': "http://www.w3.org/XML/1998/namespace"}
 
 
-def create_node(node_id, label):
+def create_node(node_id, label, node_type=None):
 
     """ returns a gexf:node element """
 
     node = ET.Element("{}node".format("{"+ns_gexf['gexf']+"}"))
     node.attrib['id'] = str(node_id)
     node.attrib['label'] = label
+    attvalues = ET.Element("{}attvalues".format("{"+ns_gexf['gexf']+"}"))
+    attvalue = ET.Element("{}attvalue".format("{"+ns_gexf['gexf']+"}"))
+    if node_type:
+        attvalue.attrib['for'] = "0"
+        attvalue.attrib['value'] = str(node_type)
+        attvalues.append(attvalue)
+        node.append(attvalues)
+
     return node
 
 
@@ -50,7 +64,7 @@ def netdict_to_gexf(net, gexf_doc=gexf_doc):
         edge = create_edge(idx, item['from'], item['to'])
         edges_root.append(edge)
     for idx, item in enumerate(net['nodes']):
-        node = create_node(item['id'], item['title'])
+        node = create_node(item['id'], item['title'], item['type'])
         nodes_root.append(node)
     xml_stream = ET.tostring(gexf_tree, pretty_print=True, encoding="UTF-8")
     return [nodes_root, edges_root, gexf_tree, xml_stream]

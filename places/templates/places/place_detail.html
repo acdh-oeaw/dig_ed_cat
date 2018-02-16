@@ -18,7 +18,7 @@
 </div>
 <table class="table table-bordered table-hover table-condensed">
 <tr>
-	<th>Name</th>
+	<th class="col-md-4">Name</th>
 	<td>{{ object.name }}</td>
 </tr>
 <tr>
@@ -49,10 +49,19 @@
 	<th>Place type</th>
 	<td>{{ object.place_type }}</td>
 </tr>
+<tr>
+	<th>Institutions</th>
+	<td>
+	{% for x in object.institution_set.all %}
+	<a href="{% url 'editions:institution_detail' pk=x.id %}">
+	{{x}}
+	</a>
+	<br>
+	{% endfor %}
 
-
+	</td>
+</tr>
 </table>
-</div>
 </div>
 <script type="text/javascript">
 	{% if object.lat %}

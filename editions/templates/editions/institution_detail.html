@@ -1,0 +1,69 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% block scriptHeader %}
+{% endblock %}
+{% block content %}
+<div class="panel panel-default">
+<div class="panel-heading">
+<h2>{{object.name}}</h2>
+</div>
+<div class="panel-body">
+<table class="table table-bordered table-hover table-condensed">
+<tr>
+	<th class="col-md-4">Name</th>
+	<td>{{ object.name }}</td>
+</tr>
+<tr>
+	<th>Website</th>
+	<td><a href="{{ object.website }}">{{ object.website }}</a></td>
+</tr>
+{% if object.projects.all %}
+<tr>
+	<th>Editions</th>
+	<td>
+	{% for x in object.projects.all %}
+	<a href="{% url 'editions:edition_detail' pk=x.legacy_id %}">
+	{{x}}
+	</a>
+	<br>
+	{% endfor %}
+
+	</td>
+</tr>
+{% endif %}
+{% if object.holding_repo.all %}
+<tr>
+	<th>The institution houses the source materials of the following editions</th>
+	<td>
+	{% for x in object.holding_repo.all %}
+	<a href="{% url 'editions:edition_detail' pk=x.legacy_id %}">
+	{{x}}
+	</a>
+	<br>
+	{% endfor %}
+
+	</td>
+</tr>
+{% endif %}
+{% if object.place %}
+<tr>
+	<th>Place</th>
+	<td><a href="{% url 'places:place_detail' pk=object.place.id %}">{{object.place}}</a></td>
+</tr>
+{% endif %}
+{% if object.gnd_id %}
+<tr>
+	<th>GND ID</th>
+	<td><a href="{{object.gnd_id}}">{{object.gnd_id}}</a></td>
+</tr>
+{% endif %}
+<tr>
+	<th>Latitude</th>
+	<td>{{ object.lat }}</td>
+</tr>
+<tr>
+	<th>Longitude</th>
+	<td>{{ object.lng }}</td>
+</tr>
+</table>
+{% endblock %}

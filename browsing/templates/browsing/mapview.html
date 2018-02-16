@@ -100,7 +100,7 @@
         var markers = L.markerClusterGroup({});
         var bounds = new L.LatLngBounds(markers);
         var build_data =  [{% for obj in institutions %}{"geometry": {"type": "Point", "coordinates": [ {{ obj.place.lng }}, {{obj.place.lat }} ]}, "type": "Feature",
-            "properties": {"popupContent": "<table class='table table-bordered'><tr><th>Place</th><td><a href='{% url "places:place_detail" pk=obj.place.id %}'> {{ obj.place.name }}</a></td></tr><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
+            "properties": {"popupContent": "<table class='table table-bordered'><tr><th>Place</th><td><a href='{% url "places:place_detail" pk=obj.place.id %}'> {{ obj.place.name }}</a></td></tr><tr><th>Institution</th><td><a href='{% url "editions:institution_detail" pk=obj.id %}'> {{ obj }}</</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
         var geoJsonLayer = L.geoJson( build_data, {onEachFeature: onEachFeature});
         markers.addLayer(geoJsonLayer);
         mymap.addLayer(markers);

@@ -63,6 +63,9 @@ class Institution(models.Model):
             self.pk
         )
 
+    def get_absolute_url(self):
+        return reverse('editions:institution_detail', kwargs={'pk': self.id})
+
 
 class Period(models.Model):
     name = models.CharField(
@@ -376,7 +379,7 @@ class Edition(models.Model):
                 'id': "institution_{}".format(y.pk),
                 'color': '#30b6a9',
                 'type': 'Institution',
-                'url': y.get_browsing_url()
+                'url': y.get_absolute_url()
             }
             if show_labels:
                 node['label'] = y.name
@@ -415,7 +418,7 @@ class Edition(models.Model):
                 'id': "repository_{}".format(y.pk),
                 'color': '#c92166',
                 'type': 'Repository',
-                'url': y.get_browsing_url()
+                'url': y.get_absolute_url()
             }
             if show_labels:
                 node['label'] = y.name

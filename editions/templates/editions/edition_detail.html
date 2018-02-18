@@ -356,7 +356,7 @@
 
                 </div>
             </div>
-            
+
 <script type="text/javascript">
   var sourceData = {{ netviz_data|safe }};
   // create a network
@@ -369,7 +369,7 @@
     nodes: {
         borderWidth: 2,
         shape: 'dot',
-        size: 20        
+        size: 20
     },
     interaction: {hover: true}
   }
@@ -427,7 +427,7 @@
         var gps1 = 30.00;
         var gps2 = 31.00;
         {% endif %}
-        {% endwith %} 
+        {% endwith %}
         {% endif %}
 
 
@@ -444,7 +444,7 @@
         var markers = L.markerClusterGroup({});
         var bounds = new L.LatLngBounds(markers);
         var build_data =  [{% for obj in object.institution.all %}{"geometry": {"type": "Point", "coordinates": [ {{ obj.place.lng }}, {{obj.place.lat }} ]}, "type": "Feature",
-            "properties": {"popupContent": "<table class='table table-bordered'><tr><th>Place</th><td><a href='{% url "places:place_detail" pk=obj.place.id %}'> {{ obj.place.name }}</a></td></tr><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
+            "properties": {"popupContent": "<table class='table table-bordered'><tr><th>Place</th><td>{% if obj.place %}<a href='{% url "places:place_detail" pk=obj.place.id %}'> {{ obj.place.name }}</a>{% endif %}{{ obj.place.name }}</td></tr><tr><th>Institution</th><td> {{ obj }}</td></tr><tr><th>Projects</th><td>{% for x in obj.projects.all %} <a href='{% url "editions:edition_detail" pk=x.legacy_id %}'>{{x}}</a><br/> {%endfor%}</td></tr></tr></table>" }, "id": "{{ obj.id }}" }{% if forloop.last %}] {% else %},{% endif %}{% empty %}]{% endfor %}
         var geoJsonLayer = L.geoJson( build_data, {onEachFeature: onEachFeature});
         markers.addLayer(geoJsonLayer);
         mymap.addLayer(markers);

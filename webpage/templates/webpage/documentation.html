@@ -6,7 +6,7 @@
 <div class="container">
 
     <h1>Documentation</h1>
-    <p style="font-size: 8"><i class="fa fa-clock-o" aria-hidden="true"></i> Last updated: Nov 11th, 2017</p>
+    <p style="font-size: 8"><i class="fa fa-clock-o" aria-hidden="true"></i> Last updated: Feb 18th, 2018</p>
 
 
       <ul id="docs-outline">
@@ -19,18 +19,18 @@
         <!-- <li><a href="#section5">Section 5</a></li> -->
         <li><a href="#section6">Limitations</a></li>
         <li><a href="#section7">How to contribute to the Catalogue</a></li>
-        <li><a href="#section8">How to cite this project</a></li>
+        <li><a href="#section8">How to cite and follow the Catalogue</a></li>
         <li><a href="#section9">Web analytics</a></li>
         <li><a href="#section10">Copyright</a></li>
         <li><a href="#section11">Relevant reading</a></li>
         <li><a href="#section12">Relevant resources</a></li>
         <li><a href="#section13">Acknowledgments</a></li>
       </ul>
-    <li><a href="#navigating"><b>Navigating the Web Application</b></a></li>
+      <li><a href="#navigating"><b>Navigating the Web Application</b></a></li>
       <ul>
         <li><a href="#section14">Browsing the data</a></li>
         <li><a href="#section15">Other menu pages</a></li>
-    </ul>
+      </ul>
       </ul>
   
 
@@ -65,11 +65,14 @@
                 <h4>Data <small>component</small></h4>
                 <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic <a href="https://github.com/gfranzini/digEds_cat/blob/master/CONTRIBUTING.md" target="_blank" title="Opens in new tab">criteria</a>: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from aggregators (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a> or <a href="https://dhcommons.org/projects" target="_blank" title="Opens in new tab">DH Commons - Projects</a>), conferences presentations, publications, social media posts, word of mouth, and the web.</p><br />
 
-                <p>The data is collected across two <code>.csv</code> (Comma Separated Value) files: the "master" <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file, including their respective <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB</a> and <a href="http://www.geonames.org/" target="_blank" title="Opens in new tab">GeoNames</a> IDs. This second file allows us to place digital editions on a map and to add them to the <a href="http://programminghistorian.org/lessons/intro-to-linked-data" title="Opens in new tab" target="_blank">Linked Open Data</a> (LOD) cloud.<br />
-                The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
+                <p>The data is collected across two <code>.csv</code> (Comma Separated Value) files: the <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file, allowing us to place digital editions on a map.</p> 
+
+                <p>The data in the <em>Catalogue</em> is being hooked up to the <a href="http://programminghistorian.org/lessons/intro-to-linked-data" title="Opens in new tab" target="_blank"><strong>Linked Open Data</strong></a> (LOD) cloud to increase discoverability while supporting semantic integration and knowledge sharing. The linked data vocabularies currently connected to the <em>Catalogue</em> are <a href="https://www.w3.org/2003/01/geo/" target="_blank" title="Opens in new tab">W3C Basic Geo</a>, <a href="http://xmlns.com/foaf/spec/#" target="_blank" title="Opens in new tab">FOAF</a>, <a href="http://www.geonames.org/ontology#" target="_blank" title="Opens in new tab">GeoNames</a>, <a href="http://www.w3.org/ns/dcat#" target="_blank" title="Opens in new tab">Data Catalog</a> and <a href="http://purl.org/dc/terms/" target="_blank" title="Opens in new tab">Dublin Core Metadata</a>. Institution data also links to <a href="http://www.dnb.de/DE/Home/home_node.html" target="_blank" title="Opens in new tab">DNB (Deutsche Nationalbibliothek)</a> Catalogue IDs.</p>
+                
+                <p>The data's GitHub repository is: <a href="https://github.com/gfranzini/digEds_cat" target="_blank" title="Opens in new tab">https://github.com/gfranzini/digEds_cat</a></p>
 
 
-
+                <br /><br />
                 <h4>Web application <small>component</small></h4>
                 <p>The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.<br /> Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'.<br />
                 The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information.<br />
@@ -105,7 +108,7 @@
 
         <!--How to cite-->
         <div id="section8">
-            <h3>How to cite this project</h3>
+            <h3>How to cite and follow the Catalogue</h3>
             <p>There are two citations for this project. If you wish to cite <em>the data only</em>, please adapt the following according to your preferred referencing style:<br />
             <blockquote>Franzini, G. (2012-) <em>Catalogue of Digital Editions</em>. <a href="https://zenodo.org/badge/latestdoi/42574907"><img src="https://zenodo.org/badge/42574907.svg" alt="DOI"></a></blockquote>
             </p>
@@ -113,6 +116,9 @@
             <p>If you wish to cite <em>the web application as a whole</em>, please adapt the following:<br />
             <blockquote>Franzini, G., Andorfer, P., Zaytseva, K. (2016-) <em>Catalogue of Digital Editions: The Web Application</em>. Web. &lt;https://dig-ed-cat.acdh.oeaw.ac.at/&gt;</blockquote>
             </p>
+
+            <p>You can follow project updates via <a href="https://twitter.com/search?q=%23digEdsCat" target="_blank" title="Opens in new tab">Twitter</a> and <a href="https://www.researchgate.net/project/The-Digital-Editions-Catalogue-App-A-web-application-to-browse-curate-and-analyse-digital-editions" target="_blank" title="Opens in new tab">ResearchGate</a>.</p>
+
         </div>
 
 
@@ -134,7 +140,7 @@
         <div id="section11">
             <h3>Relevant reading</h3>
             <ul>
-                <li>Franzini, G., Mahony, S., and Terras, M. (2016), 'A Catalogue of Digital Editions', In: Pierazzo, E. and Driscoll, M. J. (eds) <em><a href="http://www.openbookpublishers.com/htmlreader/978-1-78374-238-7/ch9.xhtml#_idTextAnchor023" target="_blank" title="Opens in new tab">Digital Scholarly Editing: Theories and Practices</a></em>. Cambridge: Open Book Publishers. [<strong>describes an early version</strong> of the <em>Catalogue of Digital Editions</em>]</li>
+                <li>Franzini, G., Mahony, S., and Terras, M. (2016), 'A Catalogue of Digital Editions', In: Pierazzo, E. and Driscoll, M. J. (eds) <em><a href="http://www.openbookpublishers.com/htmlreader/978-1-78374-238-7/ch9.xhtml#_idTextAnchor023" target="_blank" title="Opens in new tab">Digital Scholarly Editing: Theories and Practices</a></em>. Cambridge: Open Book Publishers. DOI: <a href="http://dx.doi.org/10.11647/OBP.0095.09" title="Opens in new tab" target="_blank">10.11647/OBP.0095.09</a> [<strong>describes an early version</strong> of the <em>Catalogue of Digital Editions</em>]</li>
                 <li>Krippendorf, K. (2004) <em>Content Analysis: An Introduction to Its Methodology</em>. 2nd edn. Thousand Oaks, CA: Sage.</li>
                 <li>Warwick, C., Galina, I., Terras, M., Huntington, P., Pappa, N. (2008) 'The master builders: LAIRAH research on good practice in the construction of digital humanities projects', <em>Literary and Linguistic Computing</em>, 23(3), pp. 383-396. DOI: <a href="https://academic.oup.com/dsh/article/23/3/383/937157/The-master-builders-LAIRAH-research-on-good" target="_blank" title="Opens in new tab">10.1093/llc/fqn017</a></li>
             </ul>
@@ -169,17 +175,16 @@
         <!--Acknowledgments-->
         <div id="section13">
             <h3>Acknowledgments</h3>
-            <p>This project wouldn't have unfolded were it not for the continuous support and encouragement of <a href="https://www.ucl.ac.uk/dis/people/melissaterras" target="_blank" title="Opens in new tab">Professor Melissa Terras</a> and <a href="http://www.ucl.ac.uk/dis/people/simonmahony" target="_blank" title="Opens in new tab">Simon Mahony</a>.</p>
+            <p>We thank <a href="https://www.ed.ac.uk/profile/professor-melissa-terras" target="_blank" title="Opens in new tab">Professor Melissa Terras (University of Edinburgh)</a> and <a href="http://www.ucl.ac.uk/dis/people/simonmahony" target="_blank" title="Opens in new tab">Simon Mahony</a> (University College London) for their continuous support and encouragement since the very beginning of this project.</p>
         </div>
-
-
-    
 
     <hr />
 
     <br />
     <br />
 
+
+	<!-- NAVIGATION-->
     <h2 id="navigating" >Navigating the Web Application</h2>
 
         <div id="section14">
@@ -192,12 +197,7 @@
 
                     <p>The menu tab <em>Browse the Catalogue</em> lists digital editions in table form and allows users to search for a particular project using one or multiple filters. A bottom pagination indicates the number of data pages present in the <em>Catalogue</em> at any one time (25 digital editions per page), giving users the option to jump between pages. Clicking on a digital edition opens up its corresponding data sheet (Figure 2). Users can also move between projects from the individual data sheets by using the blue back/forward arrows at the top of the screen (Figure 3). A black, round information icon below the project title provides a collapsable column with definitions of each catalogued feature (Figure 4). A red banner is used to inform users of expired project URLs (Figure 5); the banner disappears upon the addition of a working or updated URL.</p>
 
-                    <p>From the <em>Browse the Catalogue page</em>, users can download all digital editions in the <em>Catalogue</em> at any one time as:</p>  
-                        <ul>
-                            <li><code>.csv</code>;</li>
-                            <li><code>rdf/xml</code>, which maps the data against the FOAF, GeoNames, Data Catalog and Dublin Core Metadata Vocabularies;</li>
-                            <li><code>n3</code>.</li>
-                        </ul>
+                    <p>From the <em>Browse the Catalogue page</em>, users can download all digital editions in the <em>Catalogue</em> at any one time as <code>.csv</code>, <code>rdf/xml</code> and <code>n3</code>.
                      
                     <p>In addition, the menu tab <em>Get the Data</em> gives the user the option of downloading the data as a BibTeX file, which can be imported into bibliographic managers such as Zotero for citation purposes. The project's API is also available under <em>Get the Data</em>.</p>
 
@@ -260,7 +260,6 @@
                         </div>
                     </div>
 
-
                 <br />    
                 <h4>Chart and map view</h4>  
 
@@ -309,7 +308,14 @@
 
                     <!--OLD: bar and pie charts of a number of catalogued features, as well as a map of all involved institutions. For pie and bar charts, a drop-down menu lists possible visualisations (Figure 7 and Figure 8)<br />.-->
 
-                    
+                <br />
+                <h4>SPARQL Endpoint</h4>
+                	<p>An inbuilt <a href="https://dig-ed-cat.eos.arz.oeaw.ac.at/sparql/query/">SPARQL Endpoint interface</a> allows users to perform semantic queries over the RDF data of the <em>Catalogue</em>.</p>
+
+                <br />
+                <h4>Network visualisation</h4>  
+                	<p>As of 2018, each project sheet contains a hyperlinked network view of the digital edition and its associated people, institutions and places. Clicking on an institution node in the network opens up an information sheet with the institution's geographical coordinates and DNB ID. 
+                	We also provide a <a href="https://dig-ed-cat.eos.arz.oeaw.ac.at/browsing/netvis/">network visualisation of the entire set of digital editions</a> in the <em>Catalogue</em> to better visualise how these relate to one another. The network can be viewed and downloaded in both JSON and <a href="https://gephi.org/gexf/format/" target="_blank" title="Opens in new tab">GEXF Gephi</a> formats.</p>
 
         
         <div id="section15">

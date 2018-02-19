@@ -41,7 +41,7 @@
         <link rel="stylesheet" href="{% static 'webpage/libraries/cool-share/plugin.css' %}"/></link>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
         <script src="{% static 'webpage/libraries/cool-share/plugin.js' %}"/></script>
-      <!-- Piwik -->
+      <!-- Matomo -->
       <script type="text/javascript">
           var _paq = _paq || [];
           _paq.push(['trackPageView']);
@@ -59,7 +59,7 @@
             <img src="//clarin.oeaw.ac.at/piwik/piwik.php?idsite=31" style="border:0;" alt="" />
           </p>
       </noscript>
-      <!-- End Piwik Code -->
+      <!-- End Matomo Code -->
       <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
         <script type="text/javascript">
             window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"{% url 'webpage:staticpage' template='imprint' %}","theme":"dark-bottom"};
@@ -201,7 +201,7 @@
       #index-picture {
         width: 50%;
         /*display: block;
-        margin-left: auto; 
+        margin-left: auto;
         margin-right: auto;*/
       }
       @media (max-width: 768px) {
@@ -236,7 +236,7 @@
       order: 0;
 
     }
-    
+
 /* Too narrow to support two columns, make one */
 @media all and (max-width: 640px) {
     .main-flexbox {

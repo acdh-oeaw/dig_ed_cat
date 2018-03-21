@@ -225,11 +225,16 @@ def sync_status(request):
             temp_ed.print_friendly = BOOLEAN_CHOICES[str(row[39])]
             temp_ed.budget = str(row[44])
             temp_ed.infrastructure = str(row[45])
+            temp_ed.current_availability = None
             try:
                 alive = int(row[46])
-                temp_ed.current_availability = alive
+                if alive == 1:
+                    alive = True
+                else:
+                    alive = False
             except:
-                pass
+                alive = False
+            temp_ed.current_availability = alive
             val = URLValidator()
             try:
                 val(str(row[47]))

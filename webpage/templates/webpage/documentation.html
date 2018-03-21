@@ -6,26 +6,26 @@
 <div class="container">
 
     <h1>Documentation</h1>
-    <p style="font-size: 8"><i class="fa fa-clock-o" aria-hidden="true"></i> Last updated: Feb 18th, 2018</p>
+    <p style="font-size: 8"><i class="fa fa-clock-o" aria-hidden="true"></i> Last updated: Mar 20th, 2018</p>
 
 
       <ul id="docs-outline">
       <li><a href="#overview"><b>Overview</b></a></li>
-      <ul>
-        <li><a href="#section1">Team</a></li>
-        <li><a href="#section2">Duration</a></li>
-        <li><a href="#section3">Funding</a></li>
-        <li><a href="#section4">Components and repositories</a></li>
-        <!-- <li><a href="#section5">Section 5</a></li> -->
-        <li><a href="#section6">Limitations</a></li>
-        <li><a href="#section7">How to contribute to the Catalogue</a></li>
-        <li><a href="#section8">How to cite and follow the Catalogue</a></li>
-        <li><a href="#section9">Web analytics</a></li>
-        <li><a href="#section10">Copyright</a></li>
-        <li><a href="#section11">Relevant reading</a></li>
-        <li><a href="#section12">Relevant resources</a></li>
-        <li><a href="#section13">Acknowledgments</a></li>
-      </ul>
+          <ul>
+            <li><a href="#section1">Team</a></li>
+            <li><a href="#section2">Duration</a></li>
+            <li><a href="#section3">Funding</a></li>
+            <li><a href="#section4">Components and repositories</a></li>
+            <!-- <li><a href="#section5">Section 5</a></li> -->
+            <li><a href="#section6">Limitations</a></li>
+            <li><a href="#section7">How to contribute to the Catalogue</a></li>
+            <li><a href="#section8">How to cite and follow the Catalogue</a></li>
+            <li><a href="#section9">Web analytics</a></li>
+            <li><a href="#section10">Copyright</a></li>
+            <li><a href="#section11">Relevant reading</a></li>
+            <li><a href="#section12">Relevant resources</a></li>
+            <li><a href="#section13">Acknowledgments</a></li>
+          </ul>
       <li><a href="#navigating"><b>Navigating the Web Application</b></a></li>
       <ul>
         <li><a href="#section14">Browsing the data</a></li>
@@ -63,7 +63,7 @@
             <p>The <em>Catalogue of Digital Editions Web Application</em> is made-up of two interacting components, each stored in its own GitHub repository: 1) the data, and 2) the web application to display the data to the user. The two components are connected via a custom script that regularly fetches the latest updates from the data repository and delivers them to the web application.</p>
 
                 <h4>Data <small>component</small></h4>
-                <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic <a href="https://github.com/gfranzini/digEds_cat/blob/master/CONTRIBUTING.md" target="_blank" title="Opens in new tab">criteria</a>: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from aggregators (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a> or <a href="https://dhcommons.org/projects" target="_blank" title="Opens in new tab">DH Commons - Projects</a>), conferences presentations, publications, social media posts, word of mouth, and the web.</p><br />
+                <p>The digital editions present in the <em>Catalogue</em> come from numerous sources and their selection follows basic <a href="https://github.com/gfranzini/digEds_cat/blob/master/CONTRIBUTING.md" target="_blank" title="Opens in new tab">criteria</a>: the electronic texts can be ongoing or complete projects, born-digital editions as well as electronic reproductions of print volumes. They're gathered from aggregators (e.g. <a href="http://www.tei-c.org/Activities/Projects/" target="_blank" title="Opens in new tab">Projects using the TEI</a> or <a href="https://dhcommons.org/projects" target="_blank" title="Opens in new tab">DH Commons - Projects</a>), conferences presentations, publications, social media posts, word of mouth, the web, as well as external contributors.</p><br />
 
                 <p>The data is collected across two <code>.csv</code> (Comma Separated Value) files: the <code>digEds_cat.csv</code> file contains the digital editions, while the <code>institutions_places_enriched.csv</code> file contains geographical information associated with the institutions contained in the master file, allowing us to place digital editions on a map.</p>
 
@@ -74,9 +74,9 @@
 
                 <br /><br />
                 <h4>Web application <small>component</small></h4>
-                <p>The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.<br /> Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'.<br />
-                The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information.<br />
-                The web application's GitHub repository is: <a href="https://github.com/acdh-oeaw/dig_ed_cat" target="_blank" title="Opens in new tab">https://github.com/acdh-oeaw/dig_ed_cat</a></p>
+                <p>The application is a <a href="https://www.djangoproject.com/" target="_blank" title="Opens in new tab">Django web framework</a> designed to be simple and pragmatic.<br /> Some fields in the <em>Catalogue</em>'s data file contain decimal numbers as values to measure the degree of compliance of a project to a particular feature: 0 stands for 'no compliance', 0.5 for 'somewhat/partially compliant', 1 for 'fully compliant'. Numbers make it easier to run calculations and statistical analyses over the data-set. When fetching data updates, the web application transforms these values into human-readable information: 0 becomes 'no', 0.5 becomes 'partial/somewhat' and 1 becomes 'yes'. The web application's default view of the <em>Catalogue</em> data is a searchable table, but it also provides bar and pie charts to better visualise statistical information (see the <em>Navigation</em> section below).</p>
+                
+                <p>The web application's GitHub repository is: <a href="https://github.com/acdh-oeaw/dig_ed_cat" target="_blank" title="Opens in new tab">https://github.com/acdh-oeaw/dig_ed_cat</a></p>
         </div>
 
         <!--Progress-->
@@ -151,7 +151,7 @@
         <div id="section12">
             <h3>Relevant resources</h3>
             <ul>
-        	    <li>Other catalogues
+        	    <li>Other catalogues:
         	    	<ul>
         	    		<li>The first ever catalogue of digital editions was published and is still maintained by Patrick Sahle under the name <em><a href="http://www.digitale-edition.de/" target="_blank" title="Opens in new tab">Catalog of Scholarly Digital Editions</a></em>. Sahle's catalogue collects digital editions with a strong critical ("scholarly") component and from which <em>our Catalogue</em> borrows key data definitions.</li>
         	    		<li>In December 2016, a catalogue of Spanish digital editions and texts also appeared on the web and can be accessed <a href="http://www.morethanbooks.eu/atlas-de-datos-digital-editions-spanish/" target="_blank" title="Opens in new tab">here</a>.</li>
@@ -179,10 +179,8 @@
         </div>
 
     <hr />
-
     <br />
     <br />
-
 
 	<!-- NAVIGATION-->
     <h2 id="navigating" >Navigating the Web Application</h2>
@@ -197,9 +195,9 @@
 
                     <p>The menu tab <em>Browse the Catalogue</em> lists digital editions in table form and allows users to search for a particular project using one or multiple filters. A bottom pagination indicates the number of data pages present in the <em>Catalogue</em> at any one time (25 digital editions per page), giving users the option to jump between pages. Clicking on a digital edition opens up its corresponding data sheet (Figure 2). Users can also move between projects from the individual data sheets by using the blue back/forward arrows at the top of the screen (Figure 3). A black, round information icon below the project title provides a collapsable column with definitions of each catalogued feature (Figure 4). A red banner is used to inform users of expired project URLs (Figure 5); the banner disappears upon the addition of a working or updated URL.</p>
 
-                    <p>From the <em>Browse the Catalogue page</em>, users can download all digital editions in the <em>Catalogue</em> at any one time as <code>.csv</code>, <code>rdf/xml</code> and <code>n3</code>.
+                    <p>From the <em>Browse the Catalogue</em> page, users can download all digital editions in the <em>Catalogue</em> at any one time as <code>.csv</code>, <code>rdf/xml</code> and <code>n3</code>.
 
-                    <p>In addition, the menu tab <em>Get the Data</em> gives the user the option of downloading the data as a BibTeX file, which can be imported into bibliographic managers such as Zotero for citation purposes. The project's API is also available under <em>Get the Data</em>.</p>
+                    <p>In addition, the menu tab <em>Get the Data</em> gives the user the option of downloading the data as a BibTeX file, which can be imported into bibliographic managers such as Zotero for citation purposes. The project's <strong>API</strong> is also available under <em>Get the Data</em>.</p>
 
 
                     <div class="row">
@@ -263,8 +261,8 @@
                 <br />
                 <h4>Chart and map view</h4>
 
-                    <p>The menu tab <em>Analyze the data</em> provides chart and map visualisations of the data contained in the <em>Catalogue</em>.</p>
-                    <p>The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 7). The user can either click on a location marker or search for an institution using the search button placed above the map. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.</p>
+                    <p>The menu tab <em>Analyze the data</em> provides chart, map and network visualisations of the data contained in the <em>Catalogue</em>.</p>
+                    <p>The map locates institutions involved in the creation of digital editions present in the <em>Catalogue</em> (Figure 7). The user can either click on a location marker or search for an institution using the search button provided. Clicking on a location marker opens up a pop-up window with the name of the institution and its projects; here, clicking on a project leads the user to the corresponding project data-sheet.</p>
 
 
                     <p>The menu option <a href="{% url 'charts:chart_selector' %}"><em>Select charts</em></a> provides a list of catalogued features to visualise as bar, line or pie charts. Hovering over a particular pie slice or bar reveals the exact project count. All charts can be downloaded as PNG, JPEG, PDF and SVG files.</p>
@@ -290,9 +288,38 @@
 
                 <br />
                 <h4>Network visualisation</h4>
-                	<p>As of 2018, each project sheet contains a hyperlinked network view of the digital edition and its associated people, institutions and places. Clicking on an institution node in the network opens up an information sheet with the institution's geographical coordinates and DNB ID.
-                	We also provide a <a href="{% url 'browsing:netvis' %}">network visualisation of the entire set of digital editions</a> in the <em>Catalogue</em> to better visualise how these relate to one another. The network can be viewed and downloaded in both JSON and <a href="https://gephi.org/gexf/format/" target="_blank" title="Opens in new tab">GEXF Gephi</a> formats.</p>
+                	<p>As of 2018, each project sheet contains a hyperlinked network view of the digital edition and its associated people, institutions and places (see example in Figure 8). Clicking on an institution node in the network opens up an information sheet with the institution's geographical coordinates and DNB ID (Figure 9).
+                	We also provide a <a href="{% url 'browsing:netvis' %}">network visualisation of the entire set of digital editions</a> in the <em>Catalogue</em> to better visualise how these relate to one another. The network can be viewed and downloaded in both JSON and <a href="https://gephi.org/gexf/format/" target="_blank" title="Opens in new tab">GEXF Gephi</a> formats (Figure 10).</p>
 
+                <div class="row">
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <a href="{% static 'webpage/images/network-individual.png' %}" title="Click to enlarge">
+                                <img src="{% static 'webpage/images/network-individual.png' %}" alt="Individual network" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 8. Example network of a digital edition in the <em>Catalogue</em>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <a href="{% static 'webpage/images/institution-sheet.png' %}" title="Click to enlarge">
+                                <img src="{% static 'webpage/images/institution-sheet.png' %}" alt="Institution sheet" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 9. Sheet detailing all information associated with the University of Sheffield.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <a href="{% static 'webpage/images/network-collective.png' %}" title="Click to enlarge">
+                                <img src="{% static 'webpage/images/network-collective.png' %}" alt="Collective network" style="width:100%"></a>
+                                <div class="caption">
+                                    <p>Figure 10. The collective network visualisation brings together all digital editions in the <em>Catalogue</em>.</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
 
         <div id="section15">
             <h3>Other menu pages</h3>

@@ -7,4 +7,4 @@ from .models import NewsFeed
 def feed_view(request):
     feeds = feed_serializer(RSS_CHANNEL, NewsFeed.objects.all())
     feed_string = ET.tostring(feeds)
-    return HttpResponse(feed_string, content_type='application/xml; charset=utf-8')
+    return HttpResponse(feed_string, content_type='application/rss+xml; charset=utf-8')

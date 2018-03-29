@@ -124,7 +124,7 @@ MEDIA_URL = '/media/'
 FILTERS_HELP_TEXT_FILTER = False
 
 RSS_CHANNEL = {
-    'title': "provide some",
+    'title': "Catalogue of Digital Editions Feed",
     'link': "https://dig-ed-cat.acdh.oeaw.ac.at",
-    'description': "some description",
+    'description': "News about the Catalogue of Digital Editions",
 }

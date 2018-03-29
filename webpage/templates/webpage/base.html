@@ -377,6 +377,9 @@
                     <li>
                         <a href="{% url 'browsing:rdf' %}?format=pretty-xml">RDF/XML</a>
                     </li>
+                    <li>
+                        <a href="{% url 'news:feeds' %}">RSS Feed</a>
+                    </li>
                   </ul>
               </li>
               <li>
@@ -444,7 +447,7 @@
               <img src="{% static 'webpage/img/acdh_logo_02.png' %}" class="footer-logo" alt="ACDH" title="Austrian Centre for Digital Humanities" width="30%"/>
           </a>
         </div>
-        
+
         <div class="col-sm-6">
           <a href="http://www.ucl.ac.uk/dh/" class="navlink">
               <img src="{% static 'webpage/img/ucldh.png' %}" class="footer-logo" alt="UCLDH" title="UCL Centre for Digital Humanities" width="30%"/>
@@ -456,7 +459,7 @@
     <div class="row">
     <div class="col-sm-6">
     <p><b>Contact</b></p>
-    
+
     </div>
 
     </div>
@@ -470,17 +473,17 @@
     <div class="row">
     <div class="col-sm-6">
     <p><b>Find more on the web</b></p>
-    
-    </div>
 
     </div>
 
-   
+    </div>
+
+
 
 
 
      <div class="row">
-     
+
       <div class="col-sm-12" style="padding-left: 10px;">
           <a href="https://github.com/acdh-oeaw/dig_ed_cat" class="extra-logo navlink">
               <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" class="footer-logo" alt="ACDH" title="Github" width="50%"/>
@@ -501,9 +504,9 @@
 
       </div>
 
-        
+
 </div>
-    
+
 </footer>
 
     {% block scripts %}

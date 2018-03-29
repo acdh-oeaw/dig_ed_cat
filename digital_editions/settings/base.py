@@ -122,3 +122,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 FILTERS_HELP_TEXT_FILTER = False
+
+RSS_CHANNEL = {
+    'title': "provide some",
+    'link': "https://dig-ed-cat.acdh.oeaw.ac.at",
+    'description': "some description",
+}

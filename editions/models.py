@@ -297,7 +297,7 @@ class Edition(models.Model):
         ("1", "Open Access. The texts may be accessed through specific software,\
         but the source is not accessible."),
         ("1.5", "Open Access and Open Source. Part of the data underlying the digital edition\
-        (e.g. text but not images) is freely available for access and reuse."),
+        is freely available for access and reuse."),
         ("2", "Open Access and Open Source. All data underlying the digital edition \
         is freely available for access and reuse.")
     )
@@ -325,7 +325,7 @@ class Edition(models.Model):
     )
     print_friendly = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,
-        help_text="The project provides a print-friendly view of the text (e.g. PDF)."
+        help_text="The project provides a print-friendly view of the text."
     )
     api = models.CharField(
         choices=BOOLEAN_CHOICES, blank=True, max_length=40,

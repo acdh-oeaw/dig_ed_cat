@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/58523978.svg)](https://zenodo.org/badge/latestdoi/58523978)
+
 # dig_ed_cat
 ## About
 A web application to browse, analyze and curate a catalogue of digital editions (https://dig-ed-cat.acdh.oeaw.ac.at/). 

@@ -2,6 +2,8 @@ import json
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
+from handle.models import Pid
 
 from places.models import Place
 
@@ -351,6 +353,10 @@ class Edition(models.Model):
         Catalog of Digital Scholarly Editions (http://www.digitale-edition.de/).\
         The values 0 [no] or 1 [yes] are used."
     )
+    pid = GenericRelation(Pid, blank=True, null=True, related_query_name="get_pid")
+
+    class Meta:
+        ordering = ['legacy_id']
 
     def __str__(self):
         return "{}".format(self.name)
@@ -372,7 +378,7 @@ class Edition(models.Model):
             if show_labels:
                 node['label'] = self.name
             else:
-                node['title'] = self.name           
+                node['title'] = self.name
         edges = []
         for y in self.institution.all():
             node = {
@@ -461,7 +467,7 @@ class Edition(models.Model):
             if show_labels:
                 node['label'] = y.name
             else:
-                node['title']= y.name 
+                node['title'] = y.name
             nodes.append(node)
             edge = {
                 'from': "edition_{}".format(self.pk),

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'wordcloud',
     'news',
     'sparql',
+    'handle',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"

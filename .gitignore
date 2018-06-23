@@ -24,3 +24,4 @@ src
 /ChartConfigurator_try.ipynb
 /charts.db
 /*.gexf
+/digital_editions/settings/dev_secret.py

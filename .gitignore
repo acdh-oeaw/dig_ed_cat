@@ -25,3 +25,4 @@ src
 /charts.db
 /*.gexf
 /digital_editions/settings/dev_secret.py
+/handles.json

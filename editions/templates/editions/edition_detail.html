@@ -328,6 +328,19 @@
                             {% endif %}
                         </td>
                     </tr>
+                    {% if object.pid.all %}
+                        <tr>
+                            <th>
+                                handle
+                            </th>
+                            <td class="readmore">
+                                handle-id
+                            </td>
+                            <td>
+                                <a href="{{ object.pid.all.first }}">{{ object.pid.all.first }}</a>
+                            </td>
+                        </tr>
+                    {% endif %}
                 </table>
                   {% if user.is_authenticated %}
 

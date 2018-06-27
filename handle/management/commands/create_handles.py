@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.contenttypes.models import ContentType
 
 from handle import utils
+from handle.models import Pid
 
 
 class Command(BaseCommand):
@@ -35,7 +36,9 @@ class Command(BaseCommand):
         if ct:
             qs = ct.objects.filter(**filters)
             for x in qs:
-                self.stdout.write(self.style.SUCCESS("{}".format(x)))
+                new_hdl = Pid(content_object=x)
+                new_hdl.save()
+                self.stdout.write(self.style.SUCCESS(new_hdl.handle))
         else:
             self.stdout.write(
                 self.style.SUCCESS(

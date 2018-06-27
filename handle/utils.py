@@ -32,8 +32,8 @@ def create_handle(handle_url, handle_user, handle_pw, parsed_data):
     payload = json.dumps(
         [
             {
-                "type": handle_url,
-                "parsed_data": parsed_data
+                "type": "URL",
+                "parsed_data": "{}".format(parsed_data)
             }
         ]
     )
@@ -47,7 +47,7 @@ def create_handle(handle_url, handle_user, handle_pw, parsed_data):
     try:
         response = requests.request("POST", handle_url, data=payload, headers=headers, auth=auth)
     except:
-        print('something went wrong trying to send the request')
+        print('something went wrong trying to send the request, maybe check your settings file?')
         return None
 
     if response.status_code == 201:

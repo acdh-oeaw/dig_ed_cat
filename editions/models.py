@@ -40,7 +40,7 @@ class Institution(models.Model):
     place = models.ForeignKey(
         Place, blank=True, null=True,
         help_text="Place with which the institution is associated with.",
-        on_delete=models.PROTECT
+        on_delete=models.SET_NULL
     )
     gnd_id = models.CharField(
         max_length=255, blank=True, help_text="GND id of Institution."

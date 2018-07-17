@@ -38,7 +38,7 @@ class Place(models.Model):
     part_of = models.ForeignKey(
         "Place", null=True, blank=True,
         help_text="A place (country) this place is part of.",
-        on_delete=models.PROTECT
+        on_delete=models.SET_NULL
     )
     place_type = models.CharField(choices=PLACE_TYPES, null=True, blank=True, max_length=50)
 

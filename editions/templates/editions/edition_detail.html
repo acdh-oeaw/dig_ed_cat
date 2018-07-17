@@ -401,6 +401,12 @@
 
 </script>
         </div>
+        <div class="panel-footer" style="text-align:center">
+            To cite this Catalogue entry, you can adapt the following
+            <blockquote>
+                <p>Catalogue of Digital Editions: <i>{{ object.name }}</i>{% if object.pid.all %}, DOI: <a href="{{ object.pid.all.first }}">{{ object.pid.all.first }}</a>{% endif %}.</p>
+            </blockquote>
+        </div>
 
 <script type="text/javascript">
     $(document).ready(function(){

@@ -22,3 +22,4 @@ To fetch the last version of the catalogue data,
 3. log in (icon in the top right corner)
 4. then you'll see a 'Curate the Data' -> 'Sync with GitHub' nav bar entry, 
 5. click on it and then on the button which says 'click me to snyc'.
+test

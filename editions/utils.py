@@ -188,7 +188,18 @@ def create_editions(df):
         else:
             current_availability = False
         if row['RIDE review']:
-            ed.ride_review = row['RIDE review']
+            if row['RIDE review'] == "0":
+                ed.ride_review = None
+            else:
+                ed.ride_review = row['RIDE review']
+        else:
+            ed.ride_review = None
+
+        if row['Sahle Catalog']:
+            ed.sahle_cat = True
+        else:
+            ed.sahle_cat = None
+
         if row['API']:
             ed.api = BOOLEAN_CHOICES[str(row['API']).strip()]
 

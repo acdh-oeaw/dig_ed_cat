@@ -229,7 +229,7 @@ class EditionListFilter(django_filters.FilterSet):
         choices=BOOLEAN_CHOICES,
         help_text=Edition._meta.get_field('api').help_text)
     ride_review = django_filters.BooleanFilter(
-        lookup_expr='isnull', help_text="Is there a RIDE review ?",
+        lookup_expr='isnull', help_text="Is there a RIDE review?",
         exclude=True, label="RIDE review"
         )
     sahle_cat = django_filters.ChoiceFilter(

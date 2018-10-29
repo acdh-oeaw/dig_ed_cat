@@ -195,8 +195,10 @@ def create_editions(df):
         else:
             ed.ride_review = None
 
-        if row['Sahle Catalog']:
+        if row['Sahle Catalog'] == "1":
             ed.sahle_cat = True
+        elif row['Sahle Catalog'] == "0":
+            ed.sahle_cat = False
         else:
             ed.sahle_cat = None
 

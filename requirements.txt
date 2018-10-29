@@ -5,13 +5,13 @@ chardet==3.0.3
 colorama==0.3.9
 cycler==0.10.0
 decorator==4.1.0
-Django==2.0.1
-django-autocomplete-light==3.2.7
-django-crispy-forms==1.7.0
+Django==2.1.2
+django-autocomplete-light==3.3.2
+django-crispy-forms==1.7.2
 django-extensions==1.7.9
-django-filter==1.0.4
+django-filter==2.0.0
 django-rest-framework==0.1.0
-django-tables2==1.6.1
+django-tables2==2.0.2
 djangorestframework==3.7.7
 entrypoints==0.2.3
 html5lib==0.999999999
@@ -41,7 +41,7 @@ prompt-toolkit==1.0.14
 Pygments==2.2.0
 pyparsing==2.2.0
 python-dateutil==2.6.1
-pytz==2017.3
+pytz==2018.7
 pyzmq==16.0.2
 rdflib==4.2.2
 requests==2.16.3

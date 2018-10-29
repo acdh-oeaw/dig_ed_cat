@@ -46,7 +46,7 @@ class DynChartView(GenericListView):
         for x in objects.values(property_name).annotate(
                 amount=Count(property_name)).order_by('amount'):
             if x[property_name]:
-                payload.append([x[property_name], x['amount']])
+                payload.append(["{}".format(x[property_name]), x['amount']])
             else:
                 payload.append(['None', x['amount']])
         context['all'] = self.model.objects.count()

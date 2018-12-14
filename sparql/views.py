@@ -1,6 +1,6 @@
 import os
 from django.conf import settings
-from SPARQLWrapper import SPARQLWrapper, JSON
+from SPARQLWrapper import SPARQLWrapper, JSON, BASIC
 from django.http import JsonResponse
 from django.http import Http404
 from django.conf import settings
@@ -10,17 +10,17 @@ from .forms import QueryForm
 from .models import Query
 
 
-try:
-    endpoint = settings.SPARQL_ENDPOINT
-except AttributeError:
-    endpoint = 'https://bg{}.acdh.oeaw.ac.at/sparql'.format(
-        os.path.basename(settings.BASE_DIR)
-    )
+endpoint = getattr(settings, 'BG_URL', None)
+bg_user = getattr(settings, 'BG_USER', None)
+bg_pw = getattr(settings, 'BG_PW', None)
 
 
 def query_tunnel(request):
-    sparql = SPARQLWrapper(endpoint)
     query = request.GET.get('query')
+    sparql = SPARQLWrapper(endpoint)
+    if bg_user and bg_pw:
+        sparql.setHTTPAuth(BASIC)
+        sparql.setCredentials(bg_user, bg_pw)
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()

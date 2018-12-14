@@ -4,10 +4,6 @@
 {% load webpage_extras %}
 {% block title %} SPARQL {% endblock %}
 {% block content %}
-<link href='//cdn.jsdelivr.net/yasqe/2.11.10/yasqe.min.css' rel='stylesheet' type='text/css'/>
-<link href='//cdn.jsdelivr.net/g/yasqe@2.2(yasqe.min.css),yasr@2.4(yasr.min.css)' rel='stylesheet' type='text/css'/>
-<script src='//cdn.jsdelivr.net/yasr/2.4/yasr.bundled.min.js'></script>
-<script src='//cdn.jsdelivr.net/yasqe/2.11.10/yasqe.bundled.min.js'></script>
 
 <div class="container">
 
@@ -17,49 +13,38 @@
     {% if examples %}
 <div id="examples">
     <h3>Example queries</h3>
-    <hr/> 
+    <hr/>
     {% for x in examples %}
     <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#see-example-{{ x.id }}" id="see-example-btn-{{ x.id }}">{{ x.title }}</button>
     <div id="see-example-{{ x.id }}" class="collapse">
         <h5>{{ x.title }}: {{ x.description }}</h5>
         <code>{{ x.query }}</code>
     </div>
-    <br> 
+    <br>
     {% endfor %}
 </div>
 {% endif %}
 <br>
-<div id="query-editor">
-    {% crispy form %}
-</div>
-<br>
-<div id="sparql-results">
-    <h3>Results</h3>
-    <hr/>
-    <div id="yasr"></div>
-</div>
-<br>
-<div class="panel panel-info">
-    <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> Credits</div>
-    <div class="panel-body">SPARQL endpoint interface is built with <a href="http://about.yasgui.org/">YASGUI</a> package.</div>
-</div>
 
-</div>
-<script>
-var yasqe = YASQE.fromTextArea(document.getElementById('id_query'),{
-    sparql: {
-		showQueryButton: true,
-        endpoint: "{% url 'sparql:tunnel' %}",
-        requestMethod: 'GET'
-	}
-});
+<div class="container" id="content" tabindex="-1">
+    <div id="yasgui" style="padding: 2px;"></div>
+    <link href="https://cdn.jsdelivr.net/npm/yasgui@2.7.19/dist/yasgui.min.css" rel="stylesheet" type="text/css">
+    <style>
+      .yasgui .endpointText {display:none !important;}
+      .controlbar {display:none !important;}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/yasgui@2.7.19/dist/yasgui.min.js"></script>
+    <script type="text/javascript">
+        var yasgui = YASGUI(document.getElementById("yasgui"), {
+            yasqe: {
+                sparql: {
+                    showQueryButton: true,
+                    endpoint: "{% url 'sparql:tunnel' %}",
+                    requestMethod: 'GET'
+                }
+            }
+          });
+        </script>
+  </div>
 
-var yasr = YASR(document.getElementById("yasr"), {
-	//this way, the URLs in the results are prettified using the defined prefixes in the query
-	getUsedPrefixes: yasqe.getPrefixesFromQuery
-});
-
-yasqe.options.sparql.callbacks.complete = yasr.setResponse;
-
-</script>
 {% endblock %}

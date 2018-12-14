@@ -3,12 +3,8 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from django.conf import settings
 from django.db import models
 
-try:
-    endpoint = settings.SPARQL_ENDPOINT
-except AttributeError:
-    endpoint = 'https://bg{}.acdh.oeaw.ac.at/sparql'.format(
-        os.path.basename(settings.BASE_DIR)
-    )
+
+endpoint = getattr(settings, 'BG_URL', "https://no-endpoint.provided")
 
 
 class SparqlConfig(models.Model):

@@ -1,10 +1,13 @@
+from copy import deepcopy
+
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import RequestContext, loader
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
 
-from .forms import form_user_login
+from . forms import form_user_login
+from . metadata import PROJECT_METADATA as PM
 
 
 class GenericWebpageView(TemplateView):
@@ -52,3 +55,19 @@ def handler404(request):
     response = render_to_response('webpage/404-error.html')
     response.status_code = 404
     return response
+
+
+def project_info(request):
+
+    """
+    returns a dict providing metadata about the current project
+    """
+
+    info_dict = deepcopy(PM)
+
+    if request.user.is_authenticated:
+        pass
+    else:
+        del info_dict['matomo_id']
+        del info_dict['matomo_url']
+    return JsonResponse(info_dict)

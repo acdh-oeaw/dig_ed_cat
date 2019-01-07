@@ -16,5 +16,6 @@ PROJECT_METADATA = {
     'matomo_id': '31',
     'matomo_url': '//matomo.acdh.oeaw.ac.at/',
     'imprint': '/imprint',
-    'social_media': []
+    'social_media': [],
+    'app_type': 'database',
 }

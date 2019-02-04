@@ -18,7 +18,7 @@ class GenericWebpageView(TemplateView):
         try:
             loader.select_template([template_name])
             template_name = "webpage/{}.html".format(self.kwargs.get("template", 'index'))
-        except:
+        except Exception as e:
             template_name = "webpage/index.html"
         return [template_name]
 

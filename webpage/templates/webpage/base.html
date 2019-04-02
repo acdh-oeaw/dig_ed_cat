@@ -24,7 +24,7 @@
           <link rel="icon" type="image/png" sizes="32x32" href="{% static 'webpage/img/favicon/favicon-32x32.png' %}">
           <link rel="icon" type="image/png" sizes="96x96" href="{% static 'webpage/img/favicon/favicon-96x96.png' %}">
           <link rel="icon" type="image/png" sizes="16x16" href="{% static 'webpage/img/favicon/favicon-16x16.png' %}">
-          <link rel="manifest" href="{% static 'webpage/img/favicon/manifest.json">
+          <link rel="manifest" href="{% static 'webpage/img/favicon/manifest.json' %}">
           <meta name="msapplication-TileColor" content="#ffffff">
           <meta name="msapplication-TileImage" content="{% static 'webpage/img/favicon/ms-icon-144x144.png' %}">
           <meta name="theme-color" content="#ffffff">
@@ -66,114 +66,114 @@
         </script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
         <!-- End Cookie Consent plugin -->
-        <style type="text/css">
-          html {
-          height: 100%;
-          }
-          body {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          padding-top: 70px; /*always keep it when navbar-fixed-top*/
-          }
-          header {
-          flex: 0 0 auto;
-          }
-          .main-content {
-          flex: 1 0 auto;
-          }
-          footer {
-          flex: 0 0 auto;
-          background-color: #333; /*#F8F8F8*/
-          color: #ffffff;
-          font-size: 13px;
-          padding: 20px;
-         /* position: absolute;*/
-          left: 0;
-          right: 0;
-          width: 100%;
-          margin-top: 10px;
-          }
-          p {
-            text-align: justify;
-          }
-          .feed.title{
-              color: #43ac6a;
-          }
-          .feed.meta{
-              font-size: 70%;
-          }
-          .verticalLine {
-            border-left: 1px solid black;
-          }
-          .index-wrapper {
-            margin-bottom: 50px;
-          }
-          .news-wrapper {
-            border: none !important;
-            box-shadow: none;
-            text-align: justify;
-            /*box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);*/
-          }
-          .news-wrapper > .panel-heading {
-            background-color: white;
-            border-top: 3px solid black;
-            border-bottom: none !important;
-          }
-          /*to extend twitter widget when page grows*/
-          iframe[id^='twitter-widget-'] {
-            height:700px !important;
-            margin-bottom:10px !important;
-          }
-          .procustom-btn {
-            margin-top: 5px;
-            margin-bottom: 0px;
-            /*margin-left: 10px;
-            margin-right: 10px;*/
-            background-color: #ffffff;
-            color: #1d5771;
-            border: 3px solid #1d5771;
-            font-weight: bold;
-            white-space: normal;
-            padding-left: 40px;
-            padding-right: 40px;
-          }
-          .procustom-btn:hover {
-            background-color: #1d5771;
-            color: #ffffff;
-            border: 3px solid #1d5771;
-            font-weight: bold;
-          }
-          #report-btn {
-            width:50%;
-          }
-
-          .alert-info {
-            background-color: #1d5771;
-            border-color: #1d5771;
-          }
-          .footer-logo {
-            margin-top: 10px;
-            margin-bottom: 10px;
-          }
-          blockquote > footer {
-            background-color: #ffffff;
-          }
-          .ui-autocomplete {
-            z-index:2147483647;
-          }
-        /*.navbar-right {
-          padding-right: 15px;
-        }*/
-        .navbar-nav.navbar-right:last-child {   /*dirty fix due to https://github.com/twbs/bootstrap/issues/18362*/
-            margin-right: 0;
-        }
-        @media (min-width: 768px) and (max-width: 1105px) {
-      .navbar-right {
-          float: none !important;
+  <style type="text/css">
+      html {
+      height: 100%;
       }
       body {
-        padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-top: 70px; /*always keep it when navbar-fixed-top*/
+      }
+      header {
+      flex: 0 0 auto;
+      }
+      .main-content {
+      flex: 1 0 auto;
+      }
+      footer {
+      flex: 0 0 auto;
+      background-color: #333; /*#F8F8F8*/
+      color: #ffffff;
+      font-size: 13px;
+      padding: 20px;
+     /* position: absolute;*/
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin-top: 10px;
+      }
+      p {
+        text-align: justify;
+      }
+      .feed.title{
+          color: #43ac6a;
+      }
+      .feed.meta{
+          font-size: 70%;
+      }
+      .verticalLine {
+        border-left: 1px solid black;
+      }
+      .index-wrapper {
+        margin-bottom: 50px;
+      }
+      .news-wrapper {
+        border: none !important;
+        box-shadow: none;
+        text-align: justify;
+        /*box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);*/
+      }
+      .news-wrapper > .panel-heading {
+        background-color: white;
+        border-top: 3px solid black;
+        border-bottom: none !important;
+      }
+      /*to extend twitter widget when page grows*/
+      iframe[id^='twitter-widget-'] {
+        height:700px !important;
+        margin-bottom:10px !important;
+      }
+      .procustom-btn {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        /*margin-left: 10px;
+        margin-right: 10px;*/
+        background-color: #ffffff;
+        color: #1d5771;
+        border: 3px solid #1d5771;
+        font-weight: bold;
+        white-space: normal;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      .procustom-btn:hover {
+        background-color: #1d5771;
+        color: #ffffff;
+        border: 3px solid #1d5771;
+        font-weight: bold;
+      }
+      #report-btn {
+        width:50%;
+      }
+
+      .alert-info {
+        background-color: #1d5771;
+        border-color: #1d5771;
+      }
+      .footer-logo {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      blockquote > footer {
+        background-color: #ffffff;
+      }
+      .ui-autocomplete {
+        z-index:2147483647;
+      }
+    /*.navbar-right {
+      padding-right: 15px;
+    }*/
+    .navbar-nav.navbar-right:last-child {   /*dirty fix due to https://github.com/twbs/bootstrap/issues/18362*/
+        margin-right: 0;
+    }
+    @media (min-width: 768px) and (max-width: 1105px) {
+      .navbar-right {
+        float: none !important;
+        }
+        body {
+          padding-top: 100px;
       }
     }
       .btn {
@@ -219,14 +219,14 @@
       background: #fff;
       box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);
         }
-        .main-flexbox {
+      .main-flexbox {
       display: flex;
       margin: 0;
       padding: 0;
       flex-flow: row;
       flex: 1 0 0;
     }
-    .main-flexbox > .card {
+      .main-flexbox > .card {
         /*height: 100%;*/ /*all cards are the same height*/
       margin: 10px;
       padding: 20px;
@@ -239,18 +239,18 @@
 
 /* Too narrow to support two columns, make one */
 @media all and (max-width: 640px) {
-    .main-flexbox {
-        display: block;
-        flex-direction: column;
-    }
-    .main-flexbox>.card {
-        margin: 10px;
-        padding: 20px;
-        /* Return them to document order */
-        order: 0;
+      .main-flexbox {
+          display: block;
+          flex-direction: column;
+      }
+      .main-flexbox>.card {
+          margin: 10px;
+          padding: 20px;
+          /* Return them to document order */
+          order: 0;
     }
 
-</style>
+  </style>
 <!--style for footer extra logos-->
  <style type="text/css">
     .extra-logo {
@@ -284,7 +284,6 @@
      $('#twitter-widget-0').append($('<div class=timeline>'));
     })
  });
-
 </script>
  <script>
     var shiftWindow = function() { scrollBy(0, -50) };
@@ -294,7 +293,6 @@
       {% block scriptHeader %}
         {% endblock %}
   </head>
-
   <body role="document">
     <header>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -331,7 +329,6 @@
                   </ul>
                 </li>
               {% endif %}
-
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Analyze the Data<span class="caret"/>
                   </a>
@@ -405,8 +402,8 @@
                 {% if user.is_authenticated %}
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"/>&nbsp;{{ user.get_username }}</span>
-                    <span class="caret"/></span>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;{{ user.get_username }}</span>
+                    <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
                     <li>
@@ -422,7 +419,7 @@
             </ul>
         </div>
     </nav>
-    </header>
+</header>
 <section class="main-content">
     <div id="content" class="container">
       {% block content %}
@@ -456,65 +453,52 @@
     </div>
     <br>
     <hr>
-    <div class="row">
-    <div class="col-sm-6">
-    <p><b>Contact</b></p>
-
-    </div>
-
-    </div>
-    <div class="row">
-    <div class="col-sm-3">
-    <p>
-    Greta Franzini<br>
-    g.franzini.11@ucl.ac.uk</p>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-sm-6">
-    <p><b>Find more on the web</b></p>
-
-    </div>
-
-    </div>
-
-
-
-
-
-     <div class="row">
-
-      <div class="col-sm-12" style="padding-left: 10px;">
-          <a href="https://github.com/acdh-oeaw/dig_ed_cat" class="extra-logo navlink">
-              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" class="footer-logo" alt="ACDH" title="Github" width="50%"/>
-          </a>
-          <a href="https://twitter.com/search?q=%23digEdsCat" class="extra-logo navlink">
-              <img src="{% static 'webpage/img/TwitterLogo_white.png' %}" class="footer-logo" alt="Twitter" title="DigEdsCat on Twitter" width="50%"/>
-          </a>
-          <a href="https://www.researchgate.net/project/The-Digital-Editions-Catalogue-App-A-web-application-to-browse-curate-and-analyse-digital-editions" class="extra-logo navlink">
-              <img src="{% static 'webpage/img/RG-logo-white.png' %}" class="footer-logo" alt="Research gate" title="Research gate" width="50%"/>
-          </a>
-          <a href="https://www.openaire.eu/search/dataset?datasetId=r37b0ad08687::c2ad7b8b5225d5abc748a1c6bbb07aeb" class="extra-logo navlink">
-              <img src="{% static 'webpage/img/open-aire-logo-white.png' %}" class="footer-logo" alt="Open Aire" title="Open Aire" style="margin-bottom:20px; width: 50%"/>
-          </a>
-          <a href="https://www.zotero.org/groups/2199751/digital_scholarly_editions" class="extra-logo navlink">
-              <img src="{% static 'webpage/img/zotero-logo-white.png' %}" class="footer-logo" alt="Zotero" title="Zotero" style="margin-bottom: 10px; height: 60%"/>
-          </a>
-          <a href="https://creativecommons.org/licenses/by/4.0/" class="extra-logo navlink">
-              <img src="{% static 'webpage/img/by-sa.png' %}" class="footer-logo" alt="CC-BY-SA-4.0" title="CC-BY-SA-4.0 license" style="margin-bottom:25px; padding-top: 20px; width: 60%"/>
-          </a>
-        </div>
-
-      </div>
-
-
+<div class="row">
+  <div class="col-sm-6">
+  <p><b>Contact</b></p>
+  </div>
 </div>
-
+<div class="row">
+  <div class="col-sm-3">
+  <p>
+  Greta Franzini<br>
+  g.franzini.11@ucl.ac.uk</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <p><b>Find more on the web</b></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12" style="padding-left: 10px;">
+      <a href="https://github.com/acdh-oeaw/dig_ed_cat" class="extra-logo navlink">
+          <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" class="footer-logo" alt="ACDH" title="Github" width="50%"/>
+      </a>
+      <a href="https://twitter.com/search?q=%23digEdsCat" class="extra-logo navlink">
+          <img src="{% static 'webpage/img/TwitterLogo_white.png' %}" class="footer-logo" alt="Twitter" title="DigEdsCat on Twitter" width="50%"/>
+      </a>
+      <a href="https://www.researchgate.net/project/The-Digital-Editions-Catalogue-App-A-web-application-to-browse-curate-and-analyse-digital-editions" class="extra-logo navlink">
+          <img src="{% static 'webpage/img/RG-logo-white.png' %}" class="footer-logo" alt="Research gate" title="Research gate" width="50%"/>
+      </a>
+      <a href="https://www.openaire.eu/search/dataset?datasetId=r37b0ad08687::c2ad7b8b5225d5abc748a1c6bbb07aeb" class="extra-logo navlink">
+          <img src="{% static 'webpage/img/open-aire-logo-white.png' %}" class="footer-logo" alt="Open Aire" title="Open Aire" style="margin-bottom:20px; width: 50%"/>
+      </a>
+      <a href="https://www.zotero.org/groups/2199751/digital_scholarly_editions" class="extra-logo navlink">
+          <img src="{% static 'webpage/img/zotero-logo-white.png' %}" class="footer-logo" alt="Zotero" title="Zotero" style="margin-bottom: 10px; height: 60%"/>
+      </a>
+      <a href="https://creativecommons.org/licenses/by/4.0/" class="extra-logo navlink">
+          <img src="{% static 'webpage/img/by-sa.png' %}" class="footer-logo" alt="CC-BY-SA-4.0" title="CC-BY-SA-4.0 license" style="margin-bottom:25px; padding-top: 20px; width: 60%"/>
+      </a>
+    </div>
+  </div>
+</div>
 </footer>
-
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
+   <!--  <link rel="stylesheet" href="{% static 'webpage/libraries/bootstrap-select/css/bootstrap-select.min.css'%}" />
+    <script src="{% static 'webpage/libraries/bootstrap-select/js/bootstrap-select.min.js'%}"></script> -->
     <!-- cool share -->
       <script type="text/javascript">
         $(function (){

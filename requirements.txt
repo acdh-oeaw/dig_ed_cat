@@ -12,7 +12,7 @@ django-extensions==1.7.9
 django-filter==2.0.0
 django-rest-framework==0.1.0
 django-tables2==2.0.2
-djangorestframework==3.7.7
+djangorestframework==3.9.1
 entrypoints==0.2.3
 html5lib==0.999999999
 idna==2.5

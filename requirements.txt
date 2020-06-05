@@ -5,7 +5,7 @@ chardet==3.0.3
 colorama==0.3.9
 cycler==0.10.0
 decorator==4.1.0
-Django==2.1.5
+Django==2.2.13
 django-autocomplete-light==3.3.2
 django-crispy-forms==1.7.2
 django-extensions==1.7.9

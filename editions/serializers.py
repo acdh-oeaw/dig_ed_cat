@@ -38,7 +38,11 @@ class EditionSerializer(serializers.HyperlinkedModelSerializer):
     language = LanguageSerializer(many=True)
     manager = PersonSerializer(many=True)
     institution = InstitutionSerializer(many=True)
+    handle_pid = serializers.SerializerMethodField()
 
     class Meta:
         fields = "__all__"
         model = Edition
+
+    def get_handle_pid(self, obj):
+        return f"{obj.pid.all().first()}"

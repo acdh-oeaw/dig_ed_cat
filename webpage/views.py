@@ -48,11 +48,11 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return render('webpage/user_logout.html')
+    return render(request, 'webpage/user_logout.html')
 
 
 def handler404(request, exception):
-    response = render('webpage/404-error.html')
+    response = render(request, 'webpage/404-error.html')
     response.status_code = 404
     return response
 

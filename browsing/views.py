@@ -3,6 +3,8 @@ import json
 import csv
 import time
 import datetime
+import rdflib
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django_tables2 import SingleTableView, RequestConfig
@@ -12,8 +14,6 @@ from .filters import EditionListFilter
 from .forms import GenericFilterFormHelper, MapFilterFormHelper
 from .tables import EditionTable
 from django.template.loader import render_to_string
-from django.shortcuts import render_to_response
-import rdflib
 from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef, RDFS, ConjunctiveGraph
 from rdflib.namespace import DC, FOAF, RDFS
 from rdflib.namespace import SKOS
@@ -84,7 +84,7 @@ class EditionDownloadView(GenericListView):
 
 
 def EditionXMLView(request):
-    response = render_to_response(
+    response = render(
         'browsing/xml_template.xml', {'editions': Edition.objects.all(), }
     )
     response['Content-Type'] = 'application/xml; charset=utf-8'
@@ -92,7 +92,7 @@ def EditionXMLView(request):
 
 
 def EditionBibtextView(request):
-    response = render_to_response(
+    response = render(
         'browsing/bibtex_template.txt', {'editions': Edition.objects.all(), }
     )
     response['Content-Type'] = 'text/plain; charset=utf-8'

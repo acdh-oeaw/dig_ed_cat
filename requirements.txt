@@ -13,7 +13,7 @@ djangorestframework==3.11.1
 djangorestframework-xml==2.0.0
 idna==2.10
 isodate==0.6.0
-lxml==4.5.2
+lxml==4.6.2
 mysqlclient==2.0.1
 numpy==1.19.1
 pandas==1.1.0

@@ -9,7 +9,7 @@ django-crispy-forms==1.9.2
 django-extensions==3.0.5
 django-filter==2.3.0
 django-tables2==2.3.1
-djangorestframework==3.11.1
+djangorestframework==3.11.2
 djangorestframework-xml==2.0.0
 idna==2.10
 isodate==0.6.0

@@ -15,7 +15,7 @@ router.register(r'languages', LanguageViewSet)
 router.register(r'persons', PersonViewSet)
 router.register(r'editions', EditionViewSet)
 router.register(r'newsfeeds', NewsFeedViewSet)
-router.register(r'users', UserViewSet, base_name='user')
+router.register(r'users', UserViewSet, basename='user')
 
 
 urlpatterns = [

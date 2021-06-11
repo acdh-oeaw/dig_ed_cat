@@ -1,6 +1,6 @@
 
 {% extends "webpage/base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% load django_tables2 %}
 {% load i18n %}
 {% block Titel %} {% endblock %}
@@ -91,11 +91,11 @@
             fullscreenControl: true,
         }).setView([30.00, 31.00], 2);
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
             maxZoom: 18,
-            id: 'mapbox.light',
-            accessToken: 'pk.eyJ1IjoiY3NhZTgwOTIiLCJhIjoiY2lnM2FoZWpjMDJqZnY1a2gxdWl6a29kaiJ9.FQXlsKIu60WhiXLrfI59VA'
+
+
         }).addTo(mymap);
         var markers = L.markerClusterGroup({});
         var bounds = new L.LatLngBounds(markers);

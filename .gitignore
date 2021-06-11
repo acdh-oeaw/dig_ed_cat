@@ -6,10 +6,13 @@ __pycache__/
 .ipynb_checkpoints
 /staticfiles/*
 
+/myenv
+
 #migrations
 /db.sqlite3
 /digital_editions/settings/pandorfer_local.py
 /digital_editions/settings/server.py
+/digital_editions/settings/local.py
 /digedcat3.4
 /digital_editions/settings/ksenia_server.py
 /playAndTry.ipynb

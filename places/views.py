@@ -1,7 +1,8 @@
-import requests, re, json
+import requests
+import re
+import json
 
-from django.shortcuts import (render, render_to_response, get_object_or_404,
-	redirect)
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic.edit import DeleteView
 from django.views.generic.detail import DetailView

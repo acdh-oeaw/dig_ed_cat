@@ -15,5 +15,5 @@ pandas==1.1.0
 pyparsing==2.4.7
 python-dateutil==2.8.1
 rdflib==5.0.0
-requests==2.24.0
+requests==2.31.0
 SPARQLWrapper==1.8.5

@@ -39,23 +39,24 @@
  <div id="social-stuff-wrapper">
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h3><b>News items</b> <a href="{% url 'news:feeds' %}" target="_blank" title="Opens in new tab"><i class="fa fa-rss"></i></a></h3>
             {% newsfeed_bootstrap_panel %}
             {% toggle_feeds %}
         </div>
 
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
           <h3><b><a href="https://twitter.com/search?q=%23digEdsCat" style="color: black;">#digEdsCat</a> on Twitter</b></h3>
           <div class="panel panel-default news-wrapper">
             <div class="panel-heading">
-              </div>
-              <div class="panel-body">
+            </div>
+            <div class="panel-body">
             <a class="twitter-timeline"  href="https://twitter.com/hashtag/digEdsCat" data-widget-id="855092028652257281" data-chrome="transparent noheader" >Catalogue tweets</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
           </div>
-        </div>
-        </div>
+        </div>-->
+
     </div>
 
     <span class="text-muted">Please note this is a beta version of the application.</span>
